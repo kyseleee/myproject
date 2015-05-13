@@ -2,8 +2,8 @@ package java01;
 
 public class B {
 	public void m() {
-		System.out.println("¾È³çÇÏ¼¼¿ä!!");
 		System.out.println("dkfjdkfjd");
-
+		System.out.println("ì˜¤í˜¸ë¼...");
+		System.out.println("ï¿½È³ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½!!");
 	}
 }
