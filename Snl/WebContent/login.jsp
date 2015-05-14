@@ -386,10 +386,10 @@
 											<div class="col-lg-12">
 												<form id="login-form" action="login.do" method="post" role="form" style="display: block;">
 													<div class="form-group">
-														<input type="text" name="id" id="id" tabindex="1" class="form-control" placeholder="아이디" value="">
+														<input type="text" name="userId" id="userId" tabindex="1" class="form-control" placeholder="아이디" value="">
 													</div>
 													<div class="form-group">
-														<input type="password" name="pw" id="pw" tabindex="2" class="form-control" placeholder="패스워드">
+														<input type="password" name="userPw" id="userPw" tabindex="2" class="form-control" placeholder="패스워드">
 													</div>
 													<div> <%= fail %> </div>
 													<div class="form-group text-center">
@@ -417,14 +417,15 @@
 													<div class="form-group" >
 														<input type="text" name="id" id="id" tabindex="1" class="form-control" placeholder="아이디" value=""  required="">
 														<div id="idInfo"></div>
-														
 													</div>
 													<div class="form-group">
 														<input type="password" name="pw" id="pw" tabindex="2" class="form-control" placeholder="패스워드">
 													</div>
 													<div class="form-group">
 														<input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="비밀번호 확인">
+														<div id="pwInfo"></div>
 													</div>
+													
 													
 													<div class="form-group">
 														<input type="text" name="userName" id="userName" tabindex="2" class="form-control" placeholder="이름">
