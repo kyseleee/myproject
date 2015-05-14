@@ -39,7 +39,7 @@ public class UserController {
 		userService.addUser(user);
 		
 		
-		return "redirect:/";	
+		return "redirect:/index.html";	
 	}
 	
 	@RequestMapping("/getUser.do")
