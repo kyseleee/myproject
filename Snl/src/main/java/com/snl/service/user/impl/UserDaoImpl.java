@@ -9,7 +9,7 @@ import com.snl.service.domain.User;
 import com.snl.service.user.UserDao;
 
 
-//==> È¸¿ø°ü¸® DAO CRUD ±¸Çö
+//==> È¸ï¿½ï¿½ï¿½ DAO CRUD ï¿½ï¿½ï¿½ï¿½
 @Repository("userDaoImpl")
 public class UserDaoImpl implements UserDao{
 	
@@ -34,6 +34,13 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public User getUser(String id) throws Exception {
-		return sqlSession.selectOne("UserMapper.getUser", id);
+//		User user=sqlSession.selectOne("UserMapper.getUser",id);
+//		
+//		if(user==null){
+//			System.out.println("==========================ìœ ì €ë„");
+//			return new User();
+//		}
+//		return user;
+		return sqlSession.selectOne("UserMapper.getUser",id);
 	}
 }

@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.snl.service.domain.User;
 import com.snl.service.user.UserService;
 
-
-
-
 @Controller
 public class UserController {
 
@@ -67,23 +64,21 @@ public class UserController {
 	
 	
 	@RequestMapping("/login.do")
-	   public String login(@ModelAttribute("user") User user , HttpSession session, HttpServletRequest request) throws Exception{
+	   public String login(@RequestParam("userId") String id , @RequestParam("userPw") String pw,HttpSession session, HttpServletRequest request) throws Exception{
 	      
 	      System.out.println("/login.do");
-
-	      System.out.println("e�������-------"+user);
-	      User dbUser=userService.getUser(user.getId());
-	      System.out.println("e���˻�����-------"+dbUser);
 	      
+	      User dbUser=userService.getUser(id);
 	      
-	      if( user.getPw().equals(dbUser.getPw()) && user.getId().equals(dbUser.getId())){
-	         session.setAttribute("user", dbUser);
-	         System.out.println("--------------����---------------------");
-	         return "redirect:index.html";
+	      System.out.println("디비유저-------"+dbUser);
+	      if ((dbUser==null)||!( pw.equals(dbUser.getPw()) && id.equals(dbUser.getId()))){
+	    	  return "forward:login.jsp?fail=<font color='red'>등록되지 않은 아이디이거나,</br>아이디 또는 비밀번호를 잘못 입력하셨습니다.</font>";
 	      }
 	      else{
-	         return "forward:login.jsp?fail=���̵� �Ǵ� ��й�ȣ�� �߸� �Է��ϼ̽��ϴ�.";
+	    	  return "redirect:index.html"; 
 	      }
+	      
+	      
 	      
 	   }
 	

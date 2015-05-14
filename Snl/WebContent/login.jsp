@@ -3,15 +3,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 
-
-
-
-
-
 <%
    String fail="";
    fail=(String)request.getParameter("fail");
-   System.out.println(fail);
+   if (fail==null) {
+	   fail="";
+   }
+   
+   
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -47,6 +46,7 @@
 				        data : {id : idv },
 				        success: function(responseData){
 				        	var data = JSON.parse(responseData);
+				        	
 				        	if(data.result == "true"){
 				        		var msg = "<font color='blue'>사용 가능한 아이디 입니다.</font>";
 				        	}
@@ -141,7 +141,9 @@
 				fncGetCont("./addGroup.html");	
 			}
 			
-			
+			function groupChk(){
+				
+			}
 		</script> 
 	
 	
@@ -392,7 +394,7 @@
 					
 			        <li><a href="#">설정</a></li>
 			        <li>
-			        		<a href='login.html'>로그인</a>
+			        		<a href='login.jsp'>로그인</a>
 			        </li>
 			        
 			        
@@ -435,10 +437,10 @@
 									<div class="form-group">
 										<input type="password" name="userPw" id="userPw" tabindex="2" class="form-control" placeholder="패스워드">
 									</div>
-									<div> <%= fail %> </div>
+									<div style="text-align:center;"> <%= fail %> </div>
 									<div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-										<label for="remember"> 아이디 저장</label>
+										<label for="remember"> <br>아이디 저장</label>
 									</div>
 									<div class="form-group">
 										<div class="row">
@@ -486,7 +488,7 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="등록">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="등록" onclick="">
 											</div>
 										</div>
 									</div>
