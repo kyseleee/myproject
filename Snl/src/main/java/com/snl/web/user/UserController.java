@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.snl.service.domain.User;
 import com.snl.service.user.UserService;
 
+
+
+
 @Controller
 public class UserController {
 
@@ -68,18 +71,18 @@ public class UserController {
 	      
 	      System.out.println("/login.do");
 
-	      System.out.println("eµðºñÀ¯Àú-------"+user);
+	      System.out.println("eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½-------"+user);
 	      User dbUser=userService.getUser(user.getId());
-	      System.out.println("eµðºñ°Ë»öÀ¯Àú-------"+dbUser);
+	      System.out.println("eï¿½ï¿½ï¿½Ë»ï¿½ï¿½ï¿½ï¿½ï¿½-------"+dbUser);
 	      
 	      
 	      if( user.getPw().equals(dbUser.getPw()) && user.getId().equals(dbUser.getId())){
 	         session.setAttribute("user", dbUser);
-	         System.out.println("--------------°°´Ù---------------------");
+	         System.out.println("--------------ï¿½ï¿½ï¿½ï¿½---------------------");
 	         return "redirect:index.html";
 	      }
 	      else{
-	         return "forward:login.jsp?fail=¾ÆÀÌµð ¶Ç´Â ºñ¹Ð¹øÈ£¸¦ Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.";
+	         return "forward:login.jsp?fail=ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ß¸ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼Ì½ï¿½ï¿½Ï´ï¿½.";
 	      }
 	      
 	   }
