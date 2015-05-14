@@ -9,7 +9,7 @@ import com.snl.service.user.UserDao;
 import com.snl.service.user.UserService;
 
 
-//==> È¸¿ø°ü¸® ¼­ºñ½º ±¸Çö
+//==> È¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService{
 	
@@ -32,10 +32,12 @@ public class UserServiceImpl implements UserService{
 		userDao.addUser(user);
 	}
 
-	@Override
+	
 	public User getUser(String id) throws Exception {
 		return userDao.getUser(id);
 	}
 
-
+	public void updateUser(User user) throws Exception {
+		userDao.updateUser(user);
+	}
 }

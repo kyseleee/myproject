@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,10 +32,10 @@ public class UserController {
 	
 	
 	@RequestMapping("/addUser.do")
-	public String addUser(@ModelAttribute("user") User user ) throws Exception{
+	public String addUser(@ModelAttribute("user") User user,@RequestParam("groupChk") String groupChk ) throws Exception{
 		
 		System.out.println("/addUser.do");
-			
+		System.out.println("============="+groupChk);	
 		userService.addUser(user);
 		
 		
@@ -75,12 +76,38 @@ public class UserController {
 	    	  return "forward:login.jsp?fail=<font color='red'>등록되지 않은 아이디이거나,</br>아이디 또는 비밀번호를 잘못 입력하셨습니다.</font>";
 	      }
 	      else{
+	    	  session.setAttribute("user", dbUser);
 	    	  return "redirect:index.html"; 
 	      }
 	      
 	      
 	      
 	   }
+	
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session ) throws Exception{
+		
+		System.out.println("/logout.do");
+		
+		session.invalidate();
+		
+		return "redirect:/index.jsp";
+	}
+	
+	@RequestMapping("/updateUser.do")
+	public String updateUser( @ModelAttribute("user") User user , Model model , HttpSession session) throws Exception{
+
+		System.out.println("/updateUser.do");
+		//Business Logic
+		userService.updateUser(user);
+		
+		String sessionId=((User)session.getAttribute("user")).getId();
+		if(sessionId.equals(user.getId())){
+			session.setAttribute("user", user);
+		}
+		
+		return "redirect:/getUser.do?userId="+user.getId();
+	}
 	
 	
 	

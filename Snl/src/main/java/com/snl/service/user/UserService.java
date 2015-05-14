@@ -3,12 +3,15 @@ package com.snl.service.user;
 import com.snl.service.domain.User;
 
 
-//==> È¸¿ø°ü¸®¿¡¼­ ¼­ºñ½ºÇÒ ³»¿ë Ãß»óÈ­/Ä¸½¶È­ÇÑ Service  Interface Definition  
+//==> È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½È­/Ä¸ï¿½ï¿½È­ï¿½ï¿½ Service  Interface Definition  
 public interface UserService {
 	
-	// È¸¿ø°¡ÀÔ
+	// È¸ï¿½ï¿½ï¿½ï¿½
 	public void addUser(User user) throws Exception;
 	
 	public User getUser(String id) throws Exception;
 
+	public void updateUser(User user) throws Exception;
+	
+	
 }

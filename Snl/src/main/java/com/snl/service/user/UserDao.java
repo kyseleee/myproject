@@ -5,12 +5,14 @@ import java.util.List;
 import com.snl.service.domain.User;
 
 
-//==> È¸¿ø°ü¸®¿¡¼­ CRUD Ãß»óÈ­/Ä¸½¶È­ÇÑ DAO Interface Definition
+//==> È¸ï¿½ï¿½ï¿½ï¿½ CRUD ï¿½ß»ï¿½È­/Ä¸ï¿½ï¿½È­ï¿½ï¿½ DAO Interface Definition
 public interface UserDao {
 	
 	// INSERT
 	public void addUser(User user) throws Exception ;
 
 	public User getUser(String id) throws Exception ;
+	
+	public void updateUser(User user) throws Exception ;
 
 }

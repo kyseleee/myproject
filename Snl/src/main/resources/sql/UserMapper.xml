@@ -30,7 +30,18 @@
 			FROM tb_user 
 				WHERE id = #{value}
 	 </select>
-
+		<update id="updateUser" parameterType="User">
+  		UPDATE users
+  		<set>
+  			<if test="userName !=null">user_name = #{userName},</if>
+  			<if test="password !=null">pw		=#{password},</if>
+  										cell_phone	=#{phone:VARCHAR},
+  										addr		=#{addr:VARCHAR},
+  										email		=#{email:VARCHAR}
+  									
+  		</set>
+  		WHERE user_id=#{userId}
+  	</update>
 
   	
   	

@@ -32,7 +32,7 @@ public class UserDaoImpl implements UserDao{
 		sqlSession.insert("UserMapper.addUser", user);
 	}
 
-	@Override
+	
 	public User getUser(String id) throws Exception {
 //		User user=sqlSession.selectOne("UserMapper.getUser",id);
 //		
@@ -42,5 +42,9 @@ public class UserDaoImpl implements UserDao{
 //		}
 //		return user;
 		return sqlSession.selectOne("UserMapper.getUser",id);
+	}
+	
+	public void updateUser(User user) throws Exception {
+		sqlSession.update("UserMapper.updateUser", user);
 	}
 }
