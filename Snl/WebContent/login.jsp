@@ -17,7 +17,6 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.0.min.js'></script> 
@@ -26,393 +25,116 @@
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-	<script type='text/javascript'> 
+	<style type="text/css">
 		
-		$(document).ready(function(){
-			 
-			 $("#id").blur(function(){
-				
-				var idv = $("input[name=id]").val();
-				 
-				if(idv == ""){
-					var msg = "<font color='red'>필수입력입니다.</font>";
-	        		document.getElementById("idInfo").innerHTML= msg;
-				}else{ 
-				 
-					$.ajax({
-				        type:"POST",
-				        url:"./getUser.do",
-				        data : {id : idv },
-				        success: function(responseData){
-				        	var data = JSON.parse(responseData);
-				        	
-				        	if(data.result == "true"){
-				        		var msg = "<font color='blue'>사용 가능한 아이디 입니다.</font>";
-				        	}
-				        	else{
-								var msg = "<font color='red'>이미 사용중인 아이디 입니다.</font>";
-				        	}
-			        		document.getElementById("idInfo").innerHTML= msg;
 
-				        },
-
-				        error: function(xhr, status, error) {
-				            alert(error);
-				        }  
-				    });	 
-				}
-			  });
-			 
-	
-			$("#confirm-password").keyup(function(){
-				
-				var pw = $("input[name=pw]").val();
-				var cpw = $("input[name=confirm-password]").val();
-
-					if(pw != cpw){
-						var msg = "<font color='red'> 비밀번호가 일치하지 않습니다.</font>";
-					}else{ 
-						var msg = "<font color='blue'> 비밀번호가 일치합니다.</font>";						
-					}
-	        		document.getElementById("pwInfo").innerHTML= msg;
-
-			});
-			
-			
-			$("#tel").focus(function(){
-        		document.getElementById("telInfo").innerHTML= "<font color='blue'> 숫자만 입력하세요.</font>";
-			});
-			
-			
-			$("#tel").keyup(function(){
-				
-				var tel = $("input[name=tel]").val();
-				
-				if(tel.length == 3){
-					tel = tel + "-";
-	        		document.getElementById("tel").value=tel; 
-				}else if(tel.length == 7){
-					tel = tel + "-";
-	        		document.getElementById("tel").value=tel; 
-				}else if(tel.length == 13){
-					tel = tel.subString(0,3);
-					alert(tel);
-	        		document.getElementById("tel").value=tel; 
-				}
-
-			});
-			
-			 
-		});
-
-
-			function fncGetCont(url) 
-			{ 
-			     $.ajax({ 
-			            type        : 'POST' 
-			            ,url        : url 
-			            ,dataType   : 'html' 
-			            ,success    : function(data, textStatus, jqXHR){$('#main').html(data);} 
-			     }); 
-			} 
-		 
-			
-			function addPayment()
-			{
-				fncGetCont("./addPayment.html");	
-			}
-			
-			function paymentlist()
-			{
-				fncGetCont("./calendar.html");	
-			}
-			
+		.panel-login {
+			border-color: #ccc;
+			-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+			-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+			box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+		}
+		.panel-login>.panel-heading {
+			color: #00415d;
+			background-color: #fff;
+			border-color: #fff;
+			text-align:center;
+		}
+		.panel-login>.panel-heading a{
+			text-decoration: none;
+			color: #666;
+			font-weight: bold;
+			font-size: 15px;
+			-webkit-transition: all 0.1s linear;
+			-moz-transition: all 0.1s linear;
+			transition: all 0.1s linear;
+		}
+		.panel-login>.panel-heading a.active{
+			color: #029f5b;
+			font-size: 18px;
+		}
+		.panel-login>.panel-heading hr{
+			margin-top: 10px;
+			margin-bottom: 0px;
+			clear: both;
+			border: 0;
+			height: 1px;
+			background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+			background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+			background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+			background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+		}
+		.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
+			height: 45px;
+			border: 1px solid #ddd;
+			font-size: 16px;
+			-webkit-transition: all 0.1s linear;
+			-moz-transition: all 0.1s linear;
+			transition: all 0.1s linear;
+		}
+		.panel-login input:hover,
+		.panel-login input:focus {
+			outline:none;
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+			border-color: #ccc;
+		}
+		.btn-login {
+			background-color: #59B2E0;
+			outline: none;
+			color: #fff;
+			font-size: 14px;
+			height: auto;
+			font-weight: normal;
+			padding: 14px 0;
+			text-transform: uppercase;
+			border-color: #59B2E6;
+		}
+		.btn-login:hover,
+		.btn-login:focus {
+			color: #fff;
+			background-color: #53A3CD;
+			border-color: #53A3CD;
+		}
+		.forgot-password {
+			text-decoration: underline;
+			color: #888;
+		}
+		.forgot-password:hover,
+		.forgot-password:focus {
+			text-decoration: underline;
+			color: #666;
+		}
 		
-			
-			function list()
-			{
-				fncGetCont("./list.html");	
-			}
-			
-
-			function addGroup()
-			{
-				fncGetCont("./addGroup.html");	
-			}
-			
-			function groupChk(){
-				
-			}
-		</script> 
-	
-	
-	
-	
-		<style type="text/css">
-			
-			
-			
-			* {
-				padding: 0;
-				margin: 0;
-			}
-			
-			#headernav {
-			
-				
-				position: fixed;
-				width: 100%;
-				height: 50px;
-				left : 0;
-				top : 0;
-
-				border-radius: 0;
-				margin-bottom: 0;
-				z-index: 100;
-				
-				
-				
-				
-			}
-			
-			#header {
-			
-				margin-top: 10px;
-				background-color: #5fb0e4;
-				background-image: url(header-bg.jpg?ver=2.0.0);
-				background-position: center center;
-				background-repeat: no-repeat;
-				background-size: cover;
-				color: #FFF;
-				font-size: 16px;
-				text-align: center;
-				text-shadow: 0 1px 0 rgba(0,0,0,.15);
-				font-family: Roboto,sans-serif;
-				width: 100%;
-				height: 170px;
-			}
-			
-			#article {
-				width: 100%;
-				height: 1000px;
-				background-color: #F5F5F5
-			}
-			
-
-			
-			#main {
-				margin-left: 18%;
-				padding-top: 50px;
-				width: 65%;
-				height: 100%;
-			}
-			
-				
-			#donutchart {
-				margin-left: 18%;
-				width: 100%;
-				height: 100%;
-			}
-			#curve_chart{
-				margin-left: 18%;
-				width: 100%;
-				height: 100%;
-			}
-			
-			
-			
-			#footer {
-				clear: both;
-				width: 100%;
-				height: 50px;
-				margin-top: 10px;
-				margin-bottom: 10px;
-			}
-			
-			#leftmenu {
-				margin-top : 60px;
-				margin-left : 5%;
-				text-align : right;
-				float : left;
-				top: 250px;
-				width: 150px;
-				height: 300px;
-			}
-			
-			
-			#aside {
-				position: fixed;
-				right: 30px;
-				top: 170px;
-				width: 150px;
-				height: 300px;
-			}
-			
-			
-			.panel-login {
-				border-color: #ccc;
-				-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-				-moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-				box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
-			}
-			.panel-login>.panel-heading {
-				color: #00415d;
-				background-color: #fff;
-				border-color: #fff;
-				text-align:center;
-			}
-			.panel-login>.panel-heading a{
-				text-decoration: none;
-				color: #666;
-				font-weight: bold;
-				font-size: 15px;
-				-webkit-transition: all 0.1s linear;
-				-moz-transition: all 0.1s linear;
-				transition: all 0.1s linear;
-			}
-			.panel-login>.panel-heading a.active{
-				color: #029f5b;
-				font-size: 18px;
-			}
-			.panel-login>.panel-heading hr{
-				margin-top: 10px;
-				margin-bottom: 0px;
-				clear: both;
-				border: 0;
-				height: 1px;
-				background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
-				background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-				background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-				background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
-			}
-			.panel-login input[type="text"],.panel-login input[type="email"],.panel-login input[type="password"] {
-				height: 45px;
-				border: 1px solid #ddd;
-				font-size: 16px;
-				-webkit-transition: all 0.1s linear;
-				-moz-transition: all 0.1s linear;
-				transition: all 0.1s linear;
-			}
-			.panel-login input:hover,
-			.panel-login input:focus {
-				outline:none;
-				-webkit-box-shadow: none;
-				-moz-box-shadow: none;
-				box-shadow: none;
-				border-color: #ccc;
-			}
-			.btn-login {
-				background-color: #59B2E0;
-				outline: none;
-				color: #fff;
-				font-size: 14px;
-				height: auto;
-				font-weight: normal;
-				padding: 14px 0;
-				text-transform: uppercase;
-				border-color: #59B2E6;
-			}
-			.btn-login:hover,
-			.btn-login:focus {
-				color: #fff;
-				background-color: #53A3CD;
-				border-color: #53A3CD;
-			}
-			.forgot-password {
-				text-decoration: underline;
-				color: #888;
-			}
-			.forgot-password:hover,
-			.forgot-password:focus {
-				text-decoration: underline;
-				color: #666;
-			}
-			
-			.btn-register {
-				background-color: #1CB94E;
-				outline: none;
-				color: #fff;
-				font-size: 14px;
-				height: auto;
-				font-weight: normal;
-				padding: 14px 0;
-				text-transform: uppercase;
-				border-color: #1CB94A;
-			}
-			.btn-register:hover,
-			.btn-register:focus {
-				color: #fff;
-				background-color: #1CA347;
-				border-color: #1CA347;
-			}
-			
-		</style>
+		.btn-register {
+			background-color: #1CB94E;
+			outline: none;
+			color: #fff;
+			font-size: 14px;
+			height: auto;
+			font-weight: normal;
+			padding: 14px 0;
+			text-transform: uppercase;
+			border-color: #1CB94A;
+		}
+		.btn-register:hover,
+		.btn-register:focus {
+			color: #fff;
+			background-color: #1CA347;
+			border-color: #1CA347;
+		}
+		
+	</style>
 	</head>
 	<body>
 		<script src="https://code.jquery.com/jquery.js"></script>
       	<script src="js/bootstrap.min.js"></script>
 	
-		<div id="headernav">
+
 		
-			<nav class="navbar navbar-default">
-			  <div class="container-fluid">
-			    <div class="navbar-header" style="margin-left: 150px;">
-			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-			        <span class="sr-only">Toggle navigation</span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			      </button>
-			      <a class="navbar-brand" href="http://localhost:8080/Snl/index.html"><font color="#5FB0E4">SNL</font></a>
-			    </div>
-			
-			    <!-- Collect the nav links, forms, and other content for toggling -->
-			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			     
-			      <ul class="nav navbar-nav navbar-right" style="margin-right: 150px;">
-			      	<li class="active">
-			            	<a href='calendar.html' onclick='paymentlist(this);'>지출현황</a> 
-					</li>
-					<li>
-			            	<a href='addPayment.html' onclick='addPayment(this);'>지출추가</a> 
-					</li>
-			        <li>
-			            	<a href='jqGridSimple.jsp' onclick='stat1();'>통계</a> 
-			        </li>
-			       								        
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						그룹관리
-						<b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="#">회비관리</a></li>
-							<li><a href="list.html"  onclick='list(this);'>회원리스트</a></li>
-						</ul>
-					</li>
-					
-			        <li><a href="#">설정</a></li>
-			        <li>
-			        		<a href='login.jsp'>로그인</a>
-			        </li>
-			        
-			        
-			        
-			      </ul>
-			    </div><!-- /.navbar-collapse -->
-			  </div><!-- /.container-fluid -->
-			</nav>
-		</div>
 		
-		<div id="header" align="center">
-			<br/><br/>
-				<font size="9" face ="sans-serif"><b>SNL</b></font><br/>
-				<font size="5">Social Network Ledger</font>
-		</div>
 	
-<div id="article">			
-	<div id="main">
 		<div class="row">
 			<div class="col-md-6 col-sm-offset-3">
 				<div class="panel panel-login">
@@ -499,41 +221,10 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript">
-		$(function() {
 		
-		    $('#login-form-link').click(function(e) {
-				$("#login-form").delay(100).fadeIn(100);
-		 		$("#register-form").fadeOut(100);
-				$('#register-form-link').removeClass('active');
-				$(this).addClass('active');
-				e.preventDefault();
-			});
-			$('#register-form-link').click(function(e) {
-				$("#register-form").delay(100).fadeIn(100);
-		 		$("#login-form").fadeOut(100);
-				$('#login-form-link').removeClass('active');
-				$(this).addClass('active');
-				e.preventDefault();
-			});
+		
 
-		
-		});
-		
-		</script>
-				
-			
-			
-			</div>
 
-		</div>
-		<div id="footer">footer</div>
-	
-	
-	
-	
-	
-	
 
 </body>
 </html>

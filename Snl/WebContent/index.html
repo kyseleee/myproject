@@ -8,9 +8,9 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 	
 		<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.0.min.js'></script> 
+		<script src="js/login.js"></script>
 		
 		<link rel="stylesheet" href="css/style.css" />
-	    <script src="js/login.js"></script>
 		
 		<script type='text/javascript'> 
 		
@@ -20,7 +20,6 @@
 			     $.ajax({ 
 			            type        : 'POST' 
 			            ,url        : url 
-			            ,dataType   : 'html' 
 			            ,success    : function(data, textStatus, jqXHR){$('#main').html(data);} 
 			     }); 
 			} 
@@ -35,9 +34,7 @@
 			{
 				fncGetCont("./calendar.html");	
 			}
-			
-			
-			
+
 			function list()
 			{
 				fncGetCont("./list.html");	
@@ -47,6 +44,11 @@
 			function addGroup()
 			{
 				fncGetCont("./addGroup.html");	
+			}
+			
+			function login()
+			{
+				fncGetCont("./login.jsp");	
 			}
 			
 			
@@ -203,10 +205,11 @@
 							<li><a href="list.html"  onclick='list(this); return false;'>회원리스트</a></li>
 						</ul>
 					</li>
-					
-			        <li><a href="#">설정</a></li>
 			        <li>
-			        		<a href='login.jsp'>로그인</a>
+			        	<a href="#">설정</a>
+			        </li>
+			        <li>
+			        	<a href='login.jsp' onclick='login(this); return false;'>로그인</a>
 			        </li>
 			        
 			        
