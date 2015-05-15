@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 
@@ -17,23 +17,67 @@
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.0.min.js'></script> 
 	<link rel="stylesheet" href="css/style.css" />
-	<script src="js/login.js"></script>
+	
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	
 	<script type="text/javascript">
-		function loginChk(){
-			
+	
+	function loginChk(){
+		alert("loginChk");
+		var idLogInChk = document.getElementById("userId").value;
+		var pwLogInChk = document.getElementById("userPw").value;
+		alert(idLogInChk+"---"+pwLogInChk);
+		var msg="1";
+		$.ajax({
+	        type:"POST",
+	        url:"./loginchk.do",
+	        data : {id : idLogInChk, pw : pwLogInChk},
+	        async : false,
+	        success: function(data){
+	        	//var data = JSON.parse(responseData);
+	        	alert("ajax ì„±ê³µ");
+	        	if(data == "no"){
+	        		alert("no");
+	        		msg = "<font color='red'>ë“±ë¡ë˜ì§€ ì•Šì€ ì•„ì´ë””ì´ê±°ë‚˜,</br>ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ë¥¼ ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.</font>";
+	        		document.getElementById("logInChk").innerHTML= msg;
+	        		
+	        		
+	        	}
+	        	else{
+	        		alert("yes");
+							
+	        	}
+        		
+
+	        },
+
+	        error: function(xhr, status, error) {
+	            alert(error);
+	        }  
+	    });	
+		alert(msg);
+		  if (msg=="1") {
+			  return true;
+		  }
+		  else {
+			  return false;
+		  }
+		
+	}
+		
+		function groupChk(){
+			alert("ê·¸ë£¹ì²´í¬");
 		}
-	</script>
+	</script> 
 	
 	<style type="text/css">
 		
@@ -135,8 +179,14 @@
 			border-color: #1CA347;
 		}
 		
-		</style>
-
+		</style>	
+			
+	
+	
+	
+	
+		
+	
 	</head>
 	<body>
 		<script src="https://code.jquery.com/jquery.js"></script>
@@ -152,10 +202,10 @@
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-xs-6">
-								<a href="#" class="active" id="login-form-link">·Î±×ÀÎ</a>
+								<a href="#" class="active" id="login-form-link">ë¡œê·¸ì¸</a>
 							</div>
 							<div class="col-xs-6">
-								<a href="#" id="register-form-link">È¸¿ø°¡ÀÔ</a>
+								<a href="#" id="register-form-link">íšŒì›ê°€ì…</a>
 							</div>
 						</div>
 						<hr>
@@ -163,22 +213,22 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="login.do" method="post" role="form" style="display: block;">
+								<form id="login-form" action="login.do" method="post" role="form" style="display: block;" onsubmit="return loginChk();">
 									<div class="form-group">
-										<input type="text" name="userId" id="userId" tabindex="1" class="form-control" placeholder="¾ÆÀÌµğ" value="">
+										<input type="text" name="userId" id="userId" tabindex="1" class="form-control" placeholder="ì•„ì´ë””" value="">
 									</div>
 									<div class="form-group">
-										<input type="password" name="userPw" id="userPw" tabindex="2" class="form-control" placeholder="ÆĞ½º¿öµå">
+										<input type="password" name="userPw" id="userPw" tabindex="2" class="form-control" placeholder="íŒ¨ìŠ¤ì›Œë“œ">
 									</div>
-									<div style="text-align:center;"> <%= fail %> </div>
+									<div id="logInChk" style="text-align:center;">  </div>
 									<div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-										<label for="remember"> <br>¾ÆÀÌµğ ÀúÀå</label>
+										<label for="remember"> <br>ì•„ì´ë”” ì €ì¥</label>
 									</div>
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="button"  name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="·Î±×ÀÎ" onclick="">
+												<input type="submit"  name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="ë¡œê·¸ì¸" onclick="loginChk()">
 											</div>
 										</div>
 									</div>
@@ -186,7 +236,7 @@
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
-													<a href="" tabindex="5" class="forgot-password">ÆĞ½º¿öµå ÀØ¾ú´Ï?</a>
+													<a href="" tabindex="5" class="forgot-password">íŒ¨ìŠ¤ì›Œë“œ ìŠì—ˆë‹ˆ?</a>
 												</div>
 											</div>
 										</div>
@@ -194,26 +244,26 @@
 								</form>
 								<form id="register-form" action="/Snl/addUser.do?groupChk=<%=groupChk%>" method="post" style="display: none;">
 									<div class="form-group" >
-										<input type="text" name="id" id="id" tabindex="1" class="form-control" placeholder="¾ÆÀÌµğ" value=""  required="">
+										<input type="text" name="id" id="id" tabindex="1" class="form-control" placeholder="ì•„ì´ë””" value=""  required="">
 										<div id="idInfo"></div>
 									</div>
 									<div class="form-group">
-										<input type="password" name="pw" id="pw" tabindex="1" class="form-control" placeholder="ÆĞ½º¿öµå">
+										<input type="password" name="pw" id="pw" tabindex="1" class="form-control" placeholder="íŒ¨ìŠ¤ì›Œë“œ">
 									</div>
 									<div class="form-group">
-										<input type="password" name="confirm-password" id="confirm-password" tabindex="1" class="form-control" placeholder="ºñ¹Ğ¹øÈ£ È®ÀÎ">
+										<input type="password" name="confirm-password" id="confirm-password" tabindex="1" class="form-control" placeholder="ë¹„ë°€ë²ˆí˜¸ í™•ì¸">
 										<div id="pwInfo"></div>
 									</div>
 							
 							
 									<div class="form-group">
-										<input type="text" name="userName" id="userName" tabindex="1" class="form-control" placeholder="ÀÌ¸§">
+										<input type="text" name="userName" id="userName" tabindex="1" class="form-control" placeholder="ì´ë¦„">
 									</div>
 									<div class="form-group">
-										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="ÀÌ¸ŞÀÏ ÁÖ¼Ò" value="">
+										<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="ì´ë©”ì¼ ì£¼ì†Œ" value="">
 									</div>
 									<div class="form-group">
-										<input type="text" name="tel" id="tel" tabindex="1" class="form-control" placeholder="ÀüÈ­¹øÈ£" value="">
+										<input type="text" name="tel" id="tel" tabindex="1" class="form-control" placeholder="ì „í™”ë²ˆí˜¸" value="">
 										<div id="telInfo"></div>
 									
 									</div>
@@ -221,7 +271,7 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="µî·Ï" onclick="groupChk()">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="ë“±ë¡" onclick="groupChk()">
 											</div>
 										</div>
 									</div>

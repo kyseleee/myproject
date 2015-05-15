@@ -1,6 +1,7 @@
 package com.snl.web.user;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -63,6 +64,33 @@ public class UserController {
 	
 	}
 	
+	@RequestMapping("/loginchk.do")
+	public void logInChk(@RequestParam("id") String id,@RequestParam("pw") String pw , HttpSession session, HttpServletResponse response ) throws Exception{
+		
+		System.out.println("/loginchk.do");
+		
+		System.out.println("================"+id+"++"+pw);
+		User dbUser=userService.getUser(id);
+		
+		System.out.println("디비유저-------"+dbUser);
+		
+		PrintWriter out = response.getWriter();
+	      if ((dbUser==null)||!( pw.equals(dbUser.getPw()) && id.equals(dbUser.getId()))){
+	    	  out.print("no");
+	      }
+	      else{
+	    	  out.print("yes");
+	      }
+	      
+	      
+//	      try{
+//				response.getWriter().print(result);
+//				
+//			}catch(IOException e){
+//				e.printStackTrace();
+//			}
+		
+	}
 	
 	@RequestMapping("/login.do")
 	   public String login(@RequestParam("userId") String id , @RequestParam("userPw") String pw,HttpSession session, HttpServletRequest request) throws Exception{
