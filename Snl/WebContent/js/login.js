@@ -73,7 +73,7 @@
 			
 			
 			$("#tel").focus(function(){
-        		document.getElementById("telInfo").innerHTML= "<font color='blue'> 숫자만 입력하세요.</font>";
+        		document.getElementById("telInfo").innerHTML= "<font color='blue'> 숫자만 입력하세요. 예)01011111111</font>";
 			});
 			
 			
