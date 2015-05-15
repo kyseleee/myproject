@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 public class  User implements Serializable{
 	
+	private int userNo;
 	private String id;
 	private String pw;
 	private String email;
@@ -15,8 +16,9 @@ public class  User implements Serializable{
 
 	public User(){}
 	
-	public User(String id, String pw, String email, String userName, String tel) {
+	public User(int userNo, String id, String pw, String email, String userName, String tel) {
 		super();
+		this.userNo = userNo;
 		this.id = id;
 		this.pw = pw;
 		this.email = email;
@@ -76,6 +78,14 @@ public class  User implements Serializable{
 	public String toString() {
 		return "User [id=" + id + ", pw=" + pw + ", email=" + email
 				+ ", userName=" + userName + ", tel=" + tel + "]";
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 	
 	

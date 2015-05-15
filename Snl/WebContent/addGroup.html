@@ -10,7 +10,10 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="js/addGroup.js"></script>
     <script type="text/javascript">
-    
+    function addGroup()
+	{
+		fncGetCont("./addGroup.html");	
+	}
     </script>
 
 </head>
@@ -21,21 +24,19 @@
             <legend><strong>그룹추가</strong></legend>
         </div>
         <!-- panel preview -->
+        
 		<div class="col-sm-2"></div>
         <div class="col-sm-8">
-            <h4></h4>
             <div class="panel-default">
+            <form id="register-form" action="/Snl/addGroup.do" method="post">
                 <div class="panel-body form-horizontal payment-form">
-                	
                     <div class="form-group">
                     	
                         <label for="concept" class="col-sm-2 control-label">그룹명</label>
                         <div class="col-sm-6">
-                            <input type="text" class="form-control" id="concept" name="concept">
+                            <input type="text" name="groupName" id="groupName" class="form-control" id="concept" name="concept">
                         </div>
-                        
                     </div>
-                  
                  </div>   
                     
                
@@ -87,11 +88,11 @@
 	            	<div class="col-xs-4"></div>
 	                <div class="col-xs-4">
 	                    
-	                    <button type="button" class="btn btn-primary btn-block">초대장 발송</button>
+	                    <input type="submit" class="btn btn-primary btn-block" name="register-submit" id="register-submit" tabindex="4" value="초대장발송">
 	                </div>
 	                <div class="col-xs-4"></div>                
 	            </div>
-            
+            </form>
                 
                 
                  
@@ -100,8 +101,13 @@
                    
         </div> <!-- / panel preview -->
   	    <div class="col-sm-2"></div>
-        
-
+        <script type="text/javascript">
+				$(function() {
+					$('#register-submit').click(function(e) {
+						alert('그룹생성이 완료 되었습니다.');
+					});
+				});
+		</script>
 
 </body>
 </html>
