@@ -9,7 +9,6 @@ import com.snl.service.group.GroupDao;
 import com.snl.service.group.GroupService;
 
 
-//==> ȸ��� ���� ����
 @Service("groupServiceImpl")
 public class GroupServiceImpl implements GroupService{
 	
@@ -30,5 +29,10 @@ public class GroupServiceImpl implements GroupService{
 	///Method
 	public void addGroup(Group group) throws Exception {
 		groupDao.addGroup(group);
+	}
+
+	@Override
+	public Group getGroup(int groupNo) throws Exception {
+		return groupDao.getGroup(groupNo);
 	}
 }

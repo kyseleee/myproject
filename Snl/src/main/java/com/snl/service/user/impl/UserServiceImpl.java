@@ -9,7 +9,6 @@ import com.snl.service.user.UserDao;
 import com.snl.service.user.UserService;
 
 
-//==> ȸ��� ���� ����
 @Service("userServiceImpl")
 public class UserServiceImpl implements UserService{
 	

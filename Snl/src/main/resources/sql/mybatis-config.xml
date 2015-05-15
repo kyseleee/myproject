@@ -17,6 +17,8 @@
 	<typeAliases>
 		<typeAlias alias="user" type="com.snl.service.domain.User"/>
 		<typeAlias alias="group" type="com.snl.service.domain.Group"/>
+		<typeAlias alias="groupArr" type="com.snl.service.domain.GroupArr"/>
+		
 	</typeAliases>
 
  
@@ -24,7 +26,9 @@
   <!-- SQL Definition :: file include -->
   <mappers>
     <mapper resource="sql/UserMapper.xml"/>
-		<mapper resource="sql/GroupMapper.xml"/>
+	<mapper resource="sql/GroupMapper.xml"/>
+	<mapper resource="sql/GroupArrMapper.xml"/>
+	
   </mappers>
 
 </configuration>

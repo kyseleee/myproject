@@ -33,12 +33,15 @@ public class UserController {
 	
 	
 	@RequestMapping("/addUser.do")
-	public String addUser(@ModelAttribute("user") User user,@RequestParam("groupChk") String groupChk ) throws Exception{
-		
+	public String addUser(@ModelAttribute("user") User user,@RequestParam("sgroupNo") String sgroupNo) throws Exception{
+
 		System.out.println("/addUser.do");
-		System.out.println("============="+groupChk);	
+		System.out.println("============="+sgroupNo);	
 		userService.addUser(user);
 		
+		if(sgroupNo != ""){
+			return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+user.getId();	
+		}
 		
 		return "redirect:/index.html";	
 	}

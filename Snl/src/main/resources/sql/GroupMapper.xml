@@ -6,9 +6,19 @@
 			
 <mapper namespace="GroupMapper">
 
-  	<resultMap id="groupSelectMap" type="group">		
-		<result property="groupName" column="group_name" jdbcType="VARCHAR"/>
-		<result property="userNo" column="user_no" jdbcType="INTEGER" />
+  	<resultMap id="groupSelectMap" type="group">	
+  		<result property="groupNo" column="group_no" jdbcType="INTEGER"/>
+  		<result property="groupName" column="group_name" jdbcType="VARCHAR" />
+		<result property="groupDate" column="group_date" jdbcType="DATE" />
+		
+		<association property="user" javaType="user">
+			<id property="userNo" column="user_no" jdbcType="INTEGER"/>
+			<result property="id" column="id" jdbcType="VARCHAR"/>
+			<result property="pw" column="pw" jdbcType="VARCHAR"/>
+			<result property="email" column="email" jdbcType="VARCHAR"/>
+			<result property="userName" column="user_name" jdbcType="VARCHAR"/>
+			<result property="tel" column="tel" jdbcType="VARCHAR"/>
+		</association>
 	</resultMap>  	
   	
   	
@@ -18,10 +28,15 @@
   	<insert id="addGroup"	parameterType="group">
   		INSERT	
   			INTO tb_group(group_no, user_no, group_name, group_date)
-  			VALUES(seq_tb_group_group_no.nextval, #{userNo}, #{groupName}, SYSDATE)				
+  			VALUES(seq_tb_group_group_no.nextval, #{user.userNo}, #{groupName}, to_char(sysdate, 'YYYY-MM-DD'))				
   	</insert> 
   	
-  	
+  	<select id="getGroup" parameterType="int" resultMap="groupSelectMap">
+		SELECT
+			group_no, user_no, group_name, group_date
+			FROM tb_group 
+				WHERE group_no = #{value}
+	 </select>
   	
   		
   	
