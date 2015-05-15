@@ -3,14 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 
-<%
-  
-  String groupChk;
-  groupChk=(String)request.getParameter("groupChk"); 
-  if (groupChk==null){
-	  groupChk="temp";
-  }
-%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -234,7 +227,7 @@
 										</div>
 									</div>
 								</form>
-								<form id="register-form" action="/Snl/addUser.do?groupChk=<%=groupChk%>" method="post" style="display: none;">
+								<form id="register-form" action="/Snl/addUser.do?sgroupNo=${sgroupNo}" method="post" style="display: none;">
 									<div class="form-group" >
 										<input type="text" name="id" id="id" tabindex="1" class="form-control" placeholder="아이디" value=""  required="">
 										<div id="idInfo"></div>
