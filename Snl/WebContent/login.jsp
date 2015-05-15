@@ -4,12 +4,8 @@
 
 
 <%
-  String fail="";
+  
   String groupChk;
-  fail=(String)request.getParameter("fail");
-  if (fail==null) {
-	  fail="";
-  }
   groupChk=(String)request.getParameter("groupChk"); 
   if (groupChk==null){
 	  groupChk="temp";
@@ -32,28 +28,23 @@
 	<script type="text/javascript">
 	
 	function loginChk(){
-		alert("loginChk");
 		var idLogInChk = document.getElementById("userId").value;
 		var pwLogInChk = document.getElementById("userPw").value;
-		alert(idLogInChk+"---"+pwLogInChk);
 		var msg="1";
+		
 		$.ajax({
 	        type:"POST",
 	        url:"./loginchk.do",
 	        data : {id : idLogInChk, pw : pwLogInChk},
 	        async : false,
 	        success: function(data){
-	        	//var data = JSON.parse(responseData);
-	        	alert("ajax 성공");
 	        	if(data == "no"){
-	        		alert("no");
 	        		msg = "<font color='red'>등록되지 않은 아이디이거나,</br>아이디 또는 비밀번호를 잘못 입력하셨습니다.</font>";
 	        		document.getElementById("logInChk").innerHTML= msg;
 	        		
 	        		
 	        	}
 	        	else{
-	        		alert("yes");
 							
 	        	}
         		
@@ -64,7 +55,7 @@
 	            alert(error);
 	        }  
 	    });	
-		alert(msg);
+		
 		  if (msg=="1") {
 			  return true;
 		  }
@@ -228,7 +219,7 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit"  name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="로그인" onclick="loginChk()">
+												<input type="submit"  name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="로그인">
 											</div>
 										</div>
 									</div>
