@@ -14,7 +14,7 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
+	<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -22,9 +22,10 @@
 	<link rel="stylesheet" href="css/style.css" />
 	
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	
+	<script src="js/login.js"></script>
 	<script type="text/javascript">
 	
 	function loginChk(){
