@@ -4,8 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.snl.service.domain.Group;
 import com.snl.service.domain.User;
 import com.snl.service.group.GroupService;
+import com.snl.service.mail.MailService;
 
 @Controller
 public class GroupController {
@@ -21,12 +20,11 @@ public class GroupController {
 	@Autowired
 	@Qualifier("groupServiceImpl")
 	private GroupService groupService;
-	
+
 	@Autowired
-	private JavaMailSender mailSender;
+	@Qualifier("mailService")
+	private MailService mailService;
 
-
-	
 	
 	public GroupController(){
 		System.out.println(this.getClass());
@@ -34,33 +32,24 @@ public class GroupController {
 	
 	
 	@RequestMapping("/addGroup.do")
-	public String addGroup(@ModelAttribute("group") Group group, HttpSession session) throws Exception{
+	public String addGroup(@ModelAttribute("group") Group groups, HttpSession session) throws Exception{
 		
 		System.out.println("/addGroup.do");
+//		ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Mail.xml");
+		 
+//		SimpleTest mm = (SimpleTest) context.getBean("simpleTest");
+        mailService.sendMail("kyseleee@naver.com",
+    		   "Testing only \n\n Hello Spring Email Sender");
 		
 		User user = (User) session.getAttribute("user");
-		group.setUser(user);
+	
 		
-		groupService.addGroup(group);
-		System.out.println(group);
-		sendMail("endy2048@gmail.com","SNL 그룹 초대 되었습니다.",group.getGroupName()+"에 초대 되었습니다. <br> http://127.0.0.1:8080/Snl?groupNo="+group.getGroupNo());
+		
+		
+		groupService.addGroup(groups);
+		
 		
 		return "redirect:/";	
-	}
-	
-	
-	public void sendMail(String to, String subject, String text){
-		
-		SimpleMailMessage message = new SimpleMailMessage();
-		
-		
-		message.setTo(to);
-		message.setSubject(subject);
-		message.setText(text);
-		
-		mailSender.send(message);
-		
-		
 	}
 
 	@RequestMapping("/getGroupByGroupName.do")
@@ -82,5 +71,4 @@ public class GroupController {
 		
 		return group;
 	}
-
 }
