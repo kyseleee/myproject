@@ -10,4 +10,6 @@ public interface GroupService {
 	
 	public Group getGroup(int groupNo) throws Exception;
 
+	public Group getGroupByGroupName(Group group) throws Exception;
+
 }

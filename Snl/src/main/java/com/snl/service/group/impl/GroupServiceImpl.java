@@ -35,4 +35,9 @@ public class GroupServiceImpl implements GroupService{
 	public Group getGroup(int groupNo) throws Exception {
 		return groupDao.getGroup(groupNo);
 	}
+	
+	public Group getGroupByGroupName(Group group) throws Exception{
+		return groupDao.getGroupByGroupName(group);
+	}
+
 }

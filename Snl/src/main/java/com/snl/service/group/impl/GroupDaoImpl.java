@@ -35,5 +35,10 @@ public class GroupDaoImpl implements GroupDao{
 	public Group getGroup(int groupNo) throws Exception {
 		return sqlSession.selectOne("GroupMapper.getGroup", groupNo);
 	}
+
+	@Override
+	public Group getGroupByGroupName(Group group) throws Exception {
+		return sqlSession.selectOne("GroupMapper.getGroupByGroupName", group);
+	}
 	
 }
