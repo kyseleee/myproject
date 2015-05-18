@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.snl.service.domain.Group;
+import com.snl.service.domain.GroupArr;
 import com.snl.service.domain.User;
 import com.snl.service.group.GroupService;
+import com.snl.service.groupArr.GroupArrService;
 import com.snl.service.mail.MailService;
 
 @Controller
@@ -20,6 +22,11 @@ public class GroupController {
 	@Autowired
 	@Qualifier("groupServiceImpl")
 	private GroupService groupService;
+	
+	
+	@Autowired
+	@Qualifier("groupArrServiceImpl")
+	private GroupArrService groupArrService;
 
 	@Autowired
 	@Qualifier("mailService")
@@ -38,11 +45,11 @@ public class GroupController {
 		
 		User user = (User) session.getAttribute("user");
 		group.setUser(user);
-
 		groupService.addGroup(group);
-		System.out.println(group);
+		GroupArr groupArr = new GroupArr(user, group, new String("L"));
+		groupArrService.addGroupArr(groupArr);
 		 
-        mailService.sendMail("kyseleee@naver.com", group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl?groupNo="+group.getGroupNo());		
+        mailService.sendMail("endy2048@gmail.com", group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/inviteIndex.jsp?sgroupNo="+group.getGroupNo());		
 		
 		return "redirect:/";	
 	}

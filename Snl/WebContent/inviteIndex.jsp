@@ -1,12 +1,11 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 <%
 	String sgroupNo = request.getParameter("sgroupNo");
 
 %>
-
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -66,10 +65,63 @@
 			alert("그룹체크");
 		}
 	</script> 
-	
+
 	<style type="text/css">
+	
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		
+		
+		#header {
+			background-color: #5fb0e4;
+			background-image: url(header-bg.jpg?ver=2.0.0);
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			color: #FFF;
+			font-size: 16px;
+			text-align: center;
+			text-shadow: 0 1px 0 rgba(0,0,0,.15);
+			font-family: Roboto,sans-serif;
+			width: 100%;
+			height: 170px;
+		}
+		
+		#article {
+			width: 100%;
+			height: 300px;
+			background-color: #F5F5F5
+		}
 		
 
+		
+		#main {
+			margin-left: 18%;
+			padding-top: 50px;
+			width: 65%;
+			height: 100%;
+		}
+		
+		#footer {
+			clear: both;
+			width: 100%;
+			height: 50px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		
+		
+		#aside {
+			position: fixed;
+			right: 30px;
+			top: 170px;
+			width: 150px;
+			height: 300px;
+		}
+		
+		
 		.panel-login {
 			border-color: #ccc;
 			-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
@@ -166,25 +218,27 @@
 			background-color: #1CA347;
 			border-color: #1CA347;
 		}
+
+	</style>
 		
-		</style>	
-			
-	
-	
-	
-	
-		
-	
-	</head>
-	<body>
-		<script src="https://code.jquery.com/jquery.js"></script>
-      	<script src="js/bootstrap.min.js"></script>
 	
 
-		
-		
+	</head>
 	
-		<div class="row">
+	<body>
+	
+		<script src="https://code.jquery.com/jquery.js"></script>
+      	<script src="js/bootstrap.min.js"></script>
+
+		<div id="header" align="center">
+			<br/>
+				<font size="9" face ="sans-serif"><b>SNL</b></font><br/>
+				<font size="5">Social Network Ledger</font>
+		</div>
+	
+		<div id="article">
+			<div id="main">
+				<div class="row">
 			<div class="col-md-6 col-sm-offset-3">
 				<div class="panel panel-login">
 					<div class="panel-heading">
@@ -230,7 +284,7 @@
 										</div>
 									</div>
 								</form>
-								<form id="register-form" action="/Snl/addUser.do?sgroupNo=<%=sgroupNo %>" method="post" style="display: none;">
+								<form id="register-form" action="/Snl/addUser.do?sgroupNo=<%= sgroupNo %>" method="post" style="display: none;">
 									<div class="form-group" >
 										<input type="text" name="id" id="id" tabindex="1" class="form-control" placeholder="아이디" value=""  required="">
 										<div id="idInfo"></div>
@@ -270,13 +324,10 @@
 				</div>
 			</div>
 		</div>
-		
-		
+			
+			</div>
+		</div>
+		<div id="footer">footer</div>
+	</body>
 
-
-
-</body>
 </html>
-
-
-
