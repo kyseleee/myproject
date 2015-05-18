@@ -25,7 +25,7 @@
  
   	
   	
-  	<insert id="addGroup"	parameterType="group">
+  	<insert id="addGroup"	parameterType="group" useGeneratedKeys="true" keyColumn="group_no" keyProperty="groupNo">
   		INSERT	
   			INTO tb_group(group_no, user_no, group_name, group_date)
   			VALUES(seq_tb_group_group_no.nextval, #{user.userNo}, #{groupName}, to_char(sysdate, 'YYYY-MM-DD'))				
@@ -38,7 +38,14 @@
 				WHERE group_no = #{value}
 	 </select>
   	
-  		
+ 	<select id="getGroupByGroupName" parameterType="group" resultMap="groupSelectMap">
+		SELECT
+			group_no, user_no, group_name, group_date
+			FROM tb_group 
+				WHERE group_name = #{groupName}
+					and user_no = #{user.userNo}
+	 </select>
+
   	
   	<!-- 
   	 <select id="getGroup" parameterType="int" resultMap="groupSelectMap">
