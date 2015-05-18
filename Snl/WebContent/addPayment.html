@@ -9,7 +9,45 @@
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="js/addPayment.js"></script>
+    <script src="jquery.json-2.4.min.js"></script>
 </head>
+<script>
+function getValue() {
+    var jsonObj = [];
+    var jsonString;
+    
+    var table = document.getElementById('preview');
+    
+    alert(table.rows.length+"--"+table.rows[0].cells.length);
+    
+    for (var r = 1, n = table.rows.length; r < n; r++) {
+        var item = {};
+        for (var c = 0, m = table.rows[r].cells.length; c < m; c++){        
+            if(c == 0){
+                item ["method"] =table.rows[r].cells[c].innerHTML;}
+            else if(c==1){
+                item ["receit"] =table.rows[r].cells[c].innerHTML;}
+            else if(c==2){
+                item ["date"] =table.rows[r].cells[c].innerHTML;}
+            else if(c==3){
+                 item ["place"] = table.rows[r].cells[c].innerHTML;} 
+            else if(c==4){
+                item ["amount"] =table.rows[r].cells[c].innerHTML;}
+
+        }
+        
+        jsonObj.push(item);
+    }
+        
+    jsonString = JSON.stringify(jsonObj);
+   alert("Save your data "+ jsonString);
+   var tem = '{"data":'+jsonString+'}';
+   alert(tem);
+   var tem1 = JSON.parse(tem);
+   alert(tem1.data[1].method);
+   
+}
+</script>
 <body>
 	<div style="height:550px; width:100%; ">
 	<div class="row">
@@ -23,25 +61,13 @@
             <h4>Add payment:</h4>
             <div class="panel panel-default">
                 <div class="panel-body form-horizontal payment-form">
-					   <div class="form-group">
-                        <label for="payCat" class="col-sm-3 control-label">지출용도</label>
-                        <div class="col-sm-9">
-                            <select class="form-control" id="payCat" name="payCat">
-                                <option>식        비</option>
-                                <option>교  통  비</option>
-								<option>의  류  비</option>
-								<option>통  신  비</option>
-								<option>교        육</option>
-								<option>기        타</option>
-                            </select>
-                        </div>
-                    </div> 
+					    
 					   <div class="form-group">
                         <label for="payMethod" class="col-sm-3 control-label">결제수단</label>
                         <div class="col-sm-9">
                             <select class="form-control" id="payMethod" name="payMethod">
                                 <option>신용카드</option>
-                                <option>현        금</option>
+                                <option>현    금</option>
                             </select>
                         </div>
                     </div> 
@@ -64,7 +90,7 @@
                     <div class="form-group">
                         <label for="amount" class="col-sm-3 control-label">상  호  명</label>
                         <div class="col-sm-9">
-                            <input type="number" class="form-control" id="place" name="place">
+                            <input type="text" class="form-control" id="place" name="place">
                         </div>
                     </div>
                  	<div class="form-group">
@@ -89,28 +115,18 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="table-responsive">
-                        <table class="table preview-table">
+                        <table class="table preview-table" id="preview">
                             <thead>
                                 <tr>
-                                    <th>지출용도</th>
                                     <th>결제수단</th>
                                     <th>영  수  증</th>
                                     <th>날        짜</th>
                                     <th>상  호  명</th>
-									<th>금        액</th>
+																		<th>금        액</th>
                                 </tr>
                             </thead>
                             <tbody>
-							<thead>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-									<th></th>
-                                </tr>
-                            </thead>
+							
 							</tbody> <!-- preview content goes here-->
                         </table>
                     </div>                            
@@ -122,10 +138,12 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-12">
+            		<div class="col-xs-4"></div>
+                <div class="col-xs-4">
                     <hr style="border:1px dashed #dddddd;">
-                    <button type="button" class="btn btn-primary btn-block">입력 완료</button>
-                </div>                
+                    <button type="button" class="btn btn-primary btn-block" onclick="getValue()">입력 완료</button>
+                </div>
+                <div class="col-xs-4"></div>                
             </div>
         </div>
 	</div>

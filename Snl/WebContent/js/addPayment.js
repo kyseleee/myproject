@@ -16,7 +16,7 @@ $(document).on('click', '.input-remove-row', function(){
 $(function(){
     $('.preview-add-button').click(function(){
         var form_data = {};
-        form_data["payCat"] = $('.payment-form #payCat option:selected').text();
+//        form_data["payCat"] = $('.payment-form #payCat option:selected').text();
         form_data["payMethod"] = $('.payment-form #payMethod option:selected').text();
         form_data["receit"] = $('.payment-form input[name="receit"]').val();
         form_data["date"] = $('.payment-form input[name="date"]').val();
