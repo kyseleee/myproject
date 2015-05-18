@@ -32,22 +32,17 @@ public class GroupController {
 	
 	
 	@RequestMapping("/addGroup.do")
-	public String addGroup(@ModelAttribute("group") Group groups, HttpSession session) throws Exception{
+	public String addGroup(@ModelAttribute("group") Group group, HttpSession session) throws Exception{
 		
 		System.out.println("/addGroup.do");
-//		ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Mail.xml");
-		 
-//		SimpleTest mm = (SimpleTest) context.getBean("simpleTest");
-        mailService.sendMail("kyseleee@naver.com",
-    		   "Testing only \n\n Hello Spring Email Sender");
 		
 		User user = (User) session.getAttribute("user");
-	
-		
-		
-		
-		groupService.addGroup(groups);
-		
+		group.setUser(user);
+
+		groupService.addGroup(group);
+		System.out.println(group);
+		 
+        mailService.sendMail("kyseleee@naver.com", group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl?groupNo="+group.getGroupNo());		
 		
 		return "redirect:/";	
 	}
