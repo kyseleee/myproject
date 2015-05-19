@@ -19,7 +19,11 @@ public class MailService {
 
     public void sendMail(String to, String msg) {
       
-        message.setTo(to);
+    	String[] toEmail = to.split(";");
+    	for(int i=0; i<toEmail.length; i++){
+    		message.setTo(toEmail[i]);    				
+    	}
+    	//message.setTo(to);
         message.setText(msg);
         try{
             this.mailSender.send(message);

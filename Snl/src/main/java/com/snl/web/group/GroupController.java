@@ -39,17 +39,19 @@ public class GroupController {
 	
 	
 	@RequestMapping("/addGroup.do")
-	public String addGroup(@ModelAttribute("group") Group group, HttpSession session) throws Exception{
+	public String addGroup(@ModelAttribute("group") Group group, @RequestParam("sendMsg") String toEmail, HttpSession session) throws Exception{
 		
 		System.out.println("/addGroup.do");
-		
+		System.out.println("*********************" + toEmail);
+
 		User user = (User) session.getAttribute("user");
 		group.setUser(user);
 		groupService.addGroup(group);
 		GroupArr groupArr = new GroupArr(user, group, new String("L"));
 		groupArrService.addGroupArr(groupArr);
 		 
-        mailService.sendMail("endy2048@gmail.com", group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/inviteIndex.jsp?sgroupNo="+group.getGroupNo());		
+        mailService.sendMail(toEmail, group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/inviteIndex.jsp?sgroupNo="+group.getGroupNo());		
+        
 		
 		return "redirect:/";	
 	}
