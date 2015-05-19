@@ -43,7 +43,7 @@ public class UserController {
 			return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+user.getId();	
 		}
 		
-		return "redirect:/index.html";	
+		return "redirect:/index.jsp";	
 	}
 	
 	@RequestMapping("/getUser.do")
@@ -108,7 +108,7 @@ public class UserController {
 	      }
 	      else{
 	    	  session.setAttribute("user", dbUser);
-	    	  return "redirect:index.html"; 
+	    	  return "redirect:index.jsp"; 
 	      }
 	      
 	      
