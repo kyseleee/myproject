@@ -167,22 +167,12 @@
 			border-color: #1CA347;
 		}
 		
-		</style>	
-			
-	
-	
-	
-	
-		
-	
+	</style>	
+
 	</head>
 	<body>
 		<script src="https://code.jquery.com/jquery.js"></script>
       	<script src="js/bootstrap.min.js"></script>
-	
-
-		
-		
 	
 		<div class="row">
 			<div class="col-md-6 col-sm-offset-3">
@@ -209,10 +199,7 @@
 										<input type="password" name="userPw" id="userPw" tabindex="2" class="form-control" placeholder="패스워드">
 									</div>
 									<div id="logInChk" style="text-align:center;">  </div>
-									<div class="form-group text-center">
-										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
-										<label for="remember"> <br>아이디 저장</label>
-									</div>
+
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
@@ -224,7 +211,8 @@
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
-													<a href="" tabindex="5" class="forgot-password">패스워드 잊었니?</a>
+													<a href="" tabindex="5" class="forgot-password" style=text-decoration:none>아이디 </a>&nbsp /
+													<a href="" tabindex="5" class="forgot-password" style=text-decoration:none>비밀번호 찾기</a>
 												</div>
 											</div>
 										</div>

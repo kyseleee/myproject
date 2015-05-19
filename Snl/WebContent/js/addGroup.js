@@ -44,7 +44,8 @@ $(function(){
         var row = $("<tr align='center'></tr>");
         $.each(form_data, function( type, value ) {
         	
-            $('<td class="input-'+type+'"></td>').html(value).appendTo(row);
+            $('<td id=va class="input-'+type+'"></td>').html(value).appendTo(row);
+
         	
         });
         $('.preview-table > tbody:last').append(row);

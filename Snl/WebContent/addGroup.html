@@ -7,23 +7,23 @@
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="js/addGroup.js"></script>
-    <script type="text/javascript">
-   
-	    function fnc(){
-	    	
-	    	var table = document.getElementById('preview');
-	    	var rowLength = table.rows.length;
-			var toEmail="";
-	    	for(var i=0; i<rowLength-1; i++){
-	    		alert($("td[class=input-description]").eq(i).html());   
-	    		toEmail =  toEmail + $("td[class=input-description]").eq(i).html() + ";";
-	    	}
+	<script type="text/javascript">
+		$(function() {
+			$('#register-submit').click(function(e) {
+				alert('그룹생성이 완료 되었습니다.');
+				var table = document.getElementById('preview');
+		    	var rowLength = table.rows.length;
+				var toEmail="";
+		    	for(var i=0; i<rowLength-1; i++){
+		    		alert($("td[class=input-description]").eq(i).html());   
+		    		toEmail =  toEmail + $("td[class=input-description]").eq(i).html() + ";";
+		    	}
+		    	console.log(toEmail);
+	    		document.getElementById("sendMsg").value= toEmail;
+			});
+		});
+	</script>
 
-	    	
-	
-	    }
-
-    </script>
 
 </head>
 <body>
@@ -37,7 +37,7 @@
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
 		<div class="panel-default">
-			<form id="register-form" action="/Snl/addGroup.do" method="post" onsubmit="return fnc();">
+			<form id="register-form" action="/Snl/addGroup.do" method="post">
 		     <div class="panel-body form-horizontal payment-form">
 		         <div class="form-group">
 		             <label for="concept" class="col-sm-2 control-label">그룹명</label>
@@ -69,6 +69,7 @@
 		                        <thead>
 	                            <tr></tr>
 		                        </thead>
+		                        <input type="hidden" id="sendMsg" name="sendMsg">
 		                        <tbody></tbody> <!-- preview content goes here-->
 				            </table>
 				        </div>                            
@@ -84,7 +85,8 @@
 					<hr style="border:1px dashed #dddddd;">
 					<div class="col-xs-4"></div>
 	 				<div class="col-xs-4">		            	    
-	                    <input type="submit" class="btn btn-primary btn-block" name="register-submit" id="register-submit" tabindex="4" value="초대장발송">
+	                    <input type="submit"  onclick="fnc(); retrun false;" 
+	                    		class="btn btn-primary btn-block" name="register-submit" id="register-submit" tabindex="4" value="초대장발송">
 	    			</div>
 	        		<div class="col-xs-4"></div>                
     			</div>
@@ -93,13 +95,6 @@
 		</div> <!-- / panel preview -->
  
 		<div class="col-sm-2"></div>
-		 <script type="text/javascript">
-		$(function() {
-			$('#register-submit').click(function(e) {
-				alert('그룹생성이 완료 되었습니다.');
-			});
-		});
-		</script>
 
 </body>
 </html>
