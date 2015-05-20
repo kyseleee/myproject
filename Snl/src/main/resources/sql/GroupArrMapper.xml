@@ -20,8 +20,8 @@
 	
 		<association property="group" javaType="group">
 			<id property="groupNo" column="group_no" jdbcType="INTEGER"/>	
-	  		<result property="groupName" column="user_no" jdbcType="VARCHAR" />
-			<result property="groupDate" column="user_no" jdbcType="DATE" />
+	  		<result property="groupName" column="group_name" jdbcType="VARCHAR" />
+			<result property="groupDate" column="group_date" jdbcType="DATE" />
 		
 			<association property="user" javaType="user">
 				<id property="userNo" column="user_no" jdbcType="INTEGER"/>
