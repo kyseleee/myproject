@@ -38,7 +38,6 @@ public class UserController {
 		System.out.println("/addUser.do");
 		System.out.println("============="+sgroupNo);	
 		userService.addUser(user);
-		
 		if(sgroupNo != ""){
 			return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+user.getId();	
 		}
@@ -106,9 +105,10 @@ public class UserController {
 	      if ((dbUser==null)||!( pw.equals(dbUser.getPw()) && id.equals(dbUser.getId()))){
 	    	  return "forward:login.jsp?fail=<font color='red'>등록되지 않은 아이디이거나,</br>아이디 또는 비밀번호를 잘못 입력하셨습니다.</font>";
 	      }
-	      else{
-	    	  session.setAttribute("user", dbUser);
-	    	  return "redirect:index.jsp"; 
+	      else{	    		
+	    	  	session.setAttribute("user", dbUser);
+	    		return "redirect:index.html";
+	    		
 	      }
 	      
 	      

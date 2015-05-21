@@ -51,6 +51,12 @@
 				fncGetCont("./login.jsp");	
 			}
 			
+			function paymentManager()
+			{
+				fncGetCont("./paymentManager.jsp");
+			}
+			
+			
 			
 		</script> 
 			
@@ -198,7 +204,7 @@
 						<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">회비관리</a></li>
+							<li><a href='paymentManager.jsp' onclick='paymentManager(this); return false;'>회비관리</a></li>
 							<li><a href="list.html"  onclick='list(this); return false;'>회원리스트</a></li>
 						</ul>
 					</li>
