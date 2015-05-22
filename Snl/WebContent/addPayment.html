@@ -40,11 +40,25 @@ function getValue() {
     }
         
     jsonString = JSON.stringify(jsonObj);
+    
+    
+    
    alert("Save your data "+ jsonString);
    var tem = '{"data":'+jsonString+'}';
+    
    alert(tem);
+   
+   var key, count = 0;
+   for(key in tem.data) {
+     if(tem.data.hasOwnProperty(key)) {
+       count++;
+     }
+   }
+   alert(count);
+   
    var tem1 = JSON.parse(tem);
    alert(tem1.data[1].method);
+   alert(Object.data.keys(tem1).length);
    
 }
 </script>

@@ -40,7 +40,7 @@ public class GroupArrController {
 		System.out.println(sgroupNo);
 		int groupNo = Integer.valueOf((String)sgroupNo);
 		Group group = groupService.getGroup(groupNo);
-		User user = userService.getUser(id);
+		User user = userService.getUserById(id);
 		
 		GroupArr groupArr = new GroupArr();
 		groupArr.setUser(user);

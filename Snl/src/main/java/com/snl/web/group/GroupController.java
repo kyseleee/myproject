@@ -50,8 +50,8 @@ public class GroupController {
 		GroupArr groupArr = new GroupArr(user, group, new String("L"));
 		groupArrService.addGroupArr(groupArr);
 		 
-        mailService.sendMail(toEmail, group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/inviteIndex.jsp?sgroupNo="+group.getGroupNo());		
-        
+		mailService.sendMail(toEmail, group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/inviteIndex.jsp?sgroupNo="+group.getGroupNo());		
+	    
 		
 		return "redirect:/";	
 	}

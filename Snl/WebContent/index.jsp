@@ -26,7 +26,7 @@
 			
 			function addPayment()
 			{
-				fncGetCont("./addPayment.html");	
+				fncGetCont("./addPayment.jsp");	
 			}
 			
 			function paymentlist()
@@ -178,7 +178,7 @@
 			            	<a href='calendar.html' onclick='paymentlist(this); return false;'>지출현황</a> 
 					</li>
 					<li>
-			            	<a href='addPayment.html' onclick='addPayment(this); return false;'>지출추가</a> 
+			            	<a href='addPayment.jsp' onclick='addPayment(this); return false;'>지출추가</a> 
 					</li>
 			        <li>
 			            	<a href='jqGridSimple.jsp' onclick='stat1(); return false;'>통계</a> 

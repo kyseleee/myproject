@@ -21,7 +21,7 @@ $(function(){
         form_data["receit"] = $('.payment-form input[name="receit"]').val();
         form_data["date"] = $('.payment-form input[name="date"]').val();
         form_data["place"] = $('.payment-form input[name="place"]').val();
-        form_data["amount"] = parseFloat($('.payment-form input[name="amount"]').val()).toFixed(2);
+        form_data["amount"] = $('.payment-form input[name="amount"]').val();
         
         
         form_data["remove-row"] = '<span class="glyphicon glyphicon-remove"></span>';
@@ -31,5 +31,8 @@ $(function(){
         });
         $('.preview-table > tbody:last').append(row); 
         calc_total();
+        $('#payMethod').prop('selectedIndex',0);
+        $("input[type=text], textarea").val("");
+        $("input[type=date], textarea").val("");
     });  
 });

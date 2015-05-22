@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="PaymentMapper">
+
+	<resultMap id="paymentSelectMap" type="payment">	
+  	<result property="payNo" column="pay_no" jdbcType="INTEGER"/>
+  	
+  	<result property="method" column="method" jdbcType="VARCHAR" />
+		<result property="receit" column="receit" jdbcType="VARCHAR" />
+		<result property="payDate" column="pay_date" jdbcType="VARCHAR" />
+		<result property="payName" column="pay_name" jdbcType="VARCHAR" />
+		<result property="amount" column="amount" jdbcType="INTEGER" />
+		
+		<association property="group" javaType="group">
+			<result property="groupNo" column="group_no" jdbcType="INTEGER"/>
+  		<result property="groupName" column="group_name" jdbcType="VARCHAR" />
+			<result property="groupDate" column="group_date" jdbcType="DATE" />
+		
+			<association property="user" javaType="user">
+				<id property="userNo" column="user_no" jdbcType="INTEGER"/>
+				<result property="id" column="id" jdbcType="VARCHAR"/>
+				<result property="pw" column="pw" jdbcType="VARCHAR"/>
+				<result property="email" column="email" jdbcType="VARCHAR"/>
+				<result property="userName" column="user_name" jdbcType="VARCHAR"/>
+				<result property="tel" column="tel" jdbcType="VARCHAR"/>
+			</association>
+							
+		</association>
+	</resultMap>  	
+  	
+  	
+  	
+  	<insert id="addPayment"	parameterType="payment">
+  		INSERT	
+  			INTO add_payment(pay_no, group_no, method, receit, pay_date, pay_name, amount)
+  			VALUES(seq_add_payment_pay_no.nextval, #{group.groupNo}, #{method}, #{receit}, #{payDate}, #{payName}, #{amount})				
+  	</insert> 
+
+
+
+
+</mapper>
