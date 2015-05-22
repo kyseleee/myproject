@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -174,30 +174,30 @@
 			     
 			      <ul class="nav navbar-nav navbar-right" style="margin-right: 150px;">
 			      	<li class="active">
-			            	<a href='calendar.html' onclick='paymentlist(this); return false;'>ÁöÃâÇöÈ²</a> 
+			            	<a href='calendar.html' onclick='paymentlist(this); return false;'>ì§€ì¶œí˜„í™©</a> 
 					</li>
 					<li>
-			            	<a href='addPayment.jsp' onclick='addPayment(this); return false;'>ÁöÃâÃß°¡</a> 
+			            	<a href='addPayment.jsp' onclick='addPayment(this); return false;'>ì§€ì¶œì¶”ê°€</a> 
 					</li>
 			        <li>
-			            	<a href='jqGridSimple.jsp' onclick='stat1(); return false;'>Åë°è</a> 
+			            	<a href='jqGridSimple.jsp' onclick='stat1(); return false;'>í†µê³„</a> 
 			        </li>
 			       								        
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						±×·ì°ü¸®
+						ê·¸ë£¹ê´€ë¦¬
 						<b class="caret"></b>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href='paymentManager.jsp' onclick='paymentManager(this); return false;'>È¸ºñ°ü¸®</a></li>
-							<li><a href="list.html"  onclick='list(this); return false;'>È¸¿ø¸®½ºÆ®</a></li>
+							<li><a href='paymentManager.jsp' onclick='paymentManager(this); return false;'>íšŒë¹„ê´€ë¦¬</a></li>
+							<li><a href="list.html"  onclick='list(this); return false;'>íšŒì›ë¦¬ìŠ¤íŠ¸</a></li>
 						</ul>
 					</li>
 			        <li>
-			        	<a href="#">¼³Á¤</a>
+			        	<a href="#">ì„¤ì •</a>
 			        </li>
 			        <li>
-			        	<a href='login.jsp'  onclick='login(this); return false;'>·Î±×ÀÎ</a>
+			        	<a href='login.jsp'  onclick='login(this); return false;'>ë¡œê·¸ì¸</a>
 			        </li>
 			        
 			        

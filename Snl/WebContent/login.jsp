@@ -126,7 +126,10 @@
 		$("#inputBody").show();    
 		
 		$("#resultBody").hide();
-		$("#resultBtn").hide();  	
+		$("#resultBtn").hide();  
+		
+		document.getElementById("msg").innerHTML= "";
+
 		
     });
 	
