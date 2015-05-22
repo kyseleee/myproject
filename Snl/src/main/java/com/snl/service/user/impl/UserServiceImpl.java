@@ -31,12 +31,26 @@ public class UserServiceImpl implements UserService{
 		userDao.addUser(user);
 	}
 
-	
-	public User getUser(String id) throws Exception {
-		return userDao.getUser(id);
+	@Override
+	public User getUser(int userNo) throws Exception {
+		return userDao.getUser(userNo);
+	}
+
+	@Override
+	public User getUserById(String id) throws Exception {
+		return userDao.getUserById(id);
+
 	}
 
 	public void updateUser(User user) throws Exception {
 		userDao.updateUser(user);
 	}
+
+	@Override
+	public User getUserByEmail(String email) throws Exception {
+		return userDao.getUserByEmail(email);
+		
+	}
+
+	
 }

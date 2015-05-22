@@ -4,6 +4,9 @@
 
 <%
 	String sgroupNo = request.getParameter("sgroupNo");
+	if(sgroupNo==null){
+		sgroupNo = "";
+	}	
 
 %>
 
@@ -13,17 +16,36 @@
 	<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.0.min.js'></script> 
-	<link rel="stylesheet" href="css/style.css" />
-	
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
- 	<script src="js/bootstrap.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script src="js/login.js"></script>
+	
 	<script type="text/javascript">
 	
+	$("#getUserBtn").click(function() {
+	    	alert("getUserBtn 들어왓니?");
+	    	var email = $("input[name=userEmail]").val();
+	    	
+	    	$.ajax({
+		        type:"POST",
+		        url:"./getUserByEmail.do",
+		        data : {userEmail : email},
+		        success: function(data){
+		        		document.getElementById("msg").innerHTML= data;
+		        },
+		        error: function(xhr, status, error) {
+		            alert(error);
+		        }  
+		    });	
+	    	
+	    	$("#resultBody").show();
+			$("#resultBtn").show();
+
+			$("#inputBody").hide();    	
+	        $("#inputBtn").hide();
+	    });
+
 	function loginChk(){
 		var idLogInChk = document.getElementById("userId").value;
 		var pwLogInChk = document.getElementById("userPw").value;
@@ -38,14 +60,8 @@
 	        	if(data == "no"){
 	        		msg = "<font color='red'>등록되지 않은 아이디이거나,</br>아이디 또는 비밀번호를 잘못 입력하셨습니다.</font>";
 	        		document.getElementById("logInChk").innerHTML= msg;
-	        		
-	        		
 	        	}
-	        	else{
-							
-	        	}
-        		
-
+	        	else{}
 	        },
 
 	        error: function(xhr, status, error) {
@@ -58,18 +74,40 @@
 		  }
 		  else {
 			  return false;
-		  }
-		
+		  }	
 	}
+	
+	$("#findIdBtn").click(function() {
 		
-		function groupChk(){
-			alert("그룹체크");
-		}
+		$("#inputBtn").show();
+		$("#inputBody").show();    
+		
+		$("#resultBody").hide();
+		$("#resultBtn").hide();  	
+		
+    });
+	
+	$("#findId").on('hidden.bs.modal', function (){
+		
+        $("#inputBtn").show();
+		$("#inputBody").show();    
+		
+		$("#resultBody").hide();
+		$("#resultBtn").hide();
+		
+        $("#userEmail").val("");
+        $("#msg").val("");
+		
+	})
+	
+   
+
+	
+	
 	</script> 
 	
 	<style type="text/css">
 		
-
 		.panel-login {
 			border-color: #ccc;
 			-webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
@@ -167,12 +205,13 @@
 			border-color: #1CA347;
 		}
 		
+
 	</style>	
 
 	</head>
 	<body>
-		<script src="https://code.jquery.com/jquery.js"></script>
-      	<script src="js/bootstrap.min.js"></script>
+	
+		
 	
 		<div class="row">
 			<div class="col-md-6 col-sm-offset-3">
@@ -191,9 +230,10 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form" action="login.do" method="post" role="form" style="display: block;" onsubmit="return loginChk();">
+								<form id="login-form" action="login.do?sgroupNo=<%=sgroupNo%>" method="post" role="form" style="display: block;" onsubmit="return loginChk();">
 									<div class="form-group">
 										<input type="text" name="userId" id="userId" tabindex="1" class="form-control" placeholder="아이디" value="">
+										
 									</div>
 									<div class="form-group">
 										<input type="password" name="userPw" id="userPw" tabindex="2" class="form-control" placeholder="패스워드">
@@ -211,8 +251,8 @@
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
-													<a href="" tabindex="5" class="forgot-password" style=text-decoration:none>아이디 </a>&nbsp /
-													<a href="" tabindex="5" class="forgot-password" style=text-decoration:none>비밀번호 찾기</a>
+													<a href="" tabindex="5" class="forgot-password" style=text-decoration:none data-toggle="modal" data-target="#findId">아이디 </a>&nbsp /
+													<a href="" tabindex="5" class="forgot-password" style=text-decoration:none data-toggle="modal" data-target="#findPw">비밀번호 찾기</a>
 												</div>
 											</div>
 										</div>
@@ -247,7 +287,7 @@
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
-												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="등록" onclick="groupChk()">
+												<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="등록">
 											</div>
 										</div>
 									</div>
@@ -259,9 +299,73 @@
 			</div>
 		</div>
 		
+		<!-- findId Modal -->
+		<div id="findId" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">ID 찾기</h4>
+		      </div>
+		      <div class="modal-body" id="inputBody" style="height: 130px;">
+	        	<p>회원가입 시 입력하였던 email을 입력해주시기 바랍니다.</p>
+	        	<input type="email" style="margin-top: 30px;" class="form-control" name="userEmail" id="userEmail" placeholder="ex) abc@gmail.com "> 
+		      </div>
+		      <div class="modal-body" id="resultBody" style="display: none; height: 130px;">
+			  	<div id="msg" style="text-align:center;margin-top: 40px;"> 
+			  	<br>
+		  		<br>
+			  	</div>
+			  </div>
+		      <div class="modal-footer" id="inputBtn">
+		      	<button type="button" id="getUserBtn" class="btn btn-primary">확인</button>
+		      </div>
+		      <div class="modal-footer" id="resultBtn" style="display: none;">
+		      	<button type="button" class="btn btn-default" id="findIdBtn" class="form-control btn btn-register">뒤로가기</button>
+		      	<button type="button" class="btn btn-primary" id="findPwBtn" class="form-control btn btn-register">비밀번호찾기</button>
+			  </div>
+		    
+		
+		  </div>
+		</div>
+		<!-- findId Modal 끝 !!! -->
+		
+		<!-- findPw Modal -->
+		<div id="findPw" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+		
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">PW 찾기</h4>
+		      </div>
+		      <div class="modal-body" id="inputBody" style="height: 130px;">
+	        	<p>회원가입 시 입력하였던 email을 입력해주시기 바랍니다.</p>
+	        	<input type="email" style="margin-top: 30px;" class="form-control" name="userEmail" id="userEmail" placeholder="ex) abc@gmail.com "> 
+		      </div>
+		      <div class="modal-body" id="resultBody" style="display: none; height: 130px;">
+			  	<div id="msg" style="text-align:center;margin-top: 40px;"> 
+			  	<br>
+		  		<br>
+			  	</div>
+			  </div>
+		      <div class="modal-footer" id="inputBtn">
+		      	<button type="button" id="getUserBtn" class="btn btn-primary">확인</button>
+		      </div>
+		      <div class="modal-footer" id="resultBtn" style="display: none;">
+		      	<button type="button" class="btn btn-default" id="findIdBtn" class="form-control btn btn-register">뒤로가기</button>
+		      	<button type="button" class="btn btn-primary" id="findPwBtn" class="form-control btn btn-register">비밀번호찾기</button>
+			  </div>
+		    
+		
+		  </div>
+		</div>
 		
 
-
+		
 
 </body>
 </html>

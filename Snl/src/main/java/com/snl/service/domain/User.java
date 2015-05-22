@@ -78,12 +78,6 @@ public class  User implements Serializable{
 		this.active = active;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", pw=" + pw + ", email=" + email
-				+ ", userName=" + userName + ", tel=" + tel + "]";
-	}
-
 	public int getUserNo() {
 		return userNo;
 	}
@@ -91,6 +85,14 @@ public class  User implements Serializable{
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
+
+	@Override
+	public String toString() {
+		return "User [userNo=" + userNo + ", id=" + id + ", pw=" + pw
+				+ ", email=" + email + ", userName=" + userName + ", tel="
+				+ tel + ", active=" + active + "]";
+	}
+	
 	
 	
 	

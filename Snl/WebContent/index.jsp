@@ -9,9 +9,8 @@
 	
 		<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.0.min.js'></script> 
 		<script src="js/login.js"></script>
-		
 		<link rel="stylesheet" href="css/style.css" />
-		
+	
 		<script type='text/javascript'> 
 		
 			
@@ -46,10 +45,12 @@
 				fncGetCont("./addGroup.html");	
 			}
 			
+
 			function login()
 			{
 				fncGetCont("./login.jsp");	
 			}
+
 			
 			function paymentManager()
 			{
@@ -115,20 +116,6 @@
 				height: 100%;
 			}
 			
-				
-			#donutchart {
-				margin-left: 18%;
-				width: 100%;
-				height: 100%;
-			}
-			#curve_chart{
-				margin-left: 18%;
-				width: 100%;
-				height: 100%;
-			}
-			
-			
-			
 			#footer {
 				clear: both;
 				width: 100%;
@@ -167,7 +154,6 @@
 	
 	<body>
 	
-		<script src="https://code.jquery.com/jquery.js"></script>
       	<script src="js/bootstrap.min.js"></script>
 	
 		<div id="headernav">
@@ -212,7 +198,7 @@
 			        	<a href="#">설정</a>
 			        </li>
 			        <li>
-			        	<a href='login.jsp' onclick='login(this); return false;'>로그인</a>
+			        	<a href='login.jsp'  onclick='login(this); return false;'>로그인</a>
 			        </li>
 			        
 			        

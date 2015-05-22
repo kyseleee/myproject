@@ -72,6 +72,7 @@ public class GroupController {
 		System.out.println("/getGroup.do");
 		//Business Logic
 		Group group = groupService.getGroup(groupNo);
+		System.out.println(group.getUser());
 		
 		return group;
 	}

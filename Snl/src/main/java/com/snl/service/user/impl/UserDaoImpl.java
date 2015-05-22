@@ -32,19 +32,23 @@ public class UserDaoImpl implements UserDao{
 		sqlSession.insert("UserMapper.addUser", user);
 	}
 
-	
-	public User getUser(String id) throws Exception {
-//		User user=sqlSession.selectOne("UserMapper.getUser",id);
-//		
-//		if(user==null){
-//			System.out.println("==========================유저널");
-//			return new User();
-//		}
-//		return user;
-		return sqlSession.selectOne("UserMapper.getUser",id);
+	public User getUser(int userNo) throws Exception {
+		return sqlSession.selectOne("UserMapper.getUser",userNo);
+	}
+
+	@Override
+	public User getUserById(String id) throws Exception {
+		return sqlSession.selectOne("UserMapper.getUserById",id);
 	}
 	
 	public void updateUser(User user) throws Exception {
 		sqlSession.update("UserMapper.updateUser", user);
 	}
+
+	@Override
+	public User getUserByEmail(String email) throws Exception {
+		return sqlSession.selectOne("UserMapper.getUserByEmail",email);		
+	}
+
+
 }

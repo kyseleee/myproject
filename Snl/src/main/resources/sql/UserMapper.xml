@@ -24,13 +24,32 @@
   			VALUES(seq_tb_user_user_no.nextval, #{id}, #{pw}, #{email}, #{userName}, #{tel})
   						
   	</insert> 
-  	
-  	 <select id="getUser" parameterType="string" resultMap="userSelectMap">
+	
+	
+  	<select id="getUserById" parameterType="string" resultMap="userSelectMap">
 		SELECT
 			user_no, id, pw, email, user_name, tel	
 			FROM tb_user 
 				WHERE id = #{value}
-	 </select>
+	</select>
+	
+	
+  	<select id="getUser" parameterType="string" resultMap="userSelectMap">
+		SELECT
+			user_no, id, pw, email, user_name, tel	
+			FROM tb_user 
+				WHERE user_no = #{value}
+	</select>
+	 
+	
+	<select id="getUserByEmail" parameterType="string" resultMap="userSelectMap">
+		SELECT
+			user_no, id, pw, email, user_name, tel	
+			FROM tb_user 
+				WHERE email = #{value}
+	</select>
+	 
+	 
 	 <!--  
 	<update id="updateUser" parameterType="User">
   		UPDATE tb_user

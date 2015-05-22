@@ -3,7 +3,6 @@ package com.snl.web.user;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.snl.service.domain.User;
+import com.snl.service.mail.MailService;
 import com.snl.service.user.UserService;
 
 @Controller
@@ -25,7 +25,10 @@ public class UserController {
 	@Qualifier("userServiceImpl")
 	private UserService userService;
 
-	
+	@Autowired
+	@Qualifier("mailService")
+	private MailService mailService;
+
 	
 	public UserController(){
 		System.out.println(this.getClass());
@@ -36,9 +39,9 @@ public class UserController {
 	public String addUser(@ModelAttribute("user") User user,@RequestParam("sgroupNo") String sgroupNo) throws Exception{
 
 		System.out.println("/addUser.do");
-		System.out.println("============="+sgroupNo);	
 		userService.addUser(user);
-		if(sgroupNo != ""){
+
+		if(sgroupNo != "" ){
 			return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+user.getId();	
 		}
 		
@@ -46,11 +49,11 @@ public class UserController {
 	}
 	
 	@RequestMapping("/getUser.do")
-	public void getUser( @RequestParam("id") String id, HttpServletResponse response) throws Exception {
+	public void getUser( @RequestParam("userNo") int userNo, HttpServletResponse response) throws Exception {
 		
 		System.out.println("/getUser.do");
 		//Business Logic
-		User user = userService.getUser(id);
+		User user = userService.getUser(userNo);
 		String result = "{  \"result\"  :    \"false\"   }";
 		if(user == null){
 			result = "{  \"result\"  :    \"true\"   }";
@@ -66,13 +69,59 @@ public class UserController {
 	
 	}
 	
+	@RequestMapping("/getUserById.do")
+	public void getUserById( @RequestParam("id") String id, HttpServletResponse response) throws Exception {
+		
+		System.out.println("/getUserById.do");
+		//Business Logic
+		User user = userService.getUserById(id);
+		String result = "{  \"result\"  :    \"false\"   }";
+		if(user == null){
+			result = "{  \"result\"  :    \"true\"   }";
+		}
+		
+		
+		try{
+			response.getWriter().print(result);
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	
+	}
+	
+	
+	@RequestMapping("/getUserByEmail.do")
+	public void getUserByEmail( @RequestParam("userEmail") String email, HttpServletResponse response) throws Exception {
+		
+		System.out.println("/getUserByEmail.do");
+		User user = userService.getUserByEmail(email);
+		String msg;
+		if(user != null){
+	        mailService.sendMail(email, "당신의 ID는 "+ user.getId() + "입니다.");		
+	        msg ="당신의 ID가 입력하신 메일로 발송 되었습니다.";
+		}
+		else{
+			msg ="입력하신 메일에 해당되는 ID가 없습니다.";	
+		}
+        
+		try{
+			response.getWriter().print(msg);
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	
+	
+	}
+	
 	@RequestMapping("/loginchk.do")
 	public void logInChk(@RequestParam("id") String id,@RequestParam("pw") String pw , HttpSession session, HttpServletResponse response ) throws Exception{
 		
 		System.out.println("/loginchk.do");
 		
 		System.out.println("================"+id+"++"+pw);
-		User dbUser=userService.getUser(id);
+		User dbUser=userService.getUserById(id);
 		
 		System.out.println("디비유저-------"+dbUser);
 		
@@ -95,20 +144,24 @@ public class UserController {
 	}
 	
 	@RequestMapping("/login.do")
-	   public String login(@RequestParam("userId") String id , @RequestParam("userPw") String pw,HttpSession session, HttpServletRequest request) throws Exception{
+	   public String login(@RequestParam("userId") String id , @RequestParam("userPw") String pw,HttpSession session, @RequestParam("sgroupNo") String sgroupNo) throws Exception{
 	      
 	      System.out.println("/login.do");
 	      
-	      User dbUser=userService.getUser(id);
+	      User dbUser=userService.getUserById(id);
 	      
 	      System.out.println("디비유저-------"+dbUser);
 	      if ((dbUser==null)||!( pw.equals(dbUser.getPw()) && id.equals(dbUser.getId()))){
 	    	  return "forward:login.jsp?fail=<font color='red'>등록되지 않은 아이디이거나,</br>아이디 또는 비밀번호를 잘못 입력하셨습니다.</font>";
 	      }
-	      else{	    		
-	    	  	session.setAttribute("user", dbUser);
-	    		return "redirect:index.html";
-	    		
+	      else{
+	    	  session.setAttribute("user", dbUser);
+	    	  if(sgroupNo != ""){
+	  			return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+dbUser.getId();	
+	    	  }
+	    		  return "redirect:index.jsp"; 
+	    	 
+	    	  
 	      }
 	      
 	      
