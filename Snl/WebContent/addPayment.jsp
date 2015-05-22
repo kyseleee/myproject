@@ -18,10 +18,27 @@
 </head>
 <script type="text/javascript">
 	function submitForm(){
+		
+		var data = new FormData();
+        $.each($('#file')[0].files, function(i, file) {          
+            data.append('file-' + i, file);
+        });
+      
+            $.ajax({
+               url: '/fileUpload.do',
+               processData: false,
+               contentType: false,
+               data: data,
+               type: 'POST',
+               success: function(result){
+                   alert("업로드 성공!!");
+                   $('input[name=receit]').attr('value',result); 
+               }
+           });
 		document.getElementById("addPay-form").submit();
 	}
 	function getFile(){
-		
+		document.getElementById("uploadFile").submit();
 	}
 </script>
 <body>
@@ -35,7 +52,7 @@
         <!-- panel preview -->
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
-            <h4>Add payment:</h4>
+            
             <div class="panel-default">
                 <div class="panel-body form-horizontal payment-form">
                 
@@ -67,16 +84,20 @@
                         <label for="description" class="col-sm-3 control-label">금      액</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="amount" name="amount">
+                            <input type="hidden" value="" id="receit" name="receit"/>
                         </div>
                     </div> 
                   </form>
                   
-                  <form id="uploadFile" action="file.do" method="POST">  
+                  <form id="uploadFile" action="fileUpload.do" method="POST" enctype="multipart/form-data">  
                     <div class="form-group">
                         <label for="concept" class="col-sm-3 control-label">영  수  증</label>
+                        
                         <div class="col-sm-9">
-                        		<input type="text" class="form-control" id="receit" name="receit"/>
-                            <button type="button" onclick="getFile()" class="btn btn-default preview-add-button">영수증 찾기</button>
+                        		
+                        		<input type="file" id="file" name="file"/>
+                        		
+                            <!-- <input type="submit" class="btn btn-default preview-add-button" value="영수증 찾기"> -->
                         </div>
                     </div>
 								</form>
