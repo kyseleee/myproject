@@ -48,6 +48,14 @@
 			FROM tb_user 
 				WHERE email = #{value}
 	</select>
+	
+	<select id="getUserByIdEmail" parameterType="user" resultMap="userSelectMap">
+		SELECT
+			user_no, id, pw, email, user_name, tel	
+			FROM tb_user 
+				WHERE id = #{id}
+					and email = #{email}
+	</select>
 	 
 	 
 	 <!--  

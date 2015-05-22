@@ -79,8 +79,7 @@ public class UserController {
 		if(user == null){
 			result = "{  \"result\"  :    \"true\"   }";
 		}
-		
-		
+			
 		try{
 			response.getWriter().print(result);
 			
@@ -103,6 +102,32 @@ public class UserController {
 		}
 		else{
 			msg ="입력하신 메일에 해당되는 ID가 없습니다.";	
+		}
+        
+		try{
+			response.getWriter().print(msg);
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	
+	
+	}
+	
+	
+	@RequestMapping("/getUserByIdEmail.do")
+	public void getUserByIdEmail(@ModelAttribute("user") User user, HttpServletResponse response) throws Exception {
+		
+		System.out.println("/getUserByIdEmail.do");
+		
+		User dbUser = userService.getUserByIdEmail(user);
+		String msg = "";
+		if(dbUser != null){
+	        msg ="당신의 PW가 메일로 발송 되었습니다.";
+	        mailService.sendMail(dbUser.getEmail(), "ID '"+ dbUser.getId() + "'의 PW는 "+dbUser.getPw()+"입니다.");		
+		}
+		else{
+			msg ="입력하신 정보가 맞지 않습니다.";	
 		}
         
 		try{

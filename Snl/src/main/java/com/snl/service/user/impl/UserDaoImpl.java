@@ -50,5 +50,10 @@ public class UserDaoImpl implements UserDao{
 		return sqlSession.selectOne("UserMapper.getUserByEmail",email);		
 	}
 
+	@Override
+	public User getUserByIdEmail(User user) throws Exception {
+		return sqlSession.selectOne("UserMapper.getUserByIdEmail",user);		
+	}
+
 
 }

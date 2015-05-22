@@ -52,5 +52,11 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+	@Override
+	public User getUserByIdEmail(User user) throws Exception {
+		return userDao.getUserByIdEmail(user);
+
+	}
+
 	
 }

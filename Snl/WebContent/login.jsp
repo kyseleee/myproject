@@ -23,6 +23,50 @@
 	
 	<script type="text/javascript">
 	
+	
+	$("#findPwBtnPre").click(function() {
+    	
+		$("#resultBodyPw").hide();    	
+    	$("#inputBodyPw").show();
+		
+		$("#findPwBtnPreDiv").hide();    	
+    	$("#findPwBtnDiv").show();
+		document.getElementById("msgPw").innerHTML= "";
+
+
+    });
+	
+	$("#IdINfindPwBtn").click(function() {
+    	
+		$("#findId").hide();    	
+    	$("#findPw").show();
+
+    });
+
+	
+	$("#findPwBtn").click(function() {
+    	var id = $("input[id=inputUserId]").val();
+    	var email = $("input[id=inputUserEmail]").val();
+
+    	$.ajax({
+	        type:"POST",
+	        url:"./getUserByIdEmail.do",
+	        data : {id : id, email : email},
+	        success: function(data){
+	        		document.getElementById("msgPw").innerHTML= data;
+	        },
+	        error: function(xhr, status, error) {
+	            alert(error);
+	        }  
+	    });	
+    	
+    	$("#resultBodyPw").show();
+		$("#findPwBtnPreDiv").show();
+
+		$("#inputBodyPw").hide();    	
+        $("#findPwBtnDiv").hide();
+	});
+	
 	$("#getUserBtn").click(function() {
 	    	var email = $("input[name=userEmail]").val();
 	    	
@@ -43,7 +87,7 @@
 
 			$("#inputBody").hide();    	
 	        $("#inputBtn").hide();
-	    });
+    });
 
 	function loginChk(){
 		var idLogInChk = document.getElementById("userId").value;
@@ -96,6 +140,19 @@
 		
         $("#userEmail").val("");
         $("#msg").val("");
+		
+	})
+	
+	$("#findPw").on('hidden.bs.modal', function (){
+		
+		$("#inputBodyPw").show();
+		$("#findPwBtnDiv").show();    
+		
+		$("#resultBodyPw").hide();
+		$("#findPwBtnPreDiv").hide();
+		
+        $("#inputUserId").val("");
+        $("#inputUserPw").val("");
 		
 	})
 	
@@ -316,53 +373,62 @@
 			  	<div id="msg" style="text-align:center;margin-top: 40px;"> 
 			  	<br>
 		  		<br>
-			  	</div>
+		  	  </div>
 			  </div>
 		      <div class="modal-footer" id="inputBtn">
 		      	<button type="button" id="getUserBtn" class="btn btn-primary">확인</button>
 		      </div>
 		      <div class="modal-footer" id="resultBtn" style="display: none;">
 		      	<button type="button" class="btn btn-default" id="findIdBtn" class="form-control btn btn-register">뒤로가기</button>
-		      	<button type="button" class="btn btn-primary" id="findPwBtn" class="form-control btn btn-register">비밀번호찾기</button>
+		      	<button type="button" class="btn btn-primary" id="IdINfindPwBtn" class="form-control btn btn-register"
+		      			style=text-decoration:none data-toggle="modal" data-target="#findPw">비밀번호찾기</button>
 			  </div>
 		    
-		
+			</div>
 		  </div>
 		</div>
 		<!-- findId Modal 끝 !!! -->
 		
 		<!-- findPw Modal -->
-		<div id="findPw" class="modal fade" role="dialog">
-		  <div class="modal-dialog">
+<div id="findPw" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+	<div class="modal-content">
 		
-		    <!-- Modal content-->
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title">PW 찾기</h4>
-		      </div>
-		      <div class="modal-body" id="inputBody" style="height: 130px;">
-	        	<p>회원가입 시 입력하였던 email을 입력해주시기 바랍니다.</p>
-	        	<input type="email" style="margin-top: 30px;" class="form-control" name="userEmail" id="userEmail" placeholder="ex) abc@gmail.com "> 
-		      </div>
-		      <div class="modal-body" id="resultBody" style="display: none; height: 130px;">
-			  	<div id="msg" style="text-align:center;margin-top: 40px;"> 
+		<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">PW 찾기</h4>
+   		</div>
+    
+		<div class="modal-body" id="inputBodyPw" >
+	    	<p>ID와 회원가입시 사용하였던 email을 입력해주시기 바랍니다.</p>
+	          <div class="form-group">
+	            <label for="userId" class="control-label">ID </label>
+	            <input type="text" class="form-control" id="inputUserId">
+	          </div>
+	          <div class="form-group">
+	            <label for="userEmail" class="control-label">Email</label>
+	            <input type="text" class="form-control" id="inputUserEmail">
+	          </div>
+	    </div>
+    
+	    <div class="modal-body" id="resultBodyPw" style="display: none; height: 130px;">
+			<div id="msgPw" style="text-align:center;margin-top: 40px;"> 
 			  	<br>
-		  		<br>
-			  	</div>
-			  </div>
-		      <div class="modal-footer" id="inputBtn">
-		      	<button type="button" id="getUserBtn" class="btn btn-primary">확인</button>
-		      </div>
-		      <div class="modal-footer" id="resultBtn" style="display: none;">
-		      	<button type="button" class="btn btn-default" id="findIdBtn" class="form-control btn btn-register">뒤로가기</button>
-		      	<button type="button" class="btn btn-primary" id="findPwBtn" class="form-control btn btn-register">비밀번호찾기</button>
-			  </div>
-		    
-		
-		  </div>
+			 	<br>
+			</div>
 		</div>
-		
+   
+		<div class="modal-footer" id="findPwBtnDiv">
+			<button type="button" class="btn btn-primary" id="findPwBtn" class="form-control btn btn-register">찾기</button>
+		</div>
+		<div class="modal-footer" id="findPwBtnPreDiv" style="display: none;">
+	      	<button type="button" class="btn btn-default" id="findPwBtnPre" class="form-control btn btn-register">뒤로가기</button>
+		</div>
+  	</div>		
+  </div>
+</div>
+
 
 		
 
