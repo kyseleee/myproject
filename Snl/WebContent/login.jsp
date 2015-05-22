@@ -24,7 +24,6 @@
 	<script type="text/javascript">
 	
 	$("#getUserBtn").click(function() {
-	    	alert("getUserBtn 들어왓니?");
 	    	var email = $("input[name=userEmail]").val();
 	    	
 	    	$.ajax({
