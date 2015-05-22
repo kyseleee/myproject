@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="GroupMoneyMapper">
+
+
+
+  	<resultMap id="groupMoneySelectMap" type="groupMoney">	
+  		<result property="gmNo" column="gm_no" jdbcType="INTEGER"/>
+  		<result property="gmName" column="gm_name" jdbcType="VARCHAR" />
+		<result property="gmDate" column="group_date" jdbcType="DATE" />
+		<result property="gmPay" column="gm_pay" jdbcType="INTEGER"/>
+		<result property="gmPays" column="gm_pays" jdbcType="INTEGER"/>
+		
+		<association property="group" javaType="group">
+			<id property="groupNo" column="group_no" jdbcType="INTEGER"/>
+			<result property="groupName" column="group_name" jdbcType="VARCHAR"/>
+			<result property="groupDate" column="grup_date" jdbcType="DATE"/>
+		</association>
+	</resultMap>  	
+  	
+  	<insert id="addGroupMoney"	parameterType="groupMoney" useGeneratedKeys="true" keyColumn="gm_no" keyProperty="gmNo">
+  		INSERT	
+  			INTO group_money(gm_no, group_no, gm_name, gm_date, gm_pay, gm_pays)
+  			VALUES(seq_group_money_gm_no.nextval, #{group.groupNo}, #{gmName}, #{gmDate}, #{gmPay}, #{gmPays})				
+  	</insert> 
+  	<!-- <select id="getGroup" parameterType="int" resultMap="groupSelectMap">
+		SELECT
+			group_no, user_no, group_name, group_date
+			FROM tb_group 
+				WHERE group_no = #{value}
+	 </select>
+  	
+ 	<select id="getGroupByGroupName" parameterType="group" resultMap="groupSelectMap">
+		SELECT
+			group_no, user_no, group_name, group_date
+			FROM tb_group 
+				WHERE group_name = #{groupName}
+					and user_no = #{user.userNo}
+	 </select> -->
+
+
+  	
+  	
+</mapper>
