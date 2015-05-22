@@ -34,7 +34,7 @@
 				 
 					$.ajax({
 				        type:"POST",
-				        url:"./getUser.do",
+				        url:"./getUserById.do",
 				        data : {id : idv },
 				        success: function(responseData){
 				        	var data = JSON.parse(responseData);
