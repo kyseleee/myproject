@@ -49,13 +49,51 @@ public class PaymentController {
 	
 	@RequestMapping("/addPayment.do")
 	public String addPayment(@ModelAttribute("payment") Payment payment,
-							 HttpSession session) throws Exception{
+							 HttpSession session,@RequestParam("file") MultipartFile file) throws Exception{
+		
+		
+		System.out.println("/fileUpload");
+//		System.out.println("---------->" + name);
+		System.out.println(file.getOriginalFilename());
+		System.out.println(file.getName());
+		String originalFilename = file.getOriginalFilename();
+		int lastIndex = originalFilename.lastIndexOf('.');
+		String path = ctx.getRealPath("/")
+		//String path = "C:/workspace(gradle)/spring02/src/main/webapp/upload" 
+				//+ "/" 
+				+ originalFilename.substring(0, lastIndex)
+				+ "_" + getCountNo()
+				+ originalFilename.substring(lastIndex);
+		System.out.println(path);
+		System.out.println(path.substring(path.lastIndexOf('\\')+1));
+		
+		try {
+			file.transferTo(new File(path));
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		System.out.println("/addPayment");
 		System.out.println(session.getAttribute("user"));
+		if(payment.getMethod().equals("신용카드")){
+			payment.setMethod("1");
+		}
+		else{
+			payment.setMethod("2");
+		}
 		payment.setGroup(groupService.getGroup(10000));
+		payment.setReceit(path.substring(path.lastIndexOf('\\')+1));
 		System.out.println(payment);
 		
+		//paymentService.addPayment(payment);
 		
 		
 		
@@ -66,6 +104,8 @@ public class PaymentController {
 	@ResponseBody
 	public String upload(@RequestParam("file") MultipartFile file,
 			Model model) {
+		
+		System.out.println("/fileUpload");
 //		System.out.println("---------->" + name);
 		System.out.println(file.getOriginalFilename());
 		System.out.println(file.getName());

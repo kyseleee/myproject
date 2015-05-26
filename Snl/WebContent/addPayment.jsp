@@ -17,28 +17,86 @@
     <script src="jquery.json-2.4.min.js"></script>
 </head>
 <script type="text/javascript">
-	function submitForm(){
+	$(document).ready(function(){
+		$("#payDate").blur(function(){
+			alert("11");
+			var payDate = $("input[name=payDate]").val();
+			var dateErr="";
+			
+			if(payDate==""){
+				dateErr="<font color='red'> 날짜를 입력해 주세요.</font>";
+			}
+			else{
+				dateErr="";
+			}
+			document.getElementById("dateErr").innerHTML=dateErr;
+		});
 		
-		var data = new FormData();
-        $.each($('#file')[0].files, function(i, file) {          
+		$("#payName").blur(function(){
+			alert("22");
+			var payName = $("input[name=payName]").val();
+			var payErr="";
+			
+			if(payName==""){
+				payErr="<font color='red'> 상호명을 입력해 주세요.</font>";
+			}
+			else{
+				payErr="";
+			}
+			document.getElementById("payNameErr").innerHTML=payErr;
+		});
+			
+		$("#amount").blur(function(){
+			alert("33");
+			var amount = $("input[name=amount]").val();
+			var amountEr = "";
+			if($.isNumeric(amount)==true && amount>0 && amount%1==0){
+				alert("GOOD");
+				amountEr = "";
+			}
+			else{
+				alert("BAD");
+				amountEr = "<font color='red'>올바른 수자 포맷을 입력해 주세요.</font>";
+			}
+			document.getElementById("amountErr").innerHTML=amountEr;
+		});
+
+
+		
+	});
+	
+	
+	function submitForm(){
+		var formData = new FormData();
+        /* $.each($('#file')[0].files, function(i, file) {          
             data.append('file-' + i, file);
-        });
-      
+        }); */
+   	var file=document.getElementById('file').files[0];
+        alert(file);
+    formData.append('file',file);
+    	alert(formData);
+    
             $.ajax({
                url: '/fileUpload.do',
+               data: formData,
+               type: 'POST',
                processData: false,
                contentType: false,
-               data: data,
-               type: 'POST',
                success: function(result){
                    alert("업로드 성공!!");
                    $('input[name=receit]').attr('value',result); 
+               },
+               error : function(){
+            	   alert("실패");
                }
            });
 		document.getElementById("addPay-form").submit();
 	}
 	function getFile(){
-		document.getElementById("uploadFile").submit();
+		//document.getElementById("uploadFile").submit();
+		
+			document.getElementById("addPay-form").submit();
+			
 	}
 </script>
 <body>
@@ -56,7 +114,7 @@
             <div class="panel-default">
                 <div class="panel-body form-horizontal payment-form">
                 
-             <form id="addPay-form" action="addPayment.do" method="POST"> 
+             <form id="addPay-form" action="addPayment.do" method="POST" enctype="multipart/form-data"> 
              <div class="form-group">
                         <label for="payMethod" class="col-sm-3 control-label">결제수단</label>
                         <div class="col-sm-9">
@@ -71,6 +129,7 @@
                         <label for="date" class="col-sm-3 control-label">날     짜</label>
                         <div class="col-sm-9">
                             <input type="date" class="form-control" id="payDate" name="payDate">
+                            <div id="dateErr"></div>
                         </div>
                     </div>   
                     
@@ -78,18 +137,26 @@
                         <label for="amount" class="col-sm-3 control-label">상  호  명</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="payName" name="payName">
+                            <div id="payNameErr"></div>
                         </div>
                     </div>
                   <div class="form-group">
                         <label for="description" class="col-sm-3 control-label">금      액</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="amount" name="amount">
-                            <input type="hidden" value="" id="receit" name="receit"/>
+                            <div id="amountErr"></div>
+                            <!-- <input type="hidden" value="" id="receit" name="receit"/> -->
                         </div>
-                    </div> 
+                    </div>
+									<div class="form-group">
+                        <label for="concept" class="col-sm-3 control-label">영  수  증</label>
+                        <div class="col-sm-9">
+                        		<input type="file" id="file" name="file"/>
+                        </div>
+                    </div>
                   </form>
                   
-                  <form id="uploadFile" action="fileUpload.do" method="POST" enctype="multipart/form-data">  
+                  <!-- <form id="uploadFile" action="fileUpload.do" method="POST" enctype="multipart/form-data">  
                     <div class="form-group">
                         <label for="concept" class="col-sm-3 control-label">영  수  증</label>
                         
@@ -97,14 +164,14 @@
                         		
                         		<input type="file" id="file" name="file"/>
                         		
-                            <!-- <input type="submit" class="btn btn-default preview-add-button" value="영수증 찾기"> -->
+                            <input type="submit" class="btn btn-default preview-add-button" value="영수증 찾기">
                         </div>
                     </div>
-								</form>
+								</form> -->
 								
                     <div class="form-group">
                         <div class="col-sm-12 text-right">
-                            <input type="button" onclick="submitForm()" class="btn btn-default preview-add-button" value="입력완료">
+                            <input type="button" onclick="getFile()" class="btn btn-default preview-add-button" value="입력완료">
                                 
                         </div>
                     </div>
