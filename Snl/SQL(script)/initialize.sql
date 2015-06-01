@@ -172,15 +172,16 @@ ALTER TABLE group_arr
 			group_no
 		);
 
+CREATE SEQUENCE seq_group_money_gm_no	 	INCREMENT BY 1 START WITH 10000;		
+		
 /* 회비 */
 CREATE TABLE group_money (
 	gm_no INTEGER NOT NULL, /* 회비일련번호 */
 	group_no INTEGER NOT NULL, /* 그룹일련번호 */
 	gm_name VARCHAR2(50) NOT NULL, /* 회비명 */
-	gm_date DATE NOT NULL /* 회비날짜 */
+	gm_date DATE NOT NULL, /* 회비날짜 */
+	gm INTEGER NOT NULL/*개인회비*/
 );
-
-COMMENT ON TABLE group_money IS '회비';
 
 COMMENT ON COLUMN group_money.gm_no IS '회비일련번호';
 
@@ -189,6 +190,8 @@ COMMENT ON COLUMN group_money.group_no IS '그룹일련번호';
 COMMENT ON COLUMN group_money.gm_name IS '회비명';
 
 COMMENT ON COLUMN group_money.gm_date IS '회비날짜';
+
+COMMENT ON COLUMN group_money.gm IS '개인회비';
 
 CREATE UNIQUE INDEX PK_group_money
 	ON group_money (
@@ -221,6 +224,8 @@ COMMENT ON TABLE gm_paid IS '회비납부내역';
 COMMENT ON COLUMN gm_paid.group_no IS '그룹일련번호';
 
 COMMENT ON COLUMN gm_paid.user_no IS '회원일련번호';
+
+COMMENT ON COLUMN gm_paid.gm_no IS '회비일련번호';
 
 COMMENT ON COLUMN gm_paid.gm_no IS '회비일련번호';
 
