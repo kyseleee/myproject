@@ -2,14 +2,17 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">		
 		<link href="css/bootstrap.min.css" rel="stylesheet">
-	
-		<script type='text/javascript' src='http://code.jquery.com/jquery-1.8.0.min.js'></script> 
+	    <link href="css/leftmenu.css" rel="stylesheet">
+	    <link  href="css/font-awesome.min.css" rel="stylesheet" />
+	    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		
+		<script type='text/javascript' src='http://code.jquery.com/jquery-1.11.1.min.js'></script> 
 		<script src="js/login.js"></script>
-	
+    	
 		<script type='text/javascript'> 
 		
 			
@@ -58,188 +61,181 @@
 			
 			
 			
-		</script> 
-			
-			
-		<style type="text/css">
-		
-			* {
-				padding: 0;
-				margin: 0;
-			}
-			
-			#headernav {
-			
-				
-				position: fixed;
-				width: 100%;
-				height: 50px;
-				left : 0;
-				top : 0;
-
-				border-radius: 0;
-				margin-bottom: 0;
-				z-index: 100;
-
-			}
-			
-			#header {
-			
-				margin-top: 10px;
-				background-color: #5fb0e4;
-				background-image: url(header-bg.jpg?ver=2.0.0);
-				background-position: center center;
-				background-repeat: no-repeat;
-				background-size: cover;
-				color: #FFF;
-				font-size: 16px;
-				text-align: center;
-				text-shadow: 0 1px 0 rgba(0,0,0,.15);
-				font-family: Roboto,sans-serif;
-				width: 100%;
-				height: 170px;
-			}
-			
-			#article {
-				width: 100%;
-				height: 1000px;
-				background-color: #F5F5F5
-			}
-			
-
-			
-			#main {
-				margin-left: 18%;
-				padding-top: 50px;
-				width: 65%;
-				height: 100%;
-			}
-			
-			#footer {
-				clear: both;
-				width: 100%;
-				height: 50px;
-				margin-top: 10px;
-				margin-bottom: 10px;
-			}
-			
-			#leftmenu {
-				margin-top : 60px;
-				margin-left : 5%;
-				text-align : right;
-				float : left;
-				top: 250px;
-				width: 150px;
-				height: 300px;
-			}
-			
-			
-			#aside {
-				position: fixed;
-				right: 30px;
-				top: 170px;
-				width: 150px;
-				height: 300px;
-			}
-			
-		
-		
-			
-		</style>
-		
+	</script>
 	
-
-	</head>
-	
-	<body>
-	
-      	<script src="js/bootstrap.min.js"></script>
-	
-		<div id="headernav">
+    <style>
+    
+    body {
+    	
+    }
+    
+    *{
+    		margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline;
+     }
 		
-			<nav class="navbar navbar-default">
-			  <div class="container-fluid">
-			    <div class="navbar-header" style="margin-left: 150px;">
-			      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-			        <span class="sr-only">Toggle navigation</span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			      </button>
-			      <a class="navbar-brand" href="/Snl/index.jsp"><font color="#5FB0E4">SNL</font></a>
-			    </div>
-			
-			    <!-- Collect the nav links, forms, and other content for toggling -->
-			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			     
-			      <ul class="nav navbar-nav navbar-right" style="margin-right: 150px;">
-			      	<li class="active">
-			            	<a href='calendar.html' onclick='paymentlist(this); return false;'>지출현황</a> 
-					</li>
-					<li>
-			            	<a href='addPayment.jsp' onclick='addPayment(this); return false;'>지출추가</a> 
-					</li>
-			        <li>
-			            	<a href='jqGridSimple.jsp' onclick='stat1(); return false;'>통계</a> 
-			        </li>
-			       								        
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-						그룹관리
-						<b class="caret"></b>
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href='paymentManager.jsp' onclick='paymentManager(this); return false;'>회비관리</a></li>
-							<li><a href="list.html"  onclick='list(this); return false;'>회원리스트</a></li>
-						</ul>
-					</li>
-			        <li>
-			        	<a href="#">설정</a>
-			        </li>
-			        <li>
-			        	<a href='login.jsp'  onclick='login(this); return false;'>로그인</a>
-			        </li>
-			        
-			        
-			        
-			      </ul>
-			    </div><!-- /.navbar-collapse -->
-			  </div><!-- /.container-fluid -->
-			</nav>
-		</div>
+        #headernav {   	
+        	width:100%; 
+			height:100px;
+			margin:0 auto; color:#ffffff;
+        }
+        
+		#home {
+			float:left; font-size:2em;
+			padding-left:60px;
+			color:white;
+			font-weight:bold;
+		}
 		
-		<div id="header" align="center">
-			<br/><br/>
-				<font size="9" face ="sans-serif"><b>SNL</b></font><br/>
-				<font size="5">Social Network Ledger</font>
-		</div>
-	
-		<div id="article">
-			<div id="leftmenu">
-			
+		#login {
+			float:right; font-size:1.2em;
+			padding-right:100px; 
+			color:white;
+		}
+		
+		#group {
+			float:right; font-size:1.2em;
+			padding-ringt:100px; 
+			color:white;
+			border: 1px solid #3C3B3D; 
+			border-radius: 1px;
+		}
+		
+		#header {
+			width:100%;
+        	background-color:#353535;
+        	height:50px; 
+		}
 
-				<ul class="nav nav-pills nav-stacked">
-				   <li class="active"><a href="list.html"  onclick='list(this); return false;'>Group1</a></li>
+	
+		
+		
+        #content {
+            width:100%; 
+            hight:100%;
+            overflow:hidden; 
+            background-image:url('images/main.jpg');
+        	background-repeat:no-repeat;
+            background-size: cover;
+            background-position:center;
+            background-origin:content-box;
+			opacity: 0.9!important; filter:alpha(opacity=30);
+        }
+        
+   		#leftmenu {
+        	height:1100px;
+        	float:left; 
+            box-sizing:border-box; 
+        } 
+        
+        #main {
+        	width:1067px;
+        	height:1100px;
+        	float:left;
+        	box-sizing:border-box;
+        	padding:50px;
+        	
+			
+        }
+        
+        #rightmenu {
+        	width:300px;
+        	height:1100px;
+        	float:left; 
+            box-sizing:border-box; 
+        }
+
+        #footer  {
+            width:100%; height:50px; margin:0px auto 0; background-color:#242424; color:#ffffff;
+            text-align:center; line-height:50px;
+            clear:both; border:0;
+        }
+
+
+    </style>
+	
+</head>
+<body >
+	<div id="header">
+    	<nav class="navbar navbar-inverse">
+		    <div class="navbar-header">
+		     	<a id="home" class="navbar-brand" href="/Snl/index.jsp">SNL</a> 
+			</div>        
+			
+			<ul class="nav navbar-nav navbar-right navbar-user">		
+				   <li class="active"><a href='addGroup.html' onclick='addGroup(this); return false;'>+ Add Group</a></li>
+				   <li><a href="list.html"  onclick='list(this); return false;'>Group1</a></li>
 				   <li><a href="#">Group2</a></li>
 				   <li><a href="#">Group3</a></li>
-				   <li><a href='addGroup.html' onclick='addGroup(this); return false;'>+ Add Group</a></li>
+				   
 
 				   
-				</ul>
-			
-			</div>
-			
-			<div>
+				<li><a id="login" class="navbar-brand" href='login.jsp'  onclick='login(this); return false;'><i class="fa fa-globe"></i> Login</a></li>
+            </ul>
+		</nav>
+    </div>          
+    
+    <div id="content">
 
-				
-				<div id="main">
-				</div>
-				
-			</div>
-			
-
+   	<div id="leftmenu" >	
+  	  <nav class="navbar navbar-inverse sidebar" role="navigation">
+    <div class="container-fluid">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">		
+		
+			<a class="navbar-brand" href="#">Menu</a>
 		</div>
-		<div id="footer">footer</div>
-	</body>
+		
+		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li ><a href='calendar.html' onclick='paymentlist(this); return false;'>지출현황<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
+				<li ><a href='addPayment.jsp' onclick='addPayment(this); return false;'>지출추가<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
+				<li ><a href='jqGridSimple.jsp' onclick='stat1(); return false;'>통    계<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
 
+
+				<li class="dropdown">
+						
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							그룹관리<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span>
+							<b class="caret"></b>
+						</a>
+						
+						<ul class="dropdown-menu">
+							<li><a href='paymentManager.jsp' onclick='paymentManager(this); return false;'>회비관리
+								</a>
+							</li>
+							<li><a href="list.html"  onclick='list(this); return false;'>회원리스트</a></li>
+						</ul>
+				</li>
+				
+				<li ><a href="#">설    정<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
+				<li ><a href="#">Etc<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+    
+    </div>
+    	
+    	<div id="main">
+    		main
+    	</div>
+    	
+    	<div id="rightmenu">
+    		rightmenu
+    	</div>
+    </div>
+    
+             
+	    
+    <div id="footer">
+        <div>footer</div>
+    </div>
+    
+    <script type="text/javascript">
+  
+</script>
+</body>
 </html>
