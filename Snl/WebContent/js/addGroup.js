@@ -1,4 +1,17 @@
-
+$(function() {
+			$('#register-submit').click(function(e) {
+				alert('그룹생성이 완료 되었습니다.');
+				var table = document.getElementById('preview');
+		    	var rowLength = table.rows.length;
+				var toEmail="";
+		    	for(var i=0; i<rowLength-1; i++){
+		    		alert($("td[class=input-description]").eq(i).html());   
+		    		toEmail =  toEmail + $("td[class=input-description]").eq(i).html() + ";";
+		    	}
+		    	console.log(toEmail);
+	    		document.getElementById("sendMsg").value= toEmail;
+			});
+		});
 function calc_total(){
     var sum = 0;
 //    $('.input-num').each(function(){
