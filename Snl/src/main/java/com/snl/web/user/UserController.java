@@ -2,6 +2,7 @@ package com.snl.web.user;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,7 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.snl.service.domain.GroupArr;
 import com.snl.service.domain.User;
+import com.snl.service.groupArr.GroupArrService;
 import com.snl.service.mail.MailService;
 import com.snl.service.user.UserService;
 
@@ -25,6 +28,11 @@ public class UserController {
 	@Qualifier("userServiceImpl")
 	private UserService userService;
 
+
+	@Autowired
+	@Qualifier("groupArrServiceImpl")
+	private GroupArrService groupArrService;
+	
 	@Autowired
 	@Qualifier("mailService")
 	private MailService mailService;
@@ -153,9 +161,11 @@ public class UserController {
 		PrintWriter out = response.getWriter();
 	      if ((dbUser==null)||!( pw.equals(dbUser.getPw()) && id.equals(dbUser.getId()))){
 	    	  out.print("no");
+	    	  
 	      }
 	      else{
 	    	  out.print("yes");
+	    	  
 	      }
 	      
 	      
@@ -181,6 +191,12 @@ public class UserController {
 	      }
 	      else{
 	    	  session.setAttribute("user", dbUser);
+	    	  
+	    	  List<GroupArr> groupArrList= groupArrService.getGroupArrByUser(dbUser);
+	    	  session.setAttribute("groupArrList", groupArrList);
+	    	  System.out.println(groupArrList);
+
+
 	    	  if(sgroupNo != ""){
 	  			return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+dbUser.getId();	
 	    	  }
@@ -194,7 +210,7 @@ public class UserController {
 	   }
 	
 	@RequestMapping("/logout.do")
-	public String logout(HttpSession session ) throws Exception{
+	public String logout(HttpSession session) throws Exception{
 		
 		System.out.println("/logout.do");
 		
