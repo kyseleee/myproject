@@ -76,7 +76,7 @@
 		
 		#header {
 			background-color: #5fb0e4;
-			background-image: url(header-bg.jpg?ver=2.0.0);
+			background-image: url(images/header-bg.jpg?ver=2.0.0);
 			background-position: center center;
 			background-repeat: no-repeat;
 			background-size: cover;

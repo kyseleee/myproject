@@ -13,7 +13,7 @@
 			   <li class="active"><a href='addGroup.jsp'>+ Add Group</a></li>
 			  
 			  <c:forEach var="groupArr" items="${groupArrList}">
-			  	 <li><a href="list.html">${groupArr.group.groupName}</a></li>
+			  	 <li><a href="setGroupNo.do?groupNo=${groupArr.group.groupNo}">${groupArr.group.groupName}</a></li>
 			  </c:forEach>	   
 			  
 				<li><a id="login" class="navbar-brand" href='login.jsp'  onclick='login(this); return false;'><i class="fa fa-globe"></i> Login</a></li>
