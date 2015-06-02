@@ -9,13 +9,15 @@
 		     	<a id="home" class="navbar-brand" href="/Snl/index.jsp">SNL</a> 
 			</div>        
 			
-			<ul class="nav navbar-nav navbar-right navbar-user">		
-			   <li class="active"><a href='addGroup.jsp'>+ Add Group</a></li>
-			  
-			  <c:forEach var="groupArr" items="${groupArrList}">
-			  	 <li><a href="setGroupNo.do?groupNo=${groupArr.group.groupNo}">${groupArr.group.groupName}</a></li>
-			  </c:forEach>	   
-			  
+			<ul class="nav navbar-nav navbar-right navbar-user">
+				<c:if test="${! empty user}">		
+					<li class="active"><a href='addGroup.jsp'>+ Add Group</a></li>
+				</c:if>
+				<c:forEach var="groupArr" items="${groupArrList}">
+				<li><a href="setGroupNo.do?groupNo=${groupArr.group.groupNo}">${groupArr.group.groupName}</a></li>
+				</c:forEach>	   
+				 
+				  
 			  <%if (session.getAttribute("user") != null) {%>
 					<li class="dropdown">						
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -32,10 +34,10 @@
 					
 					<div class="profile-usertitle" style="text-align:center;">
 						<div class="profile-usertitle-id">
-							UserId
+							${user.id}
 						</div>
 						<div class="profile-usertitle-name">
-							UserName
+							${user.userName}
 						</div>
 					</div>
 	
@@ -63,7 +65,7 @@
 					
 					<li>
 			          <a id="login" class="nabar-brand" href='login.jsp' onclick='login(this); return false;'>
-			          <b>Login</b> <span class="caret"></span></a>
+			          <b>Login</b></a>
 			        </li>
 					<%}%>
             </ul>
