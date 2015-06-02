@@ -1,4 +1,4 @@
-
+/**/
 /* 지출추가 */
 CREATE TABLE add_payment (
 	pay_no INTEGER NOT NULL, /* 지출일련번호 */
