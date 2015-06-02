@@ -6,7 +6,18 @@
 			
 <mapper namespace="GroupArrMapper">
 
-  	<resultMap type="groupArr" id="groupArrSelectMap">
+
+	<resultMap type="groupArr" id="groupArrSelectMap">
+		<result property="role" column="role" jdbcType="CHAR"/>
+		<result property="group.groupNo" column="group_no" jdbcType="CHAR"/>
+		<result property="group.groupName" column="group_name" jdbcType="CHAR"/>
+		<result property="group.groupDate" column="group_date" jdbcType="DATE"/>	
+		<result property="user.userNo" column="user_no" jdbcType="CHAR"/>
+		
+	
+	
+	
+  	<!-- <resultMap type="groupArr" id="groupArrSelectMap">
 		<result property="role" column="role" jdbcType="CHAR"/>
 		
 		<association property="user" javaType="user">
@@ -31,7 +42,7 @@
 				<result property="userName" column="user_name" jdbcType="VARCHAR"/>
 				<result property="tel" column="tel" jdbcType="VARCHAR"/>
 			</association>
-		</association>
+		</association> -->
 		
 		
 		
@@ -43,9 +54,22 @@
   			INTO group_arr(user_no, group_no, role)
   			VALUES(#{user.userNo}, #{group.groupNo}, #{role})						
   	</insert> 
-  	
+ 
+ 	 <select id="getGroupArrByUser" parameterType="int" resultMap="groupArrSelectMap">
+		SELECT
+			a.user_no, 
+			a.group_no, 
+			a.role,
+			b.group_name,
+			b.group_date
+			FROM group_arr a
+				left outer join tb_group b on a.group_no = b.group_no
+			WHERE a.user_no = #{userNo}
+			ORDER BY b.group_date
+	 </select> 
+	 
 
 
-  	
+						
   	
 </mapper>

@@ -12,8 +12,7 @@
   		<result property="gmNo" column="gm_no" jdbcType="INTEGER"/>
   		<result property="gmName" column="gm_name" jdbcType="VARCHAR" />
 		<result property="gmDate" column="group_date" jdbcType="DATE" />
-		<result property="gmPay" column="gm_pay" jdbcType="INTEGER"/>
-		<result property="gmPays" column="gm_pays" jdbcType="INTEGER"/>
+		<result property="gmPrice" column="gm_price" jdbcType="INTEGER"/>
 		
 		<association property="group" javaType="group">
 			<id property="groupNo" column="group_no" jdbcType="INTEGER"/>
@@ -22,27 +21,19 @@
 		</association>
 	</resultMap>  	
   	
-  	<insert id="addGroupMoney"	parameterType="groupMoney" useGeneratedKeys="true" keyColumn="gm_no" keyProperty="gmNo">
+  	<insert id="addGroupMoney"	parameterType="groupMoney" >
   		INSERT	
-  			INTO group_money(gm_no, group_no, gm_name, gm_date, gm_pay, gm_pays)
-  			VALUES(seq_group_money_gm_no.nextval, #{group.groupNo}, #{gmName}, #{gmDate}, #{gmPay}, #{gmPays})				
+  			INTO group_money(gm_no, group_no, gm_name, gm_date, gm_price)
+  			VALUES(seq_group_money_gm_no.nextval, #{group.groupNo}, #{gmName}, #{gmDate}, #{gmPrice})			
+  			
   	</insert> 
-  	<!-- <select id="getGroup" parameterType="int" resultMap="groupSelectMap">
-		SELECT
-			group_no, user_no, group_name, group_date
-			FROM tb_group 
-				WHERE group_no = #{value}
-	 </select>
-  	
- 	<select id="getGroupByGroupName" parameterType="group" resultMap="groupSelectMap">
-		SELECT
-			group_no, user_no, group_name, group_date
-			FROM tb_group 
-				WHERE group_name = #{groupName}
-					and user_no = #{user.userNo}
-	 </select> -->
-
 
   	
+ 	<select id="getGroupMoneybyGroup" parameterType="int" resultMap="groupMoneySelectMap">
+		SELECT
+			gm_no, group_no, gm_name, gm_date
+			FROM group_money
+		WHERE group_no = ${value}
+	 </select> 
   	
 </mapper>
