@@ -17,7 +17,7 @@
 			<ul class="nav navbar-nav">
 				<li ><a href='calendar.jsp'>지출현황<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-home"></span></a></li>
 				<li ><a href='addPayment.jsp'>지출추가<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
-				<li ><a href='jqGridSimple.jsp'>통    계<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
+				<li ><a href='graph.jsp'>통    계<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-envelope"></span></a></li>
 
 
 				<li class="dropdown">
