@@ -21,8 +21,8 @@
 		<link rel='stylesheet' href='fullcalendar/lib/cupertino/jquery-ui.min.css' />
 		<link href='fullcalendar/fullcalendar.css' rel='stylesheet' />
 		<link href='fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+		<link href="css/user.css" rel="stylesheet">
 		
-
 		<!--  js -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
