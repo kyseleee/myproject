@@ -1,5 +1,7 @@
 package com.snl.web.group;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +51,10 @@ public class GroupController {
 		groupService.addGroup(group);
 		GroupArr groupArr = new GroupArr(user, group, new String("L"));
 		groupArrService.addGroupArr(groupArr);
-		 
+		
+		List<GroupArr> groupArrList= groupArrService.getGroupArrByUser(user);
+  	  	session.setAttribute("groupArrList", groupArrList);
+
 		mailService.sendMail(toEmail, group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/inviteIndex.jsp?sgroupNo="+group.getGroupNo());		
 	    
 		
