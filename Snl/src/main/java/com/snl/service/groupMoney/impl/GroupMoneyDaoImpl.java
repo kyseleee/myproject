@@ -1,5 +1,7 @@
 package com.snl.service.groupMoney.impl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -7,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.snl.service.domain.GroupMoney;
 import com.snl.service.groupMoney.GroupMoneyDao;
-import com.snl.service.groupMoney.GroupMoneyService;
 
 
 @Repository("groupMoneyDaoImpl")
@@ -33,15 +34,11 @@ public class GroupMoneyDaoImpl implements GroupMoneyDao{
 		
 	}
 
-/*	@Override
-	public Group getGroup(int groupNo) throws Exception {
-		return sqlSession.selectOne("GroupMapper.getGroup", groupNo);
+	public List<GroupMoney> getGroupMoneybyGroup(int groupNo) throws Exception{
+		System.out.println("dao===="+groupNo);
+		System.out.println(sqlSession.selectList("GroupMoneyMapper.getGroupMoneybyGroup", groupNo));
+		return sqlSession.selectList("GroupMoneyMapper.getGroupMoneybyGroup", groupNo);
 	}
-	
-	@Override
-	public Group getGroupByGroupName(Group group) throws Exception {
-		return sqlSession.selectOne("GroupMapper.getGroupByGroupName", group);
-	}
-*/	
+
 	
 }

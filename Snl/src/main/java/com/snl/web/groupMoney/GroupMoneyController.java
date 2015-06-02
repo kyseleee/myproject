@@ -1,5 +1,7 @@
 package com.snl.web.groupMoney;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.snl.service.domain.Group;
 import com.snl.service.domain.GroupMoney;
 import com.snl.service.group.GroupService;
 import com.snl.service.groupMoney.GroupMoneyService;
@@ -32,39 +34,33 @@ public class GroupMoneyController {
 	
 	
 	@RequestMapping("/addGroupMoney.do")
-	public String addGroupMoney(@ModelAttribute("groupMoney") GroupMoney groupMoney,  HttpSession session) throws Exception{
+	public String addGroupMoney(@ModelAttribute("groupMoney") GroupMoney groupMoney, @RequestParam("groupNo") int groupNo) throws Exception{
 		
 		System.out.println("/addGroupMoney.do");
-		System.out.println("!!!!!!!!!!!!!!!!!!***********!!!!!!!!!!!!!!!!");
-		//Group group = (Group) session.getAttribute("Group");
-		Group group = new Group();
-		group.setGroupNo(12412);
-		groupMoney.setGroup(group);
+
+		
+		groupMoney.setGroup(groupService.getGroup(groupNo));
 		System.out.println(groupMoney);
 		groupMoneyService.addGroupMoney(groupMoney);
-		/*GroupArr groupArr = new GroupArr(user, group, new String("L"));
-		groupArrService.addGroupArr(groupArr); */       
+   
 		
-		return "redirect:/";	
-	}
-
-	/*@RequestMapping("/getGroupByGroupName.do")
-	public Group getGroupByGroupName(@ModelAttribute("Group") Group group) throws Exception {
-		
-		System.out.println("/getGroupByGroupName.do");
-		
-		return groupService.getGroupByGroupName(group);
+		return "redirect:/groupMoney.jsp";	
 	}
 
 	
 	
-	@RequestMapping("/getGroup.do")
-	public Group getGroup( @RequestParam("groupNo") int groupNo) throws Exception {
+	@RequestMapping("/groupMoneyView.do")
+	public String groupMoneyView(HttpSession session) throws Exception{
 		
-		System.out.println("/getGroup.do");
-		//Business Logic
-		Group group = groupService.getGroup(groupNo);
-		
-		return group;
-	}*/
+		System.out.println("/groupMoneyView.do");
+
+		int groupNo = (int)session.getAttribute("groupNo");
+		List<GroupMoney> groupMoneyList= groupMoneyService.getGroupMoneybyGroup(groupNo);
+		session.setAttribute("groupMoneyList", groupMoneyList);
+		System.out.println(groupMoneyList);
+	
+		return "redirect:/groupMoney.jsp";	
+	}
+	
+	
 }

@@ -192,15 +192,20 @@ public class UserController {
 	      else{
 	    	  session.setAttribute("user", dbUser);
 	    	  
-	    	  List<GroupArr> groupArrList= groupArrService.getGroupArrByUser(dbUser);
-	    	  session.setAttribute("groupArrList", groupArrList);
-	    	  System.out.println(groupArrList);
-
-
+	    	  if(groupArrService.getGroupArrByUser(dbUser).size() != 0){
+		    	  
+	    		  List<GroupArr> groupArrList= groupArrService.getGroupArrByUser(dbUser);
+	    		  session.setAttribute("groupArrList", groupArrList);
+		    	  int groupNo = groupArrList.get(groupArrList.size()-1).getGroup().getGroupNo();
+		    	  session.setAttribute("groupNo", groupNo);
+		    	  System.out.println("현재 그룹 ::" + groupNo);
+		    	  System.out.println(groupArrList);
+	    	  }
+	    	  
 	    	  if(sgroupNo != ""){
 	  			return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+dbUser.getId();	
 	    	  }
-	    		  return "redirect:index.jsp"; 
+	    	  return "redirect:index.jsp"; 
 	    	 
 	    	  
 	      }

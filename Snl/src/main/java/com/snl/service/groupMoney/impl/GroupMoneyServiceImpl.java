@@ -1,5 +1,7 @@
 package com.snl.service.groupMoney.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -26,20 +28,15 @@ public class GroupMoneyServiceImpl implements GroupMoneyService{
 		System.out.println(this.getClass());
 	}
 
-	/*
-	@Override
-	public Group getGroup(int groupNo) throws Exception {
-		return groupDao.getGroup(groupNo);
-	}
-	
-	public Group getGroupByGroupName(Group group) throws Exception{
-		return groupDao.getGroupByGroupName(group);
-	}*/
-
 	@Override
 	public void addGroupMoney(GroupMoney groupMoney) throws Exception {
 		groupMoneyDao.addGroupMoney(groupMoney);
 		
+	}
+
+	public List<GroupMoney> getGroupMoneybyGroup(int groupNo) throws Exception{
+		return groupMoneyDao.getGroupMoneybyGroup(groupNo);
+
 	}
 
 }

@@ -48,6 +48,7 @@ public class GroupController {
 
 		User user = (User) session.getAttribute("user");
 		group.setUser(user);
+		System.out.println(group);
 		groupService.addGroup(group);
 		GroupArr groupArr = new GroupArr(user, group, new String("L"));
 		groupArrService.addGroupArr(groupArr);
@@ -69,8 +70,17 @@ public class GroupController {
 		return groupService.getGroupByGroupName(group);
 	}
 
-	
-	
+	@RequestMapping("/setGroupNo.do")
+	public String setGroupNo( @RequestParam("groupNo") int groupNo, HttpSession session) throws Exception {
+		
+		System.out.println("/setGroupNo.do");
+		session.setAttribute("groupNo", groupNo);
+
+		System.out.println("현재 groupNo"+groupNo);
+		
+		return "redirect:/index.jsp";	
+		
+	}
 	@RequestMapping("/getGroup.do")
 	public Group getGroup( @RequestParam("groupNo") int groupNo) throws Exception {
 		

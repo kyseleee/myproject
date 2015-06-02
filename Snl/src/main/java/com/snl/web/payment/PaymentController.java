@@ -20,15 +20,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.snl.service.domain.Payment;
 import com.snl.service.group.GroupService;
-import com.snl.service.payment.PaymentService;
+
 import com.snl.service.user.UserService;
 
 @Controller
 public class PaymentController {
 
-	@Autowired
+/*	@Autowired
 	@Qualifier("paymentServiceImpl")
-	private PaymentService paymentService;
+	private PaymentService paymentService;*/
 	
 	@Autowired
 	@Qualifier("groupServiceImpl")
