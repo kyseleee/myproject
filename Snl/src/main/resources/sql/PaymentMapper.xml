@@ -36,11 +36,31 @@
   	
   	<insert id="addPayment"	parameterType="payment">
   		INSERT	
-  			INTO add_payment(pay_no, group_no, method, receit, pay_date, pay_name, amount)
+  			INTO payment(pay_no, group_no, method, receit, pay_date, pay_name, amount)
   			VALUES(seq_add_payment_pay_no.nextval, #{group.groupNo}, #{method}, #{receit}, #{payDate}, #{payName}, #{amount})				
   	</insert> 
 
-
-
-
+		<select id="getPaymentListByMonth" parameterType="payment" resultMap="paymentSelectMap">
+			SELECT TO_CHAR(pay_date , 'YYYY-MM') AS pay_date, SUM(amount) AS amount
+			FROM payment
+			GROUP BY TO_CHAR(pay_date, 'YYYY-MM') 
+			ORDER BY pay_date
+		</select>
+		
+		<select id="getPaymentListByMonthDuration" parameterType="payment" resultMap="paymentSelectMap">
+			SELECT TO_CHAR(pay_date , 'YYYY-MM') AS pay_date, SUM(amount) AS amount
+			FROM payment
+			GROUP BY TO_CHAR(pay_date, 'YYYY-MM')
+			HAVING  TO_CHAR(pay_date, 'YYYY-MM') BETWEEN #{startDate} AND #{endDate}
+			ORDER BY pay_date
+		</select>
+		
+		<select id="getPaymentListByDay" parameterType="payment" resultMap="paymentSelectMap">
+			SELECT pay_date, sum(amount) AS amount
+						FROM payment
+						GROUP BY pay_date
+						ORDER BY pay_date
+		</select>
+	
+		
 </mapper>
