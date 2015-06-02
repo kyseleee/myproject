@@ -16,7 +16,56 @@
 			  	 <li><a href="setGroupNo.do?groupNo=${groupArr.group.groupNo}">${groupArr.group.groupName}</a></li>
 			  </c:forEach>	   
 			  
-				<li><a id="login" class="navbar-brand" href='login.jsp'  onclick='login(this); return false;'><i class="fa fa-globe"></i> Login</a></li>
+			  <%if (session.getAttribute("user") != null) {%>
+					<li class="dropdown">						
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span style="font-size:20px;" class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
+							
+						
+						
+			<ul id="user" class="dropdown-menu">
+				<li>
+					<div class="profile-userpic" align="center">
+						<img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" 
+						style="width:120px;height:90px;" class="img-circle img-responsive" alt="">
+					</div>
+					
+					<div class="profile-usertitle" style="text-align:center;">
+						<div class="profile-usertitle-id">
+							UserId
+						</div>
+						<div class="profile-usertitle-name">
+							UserName
+						</div>
+					</div>
+	
+					<div class="profile-userbuttons">
+						<button type="button" class="btn btn-success btn-sm">reLogin</button>
+					<a href="logout.do">	<button type="button" class="btn btn-danger btn-sm">Logout</button></a>
+					</div>
+					
+					<div class="profile-usermenu">
+						<ul class="nav">
+							<li>
+								<a href="#"><i class="glyphicon glyphicon-user "></i>나의정보보기 </a>
+							</li>
+							<li>
+								<a href="#"><i class="glyphicon glyphicon-home"></i>개인정보수정 </a>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+				</li>
+					<%}else{%>	
+					
+					<li><p class="navbar-text">Already have an account?</p></li>
+					
+					<li>
+			          <a id="login" class="nabar-brand" href='login.jsp' onclick='login(this); return false;'>
+			          <b>Login</b> <span class="caret"></span></a>
+			        </li>
+					<%}%>
             </ul>
 	</nav>
 	</div>

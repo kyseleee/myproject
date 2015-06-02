@@ -20,7 +20,7 @@
 		
 		#login {
 			float:right; font-size:1.2em;
-			padding-right:100px; 
+			padding-right:10px; 
 			color:white;
 		}
 		
@@ -30,6 +30,12 @@
 			color:white;
 			border: 1px solid #3C3B3D; 
 			border-radius: 1px;
+		}
+		
+		#user {
+			width:250px;
+			hight:150px;
+			background: #222;
 		}
 		
 		#header {
