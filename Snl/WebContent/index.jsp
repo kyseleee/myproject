@@ -32,8 +32,8 @@
  		<jsp:include page="header.jsp"/>
     
   		<div id="content">
+
   	  	<jsp:include page="leftMenu.jsp"/>
-    
     	
     	<div id="main">
     	
