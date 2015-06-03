@@ -179,7 +179,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/login.do")
-	   public String login(@RequestParam("userId") String id , @RequestParam("userPw") String pw,HttpSession session, @RequestParam("sgroupNo") String sgroupNo) throws Exception{
+	public String login(@RequestParam("userId") String id , @RequestParam("userPw") String pw,HttpSession session, @RequestParam("sgroupNo") String sgroupNo) throws Exception{
 	      
 	      System.out.println("/login.do");
 	      
