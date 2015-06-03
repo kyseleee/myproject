@@ -9,14 +9,19 @@
 		     	<a id="home" class="navbar-brand" href="/Snl/index.jsp">SNL</a> 
 			</div>        
 			
+			<ul class="nav navbar-nav navbar-center navbar-user">
+				<c:forEach var="groupArr" items="${groupArrList}">
+					<li><a href="setGroupNo.do?groupNo=${groupArr.group.groupNo}">${groupArr.group.groupName}</a></li>
+				</c:forEach>	 
+			
+			</ul>
+			
 			<ul class="nav navbar-nav navbar-right navbar-user">
+				
+				  
 				<c:if test="${! empty user}">		
 					<li class="active"><a href='addGroup.jsp'>+ Add Group</a></li>
 				</c:if>
-				<c:forEach var="groupArr" items="${groupArrList}">
-				<li><a href="setGroupNo.do?groupNo=${groupArr.group.groupNo}">${groupArr.group.groupName}</a></li>
-				</c:forEach>	   
-				 
 				  
 			  <%if (session.getAttribute("user") != null) {%>
 					<li class="dropdown">						

@@ -379,7 +379,7 @@ $("#findPw").on('hidden.bs.modal', function() {
     	
     	</div>
 	
-		<jsp:include page="rightMenu.jsp"></jsp:include>>
+		<jsp:include page="rightMenu.jsp"></jsp:include>
     
     </div>
     

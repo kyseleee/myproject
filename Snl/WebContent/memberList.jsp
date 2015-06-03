@@ -102,7 +102,7 @@
     	
     	</div>
 	
-		<jsp:include page="rightMenu.jsp"></jsp:include>>
+		<jsp:include page="rightMenu.jsp"></jsp:include>
     
     </div>
     
