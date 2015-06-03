@@ -40,7 +40,7 @@ public class GroupMoneyController {
 
 		
 		groupMoney.setGroup(groupService.getGroup(groupNo));
-		System.out.println(groupMoney);
+		System.out.println("*************"+groupMoney);
 		groupMoneyService.addGroupMoney(groupMoney);
    
 		
