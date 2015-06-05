@@ -17,7 +17,8 @@
 	    <link href="css/groupMoney.css" rel="stylesheet">
 	    <link href="css/memberList.css" rel="stylesheet">
 	    <link href="css/user.css" rel="stylesheet">
-
+		<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+	
 		
 
 		<!--  js -->
@@ -26,7 +27,56 @@
 		<script src="js/login.js"></script>
 		<script src="js/memberList.js"></script>
 		
+		
+<style>
+.fab {
+  cursor: pointer;
+}
+.fab-backdrop {
+  color: rgba(255, 255, 255, 0);
+}
+.fab-primary, .fab-secondary {
+  transition: all 0.35s ease-in-out;
+}
+.fab.active .fab-primary {
+  opacity: 0;
+  transform: rotate(225deg);
+}
+.fab-secondary {
+  opacity: 0;
+  transform: rotate(-225deg);
+}
+.fab.active .fab-secondary {
+  opacity: 1;
+  transform: rotate(0);
+  margin-top: -2px;
+}
 
+#inbox .show-on-hover:hover > ul.dropdown-menu {
+    display: block;    
+    
+}
+#inbox .show-on-hover {
+    bottom: 80px;
+    right: 80px;
+}
+
+#inbox .btn-io{
+    border-radius: 50%;
+    height: 54px;
+    width: 54px;
+    padding: 0 !important;
+    box-shadow: 0px 3px 7px 0px rgba(202, 124, 124, 0.72);
+}
+
+.btn-io{
+    border-radius: 50%;
+    height: 54px;
+    width: 54px;
+    padding: 0 !important;
+    box-shadow: 0px 3px 7px 0px rgba(202, 124, 124, 0.72);
+}
+</style>
 		
 	</head>
 	
@@ -39,77 +89,63 @@
   	  	<jsp:include page="leftMenu.jsp"/>
     
     	
-    	<div id="main">
-    	
-    	
-<h3 align="center">|Group1|</h3>
-<br><br><h>
-
-<div class="row">
-       
-<div class="col-md-12">
-
-<div class="table-responsive">
-
-<table id="mytable" class="table table-bordred table-striped">
+<div id="main">
+    	<div style="width:100%;">
+	      <h2 align="left">그룹리스트</h2>
+          	 <div style="float:right" class="fab btn-group show-on-hover dropup">
+            <div data-toggle="tooltip" data-placement="left" title="회원초대하기">
           
-	<thead>
-	    <th>이름</th>
-	    <th>주소</th>
-	    <th>이메일</th>
-	    <th>연락처</th>
-	    <th>수정</th>
-	    <th>삭제</th>
-	</thead>
-	<tbody>
-   		<tr>
-		   <td>user01</td>
-		   
-		   <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-		   <td>isometric.mohsin@gmail.com</td>
-		   <td>01021314532</td>
-		   <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-		   <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-		</tr>
-
-		<tr>
-		    <td>user02</td>
-		    
-		    <td>CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan</td>
-		    <td>isometric.mohsin@gmail.com</td>
-		    <td>01056238282</td>
-		    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-		    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-	    </tr>
-    </tbody>
-</table>
-     
-           </div>    
-        </div>
-	</div>
-
-
-    
-
-
-    
-    <div class="row">
-    	<div align="center">
-    			<button class="btn btn-info btn-pressure btn-sensitive">확인</button>
-                <button class="btn btn-info btn-pressure btn-sensitive">취소</button>
-        </div>
-    </div>
-    	
-    	</div>
+          <button type="button" class="btn btn-danger btn-io dropdown-toggle" data-toggle="dropdown">
+            <span class="fa-stack fa-2x">
+                <i class="fa fa-circle fa-stack-2x fab-backdrop"></i>
+                <i class="fa fa-plus fa-stack-1x fa-inverse fab-primary"></i>
+                <i class="fa fa-pencil fa-stack-1x fa-inverse fab-secondary"></i>
+           </span>
+       </button></div>
+		</div>
+</div>
+	  <div style="width:100%;" class="fab btn-group show-on-hover dropup">
+	              
+	 
 	
-		<jsp:include page="rightMenu.jsp"></jsp:include>
+			<div class="table-responsive">
+			
+				<table id="mytable" class="table table-bordred table-striped">
+				          
+					<thead>
+					    <th>이름</th>
+					    <th>이메일</th>
+					    <th>전화번호</th>
+					    <th>삭제</th>
+					</thead>
+					<c:forEach items="${list}" var="groupArr">
+					<tbody>
+				   		<tr>
+						   <td>${groupArr.user.userName}</td>
+						   <td>${groupArr.user.email}</td>
+						   <td>${groupArr.user.tel}</td>
+						   <td><a data-placement="top" data-toggle="tooltip" title="Delete" href="deleteGroupArr.do?suserNo=${groupArr.user.userNo}"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></a></td>
+						</tr>
+				    </tbody>
+				    </c:forEach>
+				</table>
+			     
+			</div>    
+	</div>
+</div> <!-- main end div -->
+	
+	<jsp:include page="rightMenu.jsp"></jsp:include>>
     
-    </div>
-    
-             
+</div><!-- content div -->
 	    
 	<jsp:include page="footer.jsp"/>
-	
-	</body>
-
+<script type="text/javascript">
+$('.fab').hover(function () {
+    $(this).toggleClass('active');
+});
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+</body>
 </html>
