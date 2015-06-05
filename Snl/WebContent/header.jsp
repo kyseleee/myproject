@@ -54,10 +54,7 @@
 					<div class="profile-usermenu">
 						<ul class="nav">
 							<li>
-								<a href="#"><i class="glyphicon glyphicon-user "></i>나의정보보기 </a>
-							</li>
-							<li>
-								<a href="#"><i class="glyphicon glyphicon-home"></i>개인정보수정 </a>
+								<a href="getUser.do?userNo=${user.userNo}"><i class="glyphicon glyphicon-user "></i>나의정보보기 </a>
 							</li>
 						</ul>
 					</div>
