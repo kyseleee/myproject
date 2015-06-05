@@ -57,21 +57,20 @@
 					and email = #{email}
 	</select>
 	 
-	 
-	 <!--  
-	<update id="updateUser" parameterType="User">
+	<update id="updateUser" parameterType="user">
   		UPDATE tb_user
   		<set>
-  			<if test="userName !=null">user_name = #{userName},</if>
-  			<if test="password !=null">pw		=#{password},</if>
-  										cell_phone	=#{phone:VARCHAR},
-  										addr		=#{addr:VARCHAR},
-  										email		=#{email:VARCHAR}
-  									
+  			<if test="userName !=null">user_name = #{userName:VARCHAR},</if>
+  			<if test="email!=null">email = #{email:VARCHAR},</if>
+  			<if test="tel!=null">tel = #{tel:VARCHAR},</if>
   		</set>
-  		WHERE user_id=#{userId}
+  		WHERE id=#{id}
   	</update>
-	-->
   	
+  	<delete id="deleteUser" parameterType="String">
+		DELETE
+		FROM tb_user
+		WHERE user_no = #{value} 
+	</delete>
   	
 </mapper>
