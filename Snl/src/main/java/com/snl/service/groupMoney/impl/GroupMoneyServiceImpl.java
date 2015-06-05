@@ -38,5 +38,9 @@ public class GroupMoneyServiceImpl implements GroupMoneyService{
 		return groupMoneyDao.getGroupMoneybyGroup(groupNo);
 
 	}
+	
+	public GroupMoney getGroupMoney(int gmNo) throws Exception{
+		return groupMoneyDao.getGroupMoney(gmNo);
 
+	}
 }

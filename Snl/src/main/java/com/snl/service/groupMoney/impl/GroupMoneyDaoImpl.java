@@ -30,6 +30,7 @@ public class GroupMoneyDaoImpl implements GroupMoneyDao{
 	
 	@Override
 	public void addGroupMoney(GroupMoney groupMoney) throws Exception {
+		
 		sqlSession.insert("GroupMoneyMapper.addGroupMoney", groupMoney);
 		
 	}
@@ -41,4 +42,8 @@ public class GroupMoneyDaoImpl implements GroupMoneyDao{
 	}
 
 	
+	
+	public GroupMoney getGroupMoney(int gmNo) throws Exception{
+		return sqlSession.selectOne("GroupMoneyMapper.getGroupMoney", gmNo);
+	}
 }
