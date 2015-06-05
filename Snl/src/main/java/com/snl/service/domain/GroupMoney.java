@@ -28,6 +28,12 @@ public class GroupMoney implements Serializable{
 		this.gmPrice = gmPrice;
 	}
 
+	public GroupMoney(int gmNo, Group group) {
+		this.gmNo = gmNo;
+		this.group = group;
+	}
+
+
 	public int getGmNo() {
 		return gmNo;
 	}
