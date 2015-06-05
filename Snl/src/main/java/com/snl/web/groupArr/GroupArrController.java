@@ -1,8 +1,11 @@
 package com.snl.web.groupArr;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -49,8 +52,49 @@ public class GroupArrController {
 		
 		groupArrService.addGroupArr(groupArr);
 		
-		
 		return "redirect:/";	
 	}
-
+	
+	@RequestMapping("/deleteGroupArr.do")
+	public String deleteUser(@RequestParam("suserNo") int suserNo , Model model) throws Exception {
+		
+		System.out.println("/deleteGroupArr.do");
+		System.out.println("suerNo : " +Integer.valueOf(suserNo));
+		int userNo = Integer.valueOf(suserNo);
+		User user = userService.getUser(userNo);
+		
+		GroupArr groupArr = new GroupArr();
+		groupArr.setUser(user);
+		
+		groupArrService.deleteGroupArr(groupArr);
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		return "index.jsp";
+	}
+	
+	
+	@RequestMapping("/getListGroupArr.do")
+	public String getListGroupArr(@RequestParam("sgroupNo") String sgroupNo, Model model, HttpSession session) throws Exception {
+		
+		System.out.println("/getListGroupArr.do");
+		
+		int groupNo = Integer.valueOf((String)sgroupNo);
+	//	System.out.println("sgroupNo ##### : " +sgroupNo);
+	//	System.out.println("groupNo ##### : " +groupNo);
+		
+		Group group = groupService.getGroup(groupNo);
+		
+		GroupArr groupArr = new GroupArr();		
+		
+		groupArr.setGroup(group);
+		//groupArr.setUser((User)session.getAttribute("user"));
+		
+		groupArrService.getListGroupArr(groupArr);
+		
+		System.out.println("groupArr ##### : " +groupArrService.getListGroupArr(groupArr));
+		
+		model.addAttribute("list", groupArrService.getListGroupArr(groupArr));
+		
+		return "memberList.jsp";
+		
+	}
 }

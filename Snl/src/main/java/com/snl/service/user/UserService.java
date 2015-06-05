@@ -17,4 +17,6 @@ public interface UserService {
 
 	public User getUserByIdEmail(User user) throws Exception;
 
+	public void deleteUser(int userNo) throws Exception;
+
 }

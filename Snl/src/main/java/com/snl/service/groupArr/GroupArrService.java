@@ -13,5 +13,8 @@ public interface GroupArrService {
 
 	public List<GroupArr> getGroupArrByUser(User user) throws Exception;
 
+	public void deleteGroupArr(GroupArr groupArr) throws Exception;
+	
+	public List<GroupArr> getListGroupArr(GroupArr groupArr) throws Exception;
 
 }

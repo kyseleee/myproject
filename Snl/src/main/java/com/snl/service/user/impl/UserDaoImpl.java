@@ -55,5 +55,11 @@ public class UserDaoImpl implements UserDao{
 		return sqlSession.selectOne("UserMapper.getUserByIdEmail",user);		
 	}
 
+	@Override
+	public void deleteUser(int userNo) throws Exception {
+		sqlSession.selectOne("UserMapper.deleteUser",userNo);
+
+	}
+
 
 }

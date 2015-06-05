@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.snl.service.domain.Group;
 import com.snl.service.domain.GroupArr;
 import com.snl.service.domain.User;
 import com.snl.service.groupArr.GroupArrDao;
@@ -45,4 +46,14 @@ public class GroupArrDaoImpl implements GroupArrDao{
 
 	}
 
+	@Override
+	public void deleteGroupArr(GroupArr groupArr) throws Exception {
+		sqlSession.delete("GroupArrMapper.deleteGroupArr", groupArr);
+	}
+
+	@Override
+	public List<GroupArr> getListGroupArr(GroupArr groupArr) throws Exception {
+		return sqlSession.selectList("GroupArrMapper.getListGroupArr",groupArr);
+	}
+	
 }

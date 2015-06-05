@@ -37,7 +37,15 @@ public class GroupArrServiceImpl implements GroupArrService{
 	public List<GroupArr> getGroupArrByUser(User user) throws Exception {
 		return groupArrDao.getGroupArrByUser(user);
 	}
-	
 
+	public void deleteGroupArr(GroupArr groupArr) throws Exception {
+		groupArrDao.deleteGroupArr(groupArr);
+
+	}
+	
+	@Override
+	public List<GroupArr> getListGroupArr(GroupArr groupArr) throws Exception {
+		return groupArrDao.getListGroupArr(groupArr);
+	}
 
 }
