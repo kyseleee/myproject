@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.snl.service.domain.Group;
 import com.snl.service.domain.GroupArr;
 import com.snl.service.domain.User;
 import com.snl.service.groupArr.GroupArrDao;
@@ -37,7 +38,6 @@ public class GroupArrServiceImpl implements GroupArrService{
 	public List<GroupArr> getGroupArrByUser(User user) throws Exception {
 		return groupArrDao.getGroupArrByUser(user);
 	}
-
 	public void deleteGroupArr(GroupArr groupArr) throws Exception {
 		groupArrDao.deleteGroupArr(groupArr);
 
@@ -47,5 +47,12 @@ public class GroupArrServiceImpl implements GroupArrService{
 	public List<GroupArr> getListGroupArr(GroupArr groupArr) throws Exception {
 		return groupArrDao.getListGroupArr(groupArr);
 	}
+
+	
+	public List<GroupArr> getGroupArrByGroup(int groupNo) throws Exception {
+		return groupArrDao.getGroupArrByGroup(groupNo);
+	}
+	
+
 
 }

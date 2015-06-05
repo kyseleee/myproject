@@ -2,6 +2,7 @@ package com.snl.service.groupArr;
 
 import java.util.List;
 
+import com.snl.service.domain.Group;
 import com.snl.service.domain.GroupArr;
 import com.snl.service.domain.User;
 
@@ -15,5 +16,7 @@ public interface GroupArrDao {
 	public void deleteGroupArr(GroupArr groupArr) throws Exception;
 
 	public List<GroupArr> getListGroupArr(GroupArr groupArr) throws Exception;
+
+	public List<GroupArr> getGroupArrByGroup(int groupNo) throws Exception;
 
 }
