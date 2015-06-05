@@ -52,9 +52,10 @@ public class GroupArrController {
 		
 		groupArrService.addGroupArr(groupArr);
 		
+		
 		return "redirect:/";	
 	}
-	
+
 	@RequestMapping("/deleteGroupArr.do")
 	public String deleteUser(@RequestParam("suserNo") int suserNo , Model model) throws Exception {
 		
@@ -97,4 +98,7 @@ public class GroupArrController {
 		return "memberList.jsp";
 		
 	}
+
+	
+
 }
