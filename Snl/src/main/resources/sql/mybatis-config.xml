@@ -20,6 +20,7 @@
 		<typeAlias alias="groupArr" type="com.snl.service.domain.GroupArr"/>
 		<typeAlias alias="payment"	type="com.snl.service.domain.Payment"/>
 		<typeAlias alias="groupMoney"	type="com.snl.service.domain.GroupMoney"/>
+		<typeAlias alias="gmPaid"	type="com.snl.service.domain.GmPaid"/>
 		
 	</typeAliases>
 
@@ -32,8 +33,7 @@
 		<mapper resource="sql/GroupArrMapper.xml"/>
 		<mapper resource="sql/PaymentMapper.xml"/>
 		<mapper resource="sql/GroupMoneyMapper.xml"/>
-		
-	
+		<mapper resource="sql/GmPaidMapper.xml"/>
   </mappers>
 
 </configuration>

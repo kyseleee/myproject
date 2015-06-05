@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+			
+<mapper namespace="GmPaidMapper">
+
+
+	<resultMap type="gmPaid" id="gmPaidSelectMap">
+		<result property="user.userNo" column="user_no" jdbcType="VARCHAR"/>
+		<result property="user.userName" column="user_name" jdbcType="VARCHAR"/>
+		<result property="user.tel" column="tel" jdbcType="VARCHAR"/>
+		<result property="user.email" column="email" jdbcType="VARCHAR"/>	
+		<result property="group.groupNo" column="group_no" jdbcType="INTEGER"/>
+		<result property="groupMoney.gmNo" column="gm_no" jdbcType="INTEGER"/>
+		<result property="paid" column="paid" jdbcType="CHAR"/>	
+		<result property="recDate" column="rec_date" jdbcType="DATE"/>
+	</resultMap>  	
+  	
+  	
+  	<insert id="addGmPaid"	parameterType="gmPaid">
+  		INSERT	
+  			INTO gm_paid(user_no, group_no, gm_no, paid, rec_date)
+  			VALUES(#{user.userNo}, #{group.groupNo}, #{groupMoney.gmNo}, #{paid}, #{recDate, jdbcType=DATE})						
+  	</insert> 
+
+	 <select id="getGmPaid" parameterType="gmPaid" resultMap="gmPaidSelectMap">
+		SELECT
+			user_no, group_no, gm_no, paid, rec_date
+			FROM gm_paid 
+				
+			WHERE user_no = #{user.userNo}
+	   		AND
+	   		group_no = #{group.groupNo}
+	   		AND
+	   		gm_no=#{groupMoney.gmNo}	 
+	 </select> 
+	 
+ 	 <select id="getGmPaidList" parameterType="groupMoney" resultMap="gmPaidSelectMap">
+		SELECT
+			a.gm_no, 
+			a.group_no, 
+			a.user_no, 
+			a.paid, 
+			a.rec_date,
+			b.user_name,
+			b.tel,
+			b.email
+			FROM gm_paid a
+				left outer join tb_user b on a.user_no = b.user_no
+			WHERE a.gm_no = #{gmNo}
+				AND
+			 a.group_no = #{group.groupNo}
+			 
+	 </select> 
+	 
+	 
+
+	<update	id="updatePaid"	parameterType="gmPaid">
+	   	UPDATE gm_paid
+	   	<set>
+	   		paid = #{paid}, rec_date = to_char(sysdate, 'YYYY-MM-DD')
+	   	</set>
+	   	WHERE 
+	   		user_no = #{user.userNo}
+	   		AND
+	   		group_no = #{group.groupNo}
+	   		AND
+	   		gm_no=#{groupMoney.gmNo}
+
+	 </update>
+	 
+
+	 
+	
+</mapper>
+
+
+
+

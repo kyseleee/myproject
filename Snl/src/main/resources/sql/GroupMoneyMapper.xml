@@ -22,12 +22,24 @@
 		</association> -->
 	</resultMap>  	
   	
-  	<insert id="addGroupMoney"	parameterType="groupMoney" >
-  		INSERT	
+  	<insert id="addGroupMoney"	parameterType="groupMoney" useGeneratedKeys="true" keyColumn="gm_no" keyProperty="gmNo">
+  		
+  			INSERT	
   			INTO group_money(gm_no, group_no, gm_name, gm_date, gm_price)
-  			VALUES(seq_group_money_gm_no.nextval, #{group.groupNo}, #{gmName}, #{gmDate}, #{gmPrice})					
+  			VALUES(seq_group_money_gm_no.nextval, #{group.groupNo}, #{gmName}, #{gmDate}, #{gmPrice})	
+  			<selectKey  keyProperty="gmNo" resultType="int" order="AFTER">
+		        SELECT seq_group_money_gm_no.currval FROM dual
+		    </selectKey> 
+
   	</insert> 
 
+  	 	
+	<select id="getGroupMoney" parameterType="int" resultMap="groupMoneySelectMap">
+		SELECT
+			gm_no, group_no, gm_name, gm_date, gm_price
+			FROM group_money
+		WHERE gm_no = ${value}
+	</select> 
   	
 	<select id="getGroupMoneybyGroup" parameterType="int" resultMap="groupMoneySelectMap">
 		SELECT
