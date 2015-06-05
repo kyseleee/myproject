@@ -9,43 +9,12 @@
 
 	<resultMap type="groupArr" id="groupArrSelectMap">
 		<result property="role" column="role" jdbcType="CHAR"/>
-		<result property="group.groupNo" column="group_no" jdbcType="CHAR"/>
-		<result property="group.groupName" column="group_name" jdbcType="CHAR"/>
+		<result property="group.groupNo" column="group_no" jdbcType="INTEGER"/>
 		<result property="group.groupDate" column="group_date" jdbcType="DATE"/>	
-		<result property="user.userNo" column="user_no" jdbcType="CHAR"/>
-		
-	
-	
-	
-  	<!-- <resultMap type="groupArr" id="groupArrSelectMap">
-		<result property="role" column="role" jdbcType="CHAR"/>
-		
-		<association property="user" javaType="user">
-			<id property="userNo" column="user_no" jdbcType="INTEGER"/>
-			<result property="id" column="id" jdbcType="VARCHAR"/>
-			<result property="pw" column="pw" jdbcType="VARCHAR"/>
-			<result property="email" column="email" jdbcType="VARCHAR"/>
-			<result property="userName" column="user_name" jdbcType="VARCHAR"/>
-			<result property="tel" column="tel" jdbcType="VARCHAR"/>
-		</association>
-	
-		<association property="group" javaType="group">
-			<id property="groupNo" column="group_no" jdbcType="INTEGER"/>	
-	  		<result property="groupName" column="group_name" jdbcType="VARCHAR" />
-			<result property="groupDate" column="group_date" jdbcType="DATE" />
-		
-			<association property="user" javaType="user">
-				<id property="userNo" column="user_no" jdbcType="INTEGER"/>
-				<result property="id" column="id" jdbcType="VARCHAR"/>
-				<result property="pw" column="pw" jdbcType="VARCHAR"/>
-				<result property="email" column="email" jdbcType="VARCHAR"/>
-				<result property="userName" column="user_name" jdbcType="VARCHAR"/>
-				<result property="tel" column="tel" jdbcType="VARCHAR"/>
-			</association>
-		</association> -->
-		
-		
-		
+		<result property="user.userNo" column="user_no" jdbcType="INTEGER"/>
+		<result property="user.tel" column="tel" jdbcType="VARCHAR"/>
+		<result property="user.userName" column="user_name" jdbcType="VARCHAR"/>
+		<result property="user.email" column="email" jdbcType="VARCHAR"/>	
 	</resultMap>  	
   	
   	
@@ -68,8 +37,23 @@
 			ORDER BY b.group_date
 	 </select> 
 	 
+	<delete id="deleteGroupArr" parameterType="groupArr">
+		DELETE
+		FROM group_arr
+		WHERE user_no = #{user.userNo} 
+	</delete>
+	
+	<select id="getListGroupArr" parameterType="groupArr" resultMap="groupArrSelectMap">
+		SELECT
+			a.user_no,
+			a.group_no,
+			b.user_name,
+			b.tel,
+			b.email
+			FROM group_arr a
+				left outer join tb_user b on a.user_no = b.user_no
+			WHERE a.group_no = #{group.groupNo}
+				
+	 </select>
 
-
-						
-  	
 </mapper>
