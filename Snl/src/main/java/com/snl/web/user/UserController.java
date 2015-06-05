@@ -45,7 +45,7 @@ public class UserController {
 	
 	@RequestMapping("/addUser.do")
 	public String addUser(@ModelAttribute("user") User user,@RequestParam("sgroupNo") String sgroupNo) throws Exception{
-
+		
 		System.out.println("/addUser.do");
 		userService.addUser(user);
 
@@ -57,24 +57,59 @@ public class UserController {
 	}
 	
 	@RequestMapping("/getUser.do")
-	public void getUser( @RequestParam("userNo") int userNo, HttpServletResponse response) throws Exception {
+	public String getUser(Model model , @RequestParam("userNo") int userNo) throws Exception {
 		
 		System.out.println("/getUser.do");
-		//Business Logic
+		System.out.println("user : " +userService.getUser(userNo));
 		User user = userService.getUser(userNo);
-		String result = "{  \"result\"  :    \"false\"   }";
-		if(user == null){
-			result = "{  \"result\"  :    \"true\"   }";
-		}
+		
+		model.addAttribute("user", user);
 		
 		
-		try{
-			response.getWriter().print(result);
-			
-		}catch(IOException e){
-			e.printStackTrace();
-		}
+		return "/getUser.jsp";
+	}
 	
+	@RequestMapping("/updateUserView.do")
+	public String updateUserView( @RequestParam("id") String id , Model model ) throws Exception{
+
+		System.out.println("/updateUserView.do");
+
+		User user = userService.getUserById(id);
+		
+		model.addAttribute("user", user);
+		
+		return "updateUser.jsp";
+	}
+	
+	@RequestMapping("/updateUser.do")
+	public String updateUser(@ModelAttribute("user") User user, HttpSession session) throws Exception{
+
+		System.out.println("/updateUser.do");
+		System.out.println("user :" +user);
+		userService.updateUser(user);
+		
+		
+		String sessionId=((User)session.getAttribute("user")).getId();
+		
+		if(sessionId.equals(user.getId())) {
+			session.setAttribute("user", user);
+		}
+		
+		
+		
+		return "redirect:/getUser.do?userNo="+user.getUserNo();
+	}
+	
+	@RequestMapping("/deleteUser.do")
+	public String deleteUser(@RequestParam("userNo") int userNo , Model model) throws Exception {
+		
+		System.out.println("/deleteUser.do");
+		//groupArrService.
+		userService.deleteUser(userNo);
+		
+		System.out.println("******!!!!!!!!!!!**********");
+			
+		return "logout.do";
 	}
 	
 	@RequestMapping("/getUserById.do")
@@ -218,26 +253,13 @@ public class UserController {
 	public String logout(HttpSession session) throws Exception{
 		
 		System.out.println("/logout.do");
-		
+
 		session.invalidate();
 		
 		return "redirect:/index.jsp";
 	}
 	
-	@RequestMapping("/updateUser.do")
-	public String updateUser( @ModelAttribute("user") User user , Model model , HttpSession session) throws Exception{
-
-		System.out.println("/updateUser.do");
-		//Business Logic
-		userService.updateUser(user);
-		
-		String sessionId=((User)session.getAttribute("user")).getId();
-		if(sessionId.equals(user.getId())){
-			session.setAttribute("user", user);
-		}
-		
-		return "redirect:/getUser.do?userId="+user.getId();
-	}
+	
 	
 	
 	
