@@ -29,11 +29,9 @@
 			var amount = $("input[name=amount]").val();
 			var amountEr = "";
 			if($.isNumeric(amount)==true && amount>0 && amount%1==0){
-				alert("GOOD");
 				amountEr = "";
 			}
 			else{
-				alert("BAD");
 				amountEr = "<font color='red'>올바른 수자 포맷을 입력해 주세요.</font>";
 			}
 			document.getElementById("amountErr").innerHTML=amountEr;

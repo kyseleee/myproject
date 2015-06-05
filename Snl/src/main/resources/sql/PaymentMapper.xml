@@ -33,11 +33,10 @@
 	</resultMap>  	
   	
   	
-  	
   	<insert id="addPayment"	parameterType="payment">
   		INSERT	
   			INTO payment(pay_no, group_no, method, receit, pay_date, pay_name, amount)
-  			VALUES(seq_add_payment_pay_no.nextval, #{group.groupNo}, #{method}, #{receit}, #{payDate}, #{payName}, #{amount})				
+  			VALUES(seq_add_payment_pay_no.nextval, #{group.groupNo}, #{method}, #{receit, jdbcType=VARCHAR}, #{payDate}, #{payName}, #{amount})				
   	</insert> 
 
 		<select id="getPaymentListByMonth" parameterType="payment" resultMap="paymentSelectMap">
@@ -56,11 +55,17 @@
 		</select>
 		
 		<select id="getPaymentListByDay" parameterType="payment" resultMap="paymentSelectMap">
+			SELECT pay_no, group_no, method, receit, pay_date, pay_name, amount
+						FROM payment
+						ORDER BY pay_date
+		</select>
+	
+		<!-- <select id="getPaymentListByDay" parameterType="payment" resultMap="paymentSelectMap">
 			SELECT pay_date, sum(amount) AS amount
 						FROM payment
 						GROUP BY pay_date
 						ORDER BY pay_date
-		</select>
-	
+		</select> -->
+		
 		
 </mapper>

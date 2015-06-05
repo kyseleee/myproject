@@ -1,10 +1,12 @@
 package com.snl.web.payment;
 
 import java.io.File;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,26 +54,30 @@ public class PaymentController {
 		
 		
 		System.out.println("/fileUpload");
-//		System.out.println("---------->" + name);
-		System.out.println(file.getOriginalFilename());
-		System.out.println(file.getName());
-		String originalFilename = file.getOriginalFilename();
-		int lastIndex = originalFilename.lastIndexOf('.');
-		String path = ctx.getRealPath("/")
-		//String path = "C:/workspace(gradle)/spring02/src/main/webapp/upload" 
-				//+ "/" 
-				+ originalFilename.substring(0, lastIndex)
-				+ "_" + getCountNo()
-				+ originalFilename.substring(lastIndex);
-		System.out.println(path);
-		System.out.println(path.substring(path.lastIndexOf('\\')+1));
-		
-		try {
-			file.transferTo(new File(path));
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-		
+		if(file.isEmpty()){
+			System.out.println("널이다``````````````");
+		}
+		else{
+			System.out.println(file.getOriginalFilename());
+			System.out.println(file.getName());
+			String originalFilename = file.getOriginalFilename();
+			int lastIndex = originalFilename.lastIndexOf('.');
+			String path = ctx.getRealPath("/")
+			//String path = "C:/workspace(gradle)/spring02/src/main/webapp/upload" 
+					//+ "/" 
+					+ originalFilename.substring(0, lastIndex)
+					+ "_" + getCountNo()
+					+ originalFilename.substring(lastIndex);
+			System.out.println(path);
+			System.out.println(path.substring(path.lastIndexOf('\\')+1));
+			
+			try {
+				file.transferTo(new File(path));
+			} catch (Exception e) {
+				e.printStackTrace();
+			} 
+			payment.setReceit(path.substring(path.lastIndexOf('\\')+1));
+		}
 		
 		
 		
@@ -89,7 +95,7 @@ public class PaymentController {
 			payment.setMethod("2");
 		}
 		payment.setGroup(groupService.getGroup(10021));
-		payment.setReceit(path.substring(path.lastIndexOf('\\')+1));
+		
 		System.out.println(payment);
 		
 		paymentService.addPayment(payment);
@@ -179,39 +185,88 @@ public class PaymentController {
 	
 	@RequestMapping("/listPaymentByDay.do")
 	@ResponseBody
-	public String listPaymentByDay(@RequestParam("groupNo") int groupNo) throws Exception{
-		
+	public String listPaymentByDay(@RequestParam("groupNo") int groupNo, HttpServletResponse response) throws Exception{
+		 
 		System.out.println("/listPaymentByDay");
-		
+		response.setContentType("UTF-8");
 		Map<String , Object> map=paymentService.getPaymentListByDay(groupNo);
 		List<Payment> payList = (List<Payment>)map.get("list");
 		System.out.println(map.get("list"));
-		String tem = ((List<Payment>)map.get("list")).get(0).getPayDate().substring(0,19);
-		System.out.println(tem+"--"+payList.size());
-//		1383811827000
+		System.out.println(payList.size());
 		
-//		System.out.println(((List<Payment>)map.get("list")).get(0).getPayDate().substring(8,10));
-		System.out.println(new java.text.SimpleDateFormat("YYYY-MM-dd HH:mm:ss").parse(tem).getTime()/1000);
-		System.out.println();
-		System.out.println(new java.text.SimpleDateFormat("YYYY-MM-DDDD HH:mm:ss").parse("2013-11-07 00:10:27").getTime()/1000);
-		String data="{\"Group\": [";
-		int index=0;
-		for(int i=0;i<31;i++) {
-			if(Integer.parseInt(payList.get(index).getPayDate().substring(8,10))==i+1){
-				data+=payList.get(index).getAmount();
-				index++;
+		String data="[{";
+		for(int i=0;i<payList.size();i++){
+//			data+="\"title\" : \""+URLEncoder.encode(payList.get(i).getPayName()+"  "+payList.get(i).getAmount()+"원", "UTF-8")+"\",";
+			data+="\"title\" : \""+URLEncoder.encode(payList.get(i).getAmount()+"원", "UTF-8")+"\",";
+			data+="\"start\" : \""+payList.get(i).getPayDate().substring(0,10)+"\",";
+			data+="\"payNo\" : \""+payList.get(i).getPayNo()+"\",";
+			data+="\"method\" : \""+URLEncoder.encode(payList.get(i).getMethod(), "UTF-8")+"\",";
+			if (payList.get(i).getReceit()==null) {
+				data+="\"receit\" : \"\",";
 			}
-			else{
-				data+="0";
+			else {
+				data+="\"receit\" : \""+URLEncoder.encode(payList.get(i).getReceit(), "UTF-8")+"\",";
 			}
+			data+="\"payName\" : \""+URLEncoder.encode(payList.get(i).getPayName(), "UTF-8")+"\",";
+			data+="\"amount\" : \""+payList.get(i).getAmount()+"\",";
+			data+="\"payDate\" : \""+payList.get(i).getPayDate()+"\"}";
 			
-			if(i!=30){
-				data+=",";
+			if (i!=payList.size()-1){
+				data+=",{";
 			}
 		}
-		data+="]}";
-		System.out.println("결과========="+data);
+		data+="]";
+		
+		System.out.println(data);
+		//return data;
+		//return "{\"data\" : [{\"title\" : \"bunsic	23000\",\"start\" : \"2015-06-25T15:00:00\",\"method\": \"sinyong\",\"receit\": \"ss.jpg\",\"amount\": \"23000\", \"description\": \"yahoo\"}]}";
+//		String temm="{\"commonVO\":{\"pageSize\":\"15\",\"page\":\"1\",\"totalPage\":\"0\",\"totalCnt\":\"0\"},\"jsonTxt\":[{\"allDay\":\"true\",\"editable\":\"false\",\"end\":\"2015-06-25\",\"id\":\"1\",\"start\":\"2015-06-25\",\"title\":\"test2\"},{title: 'eat	21000',start: '2015-04-1T20:00:00'}]}";
+//		String temm="{\"data\" : {\"allDay\":\"true\",\"editable\":\"false\",\"end\":\"2015-06-25\",\"id\":\"1\",\"start\":\"2015-06-25\",\"title\":\"test2\"}}";
+//		String tem11="세라믹 100원";
+		//URLEncoder.encode(tem11 , "UTF-8");
+//		String temm="[{\"title\": \""+URLEncoder.encode(tem11 , "UTF-8")+"\",\"id\": \"821\",\"start\": \"2015-06-10 09:00:00\",\"end\": \"2015-06-10 10:30:00\"},{\"title\": \"Zippy\",\"id\": \"822\",\"start\": \"2015-06-12 10:00:00\",\"end\": \"2015-06-12 11:30:00\"}]";
+				
 		return data;
+		}
+		
 	}
 	
-}
+	
+//	@RequestMapping("/listPaymentByDay.do")
+//	@ResponseBody
+//	public String listPaymentByDay(@RequestParam("groupNo") int groupNo) throws Exception{
+//		
+//		System.out.println("/listPaymentByDay");
+//		
+//		Map<String , Object> map=paymentService.getPaymentListByDay(groupNo);
+//		List<Payment> payList = (List<Payment>)map.get("list");
+//		System.out.println(map.get("list"));
+//		String tem = ((List<Payment>)map.get("list")).get(0).getPayDate().substring(0,19);
+//		System.out.println(tem+"--"+payList.size());
+////		1383811827000
+//		
+////		System.out.println(((List<Payment>)map.get("list")).get(0).getPayDate().substring(8,10));
+//		System.out.println(new java.text.SimpleDateFormat("YYYY-MM-dd HH:mm:ss").parse(tem).getTime()/1000);
+//		System.out.println();
+//		System.out.println(new java.text.SimpleDateFormat("YYYY-MM-DDDD HH:mm:ss").parse("2013-11-07 00:10:27").getTime()/1000);
+//		String data="[{";
+//		int index=0;
+//		for(int i=0;i<31;i++) {
+//			if(Integer.parseInt(payList.get(index).getPayDate().substring(8,10))==i+1){
+//				data+=payList.get(index).getAmount();
+//				index++;
+//			}
+//			else{
+//				data+="0";
+//			}
+//			
+//			if(i!=30){
+//				data+=",";
+//			}
+//		}
+//		data+="]}";
+//		System.out.println("결과========="+data);
+//		return data;
+//	}
+	
+

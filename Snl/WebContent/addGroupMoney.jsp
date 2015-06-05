@@ -41,7 +41,7 @@
 			<div class="col-sm-12">
 				<h2 align="center">${groupNo}회비 추가 </h2>
 				<div>
-				<form id="register-form" action="/Snl/addGroupMoney.do?groupNo=10040" method="post">
+				<form id="register-form" action="/Snl/addGroupMoney.do" method="post">
 					<div class="panel-body form-horizontal payment-form">
 						<div class="form-group" style="margin-bottom: 40px">
 							<label for="concept" class="col-sm-3 control-label">회비명</label>
