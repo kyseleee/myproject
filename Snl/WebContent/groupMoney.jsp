@@ -24,7 +24,30 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/login.js"></script>
 		
+		<script type="text/javascript">
+		
+		function paidCheck(i,userNo,gmNo){
+			var th = "paidCheckTh";
+			var num = i;
+			var thNuM = th.concat(num);
+			document.getElementById(thNuM).innerHTML = "수납완료";
+			var userNo =userNo;
+			var gmNo =gmNo;
+					
+		
 
+ 			$.ajax({
+				type : "POST",
+				url : "./paidCheck.do",
+				data : { userNo : userNo, gmNo : gmNo}
+			});
+			
+		}
+
+	
+
+		
+		</script>
 		
 	</head>
 	
@@ -40,7 +63,7 @@
     	<div id="main">
     	
 
-		<h3 align="center">< 회비내역 리스트 ></h3><h3 align="right"><a href="addGroupMoney.jsp"><button class="btn btn-default">add</button></a></h3>
+		<h3 align="center">< 회비내역 리스트 ></h3><h3 align="right"><a href="addGroupMoney.jsp"><button class="btn btn-primary">add</button></a></h3>
         <div class="panel panel-primary">
             <table class="table" align="center">
                 <tr>
@@ -52,87 +75,24 @@
                     <th>미납자</th>
                 </tr>
                 <tbody>
+                <c:set var="i" value="0"/>
                  <c:forEach var="groupMoney" items="${groupMoneyList}">
-			   
+			   		
                     <tr>
-                    	<td><a href="#">${groupMoney.gmName}</a></td>
+                    	<td><a href="getGmPaid.do?gmNo=${groupMoney.gmNo}">${groupMoney.gmName}</a></td>
                         <td>${groupMoney.gmDate}</td>
                         <td>${groupMoney.gmPrice}</td>
-                        <td>1,000,000</td>
+                        <td>${groupMoney.gmPrice*paid[i]}</td>
                         <td>수납완료</td>
-                        <th>0</th>         
+                        <th>${groupSize-paid[i]}</th>         
+                    	<c:set var = "i" value="${i+1}"/>
                     </tr>
                     
                	  </c:forEach>	
-                    <tr>
-                        <td><a href="#">회비2</a></td>
-                        <td>2015.06.01</td>
-                        <td>50,000</td>
-                        <td>250,000</td>
-                        <td>수납중</td>
-                        <th>15</th>
-                        
-                    </tr>
+
                 </tbody>
             </table>
         </div>
-
-
-        <div class="panel panel-primary">
-    				
-            <div class="panel-heading">
-                <h3 class="panel-title">회비 1 ( 2015.05.01 / 50,000 )</h3> 
-            </div>			
-				<div class="panel panel-default">
-					
-					<table class="table table-striped table-bordered">
-						<thead>
-							<tr>
-								<th>No.</th>
-								<th>이름</th>
-								<th>연락처</th>
-								<th>이메일</th>
-								<th>수납확인</th>								
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1</td>
-								<td>user01</td>
-								<td>010-1111-1111</td>
-								<td>user01@snl.com</td>
-								<td>수납완료</td>	
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>user02</td>
-								<td>010-1111-1111</td>
-								<td>user01@snl.com</td>
-								<th><button class="btn btn-default">수납확인</button></th>	
-	
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>user01</td>
-								<td>010-1111-1111</td>
-								<td>user01@snl.com</td>
-								<td>수납완료</td>	
-							</tr>
-							<tr>
-								<td colspan="3">총 합계</td>
-								<td colspan="2">100,000</td>
-								
-							</tr>
-							</tbody>
-						</table>
-					
-				</div> <!-- /widget-content -->
-			
-			</div> <!-- /widget -->
-
-
-    	
-    	
     	</div>
 	
 		<jsp:include page="rightMenu.jsp"></jsp:include>
