@@ -95,13 +95,13 @@
           	 <div style="float:right" class="fab btn-group show-on-hover dropup">
             <div data-toggle="tooltip" data-placement="left" title="회원초대하기">
           
-          <button type="button" class="btn btn-danger btn-io dropdown-toggle" data-toggle="dropdown">
+         <a href="addGroup.jsp"><button type="button" class="btn btn-danger btn-io dropdown-toggle">
             <span class="fa-stack fa-2x">
                 <i class="fa fa-circle fa-stack-2x fab-backdrop"></i>
                 <i class="fa fa-plus fa-stack-1x fa-inverse fab-primary"></i>
                 <i class="fa fa-pencil fa-stack-1x fa-inverse fab-secondary"></i>
            </span>
-       </button></div>
+       </button></a></div>
 		</div>
 </div>
 	  <div style="width:100%;" class="fab btn-group show-on-hover dropup">
