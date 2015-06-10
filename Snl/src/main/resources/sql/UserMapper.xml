@@ -56,7 +56,7 @@
 				WHERE id = #{id}
 					and email = #{email}
 	</select>
-	 
+	
 	<update id="updateUser" parameterType="user">
   		UPDATE tb_user
   		<set>
@@ -72,5 +72,8 @@
 		FROM tb_user
 		WHERE user_no = #{value} 
 	</delete>
+	 
+	
+  	
   	
 </mapper>

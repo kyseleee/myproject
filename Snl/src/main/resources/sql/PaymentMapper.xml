@@ -33,6 +33,7 @@
 	</resultMap>  	
   	
   	
+  	
   	<insert id="addPayment"	parameterType="payment">
   		INSERT	
   			INTO payment(pay_no, group_no, method, receit, pay_date, pay_name, amount)
@@ -66,6 +67,6 @@
 						GROUP BY pay_date
 						ORDER BY pay_date
 		</select> -->
-		
+	
 		
 </mapper>
