@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.snl.service.domain.Group;
 import com.snl.service.domain.GroupArr;
 import com.snl.service.domain.User;
 import com.snl.service.groupArr.GroupArrService;
@@ -233,6 +234,9 @@ public class UserController {
 	    		  session.setAttribute("groupArrList", groupArrList);
 		    	  int groupNo = groupArrList.get(groupArrList.size()-1).getGroup().getGroupNo();
 		    	  session.setAttribute("groupNo", groupNo);
+		    	  
+		    	  Group group = groupArrList.get(groupArrList.size()-1).getGroup();
+		    	  session.setAttribute("group", group);
 		    	  System.out.println("현재 그룹 ::" + groupNo);
 		    	  System.out.println(groupArrList);
 	    	  }
