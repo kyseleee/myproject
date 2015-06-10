@@ -3,19 +3,39 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<body>
 	<div id="header">
    	<nav class="navbar navbar-inverse">
 		    <div class="navbar-header">
 		     	<a id="home" class="navbar-brand" href="/Snl/index.jsp">SNL</a> 
 			</div>        
 			
-			<ul class="nav navbar-nav navbar-center navbar-user">
+			<%-- <ul class="nav navbar-nav navbar-center navbar-user">
 				<c:forEach var="groupArr" items="${groupArrList}">
 					<li><a href="setGroupNo.do?groupNo=${groupArr.group.groupNo}">${groupArr.group.groupName}</a></li>
-				</c:forEach>	 
+				</c:forEach>	 			
+			</ul> --%>
 			
-			</ul>
-			
+				<ul class="nav navbar-nav navbar-center navbar-user">
+					<li class="dropdown active">
+						<a id="result" class="dropdown-toggle" data-toggle="dropdown">${group.groupName}</a>
+						<ul class="dropdown-menu">
+						
+							<c:forEach var="groupArr" items="${groupArrList}">
+								<li>
+									<a id="name" href="setGroupNo.do?groupNo=${groupArr.group.groupNo}">
+									${groupArr.group.groupName}</a>
+								</li>
+							
+							</c:forEach>
+							
+						</ul>
+						
+						
+						
+					</li>
+				</ul>
+						
 			<ul class="nav navbar-nav navbar-right navbar-user">
 				
 				  
@@ -73,3 +93,12 @@
             </ul>
 	</nav>
 	</div>
+	<script type="text/javascript">
+		function setGroup(groupName){
+			alert(groupName);
+			var name = groupName;
+			/* $('#result').html(name); */ 
+			document.getElementById('result').value=name;
+		};		  
+	</script>
+	</body>
