@@ -71,7 +71,7 @@ public class GroupController {
 	}
 
 	@RequestMapping("/setGroupNo.do")
-	public String setGroupNo( @RequestParam("groupNo") int groupNo, HttpSession session) throws Exception {
+	public String setGroupNo( @RequestParam("groupNo") int groupNo, @RequestParam("currentPage") String currentPage, HttpSession session) throws Exception {
 		
 		System.out.println("/setGroupNo.do");
 		session.setAttribute("groupNo", groupNo);
@@ -79,8 +79,9 @@ public class GroupController {
 		session.setAttribute("group", group);
 
 		System.out.println("현재 groupNo"+groupNo);
+		System.out.println(currentPage);
 		
-		return "redirect:/index.jsp";	
+		return "redirect:"+currentPage;	
 		
 	}
 	@RequestMapping("/getGroup.do")

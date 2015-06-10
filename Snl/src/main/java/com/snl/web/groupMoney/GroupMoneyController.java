@@ -52,11 +52,11 @@ public class GroupMoneyController {
 	
 	
 	@RequestMapping("/addGroupMoney.do")
-	public String addGroupMoney(@ModelAttribute("groupMoney") GroupMoney groupMoney, @RequestParam("groupNo") int groupNo) throws Exception{
+	public String addGroupMoney(@ModelAttribute("groupMoney") GroupMoney groupMoney, HttpSession session) throws Exception{
 		
 		System.out.println("/addGroupMoney.do");
 
-		
+		int groupNo = (int) session.getAttribute("groupNo");
 		groupMoney.setGroup(groupService.getGroup(groupNo));
 		groupMoneyService.addGroupMoney(groupMoney);
 		System.out.println("gmNo*************"+groupMoney.getGmNo());
