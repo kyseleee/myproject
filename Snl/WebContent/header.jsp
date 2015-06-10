@@ -3,12 +3,15 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 	<div id="header">
    	<nav class="navbar navbar-inverse">
 		    <div class="navbar-header">
 		     	<a id="home" class="navbar-brand" href="/Snl/index.jsp">SNL</a> 
 			</div>        
-			
+
+				<c:if test="${! empty group}">		
+							
 				<ul class="nav navbar-nav navbar-center navbar-user">
 					<li class="dropdown active">
 						<a class="dropdown-toggle" data-toggle="dropdown">${group.groupName}
@@ -17,7 +20,7 @@
 						
 							<c:forEach var="groupArr" items="${groupArrList}">
 								<li>
-									<a id="name" href="setGroupNo.do?groupNo=${groupArr.group.groupNo}">
+									<a id="name" href="setGroupNo.do?groupNo=${groupArr.group.groupNo}&currentPage=${pageContext.request.servletPath}">
 									${groupArr.group.groupName}</a>
 								</li>
 							
@@ -29,7 +32,8 @@
 						
 					</li>
 				</ul>
-						
+				</c:if>		
+			
 			<ul class="nav navbar-nav navbar-right navbar-user">
 				
 				  

@@ -3,7 +3,6 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -25,6 +24,8 @@
 		<script src="js/login.js"></script>
 		
 		<script type="text/javascript">
+		
+		
 		
 		function paidCheck(i,userNo,gmNo){
 			var th = "paidCheckTh";
@@ -63,28 +64,40 @@
     	<div id="main">
     	
 
-		<h3 align="center">< 회비내역 리스트 ></h3><h3 align="right"><a href="addGroupMoney.jsp"><button class="btn btn-primary">add</button></a></h3>
+		<h2 align="center">< 회비내역 리스트 ></h2><br/>
+		<h4 align="right">${group.groupName}의 총 인원 : ${groupSize} 명 &nbsp&nbsp<a href="addGroupMoney.jsp"><button class="btn btn-primary">add</button></a></h4>
+		
         <div class="panel panel-primary">
-            <table class="table" align="center">
-                <tr>
-                    <th>회비명</th>
-                    <th>날짜</th>
-                    <th>회비금액</th>
-                    <th>현재금액</th>
-                    <th>상태</th>
-                    <th>미납자</th>
+            <table class="table">
+                <tr align="center">
+                   
+                    <td><b>회비명</td>
+                    <td><b>날짜</td>
+                    <td><b>회비금액(/인)</td>
+                    <td><b>현재총수납액</td>
+                    <td><b>상태</td>
+                    <td><b>수납(미납)인원</td>
                 </tr>
                 <tbody>
                 <c:set var="i" value="0"/>
                  <c:forEach var="groupMoney" items="${groupMoneyList}">
 			   		
                     <tr>
-                    	<td><a href="getGmPaid.do?gmNo=${groupMoney.gmNo}">${groupMoney.gmName}</a></td>
-                        <td>${groupMoney.gmDate}</td>
-                        <td>${groupMoney.gmPrice}</td>
-                        <td>${groupMoney.gmPrice*paid[i]}</td>
-                        <td>수납완료</td>
-                        <th>${groupSize-paid[i]}</th>         
+                    	<td align="center"><a href="getGmPaid.do?gmNo=${groupMoney.gmNo}">${groupMoney.gmName}</a></td>
+                        <td align="center">${groupMoney.gmDate.substring(0,10)}</td>
+                        <td align="right">
+	                        ${groupMoney.gmPrice} 원 &nbsp&nbsp
+                        </td>
+                      	<td align="right">${groupMoney.gmPrice*paid[i]} 원 &nbsp&nbsp</td>
+                        <c:choose>
+                        	<c:when test="${groupMoney.gmPrice*paid[i] == groupMoney.gmPrice*groupSize}">
+                        		<td align="center">수납완료 </td>
+                        	</c:when>
+                        	<c:otherwise>
+                        		<td align="center">수납중 </td>
+                        	</c:otherwise>
+                        </c:choose>
+                        <td align="right">${paid[i]}(${groupSize-paid[i]}) 명 &nbsp&nbsp</td>         
                     	<c:set var = "i" value="${i+1}"/>
                     </tr>
                     
