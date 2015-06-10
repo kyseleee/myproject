@@ -48,7 +48,7 @@ public class GmPaidController {
 	
 	
 	@RequestMapping("/getGmPaid.do")
-	public String getGmPaid(HttpSession session, @RequestParam("gmNo") int gmNo, HttpServletRequest request) throws Exception{
+	public String getGmPaid(HttpSession session, @RequestParam("gmNo") int gmNo) throws Exception{
 		
 		System.out.println("/getGmPaid.do");
 
@@ -56,18 +56,19 @@ public class GmPaidController {
 		List<GmPaid> gmPaidList = gmPaidService.getGmPaidList(groupMoney);
 		System.out.println(gmPaidList);
 		System.out.println(gmPaidList.size());
-		request.setAttribute("gmPaidList", gmPaidList);
-		request.setAttribute("groupMoney", groupMoney);
+		session.setAttribute("gmPaidList", gmPaidList);
+		session.setAttribute("groupMoney", groupMoney);
 		
 		return "forward:/getGroupMoney.jsp";	
 	}
 
-	@RequestMapping("/paidCheck.do")
-	public void paidCheck(HttpSession session, HttpServletResponse response, @RequestParam("userNo") int userNo, @RequestParam("gmNo") int gmNo) throws Exception{
+	@RequestMapping("/updateGmPaid.do")
+	public String updateGmPaid(HttpSession session,@RequestParam("userNo") int userNo, @RequestParam("gmNo") int gmNo,HttpServletRequest request) throws Exception{
 		
-		System.out.println("/paidCheck.do");
+		System.out.println("/updateGmPaid.do");
 
 		int groupNo = (int) session.getAttribute("groupNo");
+		System.out.println("session groupNo =====> " +groupNo);
 		GmPaid gmPaid = new GmPaid();
 		
 		GroupMoney groupMoney= groupMoneyService.getGroupMoney(gmNo);
@@ -79,22 +80,13 @@ public class GmPaidController {
 		gmPaidService.updatePaid(gmPaid);
 
 		List<GmPaid> gmPaidList = gmPaidService.getGmPaidList(groupMoney);
+		request.setAttribute("gmPaidList", gmPaidList);
+		request.setAttribute("groupMoney", groupMoney);
+
+
+		return "forward:/getGroupMoney.jsp";	
+
 		
-		int j = 0;
-		
-		for(int i=0; i< gmPaidList.size(); i++){
-			if(gmPaidList.get(i).getRecDate().equals("Y")){
-				j++;
-			}
-		}
-		int total = j*groupMoney.getGmPrice();
-		
-		try{
-			response.getWriter().print(total);
-			
-		}catch(IOException e){
-			e.printStackTrace();
-		}
 	}
 
 	

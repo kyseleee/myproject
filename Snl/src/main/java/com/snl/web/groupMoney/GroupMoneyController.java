@@ -15,10 +15,12 @@ import com.snl.service.domain.GmPaid;
 import com.snl.service.domain.Group;
 import com.snl.service.domain.GroupArr;
 import com.snl.service.domain.GroupMoney;
+import com.snl.service.domain.User;
 import com.snl.service.gmPaid.GmPaidService;
 import com.snl.service.group.GroupService;
 import com.snl.service.groupArr.GroupArrService;
 import com.snl.service.groupMoney.GroupMoneyService;
+import com.snl.service.mail.MailService;
 
 @Controller
 public class GroupMoneyController {
@@ -40,6 +42,9 @@ public class GroupMoneyController {
 	@Qualifier("gmPaidServiceImpl")
 	private GmPaidService gmPaidService;
 	
+	@Autowired
+	@Qualifier("mailService")
+	private MailService mailService;
 	
 	public GroupMoneyController(){
 		System.out.println(this.getClass());
@@ -47,10 +52,10 @@ public class GroupMoneyController {
 	
 	
 	@RequestMapping("/addGroupMoney.do")
-	public String addGroupMoney(@ModelAttribute("groupMoney") GroupMoney groupMoney, HttpSession session) throws Exception{
+	public String addGroupMoney(@ModelAttribute("groupMoney") GroupMoney groupMoney, @RequestParam("groupNo") int groupNo) throws Exception{
 		
 		System.out.println("/addGroupMoney.do");
-		int groupNo = (int) session.getAttribute("groupNo");
+
 		
 		groupMoney.setGroup(groupService.getGroup(groupNo));
 		groupMoneyService.addGroupMoney(groupMoney);
@@ -77,7 +82,7 @@ public class GroupMoneyController {
 
 		}
 		
-		return "redirect:/groupMoney.jsp";	
+		return "redirect:/groupMoneyView.do";	
 	}
 
 	
@@ -89,7 +94,6 @@ public class GroupMoneyController {
 
 		int groupNo = (int)session.getAttribute("groupNo");
 		List<GroupMoney> groupMoneyList= groupMoneyService.getGroupMoneybyGroup(groupNo);
-		System.out.println(groupMoneyList);
 		session.setAttribute("groupMoneyList", groupMoneyList);
 		Group group = groupService.getGroup(groupNo);
 		GmPaid gmPaid = new GmPaid();
@@ -104,14 +108,14 @@ public class GroupMoneyController {
 			paid[i] = 0;
 			for(int j=0;j<groupArrList.size(); j++){
 				gmPaid.setUser(groupArrList.get(j).getUser());
-				System.out.println(gmPaidService.getGmPaid(gmPaid).getPaid()+"=====");
 				if(gmPaidService.getGmPaid(gmPaid).getPaid().equals("Y")){
 					paid[i] ++;
-					System.out.println("paid[i]===="+paid[i]);
 				}
 			}			
 		}
 
+		
+		session.setAttribute("group", group);
 		session.setAttribute("paid", paid);
 		session.setAttribute("groupSize", groupSize);
 			
@@ -119,6 +123,26 @@ public class GroupMoneyController {
 	}
 	
 	
+	@RequestMapping("/gmSendMail.do")
+	public String gmSendMail(@RequestParam("email") String toEmail, HttpSession session) throws Exception{
+		
+		System.out.println("/gmSendMail.do");
+
+		GroupMoney groupMoney = (GroupMoney) session.getAttribute("groupMoney");
+		Group group = groupService.getGroup((int) session.getAttribute("groupNo"));
+		
+		mailService.sendMail(toEmail, group.getGroupName()+"회비 납부 안내드립니다. \n\n " +
+										"회비금액"+groupMoney.getGmPrice()+"원 납부 부탁드립니다. \n\n " +
+										"http://127.0.0.1:8080/Snl/") ;		
+		return "redirect:/getGroupMoney.jsp?sendMail=ok";	
+	}
 	
+	@RequestMapping("/gmSendTel.do")
+	public String gmSendTel(@RequestParam("tel") String tel, HttpSession session) throws Exception{
+		
+		System.out.println("/gmSendTel.do");
+
+		return "redirect:/getGroupMoney.jsp?sendTel=ok";	
+	}
 	
 }
