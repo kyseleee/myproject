@@ -51,7 +51,7 @@
 	<div class="col-sm-2"></div>
 	<div class="col-sm-8">
 		<div class="panel-default">
-			<form id="register-form" action="/Snl/addGroup.do?groupName=${group.groupName} }" method="post">
+			<form id="register-form" action="/Snl/sendInviteMail.do" method="post">
 		     <div class="panel-body form-horizontal payment-form">
 		         <div class="form-group">
 		             <label for="concept" class="col-sm-2 control-label">그룹명</label>

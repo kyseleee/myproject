@@ -95,7 +95,7 @@
           	 <div style="float:right" class="fab btn-group show-on-hover dropup">
             <div data-toggle="tooltip" data-placement="left" title="회원초대하기">
           
-         <a href="addGroup2.jsp?groupName=${group.groupName}"><button type="button" class="btn btn-danger btn-io dropdown-toggle">
+         <a href="addMember.jsp?groupName=${group.groupName}"><button type="button" class="btn btn-danger btn-io dropdown-toggle">
             <span class="fa-stack fa-2x">
                 <i class="fa fa-circle fa-stack-2x fab-backdrop"></i>
                 <i class="fa fa-plus fa-stack-1x fa-inverse fab-primary"></i>
