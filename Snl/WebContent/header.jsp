@@ -18,7 +18,7 @@
 						<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 						
-							<c:forEach var="groupArr" items="${groupArrList}">
+							<c:forEach var="groupArr" items="${groupArrListByUser}">
 								<li>
 									<a id="name" href="setGroupNo.do?groupNo=${groupArr.group.groupNo}&currentPage=${pageContext.request.servletPath}">
 									${groupArr.group.groupName}</a>

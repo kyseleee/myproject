@@ -5,7 +5,13 @@
 
 <c:if test="${! empty param.sendMail}">
 	<script type="text/javascript">
-		alert("메일이 성공적으로 되었습니다.");	
+		alert("메일이 성공적으로 발송되었습니다.");	
+	</script>	
+</c:if>
+
+<c:if test="${! empty param.sendTel}">
+	<script type="text/javascript">
+		alert("문자가 성공적으로 발신되었습니다.");	
 	</script>	
 </c:if>
 
@@ -29,27 +35,6 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/login.js"></script>
-		
-		<script type="text/javascript">
-
-		function sendTel(tel){
-			alert(tel+"번호로로 회비 납부 안내 문자를 보내겠습니까?");
-			location.href="gmSendTel.do?tel="+tel;
-		}	
-		
-		function sendEmail(email){
-			alert(email+"주소로 회비 납부 안내 메일을 보내겠습니까?");
-			location.href="gmSendMail.do?email="+email;
-		}		
-				
-		function paidCheck(userName, gmPrice, userNo, gmNo){
-			alert("되라잉");
-			alert(userName+"님이 회비 "+gmPrice+"원을 수납하였습니까?");
-			location.href="updateGmPaid.do?gmNo="+gmNo+"&userNo="+ userNo;
-		}
-		</script>
-		
-
 		
 	</head>
 	
@@ -88,38 +73,35 @@
 							<c:set var="i" value="0"/>
 							
 							<c:forEach var="gmPaid" items="${gmPaidList}">
-								<c:set var="i" value="${i+1}"/>
 								<tr align="center">
-									<td vertical-align="middle">${i}</td>
+									<td vertical-align="middle">${i+1}</td>
 									<td>${gmPaid.user.userName}</td>
 									<td>${gmPaid.user.tel}
 										<c:if test="${gmPaid.paid eq 'N'}">
-										<button type="button" class="btn btn-default btn-sm" onclick="sendTel('${gmPaid.user.tel}')">
-  										<span class="glyphicon glyphicon-send" aria-hidden="true"></span>
-										</button>										
+	  										<a href="gmSendTel.do?tel=${gmPaid.user.tel}" class="btn btn-default btn-sm" role="button">	  										
+	  										<span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+											</a>											
 										</c:if>
 									</td>
 									<td>${gmPaid.user.email}
 										<c:if test="${gmPaid.paid eq 'N'}">
-										<button type="button" class="btn btn-default btn-sm" onclick="sendEmail('${gmPaid.user.email}')">
-  										<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-										</button>										
-										</c:if>
-										
+	  										<a href="gmSendMail.do?email=${gmPaid.user.email}" class="btn btn-default btn-sm" role="button">
+	  											<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+											</a> 
+										</c:if>	
 									</td>
 									<c:if test="${gmPaid.paid eq 'Y'}">
 										<td>수납완료</td>
 									</c:if>
 									<c:if test="${gmPaid.paid eq 'N'}">
-										<td id="paidCheckTh${i}">										
- 											<button id="paidCheck${i}" class="btn btn-info btn-sm" onclick="paidCheck('${gmPaid.user.userName}',${groupMoney.gmPrice},${gmPaid.user.userNo},${gmPaid.groupMoney.gmNo})">
-											수납확인
-											</button> 
-										</td>
-									
+										<td>										
+											<a href="updateGmPaid.do?userNo=${gmPaid.user.userNo}&gmNo=${groupMoney.gmNo}" class="btn btn-info btn-sm" role="button" onclick="alert('수납을 확인하시겠습니까?');" >
+												수납확인
+											</a>			
+										</td>						
 									</c:if>									
 								</tr>
-							
+								<c:set var="i" value="${i+1}"/>
 							</c:forEach>
 							
 							</tbody>

@@ -88,16 +88,16 @@
                         <td align="right">
 	                        ${groupMoney.gmPrice} 원 &nbsp&nbsp
                         </td>
-                      	<td align="right">${groupMoney.gmPrice*paid[i]} 원 &nbsp&nbsp</td>
+                      	<td align="right">${groupMoney.gmPrice*paidList[i]} 원 &nbsp&nbsp</td>
                         <c:choose>
-                        	<c:when test="${groupMoney.gmPrice*paid[i] == groupMoney.gmPrice*groupSize}">
+                        	<c:when test="${groupMoney.gmPrice*paidList[i] == groupMoney.gmPrice*groupSize}">
                         		<td align="center">수납완료 </td>
                         	</c:when>
                         	<c:otherwise>
-                        		<td align="center">수납중 </td>
+                        		<td align="center"><b>수납중</b> </td>
                         	</c:otherwise>
                         </c:choose>
-                        <td align="right">${paid[i]}(${groupSize-paid[i]}) 명 &nbsp&nbsp</td>         
+                        <td align="right">${paidList[i]}(${groupSize-paidList[i]}) 명 &nbsp&nbsp</td>         
                     	<c:set var = "i" value="${i+1}"/>
                     </tr>
                     

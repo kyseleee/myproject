@@ -59,7 +59,7 @@
         }
         
    		#leftMenu {
-        	height : 1100px;
+        	height : 2000px;
         	width : 20%;
         	float:left; 
             box-sizing:border-box; 
@@ -67,7 +67,7 @@
         
         #main {
         	width:60%;
-        	height:1100px;
+        	height:2000px;
         	float:left;
         	box-sizing:border-box;
         	padding:50px;
