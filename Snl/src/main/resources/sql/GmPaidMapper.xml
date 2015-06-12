@@ -65,8 +65,6 @@
 	   	WHERE 
 	   		user_no = #{user.userNo}
 	   		AND
-	   		group_no = #{group.groupNo}
-	   		AND
 	   		gm_no=#{groupMoney.gmNo}
 
 	 </update>
