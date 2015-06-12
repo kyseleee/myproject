@@ -221,24 +221,29 @@ public class UserController {
 	      
 	      User dbUser=userService.getUserById(id);
 	      
-	      System.out.println("디비유저-------"+dbUser);
 	      if ((dbUser==null)||!( pw.equals(dbUser.getPw()) && id.equals(dbUser.getId()))){
 	    	  return "forward:login.jsp?fail=<font color='red'>등록되지 않은 아이디이거나,</br>아이디 또는 비밀번호를 잘못 입력하셨습니다.</font>";
 	      }
 	      else{
+	    	  
 	    	  session.setAttribute("user", dbUser);
 	    	  
 	    	  if(groupArrService.getGroupArrByUser(dbUser).size() != 0){
 		    	  
-	    		  List<GroupArr> groupArrList= groupArrService.getGroupArrByUser(dbUser);
-	    		  session.setAttribute("groupArrList", groupArrList);
-		    	  int groupNo = groupArrList.get(groupArrList.size()-1).getGroup().getGroupNo();
-		    	  session.setAttribute("groupNo", groupNo);
-		    	  
-		    	  Group group = groupArrList.get(groupArrList.size()-1).getGroup();
-		    	  session.setAttribute("group", group);
-		    	  System.out.println("현재 그룹 ::" + groupNo);
-		    	  System.out.println(groupArrList);
+	    		  //user가 속한 group들
+	    		  List<GroupArr> groupArrListByUser= groupArrService.getGroupArrByUser(dbUser);
+		    	  //group들 중 default
+	    		  Group group = groupArrListByUser.get(groupArrListByUser.size()-1).getGroup();
+		    	  //default group의 user리스트
+	  			  List<GroupArr> groupArrListByGroup = groupArrService.getGroupArrByGroup(group.getGroupNo());
+	  			  //그 그룹인원
+	  			  int groupSize = groupArrListByGroup.size();
+
+	  			  session.setAttribute("groupArrListByUser", groupArrListByUser);
+	  			  session.setAttribute("group", group);
+	  			  session.setAttribute("groupSize", groupSize);
+	  			  session.setAttribute("groupArrListByGroup", groupArrListByGroup);
+
 	    	  }
 	    	  
 	    	  if(sgroupNo != ""){

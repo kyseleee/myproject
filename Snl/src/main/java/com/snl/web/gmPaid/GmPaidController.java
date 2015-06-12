@@ -47,47 +47,35 @@ public class GmPaidController {
 	}
 	
 	
-	@RequestMapping("/getGmPaid.do")
-	public String getGmPaid(HttpSession session, @RequestParam("gmNo") int gmNo) throws Exception{
+	@RequestMapping(value={"/getGmPaid.do","/updateGmPaid.do"})
+	public String getGmPaid(@RequestParam("gmNo") int gmNo, HttpServletRequest request,HttpSession session) throws Exception{
 		
-		System.out.println("/getGmPaid.do");
+		
+		if(request.getRequestURI().equals("/Snl/updateGmPaid.do")){
+			
+			System.out.println("/updateGmPaid.do");
+			
+			int userNo = Integer.parseInt(request.getParameter("userNo"));
+			GmPaid gmPaid = new GmPaid();
+			
+			gmPaid.setUser(userService.getUser(userNo));
+			gmPaid.setGroupMoney(groupMoneyService.getGroupMoney(gmNo));
+			gmPaid.setPaid("Y");
+			gmPaidService.updatePaid(gmPaid);	
+		}else{
+			System.out.println("/getGmPaid.do");
+		}
 
 		GroupMoney groupMoney= groupMoneyService.getGroupMoney(gmNo);
+		
 		List<GmPaid> gmPaidList = gmPaidService.getGmPaidList(groupMoney);
-		System.out.println(gmPaidList);
-		System.out.println(gmPaidList.size());
+		
 		session.setAttribute("gmPaidList", gmPaidList);
 		session.setAttribute("groupMoney", groupMoney);
 		
 		return "forward:/getGroupMoney.jsp";	
 	}
 
-	@RequestMapping("/updateGmPaid.do")
-	public String updateGmPaid(HttpSession session,@RequestParam("userNo") int userNo, @RequestParam("gmNo") int gmNo,HttpServletRequest request) throws Exception{
-		
-		System.out.println("/updateGmPaid.do");
-
-		int groupNo = (int) session.getAttribute("groupNo");
-		System.out.println("session groupNo =====> " +groupNo);
-		GmPaid gmPaid = new GmPaid();
-		
-		GroupMoney groupMoney= groupMoneyService.getGroupMoney(gmNo);
-		
-		gmPaid.setUser(userService.getUser(userNo));
-		gmPaid.setGroup(groupService.getGroup(groupNo));
-		gmPaid.setGroupMoney(groupMoney);
-		gmPaid.setPaid("Y");
-		gmPaidService.updatePaid(gmPaid);
-
-		List<GmPaid> gmPaidList = gmPaidService.getGmPaidList(groupMoney);
-		request.setAttribute("gmPaidList", gmPaidList);
-		request.setAttribute("groupMoney", groupMoney);
-
-
-		return "forward:/getGroupMoney.jsp";	
-
-		
-	}
 
 	
 }

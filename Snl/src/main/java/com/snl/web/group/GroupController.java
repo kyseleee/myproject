@@ -74,16 +74,25 @@ public class GroupController {
 	public String setGroupNo( @RequestParam("groupNo") int groupNo, @RequestParam("currentPage") String currentPage, HttpSession session) throws Exception {
 		
 		System.out.println("/setGroupNo.do");
-		session.setAttribute("groupNo", groupNo);
 		Group group = groupService.getGroup(groupNo);
+		List<GroupArr> groupArrListByGroup = groupArrService.getGroupArrByGroup(group.getGroupNo());
+		int groupSize = groupArrListByGroup.size();
+	
 		session.setAttribute("group", group);
-
+		session.setAttribute("groupArrListByGroup", groupArrListByGroup);
+		session.setAttribute("groupSize", groupSize);
+		
 		System.out.println("현재 groupNo"+groupNo);
 		System.out.println(currentPage);
 		
-		return "redirect:"+currentPage;	
+		if(currentPage.equals("/groupMoney.jsp") || currentPage.equals("/getGroupMoney.jsp")){
+			return "redirect:/groupMoneyView.do";
+		}else{
+			return "redirect:"+currentPage;	
+		}
 		
 	}
+	
 	@RequestMapping("/getGroup.do")
 	public Group getGroup( @RequestParam("groupNo") int groupNo) throws Exception {
 		
