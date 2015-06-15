@@ -14,6 +14,7 @@
 		<result property="user.email" column="email" jdbcType="VARCHAR"/>	
 		<result property="group.groupNo" column="group_no" jdbcType="INTEGER"/>
 		<result property="groupMoney.gmNo" column="gm_no" jdbcType="INTEGER"/>
+		<result property="groupMoney.gmPrice" column="gm_price" jdbcType="INTEGER"/>
 		<result property="paid" column="paid" jdbcType="CHAR"/>	
 		<result property="recDate" column="rec_date" jdbcType="DATE"/>
 	</resultMap>  	
@@ -36,6 +37,22 @@
 	   		AND
 	   		gm_no=#{groupMoney.gmNo}	 
 	 </select> 
+	 
+	 
+	  <select id="getPaidGmPaidByGroup" parameterType="group" resultMap="gmPaidSelectMap">
+		SELECT
+			a.user_no, 
+			a.group_no, 
+			a.gm_no, paid, 
+			a.rec_date,
+			b.gm_price			
+			FROM gm_paid a
+				left outer join group_money b on a.gm_no = b.gm_no
+			WHERE a.group_no = #{groupNo}
+	   		AND
+	   		paid = 'Y'	 
+	 </select> 
+	 
 	 
  	 <select id="getGmPaidList" parameterType="groupMoney" resultMap="gmPaidSelectMap">
 		SELECT
