@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.snl.service.domain.GmPaid;
 import com.snl.service.domain.Group;
 import com.snl.service.domain.GroupArr;
+import com.snl.service.domain.Payment;
 import com.snl.service.domain.User;
+import com.snl.service.gmPaid.GmPaidService;
 import com.snl.service.group.GroupService;
 import com.snl.service.groupArr.GroupArrService;
 import com.snl.service.mail.MailService;
+import com.snl.service.payment.PaymentService;
 
 @Controller
 public class GroupController {
@@ -33,6 +37,14 @@ public class GroupController {
 	@Autowired
 	@Qualifier("mailService")
 	private MailService mailService;
+	
+	@Autowired
+	@Qualifier("gmPaidServiceImpl")
+	private GmPaidService gmPaidService;
+	
+	@Autowired
+	@Qualifier("paymentServiceImpl")
+	private PaymentService paymentService;
 	
 	
 	public GroupController(){
@@ -56,7 +68,7 @@ public class GroupController {
 		List<GroupArr> groupArrList= groupArrService.getGroupArrByUser(user);
   	  	session.setAttribute("groupArrList", groupArrList);
 
-		mailService.sendMail(toEmail, group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/invite.jsp?sgroupNo="+group.getGroupNo());		
+		mailService.sendMail(toEmail, group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/inviteIndex.jsp?sgroupNo="+group.getGroupNo());		
 	    
 		
 		return "redirect:/";	
@@ -84,6 +96,25 @@ public class GroupController {
 		
 		System.out.println("현재 groupNo"+groupNo);
 		System.out.println(currentPage);
+		
+		List<GmPaid> paidGmPaid=gmPaidService.getPaidGmPaidByGroup(group);
+			int totalGm = 0;
+			  
+			for(int i = 0; i<paidGmPaid.size(); i++){
+				totalGm += paidGmPaid.get(i).getGroupMoney().getGmPrice();
+			}
+			  
+			session.setAttribute("totalGm", totalGm);
+		
+		 List<Payment> payment=paymentService.getPaymentByGroup(group);
+		  int totalPayment = 0;
+		  
+		  for(int i = 0; i<payment.size(); i++){
+			  totalPayment += payment.get(i).getAmount();
+		  }
+		  
+		  session.setAttribute("totalPayment", totalPayment);
+	
 		
 		if(currentPage.equals("/groupMoney.jsp") || currentPage.equals("/getGroupMoney.jsp")){
 			return "redirect:/groupMoneyView.do";

@@ -15,11 +15,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.snl.service.domain.GmPaid;
 import com.snl.service.domain.Group;
 import com.snl.service.domain.GroupArr;
+import com.snl.service.domain.Payment;
 import com.snl.service.domain.User;
+import com.snl.service.gmPaid.GmPaidService;
 import com.snl.service.groupArr.GroupArrService;
 import com.snl.service.mail.MailService;
+import com.snl.service.payment.PaymentService;
 import com.snl.service.user.UserService;
 
 @Controller
@@ -38,6 +42,14 @@ public class UserController {
 	@Qualifier("mailService")
 	private MailService mailService;
 
+	@Autowired
+	@Qualifier("gmPaidServiceImpl")
+	private GmPaidService gmPaidService;
+	
+
+	@Autowired
+	@Qualifier("paymentServiceImpl")
+	private PaymentService paymentService;
 	
 	public UserController(){
 		System.out.println(this.getClass());
@@ -243,6 +255,27 @@ public class UserController {
 	  			  session.setAttribute("group", group);
 	  			  session.setAttribute("groupSize", groupSize);
 	  			  session.setAttribute("groupArrListByGroup", groupArrListByGroup);
+	  			  
+	  			  List<GmPaid> paidGmPaid=gmPaidService.getPaidGmPaidByGroup(group);
+	  			  int totalGm = 0;
+	  			  
+	  			  for(int i = 0; i<paidGmPaid.size(); i++){
+	  				  totalGm += paidGmPaid.get(i).getGroupMoney().getGmPrice();
+	  			  }
+	  			  
+	  			  session.setAttribute("totalGm", totalGm);
+	  			  
+
+	  			  List<Payment> payment=paymentService.getPaymentByGroup(group);
+	  			  int totalPayment = 0;
+	  			  
+	  			  for(int i = 0; i<payment.size(); i++){
+	  				  totalPayment += payment.get(i).getAmount();
+	  			  }
+	  			  
+	  			  session.setAttribute("totalPayment", totalPayment);
+		  			
+
 
 	    	  }
 	    	  

@@ -1,11 +1,13 @@
 package com.snl.service.payment.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.snl.service.domain.Group;
 import com.snl.service.domain.Payment;
 import com.snl.service.payment.PaymentDao;
 import com.snl.service.payment.PaymentService;
@@ -39,6 +41,11 @@ public class PaymentServiceImpl implements PaymentService{
 	public void deletePayment(int payNo) throws Exception{
 		paymentDao.deletePayment(payNo);
 	}
+	
+	public List<Payment> getPaymentByGroup(Group group) throws Exception{
+		return paymentDao.getPaymentByGroup(group);
+	}
+
 	
 	@Override
 	public Payment getMonthlyPayment(int groupNo, String month) throws Exception{

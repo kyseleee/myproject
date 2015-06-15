@@ -2,7 +2,6 @@ package com.snl.web.payment;
 
 import java.io.File;
 import java.net.URLEncoder;
-import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.tomcat.jni.Directory;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.snl.service.domain.Group;
 import com.snl.service.domain.GroupArr;
 import com.snl.service.domain.Payment;
 import com.snl.service.domain.User;
@@ -57,11 +56,20 @@ public class PaymentController {
 	}
 	
 	@RequestMapping("/deletePayment.do")
-	public String deletePayment(@RequestParam("payNo") int payNo) throws Exception{
+	public String deletePayment(@RequestParam("payNo") int payNo, HttpSession session) throws Exception{
 		
 		System.out.println("/deletePayment");
 		paymentService.deletePayment(payNo);
 		
+		Group group = (Group) session.getAttribute("group");
+		List<Payment> paymentList =paymentService.getPaymentByGroup(group);
+		int totalPayment = 0;
+		  
+		for(int i = 0; i<paymentList.size(); i++){
+			totalPayment += paymentList.get(i).getAmount();
+		}
+		  
+		session.setAttribute("totalPayment", totalPayment);
 		return "redirect:/calendar.jsp";
 	}
 	
@@ -148,6 +156,18 @@ public class PaymentController {
 		
 		String tem[]=user.getTel().split("-");
 		String fromTel="";
+		
+		Group group = (Group) session.getAttribute("group");
+		List<Payment> paymentList =paymentService.getPaymentByGroup(group);
+		int totalPayment = 0;
+		  
+		for(int i = 0; i<paymentList.size(); i++){
+			totalPayment += paymentList.get(i).getAmount();
+		}
+		  
+		session.setAttribute("totalPayment", totalPayment);
+
+		
 		
 		for(String element:tem) {
 			fromTel+=element;
@@ -248,6 +268,16 @@ public class PaymentController {
 		System.out.println(payment);
 		
 		paymentService.addPayment(payment);
+		
+		Group group = (Group) session.getAttribute("group");
+		List<Payment> paymentList =paymentService.getPaymentByGroup(group);
+		int totalPayment = 0;
+		  
+		for(int i = 0; i<paymentList.size(); i++){
+			totalPayment += paymentList.get(i).getAmount();
+		}
+		  
+		session.setAttribute("totalPayment", totalPayment);
 		
 		return "redirect:/calendar.jsp";
 	}

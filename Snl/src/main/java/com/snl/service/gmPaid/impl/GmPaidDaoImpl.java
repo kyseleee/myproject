@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.snl.service.domain.GmPaid;
+import com.snl.service.domain.Group;
 import com.snl.service.domain.GroupMoney;
 import com.snl.service.gmPaid.GmPaidDao;
 
@@ -37,6 +38,11 @@ public class GmPaidDaoImpl implements GmPaidDao{
 	public GmPaid getGmPaid(GmPaid gmPaid) throws Exception {
 		return sqlSession.selectOne("GmPaidMapper.getGmPaid", gmPaid);
 	}
+	
+	public List<GmPaid> getPaidGmPaidByGroup(Group group) throws Exception{
+		return sqlSession.selectList("GmPaidMapper.getPaidGmPaidByGroup", group);
+	}
+
 	
 	public List<GmPaid> getGmPaidList(GroupMoney groupMoney) throws Exception {
 		return sqlSession.selectList("GmPaidMapper.getGmPaidList", groupMoney);

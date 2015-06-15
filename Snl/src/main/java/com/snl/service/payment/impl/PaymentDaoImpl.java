@@ -1,6 +1,7 @@
 package com.snl.service.payment.impl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.snl.service.domain.Group;
 import com.snl.service.domain.Payment;
 import com.snl.service.payment.PaymentDao;
 
@@ -47,6 +49,11 @@ public class PaymentDaoImpl implements PaymentDao {
 		return sqlSession.selectOne("PaymentMapper.getMonthlyPayment", tem);
 		
 	}
+	
+	public List<Payment> getPaymentByGroup(Group group) throws Exception{
+		return sqlSession.selectList("PaymentMapper.getPaymentByGroup", group);
+	}
+
 	
 	@Override
 	public Map<String, Object> getPaymentListByMonth(int groupNo){

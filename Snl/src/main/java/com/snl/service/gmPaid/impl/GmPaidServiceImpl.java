@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.snl.service.domain.GmPaid;
+import com.snl.service.domain.Group;
 import com.snl.service.domain.GroupMoney;
 import com.snl.service.gmPaid.GmPaidDao;
 import com.snl.service.gmPaid.GmPaidService;
@@ -37,6 +38,11 @@ public class GmPaidServiceImpl implements GmPaidService{
 		return gmPaidDao.getGmPaid(gmPaid);
 		
 	}
+	
+	public List<GmPaid> getPaidGmPaidByGroup(Group group) throws Exception{
+		return gmPaidDao.getPaidGmPaidByGroup(group);
+	}
+
 
 	@Override
 	public List<GmPaid> getGmPaidList(GroupMoney groupMoney) throws Exception {

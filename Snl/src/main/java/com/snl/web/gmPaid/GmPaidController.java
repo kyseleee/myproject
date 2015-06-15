@@ -61,7 +61,17 @@ public class GmPaidController {
 			gmPaid.setUser(userService.getUser(userNo));
 			gmPaid.setGroupMoney(groupMoneyService.getGroupMoney(gmNo));
 			gmPaid.setPaid("Y");
-			gmPaidService.updatePaid(gmPaid);	
+			gmPaidService.updatePaid(gmPaid);
+			
+			List<GmPaid> paidGmPaid=gmPaidService.getPaidGmPaidByGroup((Group)session.getAttribute("group"));
+			int totalGm = 0;
+			  
+			for(int i = 0; i<paidGmPaid.size(); i++){
+				totalGm += paidGmPaid.get(i).getGroupMoney().getGmPrice();
+			}
+			  
+			session.setAttribute("totalGm", totalGm);
+			
 		}else{
 			System.out.println("/getGmPaid.do");
 		}
