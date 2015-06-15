@@ -1,4 +1,5 @@
 var chart;
+var groupNoHid=document.getElementById("groupNoHidden").value;
 		$(document).ready(function () {
 			alert("graph");
 			chart = new Highcharts.Chart({
@@ -51,11 +52,10 @@ var chart;
 	});
 	
 	function requestData(){
-		alert("requestData");
 		$.ajax({
 				url:'./listPaymentByMonth.do',
 				type: "GET",
-				data: {groupNo : 10080},
+				data: {groupNo : groupNoHid},
 				success: function(data){
 						data=JSON.parse(data); 
 						chart.addSeries({
@@ -73,7 +73,7 @@ var chart;
 		$.ajax({
 			url:'./listPaymentByMonth.do',
 			type: "POST",
-			data: {groupNo : 10080, startDate : $('#startDate').val(), endDate : $('#endDate').val()},
+			data: {groupNo : groupNoHid, startDate : $('#startDate').val(), endDate : $('#endDate').val()},
 			success: function(data){
 				alert(data);
 				var chart = $('#container').highcharts();
@@ -99,7 +99,7 @@ var chart;
 				$.ajax({
 					url:'./listPaymentByMonth.do',
 					type: "POST",
-					data: {groupNo : 10080, startDate : $('#startDate').val(), endDate : $('#endDate').val()},
+					data: {groupNo : groupNoHid, startDate : $('#startDate').val(), endDate : $('#endDate').val()},
 					success: function(data){
 						alert(data);
 						var chart = $('#container').highcharts();

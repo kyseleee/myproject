@@ -24,11 +24,27 @@ public class PaymentServiceImpl implements PaymentService{
 	public PaymentServiceImpl() {
 		System.out.println("::"+getClass()+ "default Constructor Call.....");
 	}
-
+	
+	@Override
 	public void addPayment(Payment payment) throws Exception{
 		paymentDao.addPayment(payment);
+	
 	}
-
+	@Override
+	public void updatePayment(Payment payment) throws Exception{
+		paymentDao.updatePayment(payment);
+	}
+	
+	@Override
+	public void deletePayment(int payNo) throws Exception{
+		paymentDao.deletePayment(payNo);
+	}
+	
+	@Override
+	public Payment getMonthlyPayment(int groupNo, String month) throws Exception{
+		return paymentDao.getMonthlyPayment(groupNo, month);
+	}
+	
 	@Override
 	public Map<String, Object> getPaymentListByMonth(int groupNo) throws Exception {
 		

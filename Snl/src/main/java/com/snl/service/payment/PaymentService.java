@@ -8,6 +8,12 @@ public interface PaymentService {
 
 	public void addPayment(Payment payment) throws Exception;
 	
+	public void updatePayment(Payment payment) throws Exception;
+	
+	public void deletePayment(int payNo) throws Exception;
+	
+	public Payment getMonthlyPayment(int groupNo, String month) throws Exception;
+	
 	public Map<String,Object> getPaymentListByMonth(int groupNo) throws Exception;
 	
 	public Map<String,Object> getPaymentListByMonthDuration(int groupNo, String startDate, String endDate) throws Exception;

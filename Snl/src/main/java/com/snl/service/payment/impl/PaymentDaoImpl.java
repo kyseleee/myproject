@@ -28,6 +28,27 @@ public class PaymentDaoImpl implements PaymentDao {
 	}
 	
 	@Override
+	public void updatePayment(Payment payment) throws Exception{
+		sqlSession.update("PaymentMapper.updatePayment", payment);
+	}
+	
+	@Override
+	public void deletePayment(int payNo) throws Exception{
+		sqlSession.delete("PaymentMapper.deletePayment", payNo);
+	}
+	
+	@Override
+	public Payment getMonthlyPayment(int groupNo, String month) throws Exception{
+		Map<String , Object> tem = new HashMap<String, Object>();
+		
+		tem.put("groupNo", groupNo);
+		tem.put("month", month);
+		
+		return sqlSession.selectOne("PaymentMapper.getMonthlyPayment", tem);
+		
+	}
+	
+	@Override
 	public Map<String, Object> getPaymentListByMonth(int groupNo){
 		Map<String , Object> map = new HashMap<String, Object>();
 		map.put("list", sqlSession.selectList("PaymentMapper.getPaymentListByMonth",groupNo));
@@ -35,7 +56,7 @@ public class PaymentDaoImpl implements PaymentDao {
 		return map;
 		
 	}
-	
+	@Override
 	public Map<String, Object> getPaymentListByMonthDuration(int groupNo, String startDate, String endDate){
 		Map<String , Object> map = new HashMap<String, Object>();
 		Map<String , Object> tem = new HashMap<String, Object>();

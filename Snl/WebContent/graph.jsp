@@ -25,7 +25,7 @@
 		<script src="js/highchart/exporting.js"></script>
 		<!-- <script src="js/highchart/sand-signika.js"></script> -->
 		<script src="jquery.json-2.4.min.js"></script>
-		<script src="js/graph.js"></script>
+		
 		
 	</head>
 	
@@ -39,7 +39,7 @@
   	  	<jsp:include page="leftMenu.jsp"/>
     	
     	<div id="main">
-    	
+    	<input type="hidden" id="groupNoHidden" name="groupNoHidden" value="${groupNo}"/>
 	<span>
 		시작일&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; 종료일<br>
 		<input type="text" id="startDate" name="startDate" style="width:72px">
@@ -92,7 +92,7 @@
              
 	    
 	<jsp:include page="footer.jsp"/>
-	
+	<script src="js/graph.js"></script>
 	</body>
 
 </html>

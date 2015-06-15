@@ -36,7 +36,7 @@
   		<div id="content">
   	  	<jsp:include page="leftMenu.jsp"/>
     
-    	
+    	<input type="hidden" id="groupNoHidden" name="groupNoHidden" value="${group.groupNo}"/>
     	<div id="main">
     	
     	<div class="row">
@@ -92,6 +92,13 @@
 	                        		<input type="file" id="file" name="file"/>
 	                        </div>
 	                    </div>
+	                    
+							<div class="form-group">
+											<div class="form-group text-center">
+													<label for="txtMsg"> 지출내역 문자발송</label>
+	                     		<input type="checkbox" tabindex="3" class="" name="txtMsg" id="txtMsg" value="y">
+	                     </div>
+							</div>
                   	</form>
                   
             <!-- 
