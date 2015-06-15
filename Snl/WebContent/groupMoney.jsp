@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
+<%@page import="java.util.*" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -86,15 +88,15 @@
                     	<td align="center"><a href="getGmPaid.do?gmNo=${groupMoney.gmNo}">${groupMoney.gmName}</a></td>
                         <td align="center">${groupMoney.gmDate.substring(0,10)}</td>
                         <td align="right">
-	                        ${groupMoney.gmPrice} 원 &nbsp&nbsp
+	                        <fmt:formatNumber value="${groupMoney.gmPrice}" groupingUsed="true"/>원 &nbsp&nbsp
                         </td>
-                      	<td align="right">${groupMoney.gmPrice*paidList[i]} 원 &nbsp&nbsp</td>
+                      	<td align="right"><fmt:formatNumber value="${groupMoney.gmPrice*paidList[i]}" groupingUsed="true"/> 원 &nbsp&nbsp</td>
                         <c:choose>
                         	<c:when test="${groupMoney.gmPrice*paidList[i] == groupMoney.gmPrice*groupSize}">
-                        		<td align="center">수납완료 </td>
+                        		<td align="center" style="color:blue">수납완료 </td>
                         	</c:when>
                         	<c:otherwise>
-                        		<td align="center"><b>수납중</b> </td>
+                        		<td align="center"><a href="getGmPaid.do?gmNo=${groupMoney.gmNo}" style="color:red">수납중</a></td>
                         	</c:otherwise>
                         </c:choose>
                         <td align="right">${paidList[i]}(${groupSize-paidList[i]}) 명 &nbsp&nbsp</td>         

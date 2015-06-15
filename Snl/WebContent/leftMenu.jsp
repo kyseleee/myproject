@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
+<%@ page import="java.util.*" %>
 
 <div id="leftMenu">
 <nav class="navbar navbar-inverse sidebar" role="navigation">
@@ -20,8 +20,15 @@
 				<li ><a href='graph.jsp'>통    계<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-stats"></span></a></li>
 				<li ><a href='groupMoneyView.do'>회비관리<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list-alt"></span></a></li>
 				<li ><a href="getListGroupArr.do">회원리스트<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
-				<li ><a href="#">설    정<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog"></span></a></li>
-			</ul>
+				<li>
+				   	<a><h2 class="text-warning">Total</h2></a>
+					<a>총 회비 : <fmt:formatNumber value="${totalGm}" groupingUsed="true"/> 원</a>
+					<a>총 지출 :  <fmt:formatNumber value="${totalPayment}" groupingUsed="true"/>원</a>
+					<a>----------------------</a>
+					<a>총 잔액 :  <fmt:formatNumber value="${totalGm - totalPayment}" groupingUsed="true"/>원</a>
+
+				</li>
+			</ul>	
 		</div>
 	</div>
 </nav>

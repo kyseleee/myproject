@@ -30,125 +30,6 @@
 		<script src="js/login.js"></script>
 
 
-	
-<script>
-
-$("#findPwBtnPre").click(function() {
-
-	$("#resultBodyPw").hide();
-	$("#inputBodyPw").show();
-
-	$("#findPwBtnPreDiv").hide();
-	$("#findPwBtnDiv").show();
-	document.getElementById("msgPw").innerHTML="";
-
-});
-
-$("#IdINfindPwBtn").click(function() {
-
-	$("#findId").hide();
-	$("#findPw").show();
-
-});
-
-$("#findPwBtn").click(function() {
-	var id=$( "input[id=inputUserId] ").val();
-	var email=$("input[id=inputUserEmail] ").val();
-
-	$.ajax({
-		type: "POST",
-		url : "./getUserByIdEmail.do",
-		data : {id :id, email : email},
-		success : function(data) {
-					document.getElementById("msgPw").innerHTML=data;
-				  },
-		error : function(xhr, status, error) {
-					alert(error);
-				}
-	});
-
-	$("#resultBodyPw").show();
-	$("#findPwBtnPreDiv").show();
-
-	$("#inputBodyPw").hide();
-	$("#findPwBtnDiv").hide();
-});
-
-$("#getUserBtn").click(function() {
-
-	$(document).ajaxStart(function() {
-
-		$('#viewLoading').css('left', $('#modal-body').offset().left);
-		$('#viewLoading').css('top', $('#modal-body').offset().top);
-		$('#viewLoading').css('width', $('#modal-body').css('width'));
-		$('#viewLoading').css('height', $('#modal-body').css('height'));
-
-	});
-	$(document).ajaxStop(function() {
-		$("#viewLoading").hide();
-	});
-
-	var email=$( "input[name=userEmail]").val();
-
-	$("#resultBody").show();
-	$("#resultBtn").show();
-
-	$("#inputBody").hide();
-	$("#inputBtn").hide();
-
-	$.ajax({
-		type : "POST",
-		url : "./getUserByEmail.do",
-		data : { userEmail : email},
-		success : function(data) {
-					document.getElementById("msg").innerHTML=data;
-				},
-		error : function(xhr, status, error) {
-					alert(error);
-				}
-	});
-});
-
-$("#findIdBtn").click(function() {
-
-	$("#inputBtn").show();
-	$("#inputBody").show();
-
-	$("#resultBody").hide();
-	$("#resultBtn").hide();
-	document.getElementById("msg").innerHTML="";
-
-});
-
-$("#findId").on('hidden.bs.modal', function() {
-
-	$("#inputBtn").show();
-	$("#inputBody").show();
-
-	$("#resultBody").hide();
-	$("#resultBtn").hide();
-
-	$("#userEmail").val("");
-	$("#msg").val("");
-
-});
-
-$("#findPw").on('hidden.bs.modal', function() {
-
-	$("#inputBodyPw").show();
-	$("#findPwBtnDiv").show();
-
-	$("#resultBodyPw").hide();
-	$("#findPwBtnPreDiv").hide();
-
-	$("#inputUserId").val("");
-	$("#inputUserPw").val("");
-
-});
-
-
-
-</script>	
 	</head>
 	
 	<body>
@@ -386,6 +267,127 @@ $("#findPw").on('hidden.bs.modal', function() {
              
 	    
 	<jsp:include page="footer.jsp"/>
+	
+	
+	
+<script>
+
+$("#findPwBtnPre").click(function() {
+
+	$("#resultBodyPw").hide();
+	$("#inputBodyPw").show();
+
+	$("#findPwBtnPreDiv").hide();
+	$("#findPwBtnDiv").show();
+	document.getElementById("msgPw").innerHTML="";
+
+});
+
+$("#IdINfindPwBtn").click(function() {
+
+	$("#findId").hide();
+	$("#findPw").show();
+
+});
+
+$("#findPwBtn").click(function() {
+	var id=$( "input[id=inputUserId] ").val();
+	var email=$("input[id=inputUserEmail] ").val();
+
+	$.ajax({
+		type: "POST",
+		url : "./getUserByIdEmail.do",
+		data : {id :id, email : email},
+		success : function(data) {
+					document.getElementById("msgPw").innerHTML=data;
+				  },
+		error : function(xhr, status, error) {
+					alert(error);
+				}
+	});
+
+	$("#resultBodyPw").show();
+	$("#findPwBtnPreDiv").show();
+
+	$("#inputBodyPw").hide();
+	$("#findPwBtnDiv").hide();
+});
+
+$("#getUserBtn").click(function() {
+
+	$(document).ajaxStart(function() {
+
+		$('#viewLoading').css('left', $('#modal-body').offset().left);
+		$('#viewLoading').css('top', $('#modal-body').offset().top);
+		$('#viewLoading').css('width', $('#modal-body').css('width'));
+		$('#viewLoading').css('height', $('#modal-body').css('height'));
+
+	});
+	$(document).ajaxStop(function() {
+		$("#viewLoading").hide();
+	});
+
+	var email=$( "input[name=userEmail]").val();
+
+	$("#resultBody").show();
+	$("#resultBtn").show();
+
+	$("#inputBody").hide();
+	$("#inputBtn").hide();
+
+	$.ajax({
+		type : "POST",
+		url : "./getUserByEmail.do",
+		data : { userEmail : email},
+		success : function(data) {
+					document.getElementById("msg").innerHTML=data;
+				},
+		error : function(xhr, status, error) {
+					alert(error);
+				}
+	});
+});
+
+$("#findIdBtn").click(function() {
+
+	$("#inputBtn").show();
+	$("#inputBody").show();
+
+	$("#resultBody").hide();
+	$("#resultBtn").hide();
+	document.getElementById("msg").innerHTML="";
+
+});
+
+$("#findId").on('hidden.bs.modal', function() {
+
+	$("#inputBtn").show();
+	$("#inputBody").show();
+
+	$("#resultBody").hide();
+	$("#resultBtn").hide();
+
+	$("#userEmail").val("");
+	$("#msg").val("");
+
+});
+
+$("#findPw").on('hidden.bs.modal', function() {
+
+	$("#inputBodyPw").show();
+	$("#findPwBtnDiv").show();
+
+	$("#resultBodyPw").hide();
+	$("#findPwBtnPreDiv").hide();
+
+	$("#inputUserId").val("");
+	$("#inputUserPw").val("");
+
+});
+
+
+
+</script>	
 	
 	</body>
 
