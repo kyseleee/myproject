@@ -54,7 +54,7 @@ public class UserController {
 			return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+user.getId();	
 		}
 		
-		return "redirect:/index.jsp";	
+		return "redirect:/main.jsp";	
 	}
 	
 	@RequestMapping("/getUser.do")
@@ -265,7 +265,7 @@ public class UserController {
 
 		session.invalidate();
 		
-		return "redirect:/index.jsp";
+		return "redirect:/main.jsp";
 	}
 	
 	
