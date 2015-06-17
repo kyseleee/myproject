@@ -63,6 +63,7 @@
   			<if test="userName !=null">user_name = #{userName:VARCHAR},</if>
   			<if test="email!=null">email = #{email:VARCHAR},</if>
   			<if test="tel!=null">tel = #{tel:VARCHAR},</if>
+  			<if test="pw!=null">pw = #{pw:VARCHAR},</if>			
   		</set>
   		WHERE id=#{id}
   	</update>
