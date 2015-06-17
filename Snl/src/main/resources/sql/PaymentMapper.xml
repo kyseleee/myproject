@@ -51,7 +51,15 @@
 	<update id="updatePayment"	parameterType="payment">
   		UPDATE payment
   		<set>	
-  			method=#{method}, receit=#{receit, jdbcType=VARCHAR}, pay_date=#{payDate}, pay_name=#{payName}, amount=#{amount})
+  			method=#{method}, receit=#{receit, jdbcType=VARCHAR}, pay_date=#{payDate}, pay_name=#{payName}, amount=#{amount}
+  		</set>
+  		WHERE pay_no=#{payNo}				
+  	</update>
+  	
+  	<update id="updatePaymentSameReceipt"	parameterType="payment">
+  		UPDATE payment
+  		<set>	
+  			method=#{method}, pay_date=#{payDate}, pay_name=#{payName}, amount=#{amount}
   		</set>
   		WHERE pay_no=#{payNo}				
   	</update>
@@ -59,12 +67,14 @@
 	<delete id="deletePayment" parameterType="int">
 		DELETE FROM payment WHERE pay_no=#{value}
 	</delete>
+	
 	<select id="getMonthlyPayment" parameterType="map" resultMap="paymentSelectMap">
 		SELECT TO_CHAR(pay_date, 'YYYY-MM') AS pay_date, SUM(amount) AS amount
 		FROM payment
 		WHERE group_no=#{groupNo} AND TO_CHAR(pay_date, 'YYYY-MM')=#{month} 
 		GROUP BY TO_CHAR(pay_date, 'YYYY-MM')
 	</select>
+	
 	<select id="getPaymentListByMonth" parameterType="payment" resultMap="paymentSelectMap">
 		SELECT TO_CHAR(pay_date , 'YYYY-MM') AS pay_date, SUM(amount) AS amount
 		FROM payment
@@ -86,6 +96,13 @@
 		SELECT pay_no, group_no, method, receit, pay_date, pay_name, amount
 					FROM payment
 					WHERE group_no=#{groupNo}
+					ORDER BY pay_date
+	</select>
+
+	<select id="getPaymentListByDayDuration" parameterType="map" resultMap="paymentSelectMap">
+		SELECT pay_no, group_no, method, receit, pay_date, pay_name, amount
+					FROM payment
+					WHERE group_no=#{groupNo} AND pay_date BETWEEN #{startDate} AND #{endDate}
 					ORDER BY pay_date
 	</select>
 
