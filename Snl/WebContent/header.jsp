@@ -7,7 +7,12 @@
 	<div id="header">
    	<nav class="navbar navbar-inverse">
 		    <div class="navbar-header">
-		     	<a id="home" class="navbar-brand" href="/Snl/index.jsp">SNL</a> 
+		    	<c:if test="${! empty user}">
+		     	<a id="home" class="navbar-brand" href="/Snl/calendar.jsp">SNL</a> 
+		     	</c:if>
+		     	<c:if test="${empty user}">
+		     	<a id="home" class="navbar-brand" href="/Snl/login.jsp">SNL</a> 
+		     	</c:if>
 			</div>        
 
 				<c:if test="${! empty group}">		

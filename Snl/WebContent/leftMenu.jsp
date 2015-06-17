@@ -4,6 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
 <%@ page import="java.util.*" %>
 
+
 <div id="leftMenu">
 <nav class="navbar navbar-inverse sidebar" role="navigation">
     	<div class="container-fluid">
@@ -22,10 +23,10 @@
 				<li ><a href="getListGroupArr.do">회원리스트<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
 				<li>
 				   	<a><h2 class="text-warning">Total</h2></a>
-					<a>총 회비 : <fmt:formatNumber value="${totalGm}" groupingUsed="true"/> 원</a>
-					<a>총 지출 :  <fmt:formatNumber value="${totalPayment}" groupingUsed="true"/>원</a>
-					<a>----------------------</a>
-					<a>총 잔액 :  <fmt:formatNumber value="${totalGm - totalPayment}" groupingUsed="true"/>원</a>
+					<a style="color:white">총 회비 : <fmt:formatNumber value="${totalGm}" groupingUsed="true"/> 원</a>
+					<a style="color:white">총 지출 :  <fmt:formatNumber value="${totalPayment}" groupingUsed="true"/>원</a>
+					<a style="color:white">----------------------</a>
+					<a style="color:white">총 잔액 :  <fmt:formatNumber value="${totalGm - totalPayment}" groupingUsed="true"/>원</a>
 
 				</li>
 			</ul>	

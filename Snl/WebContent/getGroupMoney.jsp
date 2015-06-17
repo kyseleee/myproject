@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
+<%@page import="java.util.*" %>
 
 <c:if test="${! empty param.sendMail}">
 	<script type="text/javascript">
@@ -52,7 +54,7 @@
         <div class="panel panel-primary" style="margin-top: 40px;">
     				
             <div class="panel-heading">
-                <h3 class="panel-title">${groupMoney.gmName} ( ${groupMoney.gmDate.substring(0,10)} / ${groupMoney.gmPrice}원)</h3> 
+                <h3 class="panel-title">${groupMoney.gmName} ( ${groupMoney.gmDate.substring(0,10)} / <fmt:formatNumber value="${groupMoney.gmPrice}" groupingUsed="true"/>원)</h3> 
             </div>			
 				<div class="panel panel-default" style="margin-bottom: 0px;">
 					

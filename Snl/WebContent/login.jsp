@@ -21,7 +21,55 @@
  		<link href="css/index.css" rel="stylesheet">
 	    <link href="css/leftmenu.css" rel="stylesheet">
 		<link href="css/login.css" rel="stylesheet">
+		<style type="text/css">
+		
+		.colorgraph {
+			height: 5px;
+			border-top: 0;
+			background: #c4e17f;
+			border-radius: 5px;
+			background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+			background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+			background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+			background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+		}
 
+		
+		.login-container{
+		    position: relative;
+		    width: 500px;
+		    margin: 80px auto;
+		    padding: 20px 40px 40px;
+		    text-align: center;
+		    background: #fff;
+		    border: 1px solid #ccc;
+		}
+		
+		.login-container::before,.login-container::after{
+		    content: "";
+		    position: absolute;
+		    width: 100%;height: 100%;
+		    top: 3.5px;left: 0;
+		    background: #fff;
+		    z-index: -1;
+		    -webkit-transform: rotateZ(4deg);
+		    -moz-transform: rotateZ(4deg);
+		    -ms-transform: rotateZ(4deg);
+		    border: 1px solid #ccc;
+		
+		}
+
+		.login-container::after{
+		    top: 5px;
+		    z-index: -2;
+		    -webkit-transform: rotateZ(-2deg);
+		    -moz-transform: rotateZ(-2deg);
+		    -ms-transform: rotateZ(-2deg);
+		
+		}
+
+
+		</style>
 		
 
 		<!--  js -->
@@ -34,360 +82,58 @@
 	
 	<body>
 	
-
- 		<jsp:include page="header.jsp"/>
+	<div id="header">
+   		<nav class="navbar navbar-inverse">
+		    <div class="navbar-header">
+		     	<a id="home" class="navbar-brand" href="/Snl/index.jsp">SNL</a> 
+			</div>    
+		</nav>
+	</div>
     
-  		<div id="content">
-  	  	<jsp:include page="leftMenu.jsp"/>
+  	<div id="content">
     
     	
     	<div id="main">
     	
-    	
-    			<div class="row">
-		<div class="col-md-6 col-sm-offset-3">
-			<div class="panel panel-login">
-			
-				<!-- 제목 -->
-				<div class="panel-heading">
-					<div class="row">
-						<div class="col-xs-6">
-							<a href="#" class="active" id="login-form-link">로그인</a>
-						</div>
-						<div class="col-xs-6">
-							<a href="#" id="register-form-link">회원가입</a>
-						</div>
-					</div>
-					<hr>
+<div class="login-container">   		
+	<div class="row" >
+		<form role="form" id="login-form" method="post" action="login.do?sgroupNo=<%=sgroupNo%>" accept-charset="UTF-8">
+			<fieldset>
+				<h2>Log In</h2>
+				<hr class="colorgraph">
+				<div class="form-group">
+                    <input type="text" name="userId" id="userId" class="form-control input-lg" placeholder="ID">
 				</div>
+				<div class="form-group">
+                    <input type="password" name="userPw" id="userPw" class="form-control input-lg" placeholder="Password">
+				</div>
+				<div id="logInChk" style="text-align: center;"></div>
 				
-				<!-- body -->
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-lg-12">
-							<!-- login 입력받아 넘길 값들  -->
-							<form id="login-form" action="login.do?sgroupNo=<%=sgroupNo%>"
-								method="post" role="form" style="display: block;">
-								<div class="form-group">
-									<input type="text" name="userId" id="userId" tabindex="1"
-										class="form-control" placeholder="아이디" value="">
-								</div>
-								<div class="form-group">
-									<input type="password" name="userPw" id="userPw" tabindex="2"
-										class="form-control" placeholder="패스워드">
-								</div>
-								<div id="logInChk" style="text-align: center;"></div>
-
-								<div class="form-group">
-									<div class="row">
-										<div class="col-sm-6 col-sm-offset-3">
-											<input type="button" name="login-submit" id="login-submit"
-												 class="form-control btn btn-login" onclick="loginchk();" value="로그인">
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="text-center">
-												<a href="" tabindex="5" class="forgot-password"
-													style="text-decoration: none" data-toggle="modal"
-													data-target="#findId">아이디 </a>&nbsp / <a href=""
-													tabindex="5" class="forgot-password"
-													style="text-decoration: none" data-toggle="modal"
-													data-target="#findPw">비밀번호 찾기</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</form>
-							<form id="register-form"
-								action="/Snl/addUser.do?sgroupNo=<%=sgroupNo%>" method="post"
-								style="display: none;">
-								<div class="form-group">
-									<input type="text" name="id" id="id" tabindex="1"
-										class="form-control" placeholder="아이디" value="" required="">
-									<div id="idInfo"></div>
-								</div>
-								<div class="form-group">
-									<input type="password" name="pw" id="pw" tabindex="1"
-										class="form-control" placeholder="패스워드">
-								</div>
-								<div class="form-group">
-									<input type="password" name="confirm-password"
-										id="confirm-password" tabindex="1" class="form-control"
-										placeholder="비밀번호 확인">
-									<div id="pwInfo"></div>
-								</div>
-
-
-								<div class="form-group">
-									<input type="text" name="userName" id="userName" tabindex="1"
-										class="form-control" placeholder="이름">
-								</div>
-								<div class="form-group">
-									<input type="email" name="email" id="email" tabindex="1"
-										class="form-control" placeholder="이메일 주소" value="">
-								</div>
-								<div class="form-group">
-									<input type="text" name="tel" id="tel" tabindex="1"
-										class="form-control" placeholder="전화번호" value="">
-									<div id="telInfo"></div>
-
-								</div>
-
-								<div class="form-group">
-									<div class="row">
-										<div class="col-sm-6 col-sm-offset-3">
-											<input type="submit" name="register-submit"
-												id="register-submit" tabindex="4"
-												class="form-control btn btn-register" value="등록">
-										</div>
-									</div>
-								</div>
-							</form>
-						</div>
+				<hr class="colorgraph">
+				<div class="row">
+					<div class="col-xs-6 col-sm-6 col-md-6">
+                        <input type="button" name="login-submit" id="login-submit" class="btn btn-lg btn-success btn-block" onclick="loginchk();" value="로그인">
+					</div>
+					<div class="col-xs-6 col-sm-6 col-md-6">
+						<a href="addUserView.jsp" class="btn btn-lg btn-primary btn-block">회원가입</a>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-		
-		
-		
-		</div>
+				<a href="search.jsp" class="btn btn-link pull-right">ID/PW 찾기</a>
 				
-
-			
-
-
-	<!-- index 끝 -->
-
-
-
-
-
-
-	
-
-	<!-- findId Modal -->
-	<div id="findId" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-
-			<!-- Modal content-->
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">ID 찾기</h4>
-				</div>
-				<div class="modal-body" id="inputBody" style="height: 130px;">
-					<p>회원가입 시 입력하였던 email을 입력해주시기 바랍니다.</p>
-					<input type="email" style="margin-top: 30px;" class="form-control"
-						name="userEmail" id="userEmail" placeholder="ex) abc@gmail.com ">
-				</div>
-				<div class="modal-body" id="resultBody"
-					style="display: none; height: 130px; text-align: center;">
-					<div id="viewLoading" align="center">
-						<img src="images/viewLoading.gif" align="middle" />
-					</div>
-					<div id="msg" style="text-align: center; margin-top: 40px;">
-						<br> <br>
-					</div>
-				</div>
-				<div class="modal-footer" id="inputBtn">
-					<button type="button" id="getUserBtn" class="btn btn-primary">확인</button>
-				</div>
-				<div class="modal-footer" id="resultBtn" style="display: none;">
-					<button type="button" class="btn btn-default" id="findIdBtn"
-						class="form-control btn btn-register">뒤로가기</button>
-					<button type="button" class="btn btn-primary" id="IdINfindPwBtn"
-						class="form-control btn btn-register"
-						style="text-decoration: none" data-toggle="modal"
-						data-target="#findPw">비밀번호찾기</button>
-				</div>
-
-			</div>
-		</div>
+			</fieldset>
+		</form>
 	</div>
-	<!-- findId Modal 끝 !!! -->
-
-	<!-- findPw Modal -->
-	<div id="findPw" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="modal-content">
-
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">PW 찾기</h4>
-				</div>
-
-				<div class="modal-body" id="inputBodyPw">
-					<p>ID와 회원가입시 사용하였던 email을 입력해주시기 바랍니다.</p>
-					<div class="form-group">
-						<label for="userId" class="control-label">ID </label> <input
-							type="text" class="form-control" id="inputUserId">
-					</div>
-					<div class="form-group">
-						<label for="userEmail" class="control-label">Email</label> <input
-							type="text" class="form-control" id="inputUserEmail">
-					</div>
-				</div>
-
-				<div class="modal-body" id="resultBodyPw"
-					style="display: none; height: 130px;">
-					<div id="msgPw" style="text-align: center; margin-top: 40px;">
-						<br> <br>
-					</div>
-				</div>
-
-				<div class="modal-footer" id="findPwBtnDiv">
-					<button type="button" class="btn btn-primary" id="findPwBtn"
-						class="form-control btn btn-register">찾기</button>
-				</div>
-				<div class="modal-footer" id="findPwBtnPreDiv"
-					style="display: none;">
-					<button type="button" class="btn btn-default" id="findPwBtnPre"
-						class="form-control btn btn-register">뒤로가기</button>
-				</div>
-			</div>
-		</div>
-
-    	
-    	
-    	
-    	
-    	
-    	</div>
+</div>
+</div>
+</div>
 	
-		<jsp:include page="rightMenu.jsp"></jsp:include>
     
-    </div>
     
              
 	    
-	<jsp:include page="footer.jsp"/>
 	
 	
-	
-<script>
 
-$("#findPwBtnPre").click(function() {
-
-	$("#resultBodyPw").hide();
-	$("#inputBodyPw").show();
-
-	$("#findPwBtnPreDiv").hide();
-	$("#findPwBtnDiv").show();
-	document.getElementById("msgPw").innerHTML="";
-
-});
-
-$("#IdINfindPwBtn").click(function() {
-
-	$("#findId").hide();
-	$("#findPw").show();
-
-});
-
-$("#findPwBtn").click(function() {
-	var id=$( "input[id=inputUserId] ").val();
-	var email=$("input[id=inputUserEmail] ").val();
-
-	$.ajax({
-		type: "POST",
-		url : "./getUserByIdEmail.do",
-		data : {id :id, email : email},
-		success : function(data) {
-					document.getElementById("msgPw").innerHTML=data;
-				  },
-		error : function(xhr, status, error) {
-					alert(error);
-				}
-	});
-
-	$("#resultBodyPw").show();
-	$("#findPwBtnPreDiv").show();
-
-	$("#inputBodyPw").hide();
-	$("#findPwBtnDiv").hide();
-});
-
-$("#getUserBtn").click(function() {
-
-	$(document).ajaxStart(function() {
-
-		$('#viewLoading').css('left', $('#modal-body').offset().left);
-		$('#viewLoading').css('top', $('#modal-body').offset().top);
-		$('#viewLoading').css('width', $('#modal-body').css('width'));
-		$('#viewLoading').css('height', $('#modal-body').css('height'));
-
-	});
-	$(document).ajaxStop(function() {
-		$("#viewLoading").hide();
-	});
-
-	var email=$( "input[name=userEmail]").val();
-
-	$("#resultBody").show();
-	$("#resultBtn").show();
-
-	$("#inputBody").hide();
-	$("#inputBtn").hide();
-
-	$.ajax({
-		type : "POST",
-		url : "./getUserByEmail.do",
-		data : { userEmail : email},
-		success : function(data) {
-					document.getElementById("msg").innerHTML=data;
-				},
-		error : function(xhr, status, error) {
-					alert(error);
-				}
-	});
-});
-
-$("#findIdBtn").click(function() {
-
-	$("#inputBtn").show();
-	$("#inputBody").show();
-
-	$("#resultBody").hide();
-	$("#resultBtn").hide();
-	document.getElementById("msg").innerHTML="";
-
-});
-
-$("#findId").on('hidden.bs.modal', function() {
-
-	$("#inputBtn").show();
-	$("#inputBody").show();
-
-	$("#resultBody").hide();
-	$("#resultBtn").hide();
-
-	$("#userEmail").val("");
-	$("#msg").val("");
-
-});
-
-$("#findPw").on('hidden.bs.modal', function() {
-
-	$("#inputBodyPw").show();
-	$("#findPwBtnDiv").show();
-
-	$("#resultBodyPw").hide();
-	$("#findPwBtnPreDiv").hide();
-
-	$("#inputUserId").val("");
-	$("#inputUserPw").val("");
-
-});
-
-
-
-</script>	
 	
 	</body>
 

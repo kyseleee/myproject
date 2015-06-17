@@ -19,7 +19,59 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/grayscale.css" rel="stylesheet">
 <link href="css/mainActivity.css" rel="stylesheet">
-
+<style type="text/css">
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dp .help-block{
+    font-size:12px;
+   	font-color:blue;    
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0    
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc 
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+@media(max-width:768px){
+    #login-dp{
+        background-color: inherit;
+        color: #fff;
+    }
+    #login-dp .bottom{
+        background-color: inherit;
+        border-top:0 none;
+    }
+}
+</style>
 <!--  js -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -41,6 +93,10 @@
 			<ul class="nav navbar-nav">
 				<li><a class="page-scroll" href="#main1">introduction</a></li>
 				<li><a class="page-scroll" href="#main2">contact</a></li>
+				<li><a class="page-scroll" href="login.jsp">LogIn</a></li>
+       				
+        
+				
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->
@@ -57,7 +113,7 @@
 
 				<div class="main_title">
 					<h1>SNL</h1>
-					<h1>(Socail Network Ledger)</h1>
+					<h1>(Social Network Ledger)</h1>
 					<p class="intro-text">
 						어디에서도 경험 할 수 없었던 <br /> 소셜 네트워크 가계부 <br /> 경험해보세요. <br />
 					</p>

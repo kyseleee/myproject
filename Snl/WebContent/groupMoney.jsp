@@ -67,10 +67,14 @@
     	
 
 		<h2 align="center">< 회비내역 리스트 ></h2><br/>
-		<h4 align="right">${group.groupName}의 총 인원 : ${groupSize} 명 &nbsp&nbsp<a href="addGroupMoney.jsp"><button class="btn btn-primary">add</button></a></h4>
+		<h4 align="right">${group.groupName}의 총 인원 : ${groupSize} 명 &nbsp&nbsp
+			<c:if test="${group.user.userNo == user.userNo}">			
+				<a href="addGroupMoney.jsp"><button class="btn btn-primary">add</button></a>
+			</c:if>
+		</h4>
 		
         <div class="panel panel-primary">
-            <table class="table">
+            <table class="table">	
                 <tr align="center">
                    
                     <td><b>회비명</td>
@@ -85,7 +89,15 @@
                  <c:forEach var="groupMoney" items="${groupMoneyList}">
 			   		
                     <tr>
-                    	<td align="center"><a href="getGmPaid.do?gmNo=${groupMoney.gmNo}">${groupMoney.gmName}</a></td>
+                    	<td align="center">
+                    		<c:if test="${group.user.userNo == user.userNo}">			
+                    			<a href="getGmPaid.do?gmNo=${groupMoney.gmNo}">
+							</c:if>
+                    		${groupMoney.gmName}
+                    		<c:if test="${group.user.userNo == user.userNo}">			
+                    			</a>
+							</c:if>		
+                    	</td>
                         <td align="center">${groupMoney.gmDate.substring(0,10)}</td>
                         <td align="right">
 	                        <fmt:formatNumber value="${groupMoney.gmPrice}" groupingUsed="true"/>원 &nbsp&nbsp
@@ -96,7 +108,15 @@
                         		<td align="center" style="color:blue">수납완료 </td>
                         	</c:when>
                         	<c:otherwise>
-                        		<td align="center"><a href="getGmPaid.do?gmNo=${groupMoney.gmNo}" style="color:red">수납중</a></td>
+                        		<td align="center">
+                        		<c:if test="${group.user.userNo == user.userNo}">
+                        			<a href="getGmPaid.do?gmNo=${groupMoney.gmNo}" style="color:red">
+                        		</c:if>
+                        		수납중
+                        		<c:if test="${group.user.userNo == user.userNo}">
+                        			</a>
+                        		</c:if>
+                        		</td>
                         	</c:otherwise>
                         </c:choose>
                         <td align="right">${paidList[i]}(${groupSize-paidList[i]}) 명 &nbsp&nbsp</td>         
