@@ -12,7 +12,7 @@ function updatePayment(event){
 			select2="selected";
 		}
 		alert(method+"="+select1+"="+select2+"="+event.receit);
-		$("#eventContent").html('<form id="addPay-form" action="updatePayment.do" method="POST" enctype="multipart/form-data">	<div class="form-group"><label for="payMethod" class="col-sm-3 control-label">결제수단</label><div class="col-sm-9" style="vertical-align:middle;"><select class="form-control" id="method" name="method"><option '+select1+'>신용카드</option><option '+select2+'>현    금</option></select></div></div>    <div class="form-group"><label for="date" class="col-sm-3 control-label">날     짜</label><div class="col-sm-9"><input type="date" class="form-control" id="payDate" name="payDate" value='+event.payDate+'><div id="dateErr"></div></div></div><div class="form-group"><label for="amount" class="col-sm-3 control-label">상  호  명</label><div class="col-sm-9"><input type="text" class="form-control" id="payName" name="payName" value='+event.payName+'><div id="payNameErr"></div></div></div><div class="form-group"><label for="description" class="col-sm-3 control-label">금      액</label><div class="col-sm-9"><input type="text" class="form-control" id="amount" name="amount" value='+event.amount+'><div id="amountErr"></div></div></div><div class="form-group"><label for="concept" class="col-sm-3 control-label">영  수  증</label><div class="col-sm-9"><input type="text" class="form-control" id="file11" value="'+event.receit+'" disabled/><input type="file" id="file" name="file" /></div></div></form>');
+		$("#eventContent").html('<form id="addPay-form" action="updatePayment.do?payNo='+event.payNo+'" method="POST" enctype="multipart/form-data">	<div class="form-group"><label for="payMethod" class="col-sm-3 control-label">결제수단</label><div class="col-sm-9" style="vertical-align:middle;"><select class="form-control" id="method" name="method"><option '+select1+'>신용카드</option><option '+select2+'>현    금</option></select></div></div>    <div class="form-group"><label for="date" class="col-sm-3 control-label">날     짜</label><div class="col-sm-9"><input type="date" class="form-control" id="payDate" name="payDate" value='+event.payDate+'><div id="dateErr"></div></div></div><div class="form-group"><label for="amount" class="col-sm-3 control-label">상  호  명</label><div class="col-sm-9"><input type="text" class="form-control" id="payName" name="payName" value='+event.payName+'><div id="payNameErr"></div></div></div><div class="form-group"><label for="description" class="col-sm-3 control-label">금      액</label><div class="col-sm-9"><input type="text" class="form-control" id="amount" name="amount" value='+event.amount+'><div id="amountErr"></div></div></div><div class="form-group"><label for="concept" class="col-sm-3 control-label">영  수  증</label><div class="col-sm-9"><input type="file" id="file" name="file" /></div></div></form>');
 		update++;
 	}
 	else{
@@ -56,14 +56,14 @@ function deletePayment(event) {
 							data: {groupNo : groupNoHid, date : $('#calendar').fullCalendar('getDate').format() },
 							method: 'POST',
 							success: function(data){
-								$('.fc-right').html("총 지출액 : "+data+"원");
+								$('.fc-right').html("총 지출액 : "+parseInt(data).toLocaleString()+"원");
 							}
 						});
 						
 						
 						
 					},
-					dayClick: function(date, allDay, jsEvent, view){
+					dayClick: function(date, allDay, jsEvent, view) {
 						$("#addPayment").dialog({
 							autoOpen: false,
 							height: 400,
@@ -77,7 +77,7 @@ function deletePayment(event) {
 								}
 							}
 						});
-						$("#addPaymentContent").html('<form id="addPay-form" action="addPayment.do?groupNo='+groupNoHid+'" method="POST" enctype="multipart/form-data"><div class="form-group"><label for="payMethod" class="col-sm-3 control-label">결제수단</label><div class="col-sm-9" style="vertical-align:middle;"><select class="form-control" id="method" name="method"><option>신용카드</option><option>현    금</option></select></div></div><div class="form-group"><label for="date" class="col-sm-3 control-label">날     짜</label><div class="col-sm-9"><input type="date" class="form-control" id="payDate" name="payDate"><div id="dateErr"></div></div></div><div class="form-group">                        <label for="amount" class="col-sm-3 control-label">상  호  명</label><div class="col-sm-9"><input type="text" class="form-control" id="payName" name="payName"><div id="payNameErr"></div></div></div><div class="form-group"><label for="description" class="col-sm-3 control-label">금      액</label><div class="col-sm-9"><input type="text" class="form-control" id="amount" name="amount"><div id="amountErr"></div><!-- <input type="hidden" value="" id="receit" name="receit"/> --></div></div><div class="form-group"><label for="concept" class="col-sm-3 control-label">영  수  증</label><div class="col-sm-9"><input type="file" id="file" name="file"/></div></div><div class="form-group"><div class="form-group text-center"><label for="txtMsg"> 지출내역 문자발송  </label><input type="checkbox" tabindex="3" class="" name="txtMsg" id="txtMsg" value="y"></div></div></form>');
+						$("#addPaymentContent").html('<form id="addPay-form" action="addPayment.do?groupNo='+groupNoHid+'" method="POST" enctype="multipart/form-data"><div class="form-group"><label for="payMethod" class="col-sm-3 control-label">결제수단</label><div class="col-sm-9" style="vertical-align:middle;"><select class="form-control" id="method" name="method"><option>신용카드</option><option>현    금</option></select></div></div><div class="form-group"><label for="date" class="col-sm-3 control-label">날     짜</label><div class="col-sm-9"><input type="date" class="form-control" id="payDate" name="payDate" value="'+date.format()+'"><div id="dateErr"></div></div></div><div class="form-group">                        <label for="amount" class="col-sm-3 control-label">상  호  명</label><div class="col-sm-9"><input type="text" class="form-control" id="payName" name="payName"><div id="payNameErr"></div></div></div><div class="form-group"><label for="description" class="col-sm-3 control-label">금      액</label><div class="col-sm-9"><input type="text" class="form-control" id="amount" name="amount"><div id="amountErr"></div><!-- <input type="hidden" value="" id="receit" name="receit"/> --></div></div><div class="form-group"><label for="concept" class="col-sm-3 control-label">영  수  증</label><div class="col-sm-9"><input type="file" id="file" name="file"/></div></div><div class="form-group"><div class="form-group text-center"><label for="txtMsg"> 지출내역 문자발송  </label><input type="checkbox" tabindex="3" class="" name="txtMsg" id="txtMsg" value="y"></div></div></form>');
 //						$( "#addPayment" ).dialog( "open" );
 						$( "#addPayment" ).dialog({
 							open: function() {
@@ -160,7 +160,15 @@ function deletePayment(event) {
 	                            
 						});
 //						$(".ui-dialog-titlebar-close").remove();
-					$("#eventContent").html('<div>결제수단 : '+select+'</div> <div>날짜 : '+event.payDate.substring(0,10)+'</div> <div> 상 호 명 : '+event.payName+'</div> <div>금  액 : '+event.amount+'원</div> <div>영 수 증 : </div><div><img src="http://192.168.200.122:8080/Snl/'+event.receit+'" width="460"</div>/>');
+						var receiptLink='';
+						var receiptName='';
+						if(event.receit=='-') {
+							receiptName='없음';
+						}
+						else {
+							receiptLink='<img src="http://192.168.200.122:8080/Snl/'+event.receit+'" width="460"/>';
+						}
+					$("#eventContent").html('<div>결제수단 : '+select+'</div> <div>날짜 : '+event.payDate.substring(0,10)+'</div> <div> 상 호 명 : '+event.payName+'</div> <div>금  액 : '+parseInt(event.amount).toLocaleString()+'원</div> <div>영 수 증 : '+receiptName+'</div><div>'+receiptLink+'</div>');
 						$( "#event" ).dialog( 
 	                            { title:  event.payName }
 	                        );
@@ -178,7 +186,7 @@ function deletePayment(event) {
 //							alert("FAIL");
 //						}
 //					}
-					events: function(start, end, timezone,callback){
+					events: function(start, end, timezone, callback){
 							$.ajax({
 								url : './listPaymentByDay.do',
 								data : {groupNo : groupNoHid},
@@ -186,7 +194,7 @@ function deletePayment(event) {
 								method : 'POST',
 								success : function(data){
 									for(var i=0;i<data.length;i++){
-										data[i].title=decodeURIComponent(data[i].title);
+										data[i].title=parseInt(data[i].title).toLocaleString()+"원";
 										data[i].method=decodeURIComponent(data[i].method);
 										data[i].receit=decodeURIComponent(data[i].receit);
 										data[i].payName=decodeURIComponent(data[i].payName);
