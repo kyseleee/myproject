@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -13,7 +12,8 @@
 
 		<link href="css/bootstrap.min.css" rel="stylesheet">
  		<link href="css/index.css" rel="stylesheet">
-	    <link href="css/leftmenu.css" rel="stylesheet">
+	  <link href="css/leftmenu.css" rel="stylesheet">
+	  <link href="jui/jui.min.css" rel="stylesheet">
 
 		
 
@@ -23,10 +23,21 @@
 		<script src="js/login.js"></script>
 		<script src="js/highchart/highstock.js"></script>
 		<script src="js/highchart/exporting.js"></script>
-		<!-- <script src="js/highchart/sand-signika.js"></script> -->
-		<script src="jquery.json-2.4.min.js"></script>
+		<script src="http://code.highcharts.com/modules/no-data-to-display.js"></script>
+		<script src="jui/jui.min.js"></script>
+		<script src="js/highchart/sand-signika.js"></script>
+		<!-- <script src="jquery.json-2.4.min.js"></script> -->
 		
-		
+		<script>
+		jui.ready([ "uix.table" ], function(table) {
+		    table_1 = table("#table_1", {
+		        data: [
+		            { name: "기간내합계", age: "275,000원"},
+		            { name: "월간 평균", age: "25,000원"}
+		        ]
+		    });
+		});
+		</script>
 	</head>
 	
 	<body>
@@ -39,7 +50,7 @@
   	  	<jsp:include page="leftMenu.jsp"/>
     	
     	<div id="main">
-    	<input type="hidden" id="groupNoHidden" name="groupNoHidden" value="${groupNo}"/>
+    	<input type="hidden" id="groupNoHidden" name="groupNoHidden" value="${group.groupNo}"/>
 	<span>
 		시작일&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; 종료일<br>
 		<input type="text" id="startDate" name="startDate" style="width:72px">
@@ -56,6 +67,7 @@
 		<button id="line">Line</button>
 		<button id="area">Area</button>		
 	</span>
+	<div id="errMsg"></div>
 	<!-- <div class="row">
 			<div class="col-xs-1">
 				<fieldset id="f_start" style="border:0; font-size:12px">시작일<br>
@@ -81,11 +93,30 @@
 	</div> -->
 
 <div id="container"></div>
+<div class="jui">
+		<table id="table_1" class="table table-classic">
+		    <thead>
+		    <tr>
+		        <th></th>
+		        <th>지출비용</th>
+		    </tr>
+		    </thead>
+		    <tbody></tbody>
+		</table>
+<script data-jui="#table_1" data-tpl="row" type="text/template">
+    <tr>
+        <td><!= name !></td>
+        <td><!= age !></td>
+    </tr>
+</script>
+</div>
 
-    	
+
+
+
     	</div>
 	
-		<jsp:include page="rightMenu.jsp"></jsp:include>>
+		<jsp:include page="rightMenu.jsp"></jsp:include>
     
     </div>
     

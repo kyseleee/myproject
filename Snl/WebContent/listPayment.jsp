@@ -15,15 +15,78 @@
  		<link href="css/index.css" rel="stylesheet">
     <link href="css/leftmenu.css" rel="stylesheet">
     <link href="css/user.css" rel="stylesheet">
-		<link href="css/listPayment.css" rel="stylesheet">
+		<link href="jui/jui.min.css" rel="stylesheet">	
 
 		<!--  js -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/login.js"></script>
-			
+		<script src="jui/jui.min.js"></script>
 
+		<script>
+$(document).ready(function(){
+		$.ajax({
+			url : './listPaymentByDayDuration.do',
+			data : {startDate : "2015-01-01", endDate : "2015-06-01"},
+			dataType : 'json',
+			method : 'POST',
+			success : function(data){
+				alert(data);
+				var receiptLink;
+				for(var i=0;i<data.length;i++){
+					data[i].method=decodeURIComponent(data[i].method);
+					data[i].payName=decodeURIComponent(data[i].payName);
 		
+					
+					if(data[i].receit=='-') {				
+						receiptLink=data[i].receit;
+					}
+					else {
+						receiptLink='<a href="http://192.168.200.122:8080/Snl/'+data[i].receit+'" onclick="popup(this.href); return false;">'+data[i].receit+'</a>';
+					}
+					
+				}
+				alert("before"+data[0].payName);
+				
+				var data1 = JSON.stringify(data);
+				/* lll */
+				jui.ready([ "uix.table" ], function(table) {
+		    table_7 = table("#table_7", {
+		        fields: [ "payDate", "payName", "amount", "method", "receipt" ],
+		        data: data,
+		        resize: true,
+		        sort: [ 0, 1, 2 ],
+		        scroll: true,
+		        scrollHeight: 150,
+		        event: {
+		            sort: function(column, e) {
+		                var className = {
+		                    "desc": "icon-arrow1 icon-white",
+		                    "asc": "icon-arrow3 icon-white"
+		                }[column.order];
+
+		                $(column.element).children("i").remove();
+		                $(column.element).append("<i class='" + className + "'></i>");
+		            }
+		        }
+		    });
+		});
+				
+				/* 111 */
+			},
+			error:function() {
+				alert("error");
+			}
+			
+		});
+		
+		
+		
+		
+		
+		
+});
+		</script>
 	</head>
 	
 	<body>
@@ -35,37 +98,32 @@
 
   	  	<jsp:include page="leftMenu.jsp"/>
     	
-    	<div id="main">
-    	
-				<!-- <div class="container"> -->
-				    <h3>The columns titles are merged with the filters inputs thanks to the placeholders attributes</h3>
-				    <hr>
-				    <div class="row">
-				        <div class="panel panel-primary filterable">
-				            <div class="panel-heading">
-				                <h3 class="panel-title" align="center">지 출 내 역</h3>
-				                <div class="pull-right">
-				                    <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter</button>
-				                </div>
-				            </div>
-				            <table class="table" style="text-align:center;">
-				                <thead>
-				                    <tr class="filters">
-				                        <th><input type="text" style="text-align:center;" class="form-control" placeholder="#" disabled></th>
-				                        <th><input type="text" style="text-align:center;" class="form-control" placeholder="결제수단" disabled></th>
-				                        <th><input type="text" style="text-align:center;" class="form-control" placeholder="날    짜" disabled></th>
-				                        <th><input type="text" style="text-align:center;" class="form-control" placeholder="상 호 명" disabled></th>
-				                        <th><input type="text" style="text-align:center;" class="form-control" placeholder="금    액" disabled></th>				                    
-				                        <th><input type="text" style="text-align:center;" class="form-control" placeholder="영 수 증" disabled></th>				                    </tr>
-				                </thead>
-				                <tbody>
-				                    
-				                </tbody>
-				            </table>
-				        </div>
-				    </div>
-				<!-- </div> -->
+    	<div id="main" class="jui">
+    	<table id="table_7" class="table table-classic table-stripeless">
+    <thead>
+    <tr>
+        <th>payDate</th>
+        <th>payName</th>
+        <th>amount</th>
+        <th>method</th>
+        <th>receipt</th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 
+<script data-jui="#table_7" data-tpl="row" type="text/template">
+    <tr>
+        <td><!= payDate !></td>
+        <td><!= payName !></td>
+        <td><!= amount !></td>
+        <td><!= method !></td>
+        <td><!= receipt !></td>
+    </tr>
+</script>
+				<!-- <div class="container"> -->
+				    
+				<!-- </div> -->
 
     	</div>
 	
@@ -76,7 +134,6 @@
              
 	    
 	<jsp:include page="footer.jsp"/>
-	<script src="js/listPayment.js"></script>
 	</body>
 
 </html>
