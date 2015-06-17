@@ -35,6 +35,11 @@ public class PaymentDaoImpl implements PaymentDao {
 	}
 	
 	@Override
+	public void updatePaymentSameReceipt(Payment payment) throws Exception{
+		sqlSession.update("PaymentMapper.updatePaymentSameReceipt", payment);
+	}
+	
+	@Override
 	public void deletePayment(int payNo) throws Exception{
 		sqlSession.delete("PaymentMapper.deletePayment", payNo);
 	}
@@ -85,4 +90,19 @@ public class PaymentDaoImpl implements PaymentDao {
 		return map;
 		
 	}
+	
+	@Override
+	public Map<String, Object> getPaymentListByDayDuration(int groupNo,String startDate, String endDate){
+		Map<String , Object> map = new HashMap<String, Object>();
+		Map<String , Object> tem = new HashMap<String, Object>();
+		
+		tem.put("groupNo", groupNo);
+		tem.put("startDate", startDate);
+		tem.put("endDate", endDate);
+		
+		map.put("list", sqlSession.selectList("PaymentMapper.getPaymentListByDayDuration",tem));
+		System.out.println("===="+(List<Payment>)map.get("list"));
+		return map;
+	}
+	
 }

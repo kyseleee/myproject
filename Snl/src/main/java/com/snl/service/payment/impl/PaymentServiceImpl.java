@@ -32,9 +32,15 @@ public class PaymentServiceImpl implements PaymentService{
 		paymentDao.addPayment(payment);
 	
 	}
+	
 	@Override
 	public void updatePayment(Payment payment) throws Exception{
 		paymentDao.updatePayment(payment);
+	}
+	
+	@Override
+	public void updatePaymentSameReceipt(Payment payment) throws Exception{
+		paymentDao.updatePaymentSameReceipt(payment);
 	}
 	
 	@Override
@@ -42,6 +48,7 @@ public class PaymentServiceImpl implements PaymentService{
 		paymentDao.deletePayment(payNo);
 	}
 	
+	@Override
 	public List<Payment> getPaymentByGroup(Group group) throws Exception{
 		return paymentDao.getPaymentByGroup(group);
 	}
@@ -68,5 +75,11 @@ public class PaymentServiceImpl implements PaymentService{
 	public Map<String, Object> getPaymentListByDay(int groupNo) throws Exception {
 		
 		return paymentDao.getPaymentListByDay(groupNo);
+	}
+	
+	@Override
+	public Map<String, Object> getPaymentListByDayDuration(int groupNo, String startDate, String endDate) throws Exception {
+		
+		return paymentDao.getPaymentListByDayDuration(groupNo, startDate, endDate);
 	}
 }
