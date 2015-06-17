@@ -59,15 +59,14 @@ public class GroupMoneyController {
 		
 		System.out.println("/addGroupMoney.do");
 
-		int groupNo = (int) session.getAttribute("groupNo");
-		groupMoney.setGroup(groupService.getGroup(groupNo));
+		Group group = (Group) session.getAttribute("group");
+		groupMoney.setGroup(groupService.getGroup(group.getGroupNo()));
 		groupMoneyService.addGroupMoney(groupMoney);
 		System.out.println("gmNo*************"+groupMoney.getGmNo());
 	
-		Group group = groupService.getGroup(groupNo);
-		System.out.println("group ======= "+group);
 
-		List<GroupArr> groupArrList = groupArrService.getGroupArrByGroup(groupNo);
+
+		List<GroupArr> groupArrList = groupArrService.getGroupArrByGroup(group.getGroupNo());
 		System.out.println("groupArrList ======= "+groupArrList);
 
 		for(int i=0; i<groupArrList.size(); i++){

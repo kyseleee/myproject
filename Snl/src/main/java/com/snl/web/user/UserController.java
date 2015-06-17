@@ -21,6 +21,7 @@ import com.snl.service.domain.GroupArr;
 import com.snl.service.domain.Payment;
 import com.snl.service.domain.User;
 import com.snl.service.gmPaid.GmPaidService;
+import com.snl.service.group.GroupService;
 import com.snl.service.groupArr.GroupArrService;
 import com.snl.service.mail.MailService;
 import com.snl.service.payment.PaymentService;
@@ -33,7 +34,10 @@ public class UserController {
 	@Qualifier("userServiceImpl")
 	private UserService userService;
 
-
+	@Autowired
+	@Qualifier("groupServiceImpl")
+	private GroupService groupService;
+	
 	@Autowired
 	@Qualifier("groupArrServiceImpl")
 	private GroupArrService groupArrService;
@@ -145,11 +149,34 @@ public class UserController {
 	
 	}
 	
-	
 	@RequestMapping("/getUserByEmail.do")
-	public void getUserByEmail( @RequestParam("userEmail") String email, HttpServletResponse response) throws Exception {
+	public void getUserByEmail( @RequestParam("email") String email, HttpServletResponse response) throws Exception {
 		
 		System.out.println("/getUserByEmail.do");
+		System.out.println(email);
+		User user = userService.getUserByEmail(email);
+		String result = "{  \"result\"  :    \"false\"   }";
+		
+		if(user == null){
+			result = "{  \"result\"  :    \"true\"   }";
+		}
+		
+		try{
+			response.getWriter().print(result);
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	
+	
+	}
+	
+	
+	@RequestMapping("/searchId.do")
+	public void searchId( @RequestParam("email") String email, HttpServletResponse response) throws Exception {
+		
+		System.out.println("/searchId.do");
+		System.out.println(email);
 		User user = userService.getUserByEmail(email);
 		String msg;
 		if(user != null){
@@ -170,17 +197,32 @@ public class UserController {
 	
 	}
 	
-	
-	@RequestMapping("/getUserByIdEmail.do")
-	public void getUserByIdEmail(@ModelAttribute("user") User user, HttpServletResponse response) throws Exception {
+	@RequestMapping("/searchPw.do")
+	public void searchPw(@ModelAttribute("user") User user, HttpServletResponse response) throws Exception {
 		
-		System.out.println("/getUserByIdEmail.do");
+		System.out.println("/searchPw.do");
 		
 		User dbUser = userService.getUserByIdEmail(user);
 		String msg = "";
+		  
 		if(dbUser != null){
-	        msg ="당신의 PW가 메일로 발송 되었습니다.";
-	        mailService.sendMail(dbUser.getEmail(), "ID '"+ dbUser.getId() + "'의 PW는 "+dbUser.getPw()+"입니다.");		
+			
+			String password = "";
+			for(int i = 0; i < 8; i++){
+			   char lowerStr = (char)(Math.random() * 26 + 97);
+			   if(i%2 == 0){
+			    password += (int)(Math.random() * 10);
+			   }else{
+			    password += lowerStr;
+			   }
+			}
+			
+			dbUser.setPw(password);
+			userService.updateUser(dbUser);
+			  
+	        msg ="임시 비밀번호가 메일로 발송 되었습니다.";
+	        mailService.sendMail(dbUser.getEmail(), 
+	        		"ID '"+ dbUser.getId() + "'의 임시 비밀번호는 "+password+"입니다.");		
 		}
 		else{
 			msg ="입력하신 정보가 맞지 않습니다.";	
@@ -245,7 +287,7 @@ public class UserController {
 	    		  //user가 속한 group들
 	    		  List<GroupArr> groupArrListByUser= groupArrService.getGroupArrByUser(dbUser);
 		    	  //group들 중 default
-	    		  Group group = groupArrListByUser.get(groupArrListByUser.size()-1).getGroup();
+	    		  Group group = groupService.getGroup(groupArrListByUser.get(groupArrListByUser.size()-1).getGroup().getGroupNo());
 		    	  //default group의 user리스트
 	  			  List<GroupArr> groupArrListByGroup = groupArrService.getGroupArrByGroup(group.getGroupNo());
 	  			  //그 그룹인원
@@ -255,12 +297,13 @@ public class UserController {
 	  			  session.setAttribute("group", group);
 	  			  session.setAttribute("groupSize", groupSize);
 	  			  session.setAttribute("groupArrListByGroup", groupArrListByGroup);
-	  			  
+	  			  System.out.println(session.getAttribute("group"));
 	  			  List<GmPaid> paidGmPaid=gmPaidService.getPaidGmPaidByGroup(group);
 	  			  int totalGm = 0;
-	  			  
-	  			  for(int i = 0; i<paidGmPaid.size(); i++){
-	  				  totalGm += paidGmPaid.get(i).getGroupMoney().getGmPrice();
+	  			  if(paidGmPaid != null){
+		  			  for(int i = 0; i<paidGmPaid.size(); i++){
+		  				  totalGm += paidGmPaid.get(i).getGroupMoney().getGmPrice();
+		  			  }
 	  			  }
 	  			  
 	  			  session.setAttribute("totalGm", totalGm);
@@ -282,7 +325,7 @@ public class UserController {
 	    	  if(sgroupNo != ""){
 	  			return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+dbUser.getId();	
 	    	  }
-	    	  return "redirect:index.jsp"; 
+	    	  return "redirect:calendar.jsp"; 
 	    	 
 	    	  
 	      }
