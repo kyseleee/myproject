@@ -38,7 +38,7 @@
 		.login-container{
 		    position: relative;
 		    width: 500px;
-		    margin: 80px auto;
+		    margin: 0px auto;
 		    padding: 20px 40px 40px;
 		    text-align: center;
 		    background: #fff;
@@ -85,7 +85,7 @@
 	<div id="header">
    		<nav class="navbar navbar-inverse">
 		    <div class="navbar-header">
-		     	<a id="home" class="navbar-brand" href="/Snl/index.jsp">SNL</a> 
+		     	<a id="home" class="navbar-brand" href="/Snl/login.jsp">SNL</a> 
 			</div>    
 		</nav>
 	</div>

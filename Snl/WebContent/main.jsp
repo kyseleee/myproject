@@ -2,12 +2,14 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	String sgroupNo = request.getParameter("sgroupNo");
-	if (sgroupNo == null) {
-		sgroupNo = "";
-	}
-%>    
+
+
+
+<c:if test=" ${! empty user}">
+	<script type="text/javascript">
+		location.href="/calendar.jsp";
+	</script>
+</c:if>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -139,7 +141,7 @@
 
 					<!-- login 입력받아 넘길 값들  -->
 					<form class="login" id="login-form"
-						action="login.do?sgroupNo=<%=sgroupNo%>" method="post" role="form"
+						action="login.do?sgroupNo=${param.sgroupNo}" method="post" role="form"
 						style="display: block;">
 
 						<input type="text" name="userId" id="userId" class=""
@@ -161,7 +163,7 @@
 					</form>
 
 					<form id="register-form" class="login"
-						action="/Snl/addUser.do?sgroupNo=<%=sgroupNo%>" method="post"
+						action="/Snl/addUser.do?sgroupNo=${param.sgroupNo}" method="post"
 						style="display: none;">
 						<input type="text" name="id" id="id" placeholder="아이디" value=""
 							required="">

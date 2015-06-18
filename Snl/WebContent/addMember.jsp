@@ -24,8 +24,7 @@
 		<!--  js -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
-		<script src="js/addGroup.js"></script>
-		<script src="js/login.js"></script>
+		<script src="js/addMember.js"></script>
 		
 
 		
@@ -43,38 +42,27 @@
     	
     	<div id="main">
     		
-    		<div class="col-sm-12">
-	   <legend><strong>그룹추가</strong></legend>
-	</div>
-	   <!-- panel preview -->
+    	<div class="col-sm-12">
+	    <legend style="border-bottom:0px;"><strong>${group.groupName} 초대장 발송 리스트</strong></legend>
+		</div>
 	     
-	<div class="col-sm-2"></div>
-	<div class="col-sm-8">
+		<div class="col-sm-12">
 		<div class="panel-default">
 			<form id="register-form" action="/Snl/sendInviteMail.do" method="post">
-		     <div class="panel-body form-horizontal payment-form">
-		         <div class="form-group">
-		             <label for="concept" class="col-sm-2 control-label">그룹명</label>
-		             <div class="col-sm-6">
-		                 <input type="text" id="groupName" class="form-control" value="${group.groupName}" disabled="disabled">
-		             </div>
-		         </div>
-		      </div>   
+		     
 		  
-			  <h4>초대 리스트</h4>
-			  <hr style="border:1px dashed #dddddd;">
-		      <br>
+			  
 		      <div class="form-group payment-form2">
-			  	<label for="description" class="col-sm-2 control-label">Email 주소</label>
-			    	<div class="col-sm-6">
-			        	<input type="text" class="form-control" id="description" name="description">
-		            </div>
-		            <div class="col-sm-3 text-right">
-	        	        <button type="button" class="btn btn-default preview-add-button">
-		                    <span class="glyphicon glyphicon-plus"></span> 초대리스트 추가
-		                </button>
-		            </div>
-	          	</div> 
+			  	<label for="description" class="col-sm-3 control-label" align="center">Email 주소</label>
+		    	<div class="col-sm-6">
+		        	<input type="text" class="form-control" id="description" name="description">
+	            </div>
+	            <div class="col-sm-3 text-right">
+        	        <button type="button" class="btn btn-default preview-add-button">
+	                    <span class="glyphicon glyphicon-plus"></span> 초대리스트 추가
+	                </button>
+	            </div>
+	          </div> 
 		        <h3></h3>
 		        <div class="row">
 		            <div class="col-xs-12" >
@@ -108,7 +96,6 @@
  	   		</div>     
 		</div> <!-- / panel preview -->
  
-		<div class="col-sm-2"></div>
     		
     		
     		
