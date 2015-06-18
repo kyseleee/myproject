@@ -44,24 +44,38 @@
 			user_no, group_no, role
 			FROM group_arr 
 			WHERE group_no = #{groupNo}
-	 </select> 
-		<delete id="deleteGroupArr" parameterType="groupArr">
+	</select> 
+
+	<delete id="deleteGroupArr" parameterType="groupArr">
 		DELETE
 		FROM group_arr
 		WHERE user_no = #{user.userNo} 
 	</delete>
 	
+	<delete id="deleteGroupArrByGroup" parameterType="int">
+		DELETE
+			FROM group_arr
+			WHERE group_no = #{groupNo} 
+	</delete>
+
+	<delete id="deleteGroupArrByGroupUser" parameterType="groupArr">
+		DELETE
+			FROM group_arr
+			WHERE user_no = #{user.userNo}
+			AND group_no = #{group.groupNo}	 
+	</delete>	
+	
 	<select id="getListGroupArr" parameterType="groupArr" resultMap="groupArrSelectMap">
 		SELECT
 			a.user_no,
 			a.group_no,
+			a.role,
 			b.user_name,
 			b.tel,
 			b.email
 			FROM group_arr a
 				left outer join tb_user b on a.user_no = b.user_no
-			WHERE a.group_no = #{group.groupNo}
-				
+			WHERE a.group_no = #{group.groupNo}		
 	 </select>
 						
   	

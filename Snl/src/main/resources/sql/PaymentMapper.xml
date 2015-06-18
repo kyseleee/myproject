@@ -68,6 +68,13 @@
 		DELETE FROM payment WHERE pay_no=#{value}
 	</delete>
 	
+	<delete id="deletePaymentByGroup" parameterType="int">
+		DELETE
+			FROM payment
+			WHERE group_no = #{groupNo}
+	</delete> 
+	
+	
 	<select id="getMonthlyPayment" parameterType="map" resultMap="paymentSelectMap">
 		SELECT TO_CHAR(pay_date, 'YYYY-MM') AS pay_date, SUM(amount) AS amount
 		FROM payment

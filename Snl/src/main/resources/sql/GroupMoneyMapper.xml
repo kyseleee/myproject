@@ -48,5 +48,11 @@
 		WHERE group_no = ${value}
 	</select> 
 
+	<delete id="deleteGroupMoneyByGroup" parameterType="int">
+		DELETE
+			FROM group_money
+			WHERE group_no = #{groupNo}
+	</delete> 
+
   	
 </mapper>

@@ -84,8 +84,21 @@
 	   		AND
 	   		gm_no=#{groupMoney.gmNo}
 
-	 </update>
-	 
+	</update>
+	
+	
+	<delete id="deleteGmPaidByGroupUser" parameterType="gmPaid">
+		DELETE
+			FROM gm_paid
+			WHERE group_no = #{group.groupNo}
+			AND	user_no = #{user.userNo}
+	</delete> 
+	
+	<delete id="deleteGmPaidByGroup" parameterType="int">
+		DELETE
+			FROM gm_paid
+			WHERE group_no = #{groupNo}
+	</delete> 
 
 	 
 	

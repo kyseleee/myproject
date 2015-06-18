@@ -46,8 +46,13 @@
 			FROM tb_group 
 				WHERE group_name = #{groupName}
 					and user_no = #{user.userNo}
-	 </select>
+	</select>
 
+	<delete id="deleteGroup" parameterType="int">
+		DELETE
+			FROM tb_group
+			WHERE group_no = #{groupNo}
+	</delete> 
   	
   	<!-- 
   	 <select id="getGroup" parameterType="int" resultMap="groupSelectMap">
