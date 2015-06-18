@@ -22,10 +22,55 @@
 		<script src="js/login.js"></script>
 
 <style type="text/css">
-	#div {
-		padding:30px 0 0 0
-	}
-</style>
+		
+		.colorgraph {
+			height: 5px;
+			border-top: 0;
+			background: #c4e17f;
+			border-radius: 5px;
+			background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+			background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+			background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+			background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+		}
+
+		
+		.login-container{
+		    position: relative;
+		    width: 700px;
+		    height: 500px;
+		    margin: 80px auto;
+		    padding: 20px 40px 40px;
+		    text-align: center;
+		    background: #fff;
+		    border: 1px solid #ccc;
+		}
+		
+		.login-container::before,.login-container::after{
+		    content: "";
+		    position: absolute;
+		    width: 100%;height: 100%;
+		    top: 3.5px;left: 0;
+		    background: #fff;
+		    z-index: -1;
+		    -webkit-transform: rotateZ(4deg);
+		    -moz-transform: rotateZ(4deg);
+		    -ms-transform: rotateZ(4deg);
+		    border: 1px solid #ccc;
+		
+		}
+
+		.login-container::after{
+		    top: 5px;
+		    z-index: -2;
+		    -webkit-transform: rotateZ(-2deg);
+		    -moz-transform: rotateZ(-2deg);
+		    -ms-transform: rotateZ(-2deg);
+		
+		}
+
+
+		</style>
 
 </head>
 <body>
@@ -37,46 +82,76 @@
     
     	
     	<div id="main">
+    	
+    	<div class="login-container" style="margin-top: 0px;">   		
 
+		<div class="row">
+		<form role="form" action="" method="post">
+			<h2>회원정보</h2>
+			<hr class="colorgraph">
+			
+		<div class="row">
+			<div class="col-xs-4 col-sm-4 col-md-4">
+				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px;">아이디</p>
+			</div>
+	
+			<div class="col-xs-6 col-sm-6 col-md-6">
+			<div class="form-group">
+				<input type="text" name="id" id="id" tabindex="1" class="form-control input-lg" placeholder="아이디" value="${user.id}" required="" disabled="disabled">
+				<div id="idInfo"  align="left"></div>
+			</div>
+			</div>
+		</div>	
+		
+		<div class="row">
+			<div class="col-xs-4 col-sm-4  col-md-4">
+				<p style="font-size:20px; font-weight: bold; float:left; padding:8px;">이름</p>
+			</div>
+	
+			<div class="col-xs-6 col-sm-6 col-md-6">
+			<div class="form-group">
+				<input type="text" name="userName" id="userName" tabindex="1" class="form-control input-lg" value="${user.userName}"placeholder="이름" disabled="disabled">
+				<div id="idInfo"  align="left"></div>
+			</div>
+			</div>
+		</div>	
+		
+		<div class="row">
+			<div class="col-xs-4 col-sm-4  col-md-4">
+				<p style="font-size:20px; font-weight: bold; float:left; padding:8px;">이메일 주소</p>
+			</div>
+	
+			<div class="col-xs-7 col-sm-6 col-md-6">
+			<div class="form-group">
+				<input type="email" name="email" id="email" tabindex="1" class="form-control input-lg" value="${user.email}"placeholder="이메일 주소" disabled="disabled">
+				<div id="idInfo"  align="left"></div>
+			</div>
+			</div>
+		</div>	
+		
+		<div class="row">
+			<div class="col-xs-4 col-sm-4  col-md-4">
+				<p style="font-size:20px; font-weight: bold; float:left; padding:8px;">전화번호</p>
+			</div>
+	
+			<div class="col-xs-7 col-sm-6 col-md-6">
+			<div class="form-group">
+				<input type="text" name="tel" id="tel" tabindex="1" class="form-control input-lg"  value="${user.tel}" placeholder="전화번호" disabled="disabled">
+				<div id="idInfo"  align="left"></div>
+			</div>
+			</div>
+		</div>	
 
-<div class="col-sm-5">
-            <h2 align="left">회원정보조회</h2>
-            <div id="div">
-                <div class="form-horizontal payment-form" style="border-radius:4px">
-                    <div class="form-group">
-                        <label for="concept" class="col-sm-3 control-label">아이디</label>
-                        <div class="col-sm-5">
-                        	<p style="font-size: 18px; font:bold;">${user.id}</p>
-                        </div>
-                    </div> <br />
-                    <div class="form-group">
-                        <label for="description" class="col-sm-3 control-label">이름</label>
-                        <div class="col-sm-5">
-                        	<p style="font-size: 18px; font:bold;">${user.userName}</p>
-                        </div>
-                    </div> <br /> 
-                    <div class="form-group">
-                        <label for="amount" class="col-sm-3 control-label">이메일</label>
-                        <div class="col-sm-7">
-                            <p style="font-size: 18px; font:bold;">${user.email}</p>
-                        </div>
-                    </div> <br />
-                    <div class="form-group">
-                        <label for="status" class="col-sm-3 control-label">전화번호</label>
-                        <div class="col-sm-7">
-                        	<p style="font-size: 18px; font:bold;">${user.tel}</p>
-                        </div>
-                    </div> <br />
-                    <div class="form-group">
-                        <div class="col-sm-12 text-right">
-                           <a href="index.jsp"><button type="button" class="btn btn-default preview-add-button">확인</button></a>
-                           <a href="updateUserView.do?id=${user.id}"><button type="button" class="btn btn-default preview-add-button">수정</button></a>                               
-                           <a href="deleteGroupArr.do?suserNo=${user.userNo}"><button type="button" class="btn btn-default preview-add-button">삭제</button></a> 
-                        </div>
-                    </div>
-                </div>
-            </div>            
-        </div> 
+			<hr class="colorgraph">
+			<div class="row">
+				<a href="index.jsp" class="col-md-4"><input type="button" value="확인" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
+								<a href="updateUserView.do?id=${user.id}" class="col-md-4"><input type="button" value="수정" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
+								<a href="deleteGroupArr.do?suserNo=${user.userNo}" class="col-md-4"><input type="button" value="탈퇴" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
+			</div>
+		</form>
+	</div>
+</div>
+
       </div>
     </div>
 </body>
