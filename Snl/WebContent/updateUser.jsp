@@ -263,7 +263,7 @@
   					<div class="form-group">
 				<input type="text" name="tel" id="tel" tabindex="1" class="form-control input-lg" value="${user.tel}" placeholder="전화번호" value="">
 						<div id="pwInfo" align="left"></div>
-					</div>
+					</div>	
   				</div>
 			</div>
 			<hr class="colorgraph">
