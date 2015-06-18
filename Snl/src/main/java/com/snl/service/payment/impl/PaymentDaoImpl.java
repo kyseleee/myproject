@@ -44,6 +44,10 @@ public class PaymentDaoImpl implements PaymentDao {
 		sqlSession.delete("PaymentMapper.deletePayment", payNo);
 	}
 	
+	public void deletePaymentByGroup(int groupNo) throws Exception{
+		sqlSession.delete("PaymentMapper.deletePaymentByGroup", groupNo);
+	}
+	
 	@Override
 	public Payment getMonthlyPayment(int groupNo, String month) throws Exception{
 		Map<String , Object> tem = new HashMap<String, Object>();

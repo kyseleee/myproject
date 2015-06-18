@@ -12,4 +12,6 @@ public interface GroupService {
 
 	public Group getGroupByGroupName(Group group) throws Exception;
 
+	public void deleteGroup(int groupNo) throws Exception ;
+
 }

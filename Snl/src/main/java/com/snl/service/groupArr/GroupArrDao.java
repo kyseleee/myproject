@@ -14,7 +14,11 @@ public interface GroupArrDao {
 	public List<GroupArr> getGroupArrByUser(User user) throws Exception;
 	
 	public void deleteGroupArr(GroupArr groupArr) throws Exception;
-
+	
+	public void deleteGroupArrByGroup(int groupNo) throws Exception;
+	
+	public void deleteGroupArrByGroupUser(GroupArr groupArr) throws Exception;
+	
 	public List<GroupArr> getListGroupArr(GroupArr groupArr) throws Exception;
 
 	public List<GroupArr> getGroupArrByGroup(int groupNo) throws Exception;

@@ -53,4 +53,12 @@ public class GmPaidServiceImpl implements GmPaidService{
 		gmPaidDao.updatePaid(gmPaid);
 	}
 	
+	public void deleteGmPaidByGroupUser(GmPaid gmPaid) throws Exception{
+		gmPaidDao.deleteGmPaidByGroupUser(gmPaid);
+	}
+
+	public void deleteGmPaidByGroup(int groupNo) throws Exception{
+		gmPaidDao.deleteGmPaidByGroup(groupNo);
+	}
+
 }

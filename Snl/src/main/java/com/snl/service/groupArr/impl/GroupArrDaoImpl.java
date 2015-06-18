@@ -50,6 +50,16 @@ public class GroupArrDaoImpl implements GroupArrDao{
 		sqlSession.delete("GroupArrMapper.deleteGroupArr", groupArr);
 	}
 
+	public void deleteGroupArrByGroup(int groupNo) throws Exception{
+		sqlSession.delete("GroupArrMapper.deleteGroupArrByGroup", groupNo);	
+	}
+
+	
+	public void deleteGroupArrByGroupUser(GroupArr groupArr) throws Exception {
+		sqlSession.delete("GroupArrMapper.deleteGroupArrByGroupUser", groupArr);
+	}
+	
+	
 	@Override
 	public List<GroupArr> getListGroupArr(GroupArr groupArr) throws Exception {
 		return sqlSession.selectList("GroupArrMapper.getListGroupArr",groupArr);

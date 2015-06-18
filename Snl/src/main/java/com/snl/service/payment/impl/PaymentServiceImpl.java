@@ -48,6 +48,10 @@ public class PaymentServiceImpl implements PaymentService{
 		paymentDao.deletePayment(payNo);
 	}
 	
+	public void deletePaymentByGroup(int groupNo) throws Exception{
+		paymentDao.deletePaymentByGroup(groupNo);
+	}
+	
 	@Override
 	public List<Payment> getPaymentByGroup(Group group) throws Exception{
 		return paymentDao.getPaymentByGroup(group);

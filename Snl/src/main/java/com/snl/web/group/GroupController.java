@@ -19,6 +19,7 @@ import com.snl.service.domain.User;
 import com.snl.service.gmPaid.GmPaidService;
 import com.snl.service.group.GroupService;
 import com.snl.service.groupArr.GroupArrService;
+import com.snl.service.groupMoney.GroupMoneyService;
 import com.snl.service.mail.MailService;
 import com.snl.service.payment.PaymentService;
 
@@ -29,6 +30,9 @@ public class GroupController {
 	@Qualifier("groupServiceImpl")
 	private GroupService groupService;
 	
+	@Autowired
+	@Qualifier("groupMoneyServiceImpl")
+	private GroupMoneyService groupMoneyService;
 	
 	@Autowired
 	@Qualifier("groupArrServiceImpl")
@@ -68,10 +72,10 @@ public class GroupController {
 		List<GroupArr> groupArrList= groupArrService.getGroupArrByUser(user);
   	  	session.setAttribute("groupArrList", groupArrList);
 
-		mailService.sendMail(toEmail, group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/inviteIndex.jsp?sgroupNo="+group.getGroupNo());		
+		mailService.sendMail(toEmail, group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/login.jsp?sgroupNo="+group.getGroupNo());		
 	    
 		
-		return "redirect:/";	
+		return "redirect:/calendar.jsp";	
 	}
 
 	@RequestMapping("/getGroupByGroupName.do")
@@ -118,6 +122,8 @@ public class GroupController {
 		
 		if(currentPage.equals("/groupMoney.jsp") || currentPage.equals("/getGroupMoney.jsp")){
 			return "redirect:/groupMoneyView.do";
+		}else if(currentPage.equals("/memberList.jsp")){
+			return "redirect:/getListGroupArr.do";
 		}else{
 			return "redirect:"+currentPage;	
 		}
@@ -134,4 +140,26 @@ public class GroupController {
 		
 		return group;
 	}
+	
+	@RequestMapping("/deleteGroup.do")
+	public String deleteGroup(HttpSession session) throws Exception {
+		
+		System.out.println("/deleteGroup.do");
+		int groupNo = ((Group)session.getAttribute("group")).getGroupNo();
+		//gmPaid 삭제
+		gmPaidService.deleteGmPaidByGroup(groupNo);
+		//groupMoney 삭제
+		groupMoneyService.deleteGroupMoneyByGroup(groupNo);
+		//payment 삭제
+		paymentService.deletePaymentByGroup(groupNo);
+		//groupArr 삭제
+		groupArrService.deleteGroupArrByGroup(groupNo);
+		//group 삭제
+		groupService.deleteGroup(groupNo);
+		
+		
+		return "redirect:/addGroup.jsp";	
+
+	}
+	
 }

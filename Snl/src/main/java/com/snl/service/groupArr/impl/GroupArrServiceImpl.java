@@ -40,7 +40,14 @@ public class GroupArrServiceImpl implements GroupArrService{
 	}
 	public void deleteGroupArr(GroupArr groupArr) throws Exception {
 		groupArrDao.deleteGroupArr(groupArr);
-
+	}
+	
+	public void deleteGroupArrByGroup(int groupNo) throws Exception{
+		groupArrDao.deleteGroupArrByGroup(groupNo);
+	}
+	
+	public void deleteGroupArrByGroupUser(GroupArr groupArr) throws Exception {
+		groupArrDao.deleteGroupArrByGroupUser(groupArr);
 	}
 	
 	@Override

@@ -43,4 +43,9 @@ public class GroupMoneyServiceImpl implements GroupMoneyService{
 		return groupMoneyDao.getGroupMoney(gmNo);
 
 	}
+	
+	public void deleteGroupMoneyByGroup(int groupNo) throws Exception{
+		groupMoneyDao.deleteGroupMoneyByGroup(groupNo);
+
+	}
 }

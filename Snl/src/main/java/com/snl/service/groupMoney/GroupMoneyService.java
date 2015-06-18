@@ -13,5 +13,8 @@ public interface GroupMoneyService {
 	public List<GroupMoney> getGroupMoneybyGroup(int groupNo) throws Exception;
 	
 	public GroupMoney getGroupMoney(int gmNo) throws Exception;
+	
+	public void deleteGroupMoneyByGroup(int groupNo) throws Exception;
+
 
 }

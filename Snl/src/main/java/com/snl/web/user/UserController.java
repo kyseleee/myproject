@@ -70,7 +70,7 @@ public class UserController {
 			return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+user.getId();	
 		}
 		
-		return "redirect:/main.jsp";	
+		return "redirect:/login.jsp";	
 	}
 	
 	@RequestMapping("/getUser.do")
@@ -167,8 +167,6 @@ public class UserController {
 		}catch(IOException e){
 			e.printStackTrace();
 		}
-	
-	
 	}
 	
 	
@@ -257,14 +255,6 @@ public class UserController {
 	    	  out.print("yes");
 	    	  
 	      }
-	      
-	      
-//	      try{
-//				response.getWriter().print(result);
-//				
-//			}catch(IOException e){
-//				e.printStackTrace();
-//			}
 		
 	}
 	
@@ -274,65 +264,58 @@ public class UserController {
 	      System.out.println("/login.do");
 	      
 	      User dbUser=userService.getUserById(id);
-	      
-	      if ((dbUser==null)||!( pw.equals(dbUser.getPw()) && id.equals(dbUser.getId()))){
-	    	  return "forward:login.jsp?fail=<font color='red'>등록되지 않은 아이디이거나,</br>아이디 또는 비밀번호를 잘못 입력하셨습니다.</font>";
-	      }
-	      else{
-	    	  
-	    	  session.setAttribute("user", dbUser);
-	    	  
-	    	  if(groupArrService.getGroupArrByUser(dbUser).size() != 0){
-		    	  
-	    		  //user가 속한 group들
-	    		  List<GroupArr> groupArrListByUser= groupArrService.getGroupArrByUser(dbUser);
-		    	  //group들 중 default
-	    		  Group group = groupService.getGroup(groupArrListByUser.get(groupArrListByUser.size()-1).getGroup().getGroupNo());
-		    	  //default group의 user리스트
-	  			  List<GroupArr> groupArrListByGroup = groupArrService.getGroupArrByGroup(group.getGroupNo());
-	  			  //그 그룹인원
-	  			  int groupSize = groupArrListByGroup.size();
+    	  session.setAttribute("user", dbUser);
+    	  
+    	  if(groupArrService.getGroupArrByUser(dbUser).size() == 0 && sgroupNo == "" ){
+    		  
+    		  return "redirect:addGroup.jsp";     		  
+    	
+    	  }else if(groupArrService.getGroupArrByUser(dbUser).size() == 0 && sgroupNo != ""){
+  			
+    		  return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+dbUser.getId();	
+    	  
+    	  }else{   	  
+    		  //user가 속한 group들
+    		  List<GroupArr> groupArrListByUser= groupArrService.getGroupArrByUser(dbUser);
+	    	  //group들 중 default
+    		  Group group = groupService.getGroup(groupArrListByUser.get(groupArrListByUser.size()-1).getGroup().getGroupNo());
+	    	  //default group의 user리스트
+  			  List<GroupArr> groupArrListByGroup = groupArrService.getGroupArrByGroup(group.getGroupNo());
+  			  //그 그룹인원
+  			  int groupSize = groupArrListByGroup.size();
 
-	  			  session.setAttribute("groupArrListByUser", groupArrListByUser);
-	  			  session.setAttribute("group", group);
-	  			  session.setAttribute("groupSize", groupSize);
-	  			  session.setAttribute("groupArrListByGroup", groupArrListByGroup);
-	  			  System.out.println(session.getAttribute("group"));
-	  			  List<GmPaid> paidGmPaid=gmPaidService.getPaidGmPaidByGroup(group);
-	  			  int totalGm = 0;
-	  			  if(paidGmPaid != null){
-		  			  for(int i = 0; i<paidGmPaid.size(); i++){
-		  				  totalGm += paidGmPaid.get(i).getGroupMoney().getGmPrice();
-		  			  }
+  			  session.setAttribute("groupArrListByUser", groupArrListByUser);
+  			  session.setAttribute("group", group);
+  			  session.setAttribute("groupSize", groupSize);
+  			  session.setAttribute("groupArrListByGroup", groupArrListByGroup);
+  			  System.out.println(session.getAttribute("group"));
+  			  List<GmPaid> paidGmPaid=gmPaidService.getPaidGmPaidByGroup(group);
+  			  int totalGm = 0;
+  			  
+  			  if(paidGmPaid != null){
+	  			  for(int i = 0; i<paidGmPaid.size(); i++){
+	  				  totalGm += paidGmPaid.get(i).getGroupMoney().getGmPrice();
 	  			  }
-	  			  
-	  			  session.setAttribute("totalGm", totalGm);
-	  			  
+  			  }
+  			  
+  			  session.setAttribute("totalGm", totalGm);
 
-	  			  List<Payment> payment=paymentService.getPaymentByGroup(group);
-	  			  int totalPayment = 0;
-	  			  
-	  			  for(int i = 0; i<payment.size(); i++){
-	  				  totalPayment += payment.get(i).getAmount();
-	  			  }
-	  			  
-	  			  session.setAttribute("totalPayment", totalPayment);
-		  			
-
-
-	    	  }
-	    	  
-	    	  if(sgroupNo != ""){
-	  			return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+dbUser.getId();	
-	    	  }
-	    	  return "redirect:calendar.jsp"; 
-	    	 
-	    	  
-	      }
-	      
-	      
-	      
-	   }
+  			  List<Payment> payment=paymentService.getPaymentByGroup(group);
+  			  int totalPayment = 0;
+  			  
+  			  for(int i = 0; i<payment.size(); i++){
+  				  totalPayment += payment.get(i).getAmount();
+  			  }
+  			  
+  			  session.setAttribute("totalPayment", totalPayment);
+  			  
+  			  if(sgroupNo != ""){
+  	    		  return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+dbUser.getId();	  				  
+  			  }
+  			  
+  	    	  return "redirect:calendar.jsp"; 
+    	  } 
+	}
 	
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session) throws Exception{

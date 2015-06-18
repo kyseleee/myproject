@@ -41,4 +41,7 @@ public class GroupDaoImpl implements GroupDao{
 		return sqlSession.selectOne("GroupMapper.getGroupByGroupName", group);
 	}
 	
+	public void deleteGroup(int groupNo) throws Exception{
+		sqlSession.delete("GroupMapper.deleteGroup", groupNo);
+	}
 }

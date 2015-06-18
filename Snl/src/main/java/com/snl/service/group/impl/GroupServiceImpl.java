@@ -39,5 +39,9 @@ public class GroupServiceImpl implements GroupService{
 	public Group getGroupByGroupName(Group group) throws Exception{
 		return groupDao.getGroupByGroupName(group);
 	}
+	public void deleteGroup(int groupNo) throws Exception{
+		groupDao.deleteGroup(groupNo);
+	}
+
 
 }

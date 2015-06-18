@@ -50,7 +50,14 @@ public class GmPaidDaoImpl implements GmPaidDao{
 	
 	public void updatePaid(GmPaid gmPaid) throws Exception{
 		sqlSession.update("GmPaidMapper.updatePaid", gmPaid);
+	}
+	
+	public void deleteGmPaidByGroupUser(GmPaid gmPaid) throws Exception{
+		sqlSession.delete("GmPaidMapper.deleteGmPaidByGroupUser", gmPaid);
+	}
 
+	public void deleteGmPaidByGroup(int groupNo) throws Exception{
+		sqlSession.delete("GmPaidMapper.deleteGmPaidByGroupUser", groupNo);
 	}
 
 }

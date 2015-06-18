@@ -46,4 +46,8 @@ public class GroupMoneyDaoImpl implements GroupMoneyDao{
 	public GroupMoney getGroupMoney(int gmNo) throws Exception{
 		return sqlSession.selectOne("GroupMoneyMapper.getGroupMoney", gmNo);
 	}
+	
+	public void deleteGroupMoneyByGroup(int groupNo) throws Exception{
+		sqlSession.delete("GroupMoneyMapper.deleteGroupMoneyByGroup", groupNo);
+	}
 }

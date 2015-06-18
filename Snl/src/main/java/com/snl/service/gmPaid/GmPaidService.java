@@ -20,5 +20,9 @@ public interface GmPaidService {
 	
 	public void updatePaid(GmPaid gmPaid) throws Exception;
 
+	public void deleteGmPaidByGroupUser(GmPaid gmPaid) throws Exception;
 
+	public void deleteGmPaidByGroup(int groupNo) throws Exception;
+
+	
 }

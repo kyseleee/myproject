@@ -16,6 +16,8 @@ public interface PaymentDao {
 	
 	public void deletePayment(int payNo) throws Exception;
 	
+	public void deletePaymentByGroup(int groupNo) throws Exception;
+	
 	public Payment getMonthlyPayment(int groupNo, String month) throws Exception;
 	
 	public List<Payment> getPaymentByGroup(Group group) throws Exception;
