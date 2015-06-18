@@ -31,12 +31,29 @@
 
 
 <div id="leftMenu">
-<nav class="navbar navbar-inverse sidebar" role="navigation">
+<nav class="navbar navbar-inverse sidebar" role="navigation" style="background:black;">
     	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">		
-		
-			<a class="navbar-brand" href="#">Menu</a>
+			<div class="media">
+			<div class="" align="center">
+						<img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" 
+						style="width:80px;height:80px; float:left; padding:5px;" class="img-circle img-responsive" alt="">
+			</div>
+			<div style="margin-top:10px;">	
+						<div>Welcome To Snl</div>
+						<div class="profile-usertitle-id">
+							${user.id}
+						</div>
+						<div class="profile-usertitle-name">
+							${user.userName}
+						</div>
+					</div>
+			</div>
+					<div class="profile-userbuttons">
+						<a href="getUser.do?userNo=${user.userNo}"><button type="button" class="btn btn-success btn-sm"> Edit</button></a>
+						<a href="logout.do"><button type="button" class="btn btn-danger btn-sm">Logout</button></a>
+					</div>
 		</div>
 		
 		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">

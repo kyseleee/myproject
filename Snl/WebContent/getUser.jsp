@@ -146,7 +146,7 @@
 			<div class="row">
 				<a href="index.jsp" class="col-md-4"><input type="button" value="È®ÀÎ" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
 								<a href="updateUserView.do?id=${user.id}" class="col-md-4"><input type="button" value="¼öÁ¤" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
-								<a href="deleteGroupArr.do?suserNo=${user.userNo}" class="col-md-4"><input type="button" value="Å»Åð" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
+								<a href="deleteUser.do?userNo=${user.userNo}" class="col-md-4"><input type="button" value="Å»Åð" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
 			</div>
 		</form>
 	</div>
