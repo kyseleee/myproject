@@ -54,6 +54,7 @@
 			text-align: center;
 			width: 100%;
 			margin-left: 0px;
+			height:250px;
 		}
 
 		/*Center Icons*/
@@ -95,9 +96,8 @@
 
 		/*gives sidebar width/height*/
 		nav.sidebar{
-			width: 200px;
 			height: 100%;
-			margin-left: -160px;
+			/* margin-left: -160px; */
 			float: left;
 			z-index: 8000;
 			margin-bottom: 0px;
@@ -148,5 +148,15 @@
 	}
 	section{
 		padding-left: 15px;
+	}
+	
+	.media {
+		 padding: 30px 0px 20px 20px;
+ 		 margin: 20px 0px 0 0px;
+ 		 color: #fff;
+	}
+	
+	.media .media_image {
+		margin: 3px 10px 0 3px;
 	}
     </style>
