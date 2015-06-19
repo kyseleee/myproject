@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +24,7 @@ import com.snl.service.domain.User;
 import com.snl.service.gmPaid.GmPaidService;
 import com.snl.service.group.GroupService;
 import com.snl.service.groupArr.GroupArrService;
+import com.snl.service.groupMoney.GroupMoneyService;
 import com.snl.service.mail.MailService;
 import com.snl.service.payment.PaymentService;
 import com.snl.service.user.UserService;
@@ -37,6 +39,10 @@ public class UserController {
 	@Autowired
 	@Qualifier("groupServiceImpl")
 	private GroupService groupService;
+	
+	@Autowired
+	@Qualifier("groupMoneyServiceImpl")
+	private GroupMoneyService groupMoneyService;
 	
 	@Autowired
 	@Qualifier("groupArrServiceImpl")
@@ -74,11 +80,18 @@ public class UserController {
 	}
 	
 	@RequestMapping("/getUser.do")
-	public String getUser(Model model , @RequestParam("userNo") int userNo) throws Exception {
-		
+	public String getUser(Model model , @RequestParam("userNo") int userNo, HttpServletResponse response,
+			HttpServletRequest request) throws Exception {
+	
+		request.setCharacterEncoding("UTF-8");
+
+		System.out.println("/updateUser.do");
 		System.out.println("/getUser.do");
 		System.out.println("user : " +userService.getUser(userNo));
+		
 		User user = userService.getUser(userNo);
+		
+		response.setContentType("text/plain;charset=UTF-8");
 		
 		model.addAttribute("user", user);
 		
@@ -99,14 +112,19 @@ public class UserController {
 	}
 	
 	@RequestMapping("/updateUser.do")
-	public String updateUser(@ModelAttribute("user") User user, HttpSession session) throws Exception{
-
+	public String updateUser(@ModelAttribute("user") User user, HttpSession session, HttpServletResponse response,
+			HttpServletRequest request) throws Exception{
+		
+		request.setCharacterEncoding("UTF-8");
 		System.out.println("/updateUser.do");
+		
 		System.out.println("user :" +user);
+		
 		userService.updateUser(user);
 		
-		
 		String sessionId=((User)session.getAttribute("user")).getId();
+		
+		response.setContentType("text/plain;charset=UTF-8");
 		
 		if(sessionId.equals(user.getId())) {
 			session.setAttribute("user", user);
@@ -118,14 +136,36 @@ public class UserController {
 	}
 	
 	@RequestMapping("/deleteUser.do")
-	public String deleteUser(@RequestParam("userNo") int userNo , Model model) throws Exception {
+	public String deleteUser(@RequestParam("userNo") int userNo, Model model, HttpSession session) throws Exception {
 		
 		System.out.println("/deleteUser.do");
-		//groupArrService.
-		userService.deleteUser(userNo);
 		
-		System.out.println("******!!!!!!!!!!!**********");
-			
+		if(session.getAttribute("group") != null) {
+		
+		//gmPaid table에서 user_no Delete
+		GmPaid gmPaid = new GmPaid();
+		gmPaid.setUser(userService.getUser(userNo));
+		gmPaid.setGroup((Group) session.getAttribute("group"));
+		gmPaidService.deleteGmPaidByGroupUser(gmPaid);
+		
+		//groupArr table에서 user_no Delete
+		GroupArr groupArr = new GroupArr();
+		groupArr.setGroup((Group) session.getAttribute("group"));
+		groupArr.setUser(userService.getUser(userNo));
+		groupArrService.deleteGroupArrByGroupUser(groupArr);
+		
+		//group table에서 user_no Delete
+		Group group = new Group();
+		group = (Group) session.getAttribute("group");
+		group.setUser(userService.getUser(userNo));
+		groupService.deleteGroupByUser(userNo);
+		
+		//user table에서 user_no Delete
+				userService.deleteUser(userNo);
+		} else {
+			userService.deleteUser(userNo);
+		}
+		
 		return "logout.do";
 	}
 	
