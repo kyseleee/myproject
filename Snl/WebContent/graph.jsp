@@ -22,22 +22,23 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/login.js"></script>
 		<script src="js/highchart/highstock.js"></script>
+		<script src="js/highchart/highcharts-3d.js"></script>
 		<script src="js/highchart/exporting.js"></script>
-		<script src="http://code.highcharts.com/modules/no-data-to-display.js"></script>
+		<script src="js/highchart/no-data-to-display.js"></script>
 		<script src="jui/jui.min.js"></script>
 		<script src="js/highchart/sand-signika.js"></script>
 		<!-- <script src="jquery.json-2.4.min.js"></script> -->
 		
-		<script>
+		<!-- <script>
 		jui.ready([ "uix.table" ], function(table) {
 		    table_1 = table("#table_1", {
 		        data: [
-		            { name: "기간내합계", age: "275,000원"},
-		            { name: "월간 평균", age: "25,000원"}
+		            { name: "기간내합계", amount: "275,000원"},
+		            { name: "월간 평균", amount: "25,000원"}
 		        ]
 		    });
 		});
-		</script>
+		</script> -->
 	</head>
 	
 	<body>
@@ -96,7 +97,7 @@
 <div class="jui">
 		<table id="table_1" class="table table-classic">
 		    <thead>
-		    <tr>
+		    <tr align=center>
 		        <th></th>
 		        <th>지출비용</th>
 		    </tr>
@@ -104,9 +105,9 @@
 		    <tbody></tbody>
 		</table>
 <script data-jui="#table_1" data-tpl="row" type="text/template">
-    <tr>
+    <tr align=center>
         <td><!= name !></td>
-        <td><!= age !></td>
+        <td><!= amount !></td>
     </tr>
 </script>
 </div>

@@ -22,71 +22,9 @@
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/login.js"></script>
 		<script src="jui/jui.min.js"></script>
-
-		<script>
-$(document).ready(function(){
-		$.ajax({
-			url : './listPaymentByDayDuration.do',
-			data : {startDate : "2015-01-01", endDate : "2015-06-01"},
-			dataType : 'json',
-			method : 'POST',
-			success : function(data){
-				alert(data);
-				var receiptLink;
-				for(var i=0;i<data.length;i++){
-					data[i].method=decodeURIComponent(data[i].method);
-					data[i].payName=decodeURIComponent(data[i].payName);
+    <script src="js/listPayment.js"></script>
+    
 		
-					
-					if(data[i].receit=='-') {				
-						receiptLink=data[i].receit;
-					}
-					else {
-						receiptLink='<a href="http://192.168.200.122:8080/Snl/'+data[i].receit+'" onclick="popup(this.href); return false;">'+data[i].receit+'</a>';
-					}
-					
-				}
-				alert("before"+data[0].payName);
-				
-				var data1 = JSON.stringify(data);
-				/* lll */
-				jui.ready([ "uix.table" ], function(table) {
-		    table_7 = table("#table_7", {
-		        fields: [ "payDate", "payName", "amount", "method", "receipt" ],
-		        data: data,
-		        resize: true,
-		        sort: [ 0, 1, 2 ],
-		        scroll: true,
-		        scrollHeight: 150,
-		        event: {
-		            sort: function(column, e) {
-		                var className = {
-		                    "desc": "icon-arrow1 icon-white",
-		                    "asc": "icon-arrow3 icon-white"
-		                }[column.order];
-
-		                $(column.element).children("i").remove();
-		                $(column.element).append("<i class='" + className + "'></i>");
-		            }
-		        }
-		    });
-		});
-				
-				/* 111 */
-			},
-			error:function() {
-				alert("error");
-			}
-			
-		});
-		
-		
-		
-		
-		
-		
-});
-		</script>
 	</head>
 	
 	<body>
@@ -99,21 +37,38 @@ $(document).ready(function(){
   	  	<jsp:include page="leftMenu.jsp"/>
     	
     	<div id="main" class="jui">
+    	<span>
+		시작일&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; 종료일<br>
+		<input type="text" id="startDate" name="startDate" style="width:72px">
+	</span>
+	<span>
+					~
+	</span>
+	<span>
+		<input type="text" id="endDate" name="endDate" style="width:72px">
+	</span>
+    <div id="errMsg"></div>
+    제목검색<br>
+    <span>
+		    <input type="text" id="startDate" name="startDate" style="width:165px">
+		    <button type="button" id="duration" style="height:26px">조회</button>
+    </span>
+    
     	<table id="table_7" class="table table-classic table-stripeless">
     <thead>
-    <tr>
-        <th>payDate</th>
-        <th>payName</th>
-        <th>amount</th>
-        <th>method</th>
-        <th>receipt</th>
+    <tr align=center>
+        <th>지출날짜</th>
+        <th>지출내용</th>
+        <th>금    액</th>
+        <th>결제수단</th>
+        <th>영 수 증</th>
     </tr>
     </thead>
     <tbody></tbody>
 </table>
 
 <script data-jui="#table_7" data-tpl="row" type="text/template">
-    <tr>
+    <tr align=center>
         <td><!= payDate !></td>
         <td><!= payName !></td>
         <td><!= amount !></td>

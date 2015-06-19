@@ -1,5 +1,8 @@
 var update=0;
 var groupNoHid=document.getElementById("groupNoHidden").value;
+var leaderNo=document.getElementById("leaderNo").value;
+var userNo=document.getElementById("userNo").value;
+alert(leaderNo+"=="+userNo);
 function updatePayment(event){
 	if(update==0){
 		var method = event.method;
@@ -53,7 +56,7 @@ function deletePayment(event) {
 					eventAfterAllRender: function(event, element) {
 						$.ajax({
 							url:"./getMonthlyPayment.do",
-							data: {groupNo : groupNoHid, date : $('#calendar').fullCalendar('getDate').format() },
+							data: {date : $('#calendar').fullCalendar('getDate').format() },
 							method: 'POST',
 							success: function(data){
 								$('.fc-right').html("총 지출액 : "+parseInt(data).toLocaleString()+"원");
@@ -77,7 +80,7 @@ function deletePayment(event) {
 								}
 							}
 						});
-						$("#addPaymentContent").html('<form id="addPay-form" action="addPayment.do?groupNo='+groupNoHid+'" method="POST" enctype="multipart/form-data"><div class="form-group"><label for="payMethod" class="col-sm-3 control-label">결제수단</label><div class="col-sm-9" style="vertical-align:middle;"><select class="form-control" id="method" name="method"><option>신용카드</option><option>현    금</option></select></div></div><div class="form-group"><label for="date" class="col-sm-3 control-label">날     짜</label><div class="col-sm-9"><input type="date" class="form-control" id="payDate" name="payDate" value="'+date.format()+'"><div id="dateErr"></div></div></div><div class="form-group">                        <label for="amount" class="col-sm-3 control-label">상  호  명</label><div class="col-sm-9"><input type="text" class="form-control" id="payName" name="payName"><div id="payNameErr"></div></div></div><div class="form-group"><label for="description" class="col-sm-3 control-label">금      액</label><div class="col-sm-9"><input type="text" class="form-control" id="amount" name="amount"><div id="amountErr"></div><!-- <input type="hidden" value="" id="receit" name="receit"/> --></div></div><div class="form-group"><label for="concept" class="col-sm-3 control-label">영  수  증</label><div class="col-sm-9"><input type="file" id="file" name="file"/></div></div><div class="form-group"><div class="form-group text-center"><label for="txtMsg"> 지출내역 문자발송  </label><input type="checkbox" tabindex="3" class="" name="txtMsg" id="txtMsg" value="y"></div></div></form>');
+						$("#addPaymentContent").html('<form id="addPay-form" action="addPayment.do" method="POST" enctype="multipart/form-data"><div class="form-group"><label for="payMethod" class="col-sm-3 control-label">결제수단</label><div class="col-sm-9" style="vertical-align:middle;"><select class="form-control" id="method" name="method"><option>신용카드</option><option>현    금</option></select></div></div><div class="form-group"><label for="date" class="col-sm-3 control-label">날     짜</label><div class="col-sm-9"><input type="date" class="form-control" id="payDate" name="payDate" value="'+date.format()+'"><div id="dateErr"></div></div></div><div class="form-group">                        <label for="amount" class="col-sm-3 control-label">상  호  명</label><div class="col-sm-9"><input type="text" class="form-control" id="payName" name="payName"><div id="payNameErr"></div></div></div><div class="form-group"><label for="description" class="col-sm-3 control-label">금      액</label><div class="col-sm-9"><input type="text" class="form-control" id="amount" name="amount"><div id="amountErr"></div><!-- <input type="hidden" value="" id="receit" name="receit"/> --></div></div><div class="form-group"><label for="concept" class="col-sm-3 control-label">영  수  증</label><div class="col-sm-9"><input type="file" id="file" name="file"/></div></div><div class="form-group"><div class="form-group text-center"><label for="txtMsg"> 지출내역 문자발송  </label><input type="checkbox" tabindex="3" class="" name="txtMsg" id="txtMsg" value="y"></div></div></form>');
 //						$( "#addPayment" ).dialog( "open" );
 						$( "#addPayment" ).dialog({
 							open: function() {
@@ -121,8 +124,9 @@ function deletePayment(event) {
 								
 							}
 						});
-						
-						$( "#addPayment" ).dialog( "open" );
+						if(userNo==leaderNo) {
+							$( "#addPayment" ).dialog( "open" );
+						}
 						return false;
 					},
 					eventClick: function(event) {
@@ -133,32 +137,54 @@ function deletePayment(event) {
 						else {
 							select="현금";
 						}
-						$( "#event" ).dialog({
-							autoOpen: false,
-							height: 600,
-							width: 500,
-							buttons: {
-                                "수정": function(){
-//                                	location.href="/addPayment.do";
-                                	updatePayment(event);
-                                },
-                                "삭제": function(){
-//                                	location.href="/addPayment.do";
-                                	deletePayment(event);
-                                },
-                                "닫기": function() {
-                                	updateCancel();
-                                    $( this ).dialog( "close" );
-                                }
-                            },
+						
+						if(userNo==leaderNo) {
+							$( "#event" ).dialog({
+								autoOpen: false,
+								height: 600,
+								width: 500,
+								buttons: {
+	                                "수정": function(){
+	//                                	location.href="/addPayment.do";
+	                                	updatePayment(event);
+	                                },
+	                                "삭제": function(){
+	//                                	location.href="/addPayment.do";
+	                                	deletePayment(event);
+	                                },
+	                                "닫기": function() {
+	                                	updateCancel();
+	                                    $( this ).dialog( "close" );
+	                                }
+	                            },
                             create: function() {
                             	$(this).closest('div.ui-dialog').find('.ui-dialog-titlebar-close').click(function(e) {
                                     updateCancel();
                                     e.preventDefault();
                                 });
-                 }
+                            }
 	                            
-						});
+							});
+						} else {
+							$( "#event" ).dialog({
+								autoOpen: false,
+								height: 600,
+								width: 500,
+								buttons: {
+										"닫기": function() {
+	                                	updateCancel();
+	                                    $( this ).dialog( "close" );
+	                                }
+	                            },
+                            create: function() {
+                            	$(this).closest('div.ui-dialog').find('.ui-dialog-titlebar-close').click(function(e) {
+                                    updateCancel();
+                                    e.preventDefault();
+                                });
+                            }
+	                            
+							});
+						}	
 //						$(".ui-dialog-titlebar-close").remove();
 						var receiptLink='';
 						var receiptName='';
@@ -189,7 +215,7 @@ function deletePayment(event) {
 					events: function(start, end, timezone, callback){
 							$.ajax({
 								url : './listPaymentByDay.do',
-								data : {groupNo : groupNoHid},
+//								data : {groupNo : groupNoHid},
 								dataType : 'json',
 								method : 'POST',
 								success : function(data){

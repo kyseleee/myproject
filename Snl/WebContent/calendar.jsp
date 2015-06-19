@@ -38,6 +38,8 @@
 	<body>
 	
     <input type="hidden" id="groupNoHidden" name="groupNoHidden" value="${group.groupNo}"/>
+    <input type="hidden" id="leaderNo" value="${group.user.userNo}"/>
+    <input type="hidden" id="userNo" value="${user.userNo}"/>
     
  		<jsp:include page="header.jsp"/>
     
@@ -107,6 +109,7 @@
              
 	    
 	<jsp:include page="footer.jsp"/>
+	
 	<script src='fullcalendar/calendar.js'></script>
 	
 	</body>

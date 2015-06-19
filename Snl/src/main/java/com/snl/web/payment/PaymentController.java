@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.mail.Session;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -75,13 +76,15 @@ public class PaymentController {
 	
 	@RequestMapping("/addPayment.do")
 	public String addPayment(@ModelAttribute("payment") Payment payment,
-							 @RequestParam("groupNo") int groupNo,
 							 @RequestParam(value="txtMsg", required=false, defaultValue="n") String txtMsg,
 							 HttpSession session,@RequestParam("file") MultipartFile file) throws Exception{
 		
 		
 		System.out.println("/fileUpload");
+		
+		int groupNo=((Group)session.getAttribute("group")).getGroupNo();
 		System.out.println(txtMsg);
+		
 		if(file.isEmpty()) {
 			System.out.println("널이다``````````````");
 		}
@@ -296,10 +299,11 @@ public class PaymentController {
 	
 	@RequestMapping(value="/listPaymentByMonth.do", method=RequestMethod.GET)
 	@ResponseBody
-	public String listPaymentByMonth(@RequestParam("groupNo") int groupNo) throws Exception{
+	public String listPaymentByMonth(HttpSession session) throws Exception{
 		
 		System.out.println("/listPaymentByMonth");
-		System.out.println(groupNo);
+		int groupNo = ((Group)session.getAttribute("group")).getGroupNo();
+		
 		Map<String , Object> map=paymentService.getPaymentListByMonth(groupNo);
 		List<Payment> payList = (List<Payment>)map.get("list");
 		System.out.println(map.get("list"));
@@ -334,11 +338,14 @@ public class PaymentController {
 	
 	@RequestMapping(value="/listPaymentByMonth.do", method=RequestMethod.POST)
 	@ResponseBody
-	public String listPaymentByMonthDuration(@RequestParam("groupNo") int groupNo,
-									@RequestParam("startDate") String startDate, 
-									@RequestParam("endDate") String endDate) throws Exception{
+	public String listPaymentByMonthDuration(@RequestParam("startDate") String startDate, 
+									@RequestParam("endDate") String endDate,
+									HttpSession session) throws Exception{
 		
 		System.out.println("/listPaymentByMonthDuration");
+		int groupNo=((Group)session.getAttribute("group")).getGroupNo();
+		startDate=startDate.substring(0,7);
+		endDate=endDate.substring(0,7);
 		System.out.println(startDate+"===="+endDate);
 		
 		Map<String , Object> map=paymentService.getPaymentListByMonthDuration(groupNo, startDate, endDate);
@@ -354,10 +361,13 @@ public class PaymentController {
 		}
 		
 		int index=0;
+		int total=0;
 		for(int i=0;i<12;i++) {
 			System.out.println("i=============="+i);
+			System.out.println("===="+payList.get(index).getPayDate().substring(5)+"====");
 			if(Integer.parseInt(payList.get(index).getPayDate().substring(5))==i+1){
 				data+=payList.get(index).getAmount();
+				total+=payList.get(index).getAmount();
 				System.out.println("index================"+index+" amount===="+payList.get(index).getAmount());
 				index++;
 				System.out.println("++++++index================"+index);
@@ -373,19 +383,19 @@ public class PaymentController {
 				data+=",";
 			}
 		}
-		data+="]}";
+		data+="], \"total\":\""+total+"\"}";
 		System.out.println("결과========="+data);
 		return data;
 	}
 	
 	@RequestMapping("/listPaymentByDay.do")
 	@ResponseBody
-	public String listPaymentByDay(@RequestParam("groupNo") int groupNo, HttpServletResponse response,
-									HttpServletRequest request) throws Exception{
+	public String listPaymentByDay(HttpServletResponse response,
+									HttpSession session, HttpServletRequest request) throws Exception{
 		 
 		System.out.println("/listPaymentByDay");
 		request.setCharacterEncoding("UTF-8");
-		
+		int groupNo=((Group)session.getAttribute("group")).getGroupNo();
 		
 		Map<String , Object> map=paymentService.getPaymentListByDay(groupNo);
 		List<Payment> payList = (List<Payment>)map.get("list");
@@ -431,10 +441,12 @@ public class PaymentController {
 	
 	@RequestMapping("/getMonthlyPayment.do")
 	@ResponseBody
-	public String getMonthlyPayment(@RequestParam("date") String date, @RequestParam("groupNo") int groupNo) throws Exception{
+	public String getMonthlyPayment(@RequestParam("date") String date, 
+									HttpSession session) throws Exception{
 		
 		System.out.println("/getMonthlyPayment");
 		
+		int groupNo = ((Group)session.getAttribute("group")).getGroupNo();
 		date=date.substring(0,7);
 		System.out.println(date+"==="+groupNo);
 		
@@ -474,7 +486,7 @@ public class PaymentController {
 			data+="{\"payDate\" : \""+payList.get(i).getPayDate().substring(0, 10)+"\",";
 			data+="\"payName\" : \""+URLEncoder.encode(payList.get(i).getPayName(), "UTF-8")+"\",";
 			data+="\"amount\" : \""+payList.get(i).getAmount()+"\",";
-			if(payList.get(i).getMethod()=="1") {
+			if(payList.get(i).getMethod().equals("1")) {
 				method="신용카드";
 			}
 			else {

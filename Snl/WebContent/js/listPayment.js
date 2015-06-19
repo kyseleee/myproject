@@ -1,45 +1,159 @@
-var groupNoHid=document.getElementById("groupNoHidden").value;
+
 function popup(url) {
 	window.open(url,'','width=460, height=460, scrollbars=no, status=no;');
 }
 $(document).ready(function(){
-    
-    
-    $.ajax({
-		url : './listPaymentByDay.do',
-		data : {groupNo : groupNoHid},
+	$.ajax({
+		url : './listPaymentByDayDuration.do',
+		data : {startDate : "2015-01-01", endDate : "2015-06-01"},
 		dataType : 'json',
 		method : 'POST',
 		success : function(data){
-			alert(decodeURIComponent(data[0].payName));
 			var receiptLink;
 			for(var i=0;i<data.length;i++){
-				var row = $('<tr></tr>');
-				var content='';
 				data[i].method=decodeURIComponent(data[i].method);
-				data[i].receit=decodeURIComponent(data[i].receit);
 				data[i].payName=decodeURIComponent(data[i].payName);
+	
 				
-				if(data[i].method=='1') {
-					data[i].method='신용카드';
-				} else {
-					data[i].method='현    금';
-				}
-				
-				if(data[i].receit=='-') {				
-					receiptLink=data[i].receit;
+				if(data[i].receipt=='-') {				
+					receiptLink=data[i].receipt;
 				}
 				else {
-					receiptLink='<a href="http://192.168.200.122:8080/Snl/'+data[i].receit+'" onclick="popup(this.href); return false;">'+data[i].receit+'</a>';
+					receiptLink='<a href="http://192.168.200.122:8080/Snl/'+data[i].receipt+'" onclick="popup(this.href); return false;">'+data[i].receipt+'</a>';
+					data[i].receipt=receiptLink;
 				}
 				
-				content+='<td>'+(i+1)+'</td><td>'+data[i].method+'</td><td>'+data[i].payDate+'</td><td>'+data[i].payName+'</td><td>'+parseInt(data[i].amount).toLocaleString()+'원'+'</td><td>'+receiptLink+'</td>';
-				$(content).appendTo(row);
-				$('.table > tbody:last').append(row); 
 			}
+			
+			
+			/* lll */
+		jui.ready([ "uix.table" ], function(table) {
+			table_7 = table("#table_7", {
+	        fields: [ "payDate", "payName", "amount", "method", "receipt" ],
+	        data: data,
+	        resize: true,
+	        sort: [ 0, 1, 2 ],
+	        scroll: true,
+	        scrollHeight: 500,
+	        event: {
+	            sort: function(column, e) {
+	                var className = {
+	                    "desc": "icon-arrow1 icon-white",
+	                    "asc": "icon-arrow3 icon-white"
+	                }[column.order];
+
+	                $(column.element).children("i").remove();
+	                $(column.element).append("<i class='" + className + "'></i>");
+	            }
+	        }
+	    });
+	});
+			
+			/* 111 */
+		},
+		error:function() {
+			alert("error");
 		}
 		
 	});
-    
-    
+	
+	$('#duration').click(function () {
+		var result='no';
+		startYear=parseInt($('#startDate').val().substring(0,4));
+		startMonth=parseInt($('#startDate').val().substring(5,7));
+		startDay=parseInt($('#startDate').val().substring(8));
+		endYear=parseInt($('#endDate').val().substring(0,4));
+		endMonth=parseInt($('#endDate').val().substring(5,7));
+		endDay=parseInt($('#endDate').val().substring(8));
+		
+		if(startYear<=endYear) {
+			if(startYear<endYear) {
+					result='yes';
+			}
+			else {
+				if(startMonth>endMonth) {
+					$('#errMsg').html("<font color='red'>시작일이 종료일보다 빠릅니다!</font>");
+				}
+				else if(startMonth==endMonth){
+					if(startDay>endDay) {
+						$('#errMsg').html("<font color='red'>시작일이 종료일보다 빠릅니다!</font>");
+					}
+					else {
+						result="yes";
+					}
+				}
+				else {
+					result='yes';
+				}
+			}
+		}
+		else {
+			if(startYear>endYear) {
+				$('#errMsg').html("<font color='red'>시작일이 종료일보다 빠릅니다!</font>");
+			}
+			else {
+				$('#errMsg').html("<font color='red'>검색기간을 다시 입력해주세요</font>");
+			}
+		}
+		
+		if(result=='yes') {
+			$('#errMsg').html("");
+			$.ajax({
+				url : './listPaymentByDayDuration.do',
+				data : {startDate : $('#startDate').val(), endDate : $('#endDate').val()},
+				dataType : 'json',
+				method : 'POST',
+				success : function(data){
+					var receiptLink;
+					for(var i=0;i<data.length;i++){
+						data[i].method=decodeURIComponent(data[i].method);
+						data[i].payName=decodeURIComponent(data[i].payName);
+			
+						
+						if(data[i].receipt=='-') {				
+							receiptLink=data[i].receipt;
+						}
+						else {
+							receiptLink='<a href="http://192.168.200.122:8080/Snl/'+data[i].receipt+'" onclick="popup(this.href); return false;">'+data[i].receipt+'</a>';
+							data[i].receipt=receiptLink;
+						}
+						
+					}
+					
+					
+					/* lll */
+				jui.ready([ "uix.table" ], function(table) {
+					table_7 = table("#table_7", {
+			        fields: [ "payDate", "payName", "amount", "method", "receipt" ],
+			        data: data,
+			        resize: true,
+			        sort: [ 0, 1, 2 ],
+			        scroll: true,
+			        scrollHeight: 500,
+			        event: {
+			            sort: function(column, e) {
+			                var className = {
+			                    "desc": "icon-arrow1 icon-white",
+			                    "asc": "icon-arrow3 icon-white"
+			                }[column.order];
+
+			                $(column.element).children("i").remove();
+			                $(column.element).append("<i class='" + className + "'></i>");
+			            }
+			        }
+			    });
+			});
+					
+					/* 111 */
+				},
+				error:function() {
+					alert("error");
+				}
+				
+			});
+		}
+		
+	});
+	
+	
 });
