@@ -83,15 +83,10 @@ public class UserController {
 	public String getUser(Model model , @RequestParam("userNo") int userNo, HttpServletResponse response,
 			HttpServletRequest request) throws Exception {
 	
-		request.setCharacterEncoding("UTF-8");
-
-		System.out.println("/updateUser.do");
 		System.out.println("/getUser.do");
 		System.out.println("user : " +userService.getUser(userNo));
 		
 		User user = userService.getUser(userNo);
-		
-		response.setContentType("text/plain;charset=UTF-8");
 		
 		model.addAttribute("user", user);
 		
@@ -115,7 +110,6 @@ public class UserController {
 	public String updateUser(@ModelAttribute("user") User user, HttpSession session, HttpServletResponse response,
 			HttpServletRequest request) throws Exception{
 		
-		request.setCharacterEncoding("UTF-8");
 		System.out.println("/updateUser.do");
 		
 		System.out.println("user :" +user);
@@ -123,8 +117,6 @@ public class UserController {
 		userService.updateUser(user);
 		
 		String sessionId=((User)session.getAttribute("user")).getId();
-		
-		response.setContentType("text/plain;charset=UTF-8");
 		
 		if(sessionId.equals(user.getId())) {
 			session.setAttribute("user", user);
