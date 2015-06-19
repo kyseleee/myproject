@@ -29,4 +29,6 @@ public interface PaymentDao {
 	public Map<String, Object> getPaymentListByDay(int groupNo) throws Exception;
 	
 	public Map<String, Object> getPaymentListByDayDuration(int groupNo, String startDate, String endDate) throws Exception;
+	
+	public Map<String, Object> getPaymentListByDayDurationName(int groupNo, String startDate, String endDate, String name) throws Exception;
 }

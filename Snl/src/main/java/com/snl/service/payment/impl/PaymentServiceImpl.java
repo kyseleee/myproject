@@ -86,4 +86,9 @@ public class PaymentServiceImpl implements PaymentService{
 		
 		return paymentDao.getPaymentListByDayDuration(groupNo, startDate, endDate);
 	}
+	
+	@Override
+	public Map<String,Object> getPaymentListByDayDurationName(int groupNo, String startDate, String endDate, String name) throws Exception {
+		return paymentDao.getPaymentListByDayDurationName(groupNo, startDate, endDate, name);
+	}
 }

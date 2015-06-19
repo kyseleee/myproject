@@ -2,7 +2,6 @@ var update=0;
 var groupNoHid=document.getElementById("groupNoHidden").value;
 var leaderNo=document.getElementById("leaderNo").value;
 var userNo=document.getElementById("userNo").value;
-alert(leaderNo+"=="+userNo);
 function updatePayment(event){
 	if(update==0){
 		var method = event.method;

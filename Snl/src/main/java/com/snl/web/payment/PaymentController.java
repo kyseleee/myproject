@@ -510,6 +510,54 @@ public class PaymentController {
 		return data;
 	}
 	
+	
+	@RequestMapping("/listPaymentByDayDurationName.do")
+	@ResponseBody
+	public String listPaymentByDayDurationName(@RequestParam(value="fromGraph", required=false, defaultValue="n") String fromGraph,
+											@RequestParam("startDate") String startDate,
+											@RequestParam("endDate") String endDate,
+											@RequestParam("name") String name,
+									HttpServletResponse response, HttpSession session,
+									HttpServletRequest request) throws Exception{
+		System.out.println("/listPaymentByDayDurationName");
+		
+		
+//		request.setCharacterEncoding("UTF-8");
+		int groupNo=((Group)session.getAttribute("group")).getGroupNo();
+		
+		Map<String , Object> map=paymentService.getPaymentListByDayDurationName(groupNo, startDate, endDate, name);
+		List<Payment> payList = (List<Payment>)map.get("list");
+		
+		String data="[";
+		String method="";
+		for(int i=0;i<payList.size();i++) {
+			data+="{\"payDate\" : \""+payList.get(i).getPayDate().substring(0, 10)+"\",";
+			data+="\"payName\" : \""+URLEncoder.encode(payList.get(i).getPayName(), "UTF-8")+"\",";
+			data+="\"amount\" : \""+payList.get(i).getAmount()+"\",";
+			if(payList.get(i).getMethod().equals("1")) {
+				method="신용카드";
+			}
+			else {
+				method="현금";
+			}
+			data+="\"method\" : \""+URLEncoder.encode(method, "UTF-8")+"\",";
+			if (payList.get(i).getReceit()==null) {
+				data+="\"receipt\" : \"-\"}";
+			}
+			else {
+				data+="\"receipt\" : \""+payList.get(i).getReceit()+"\"}";
+			}
+			
+			if (i!=payList.size()-1) {
+				data+=",";
+			}
+			
+		}
+		data+="]";
+//		response.setContentType("text/plain;charset=UTF-8");
+		return data;
+	}
+	
 }
 	
 	

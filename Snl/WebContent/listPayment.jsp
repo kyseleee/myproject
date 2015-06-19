@@ -50,7 +50,7 @@
     <div id="errMsg"></div>
     제목검색<br>
     <span>
-		    <input type="text" id="startDate" name="startDate" style="width:165px">
+		    <input type="text" id="search" name="search" style="width:165px">
 		    <button type="button" id="duration" style="height:26px">조회</button>
     </span>
     

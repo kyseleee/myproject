@@ -109,4 +109,19 @@ public class PaymentDaoImpl implements PaymentDao {
 		return map;
 	}
 	
+	@Override
+	public Map<String, Object> getPaymentListByDayDurationName(int groupNo, String startDate, String endDate, String name) throws Exception {
+		Map<String , Object> map = new HashMap<String, Object>();
+		Map<String , Object> tem = new HashMap<String, Object>();
+		
+		tem.put("groupNo", groupNo);
+		tem.put("startDate", startDate);
+		tem.put("endDate", endDate);
+		tem.put("name", name);
+		
+		map.put("list", sqlSession.selectList("PaymentMapper.getPaymentListByDayDurationName",tem));
+		System.out.println("===="+(List<Payment>)map.get("list"));
+		return map;
+	}
+	
 }

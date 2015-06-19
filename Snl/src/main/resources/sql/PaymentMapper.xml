@@ -112,13 +112,14 @@
 					WHERE group_no=#{groupNo} AND pay_date BETWEEN #{startDate} AND #{endDate}
 					ORDER BY pay_date
 	</select>
-
-	<!-- <select id="getPaymentListByDay" parameterType="payment" resultMap="paymentSelectMap">
-		SELECT pay_date, sum(amount) AS amount
+	
+	<select id="getPaymentListByDayDurationName" parameterType="map" resultMap="paymentSelectMap">
+		SELECT pay_no, group_no, method, receit, pay_date, pay_name, amount
 					FROM payment
-					GROUP BY pay_date
+					WHERE group_no=#{groupNo} AND pay_date BETWEEN #{startDate} AND #{endDate} AND pay_name LIKE #{name} 
 					ORDER BY pay_date
-	</select> -->
+	</select>
+
 	
 		
 </mapper>
