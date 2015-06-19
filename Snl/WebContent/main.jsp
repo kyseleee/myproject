@@ -30,20 +30,17 @@
 
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
-
-	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="background-color:#2b3340 !important;">
 	<div class="container">
 		 <div class="navbar-header">
-			<a class="navbar-brand logo-nav page-scroll" href="#page-top"
-				style="font-size: 30px; font-family:Arial Black;">S N L</a>
+			<a class="navbar-brand logo-nav page-scroll" href="#page-top">S N L</a>
 		</div> 
 
 		<div
 			class="collapse navbar-collapse navbar-right navbar-main-collapse">
 			<ul class="nav navbar-nav">
-				<li><a class="page-scroll" href="#page-top">Home</a></li>
-				<li><a class="page-scroll" href="#main1">introduction</a></li>
-				<li><a class="page-scroll" href="#main2">contact</a></li>
+				<li class="active"><a class="page-scroll active" href="#page-top">Home</a></li>
+				<li><a class="page-scroll" href="#main2">introduction</a></li>
 				<li><a class="" href="login.jsp">Login</a></li>
 			</ul>
 		</div>
@@ -51,12 +48,10 @@
 	</div>
 	<!-- /.container --> </nav>
 
-
 	<div id="content">
 
 		<!-- 첫번째 Main 화면 -->
 		<div id="main">
-	<br>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators" style="margin-bottom:50px;">
@@ -70,12 +65,12 @@
     <div class="carousel-inner" role="listbox">
 
       <div class="item active">
-        <img src="./images/home/bg4.jpg" alt="Chania" width="460" height="345">
+        <img src="./images/home/bg01.jpg" alt="Chania" width="460" height="345">
         <div class="carousel-caption">
         </div>
       </div>
 
-      <div class="item">
+      <!-- <div class="item">
         <img src="./images/home/bg2.jpg" alt="Chania" width="460" height="345">
         <div class="carousel-caption">
         </div>
@@ -91,7 +86,7 @@
         <img src="./images/home/bg1.jpg" alt="Flower" width="460" height="345">
         <div class="carousel-caption">
         </div>
-      </div>
+      </div> -->
   
     </div>
 
@@ -124,26 +119,20 @@
 				
 			</div>
 		</div>
- 
 
-
-		<!-- 세번째 Main2 화면 -->
+		<!-- 두번째 Main2 화면 -->
 		<div id="main2">
 			<div class="main2_wrap">
-				<div class="container" style="margin-top:10px;">
+				<div class="container" style="width:1200px;">
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<h2>Social Network <span style="color:#be9869">Leager</span>  </h2>
-							<p>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</p>
-							
-							
 						</div>
 					</div>
 					<div class="main2_section">
-					<div class="boxs" style="float: left; margin: 20px;">
+					<div class="boxs" style="float: left; margin:30px 30px 60px 30px;">
 					
 						<div class="box-icon">
-							<span style="font-size: 25px; left: 2px;"
+							<span style="font-size: 45px; left: 2px;"
 								class="glyphicon glyphicon-calendar"></span>
 							
 						</div>
@@ -155,9 +144,9 @@
 						</div>
 					</div>
 
-					<div class="boxs" style="float: left; margin: 15px;">
+					<div class="boxs" style="float: left; margin:30px 30px 60px 30px;">
 						<div class="box-icon">
-							<span style="font-size: 25px;" class="glyphicon glyphicon-usd"></span>
+							<span style="font-size: 45px;" class="glyphicon glyphicon-usd"></span>
 						</div>
 						<div><br/>
 							<h4>지출추가</h4>
@@ -167,9 +156,9 @@
 						</div>
 					</div>
 
-					<div class="boxs" style="float: left; margin: 15px;">
+					<div class="boxs" style="float: left; margin:30px 30px 60px 30px">
 						<div class="box-icon">
-							<span style="font-size: 25px;" class="glyphicon glyphicon-stats"></span>
+							<span style="font-size: 45px;" class="glyphicon glyphicon-stats"></span>
 						</div>
 						<div><br/>
 							<h4>통계</h4>
@@ -181,9 +170,35 @@
 
 
 
-					<div class="boxs" style="float: left; margin: 20px;">
+					<div class="boxs" style="float: left; margin:30px 30px 60px 30px">
 						<div class="box-icon">
-							<span style="font-size: 25px;"
+							<span style="font-size: 45px;"
+								class="glyphicon glyphicon-list-alt"></span>
+						</div>
+						<div><br/>
+							<h4>회비관리</h4>
+							<!-- <img style="width: 300px; height: 150px" class="img-responsive"
+								src="./images/a.jpg" /> -->
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						</div>
+					</div>
+					
+					<div class="boxs" style="float: left; margin:30px 30px 60px 30px">
+						<div class="box-icon">
+							<span style="font-size: 45px;"
+								class="glyphicon glyphicon-list-alt"></span>
+						</div>
+						<div><br/>
+							<h4>회비관리</h4>
+							<!-- <img style="width: 300px; height: 150px" class="img-responsive"
+								src="./images/a.jpg" /> -->
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+						</div>
+					</div>
+					
+					<div class="boxs" style="float: left; margin:30px 30px 60px 30px">
+						<div class="box-icon">
+							<span style="font-size: 45px;"
 								class="glyphicon glyphicon-list-alt"></span>
 						</div>
 						<div><br/>
@@ -196,7 +211,7 @@
 				</div>
 			</div>
 		</div>
-			<div class="main2_wrap2">
+			<!-- <div class="main2_wrap2">
 					<div class="container">
   <div class="row">
     <h2>Media Slider Carousel BS3</h2>
@@ -238,12 +253,18 @@
 			</div>
 			
 		</div>
-		<!-- Main2 End -->
-		
+		Main2 End
+		 -->
 	</div>
+</div>
 
+	<div id="footer2">
+	</div>
+	
 	<div id="footer">
 	</div>
+	
+	
 
 
 <script src="js/jquery.easing.min.js"></script>
