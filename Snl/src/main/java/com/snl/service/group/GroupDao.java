@@ -10,7 +10,9 @@ public interface GroupDao {
 	public Group getGroup(int groupNo) throws Exception;
 
 	public Group getGroupByGroupName(Group group) throws Exception; 
+	
+	public void deleteGroup(int groupNo) throws Exception;
 
-	public void deleteGroup(int groupNo) throws Exception ;
-
+	public void deleteGroupByUser(int userNo) throws Exception;
+	
 }
