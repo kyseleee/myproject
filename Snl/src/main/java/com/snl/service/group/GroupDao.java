@@ -15,4 +15,7 @@ public interface GroupDao {
 
 	public void deleteGroupByUser(int userNo) throws Exception;
 	
+	
+	
+	
 }

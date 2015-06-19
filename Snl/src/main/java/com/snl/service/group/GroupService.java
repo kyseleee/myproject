@@ -16,4 +16,5 @@ public interface GroupService {
 
 	public void deleteGroupByUser(int userNo) throws Exception;
 
+	
 }

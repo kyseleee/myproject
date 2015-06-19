@@ -51,4 +51,5 @@ public class GroupDaoImpl implements GroupDao{
 		sqlSession.delete("GroupMapper.deleteGroupByUser", userNo);
 	}
 	
+	
 }
