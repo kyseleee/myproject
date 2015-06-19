@@ -16,7 +16,6 @@
 --%>
 
 <script type="text/javascript">
-
 	function check(){
 		if("${group}" != ""){
 			return true;
@@ -26,7 +25,6 @@
 			return false;
 		}		
 	}
-
 </script>
 
 
