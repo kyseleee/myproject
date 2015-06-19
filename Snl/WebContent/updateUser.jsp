@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=euc-kr" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -83,7 +84,7 @@
 				var idv = $("input[name=id]").val();
 				 
 				if(idv == ""){
-					var msg = "<font color='red'>ÇÊ¼öÀÔ·ÂÀÔ´Ï´Ù.</font>";
+					var msg = "<font color='red'>í•„ìˆ˜ì…ë ¥ì…ë‹ˆë‹¤.</font>";
 		    		document.getElementById("idInfo").innerHTML= msg;
 				}else{ 
 				 
@@ -95,10 +96,10 @@
 				        	var data = JSON.parse(responseData);
 				        	
 				        	if(data.result == "true"){
-				        		var msg = "<font color='blue'>»ç¿ë °¡´ÉÇÑ ¾ÆÀÌµğ ÀÔ´Ï´Ù.</font>";
+				        		var msg = "<font color='blue'>ì‚¬ìš© ê°€ëŠ¥í•œ ì•„ì´ë”” ì…ë‹ˆë‹¤.</font>";
 				        	}
 				        	else{
-								var msg = "<font color='red'>ÀÌ¹Ì »ç¿ëÁßÀÎ ¾ÆÀÌµğ ÀÔ´Ï´Ù.</font>";
+								var msg = "<font color='red'>ì´ë¯¸ ì‚¬ìš©ì¤‘ì¸ ì•„ì´ë”” ì…ë‹ˆë‹¤.</font>";
 				        	}
 			        		document.getElementById("idInfo").innerHTML= msg;
 
@@ -115,7 +116,7 @@
 					var iemail = $("input[name=email]").val();
 					 
 					if(iemail == ""){
-						var msg = "<font color='red'>ÇÊ¼öÀÔ·ÂÀÔ´Ï´Ù.</font>";
+						var msg = "<font color='red'>í•„ìˆ˜ì…ë ¥ì…ë‹ˆë‹¤.</font>";
 			    		document.getElementById("emailInfo").innerHTML= msg;
 					}else{ 
 					 
@@ -127,10 +128,10 @@
 					        	var data = JSON.parse(responseData);
 					        	
 					        	if(data.result == "false"){
-									var msg = "<font color='red'>ÀÌ¹Ì °¡ÀÔµÈ ÀÌ¸ŞÀÏ ÀÔ´Ï´Ù.</font>";
+									var msg = "<font color='red'>ì´ë¯¸ ê°€ì…ëœ ì´ë©”ì¼ ì…ë‹ˆë‹¤.</font>";
 					        	}
 					        	else{
-									var msg = "<font color='blue'>»ç¿ë°¡´ÉÇÑ ÀÌ¸ŞÀÏ ÀÔ´Ï´Ù.</font>";
+									var msg = "<font color='blue'>ì‚¬ìš©ê°€ëŠ¥í•œ ì´ë©”ì¼ ì…ë‹ˆë‹¤.</font>";
 					        	}
 				        		document.getElementById("emailInfo").innerHTML= msg;
 
@@ -149,9 +150,9 @@
 				var cpw = $("input[name=confirm-password]").val();
 
 					if(pw != cpw){
-						var msg = "<font color='red'> ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.</font>";
+						var msg = "<font color='red'> ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.</font>";
 					}else{ 
-						var msg = "<font color='blue'> ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÕ´Ï´Ù.</font>";						
+						var msg = "<font color='blue'> ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•©ë‹ˆë‹¤.</font>";						
 					}
 		    		document.getElementById("pwInfo").innerHTML= msg;
 
@@ -159,7 +160,7 @@
 			
 			
 			$("#tel").focus(function(){
-				document.getElementById("telInfo").innerHTML= "<font color='blue'> ¼ıÀÚ¸¸ ÀÔ·ÂÇÏ¼¼¿ä. ¿¹)01011111111</font>";
+				document.getElementById("telInfo").innerHTML= "<font color='blue'> ìˆ«ìë§Œ ì…ë ¥í•˜ì„¸ìš”. ì˜ˆ)01011111111</font>";
 			});
 			
 			
@@ -201,16 +202,16 @@
 
  <input type="hidden" name="id" value="${user.id}"> 
 <input type="hidden" name="email" value="${user.email}"> 
-			<h2>°³ÀÎÁ¤º¸ ¼öÁ¤</h2>
+			<h2>ê°œì¸ì •ë³´ ìˆ˜ì •</h2>
 			<hr class="colorgraph">
 			
 			<div class="row">
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">ÆĞ½º¿öµå</p>
+				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">íŒ¨ìŠ¤ì›Œë“œ</p>
 			</div>
   				<div class="col-xs-6 col-sm-6 col-md-6">
 	  				<div class="form-group">
-						<input type="password" name="pw" id="pw" tabindex="1" class="form-control input-lg" value="${user.pw}" placeholder="ÆĞ½º¿öµå">
+						<input type="password" name="pw" id="pw" tabindex="1" class="form-control input-lg" value="${user.pw}" placeholder="íŒ¨ìŠ¤ì›Œë“œ">
 					</div>
   				</div>
   				
@@ -219,12 +220,12 @@
 
 			<div class="row">
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">ÆĞ½º¿öµå È®ÀÎ</p>
+				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">íŒ¨ìŠ¤ì›Œë“œ í™•ì¸</p>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6">
   					<div class="form-group">
 						<input type="password" name="confirm-password" id="confirm-password" tabindex="1" class="form-control input-lg"
-						value="${user.pw}" placeholder="ÆĞ½º¿öµå È®ÀÎ">
+						value="${user.pw}" placeholder="íŒ¨ìŠ¤ì›Œë“œ í™•ì¸">
 						<div id="pwInfo" align="left"></div>
 					</div>
   				</div>
@@ -233,11 +234,11 @@
 			
 			<div class="row">
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">ÀÌ¸§</p>
+				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">ì´ë¦„</p>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6">
   					<div class="form-group">
-				<input type="text" name="userName" id="userName" tabindex="1" class="form-control input-lg" value="${user.userName}" placeholder="ÀÌ¸§">
+				<input type="text" name="userName" id="userName" tabindex="1" class="form-control input-lg" value="${user.userName}" placeholder="ì´ë¦„">
 						<div id="pwInfo" align="left"></div>
 					</div>
   				</div>
@@ -245,11 +246,11 @@
 			
 			<div class="row">
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">ÀÌ¸ŞÀÏ ÁÖ¼Ò</p>
+				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">ì´ë©”ì¼ ì£¼ì†Œ</p>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6">
   					<div class="form-group">
-				<input type="email" name="email" id="email" tabindex="1" class="form-control input-lg" value="${user.email}" placeholder="ÀÌ¸ŞÀÏ ÁÖ¼Ò" disabled="disabled">
+				<input type="email" name="email" id="email" tabindex="1" class="form-control input-lg" value="${user.email}" placeholder="ì´ë©”ì¼ ì£¼ì†Œ" disabled="disabled">
 						<div id="pwInfo" align="left"></div>
 					</div>
   				</div>
@@ -257,19 +258,19 @@
 			
 			<div class="row">
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">ÀüÈ­¹øÈ£</p>
+				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">ì „í™”ë²ˆí˜¸</p>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6">
   					<div class="form-group">
-				<input type="text" name="tel" id="tel" tabindex="1" class="form-control input-lg" value="${user.tel}" placeholder="ÀüÈ­¹øÈ£" value="">
+				<input type="text" name="tel" id="tel" tabindex="1" class="form-control input-lg" value="${user.tel}" placeholder="ì „í™”ë²ˆí˜¸" value="">
 						<div id="pwInfo" align="left"></div>
 					</div>	
   				</div>
 			</div>
 			<hr class="colorgraph">
 			<div class="row">
-				<div class="col-md-6"><input type="submit" value="È®ÀÎ" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-				<div class="col-md-6"><a href="index.jsp"><input type="submit" value="Ãë¼Ò" class="btn btn-primary btn-block btn-lg" tabindex="7"></a></div>
+				<div class="col-md-6"><input type="submit" value="í™•ì¸" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+				<div class="col-md-6"><a href="index.jsp"><input type="submit" value="ì·¨ì†Œ" class="btn btn-primary btn-block btn-lg" tabindex="7"></a></div>
 			</div>
 		</form>
 	</div>

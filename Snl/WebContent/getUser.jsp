@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -87,17 +87,17 @@
 
 		<div class="row">
 		<form role="form" action="" method="post">
-			<h2>ȸ������</h2>
+			<h2>회원정보</h2>
 			<hr class="colorgraph">
 			
 		<div class="row">
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px;">���̵�</p>
+				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px;">아이디</p>
 			</div>
 	
 			<div class="col-xs-6 col-sm-6 col-md-6">
 			<div class="form-group">
-				<input type="text" name="id" id="id" tabindex="1" class="form-control input-lg" placeholder="���̵�" value="${user.id}" required="" disabled="disabled">
+				<input type="text" name="id" id="id" tabindex="1" class="form-control input-lg" placeholder="아이디" value="${user.id}" required="" disabled="disabled">
 				<div id="idInfo"  align="left"></div>
 			</div>
 			</div>
@@ -105,12 +105,12 @@
 		
 		<div class="row">
 			<div class="col-xs-4 col-sm-4  col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding:8px;">�̸�</p>
+				<p style="font-size:20px; font-weight: bold; float:left; padding:8px;">이름</p>
 			</div>
 	
 			<div class="col-xs-6 col-sm-6 col-md-6">
 			<div class="form-group">
-				<input type="text" name="userName" id="userName" tabindex="1" class="form-control input-lg" value="${user.userName}"placeholder="�̸�" disabled="disabled">
+				<input type="text" name="userName" id="userName" tabindex="1" class="form-control input-lg" value="${user.userName}"placeholder="이름" disabled="disabled">
 				<div id="idInfo"  align="left"></div>
 			</div>
 			</div>
@@ -118,12 +118,12 @@
 		
 		<div class="row">
 			<div class="col-xs-4 col-sm-4  col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding:8px;">�̸��� �ּ�</p>
+				<p style="font-size:20px; font-weight: bold; float:left; padding:8px;">이메일 주소</p>
 			</div>
 	
 			<div class="col-xs-7 col-sm-6 col-md-6">
 			<div class="form-group">
-				<input type="email" name="email" id="email" tabindex="1" class="form-control input-lg" value="${user.email}"placeholder="�̸��� �ּ�" disabled="disabled">
+				<input type="email" name="email" id="email" tabindex="1" class="form-control input-lg" value="${user.email}"placeholder="이메일 주소" disabled="disabled">
 				<div id="idInfo"  align="left"></div>
 			</div>
 			</div>
@@ -131,12 +131,12 @@
 		
 		<div class="row">
 			<div class="col-xs-4 col-sm-4  col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding:8px;">��ȭ��ȣ</p>
+				<p style="font-size:20px; font-weight: bold; float:left; padding:8px;">전화번호</p>
 			</div>
 	
 			<div class="col-xs-7 col-sm-6 col-md-6">
 			<div class="form-group">
-				<input type="text" name="tel" id="tel" tabindex="1" class="form-control input-lg"  value="${user.tel}" placeholder="��ȭ��ȣ" disabled="disabled">
+				<input type="text" name="tel" id="tel" tabindex="1" class="form-control input-lg"  value="${user.tel}" placeholder="전화번호" disabled="disabled">
 				<div id="idInfo"  align="left"></div>
 			</div>
 			</div>
@@ -144,9 +144,9 @@
 
 			<hr class="colorgraph">
 			<div class="row">
-				<a href="index.jsp" class="col-md-4"><input type="button" value="Ȯ��" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
-								<a href="updateUserView.do?id=${user.id}" class="col-md-4"><input type="button" value="����" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
-								<a href="deleteUser.do?userNo=${user.userNo}" class="col-md-4"><input type="button" value="Ż��" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
+				<a href="index.jsp" class="col-md-4"><input type="button" value="확인" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
+								<a href="updateUserView.do?id=${user.id}" class="col-md-4"><input type="button" value="수정" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
+								<a href="deleteUser.do?userNo=${user.userNo}&groupNo=${group.groupNo}" class="col-md-4"><input type="button" value="탈퇴" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
 			</div>
 		</form>
 	</div>
