@@ -40,8 +40,15 @@ public class GroupDaoImpl implements GroupDao{
 	public Group getGroupByGroupName(Group group) throws Exception {
 		return sqlSession.selectOne("GroupMapper.getGroupByGroupName", group);
 	}
-	
-	public void deleteGroup(int groupNo) throws Exception{
+
+	@Override
+	public void deleteGroup(int groupNo) throws Exception {
 		sqlSession.delete("GroupMapper.deleteGroup", groupNo);
 	}
+	
+	@Override
+	public void deleteGroupByUser(int userNo) throws Exception {
+		sqlSession.delete("GroupMapper.deleteGroupByUser", userNo);
+	}
+	
 }
