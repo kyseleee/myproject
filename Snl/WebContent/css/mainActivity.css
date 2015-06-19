@@ -8,7 +8,7 @@ body {
   font-family: 'Open Sans',"Helvetica Neue",Helvetica,Arial,sans-serif;
   font-size: 15px;
   line-height: 22px;
-  color: black;
+  color: #777;
 	
 }
 
@@ -209,7 +209,7 @@ form.login label, form.login a {
 	padding-top:50px;
 	height:600px;
 	position:relative;
-	background-color:black;
+	background-color:#be9869;
 	color:#fff;
 }
 
@@ -238,7 +238,7 @@ form.login label, form.login a {
 }
 
 .box-icon {
-	background-color: black;
+	background-color: #be9869;
 	border-radius: 50%;
 	display: table;
 	height: 100px;
@@ -310,7 +310,7 @@ form.login label, form.login a {
 /* End carousel */
 
 #footer {
-	background-color: black;
+	background-color: #be9869;
 	height: 200px;
 	color: #F5DA81;
 	margin-top: 50px;
