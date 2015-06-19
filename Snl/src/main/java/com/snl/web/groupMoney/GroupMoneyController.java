@@ -114,9 +114,11 @@ public class GroupMoneyController {
 			paidList[i] = 0;
 			for(int j=0;j<groupArrListByGroup.size(); j++){
 				gmPaid.setUser(groupArrListByGroup.get(j).getUser());
-				if(gmPaidService.getGmPaid(gmPaid).getPaid().equals("Y")){
-					paidList[i] ++;
-					System.out.println("11111111");
+				if(gmPaidService.getGmPaid(gmPaid) != null){
+					if(gmPaidService.getGmPaid(gmPaid).getPaid().equals("Y")){
+						paidList[i] ++;
+						System.out.println("11111111");
+					}
 				}
 			}			
 		}
