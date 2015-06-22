@@ -16,6 +16,7 @@
 --%>
 
 <script type="text/javascript">
+
 	function check(){
 		if("${group}" != ""){
 			return true;
@@ -25,11 +26,12 @@
 			return false;
 		}		
 	}
+
 </script>
 
 
 <div id="leftMenu">
-<nav class="navbar navbar-inverse sidebar" role="navigation">
+<nav class="navbar navbar-inverse sidebar" role="navigation" style="height:100%; background-color:white;">
     	<div class="container-fluid">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">		
@@ -46,10 +48,10 @@
 				<li ><a href="getListGroupArr.do" onclick="return check();">회원리스트<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>
 				<li>
 				   	<a><h2 class="text-warning">Total</h2></a>
-					<a style="color:white">총 회비 : <fmt:formatNumber value="${totalGm}" groupingUsed="true"/> 원</a>
-					<a style="color:white">총 지출 :  <fmt:formatNumber value="${totalPayment}" groupingUsed="true"/>원</a>
-					<a style="color:white">----------------------</a>
-					<a style="color:white">총 잔액 :  <fmt:formatNumber value="${totalGm - totalPayment}" groupingUsed="true"/>원</a>
+					<a style="color:black">총 회비 : <fmt:formatNumber value="${totalGm}" groupingUsed="true"/> 원</a>
+					<a style="color:black">총 지출 :  <fmt:formatNumber value="${totalPayment}" groupingUsed="true"/>원</a>
+					<a style="color:black">----------------------</a>
+					<a style="color:black">총 잔액 :  <fmt:formatNumber value="${totalGm - totalPayment}" groupingUsed="true"/>원</a>
 
 				</li>
 			</ul>	
