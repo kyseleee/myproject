@@ -17,8 +17,8 @@
  		<link href="css/index.css" rel="stylesheet">
 	    <link href="css/leftmenu.css" rel="stylesheet">
 	    <link href="css/groupMoney.css" rel="stylesheet">
-	    <link href="css/user.css" rel="stylesheet">
-		
+	    <link href="css/user.css" rel="stylesheet">		
+		<link href="jui/jui.min.css" rel="stylesheet">
 
 		<!--  js -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -58,37 +58,38 @@
 	
 
  		<jsp:include page="header.jsp"/>
- 		<div style="background-color:#8772bf !important; margin-top: 50px; height: 100px;" width="100%" height="50px;">
+ 		<div id="headernav"></div>
+ 		<!-- <div style="background-color:#8772bf !important; margin-top: 50px; height: 100px;" width="100%" height="50px;">
 			<div class="center">
 			group
 			</div>
- 		</div>
+ 		</div> -->
     
   		<div id="content">
-<%--   	  	<jsp:include page="leftMenu.jsp"/>
- --%>    
+       	   	  	<jsp:include page="leftMenu.jsp"/>
     	
-    	<div id="main" style="
-    padding-top: 50px;
-">
+    	<div id="main">
 
-		<h3 style="color: #8772bf; border-bottom: 1px solid #eee; padding-bottom: 10px;""> 회비내역 리스트  </h3><br/>
+		<h3 style="color: #8772bf; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0px;"> 회비내역 리스트  </h3><br/>
+		<div class="jui">
 		<h4 align="right">${group.groupName}의 총 인원 : ${groupSize} 명 &nbsp&nbsp
 			<c:if test="${group.user.userNo == user.userNo}">			
-				<a href="addGroupMoney.jsp"><button class="btn btn-primary">add</button></a>
+				<a href="addGroupMoney.jsp" class="btn btn-normal btn-purple" >
+					회비추가
+				</a>
 			</c:if>
 		</h4>
-		
-        <div class="panel panel-primary">
+		</div>
+        <div class="panel panel-primary" style="border:1px solid #e5e5e5!important">
             <table class="table">	
-                <tr align="center">
+                <tr align="center" style="background-color:#686278;">
                    
-                    <td><b>회비명</td>
-                    <td><b>날짜</td>
-                    <td><b>회비금액(/인)</td>
-                    <td><b>현재총수납액</td>
-                    <td><b>상태</td>
-                    <td><b>수납(미납)인원</td>
+                    <td style="color: white;"><b>회비명</td>
+                    <td style="color: white;"><b>날짜</td>
+                    <td style="color: white;"><b>회비금액(/인)</td>
+                    <td style="color: white;"><b>현재총수납액</td>
+                    <td style="color: white;"><b>상태</td>
+                    <td style="color: white;"><b>수납(미납)인원</td>
                 </tr>
                 <tbody>
                 <c:set var="i" value="0"/>
@@ -138,10 +139,10 @@
 	
 		<jsp:include page="rightMenu.jsp"></jsp:include>
     
-    </div>
+    	    </div>
     
              
-	    
+	<div id="footer2"></div>
 	<jsp:include page="footer.jsp"/>
 	
 	</body>
