@@ -270,6 +270,7 @@ $(document).ready(function() {
 	    interval: false,
 	  });
 	});
+	
 </script>
 </body>
 </html>
