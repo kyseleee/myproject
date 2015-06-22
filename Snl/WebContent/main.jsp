@@ -33,7 +33,8 @@
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="background-color:#2b3340 !important;">
 	<div class="container">
 		 <div class="navbar-header">
-			<a class="navbar-brand logo-nav page-scroll" href="#page-top" style="font-size:25px;">S N L</a>
+			<a class="navbar-brand logo-nav page-scroll" href="#page-top" style="font-size:2em;
+			font-weight:bold; color:white;">S N L</a>
 		</div> 
 
 		<div
@@ -140,7 +141,7 @@
 		<!-- 두번째 Main2 화면 -->
 		<div id="main2">
 			<div class="main2_wrap">
-				<div class="container" style="width:1000px;">
+				<div class="container" style="width:100%;">
 					<div class="row">
 						<div class="col-md-12 text-center">
 						</div>
@@ -254,6 +255,22 @@
 	</div>
 	
 	<div id="footer">
+	<div class="center row">
+		<div class="col col-8 msg">
+			JENNIFER UI has developed by the UI parts of JenniferSoft.<br>
+			Designer Yoha and Programmer Alvin and Jayden has developed a UI library.
+		</div>
+		<div class="col col-4 link">
+		</div> <br/>
+		<div class="col col-8 msg">
+			Code licensed under MIT License.<br>
+			Copyright © 2015 JenniferSoft Inc. All rights reserved.
+		</div>
+		<div class="col col-4 link">
+			<strong>Supported languages:</strong>
+			<span>English</span>
+		</div>
+	</div>
 	</div>
 	
 	

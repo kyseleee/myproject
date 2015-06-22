@@ -87,6 +87,8 @@ a:focus {
 
 .navbar-custom a {
 	color: white;
+	font-size:15px;
+	font-weight: bold;
 }
 
 .navbar-custom .nav li a {
