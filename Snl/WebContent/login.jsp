@@ -43,6 +43,7 @@
 		    text-align: center;
 		    background: #fff;
 		    border: 1px solid #ccc;
+		    margin-top : 200px;
 		}
 		
 		.login-container::before,.login-container::after{
@@ -83,17 +84,19 @@
 	<body>
 	
 	<div id="header">
-   		<nav class="navbar navbar-inverse">
+   	<nav class="navbar navbar-inverse"  style="background-color: #2b3340 !important; min-height: 70px; padding-top: 10px;">
+		    <div class="center">
 		    <div class="navbar-header">
+		    	
 		     	<a id="home" class="navbar-brand" href="/Snl/login.jsp">SNL</a> 
 			</div>    
+			</div>
 		</nav>
 	</div>
     
   	<div id="content">
     
     	
-    	<div id="main">
     	
 <div class="login-container">   		
 	<div class="row" >
@@ -123,7 +126,6 @@
 			</fieldset>
 		</form>
 	</div>
-</div>
 </div>
 </div>
 	
