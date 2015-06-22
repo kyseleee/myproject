@@ -33,22 +33,21 @@
     
   		<div id="content">
 
-  	  	<jsp:include page="leftMenu.jsp"/>
-    	
+  	  
+    	<jsp:include page="leftMenu.jsp"/>
     	<div id="main">
-    	
-    	
-    	
+    		<div id="main2">
+    		</div>
     	</div>
 	
 		<jsp:include page="rightMenu.jsp"></jsp:include>
-    
+    	<jsp:include page="footer.jsp"/>
     </div>
     
              
-	    
-	<jsp:include page="footer.jsp"/>
+	   </body>
 	
-	</body>
+	
+	 
 
 </html>
