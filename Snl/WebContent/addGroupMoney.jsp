@@ -32,6 +32,16 @@
 			}
 
 	    
+	    	.addbtn{
+	    	  background-color: #f6f1ff;
+			  background-image: -moz-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: -webkit-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: -o-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: -ms-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  border: 1px solid #b696ea;
+			  color: #201834;
+	    	}
 	    </style>
 
 
@@ -56,15 +66,11 @@
     	<div id="main">
     	
     	
-    	<div class='row'>
-    	<div class='col-md-2'></div>
-	    <div class='col-md-8'>
-        <div class='col-md-12 form-group'>
-			<div class="form-row">        
-				<h1>회비 추가</h1>
-	        	<hr class="featurette-divider"></hr>
-       		</div>
-    	</div>
+    	
+       	<h3 style="color: #8772bf; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0px;"> 회비추가  </h3>
+		<br/>
+		<br/>
+		<br/>
     	
  		<form action="/Snl/addGroupMoney.do" id="payment-form" method="post">
  			 
@@ -88,18 +94,15 @@
               </div>
         </div>
         <div class='form-row'>
-              <div class='col-xs-12 form-group card required' style="margin-top: 80px;">
-              	<button class='form-control btn btn-primary submit-button' type='submit'> 추가</button>        
+              <div class='col-xs-12 form-group card required' style="margin-top: 30px;">
+              	<button class='form-control addbtn submit-button' type='submit' > 추가</button>        
               </div>
         </div>
 
         </form>
         </div>   
         </div>
-    </div>
-    
-    <div class='col-md-2'></div>
-    
+
 </div>
     	
     	
@@ -109,7 +112,6 @@
     	
     	</div>
 	
-		<jsp:include page="rightMenu.jsp"></jsp:include>
     
     </div>
     

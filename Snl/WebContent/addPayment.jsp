@@ -34,19 +34,15 @@
  		<jsp:include page="header.jsp"/>
     
   		<div id="content">
-  	  	<jsp:include page="leftMenu.jsp"/>
     
     	<input type="hidden" id="groupNoHidden" name="groupNoHidden" value="${group.groupNo}"/>
     	<div id="main">
     	
     	<div class="row">
+    	    <jsp:include page="leftMenu.jsp"/>
     	
-        <div class="col-sm-12">
             <legend><b>지출 추가</b></legend>
-        </div>
   
-        <div class="col-sm-3"></div>
-        <div class="col-sm-6">
             <div class="panel-default">
                 <div class="panel-body form-horizontal payment-form">
                 	<form id="addPay-form" action="addPayment.do" method="POST" enctype="multipart/form-data"> 
@@ -133,11 +129,8 @@
     	
     	</div>
 	
-		<jsp:include page="rightMenu.jsp"></jsp:include>
     
-    </div>
     
-             
 	    
 	<jsp:include page="footer.jsp"/>
 	

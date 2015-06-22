@@ -2,10 +2,12 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
+<%@ page import="java.util.*" %>
 
 	<div id="header">
-   	<nav class="navbar navbar-inverse">
+   	<nav class="navbar navbar-inverse"  style="background-color: #2b3340 !important; min-height: 50px; ">
+   	<div class="center">
 		    <div class="navbar-header">
 		    	<c:if test="${! empty user}">
 		     	<a id="home" class="navbar-brand" href="/Snl/calendar.jsp">SNL</a> 
@@ -15,11 +17,14 @@
 		     	</c:if>
 			</div>        
 
+				
+			
+			<ul class="nav navbar-nav navbar-right navbar-user">
+				
 				<c:if test="${! empty group}">		
 							
-				<ul class="nav navbar-nav navbar-center navbar-user">
-					<li class="dropdown active">
-						<a class="dropdown-toggle" data-toggle="dropdown">${group.groupName}
+				<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown">내 그룹
 						<b class="caret"></b></a>
 						<ul class="dropdown-menu">
 						
@@ -36,14 +41,12 @@
 						
 						
 					</li>
-				</ul>
 				</c:if>		
-			
-			<ul class="nav navbar-nav navbar-right navbar-user">
+				
 				
 				  
 				<c:if test="${! empty user}">		
-					<li class="active"><a href='addGroup.jsp'>+ Add Group</a></li>
+					<li ><a href='addGroup.jsp'>Add Group</a></li>
 				</c:if>
 				  
 			  <%if (session.getAttribute("user") != null) {%>
@@ -94,5 +97,23 @@
 			        </li>
 					<%}%>
             </ul>
+            </div>
 	</nav>
+
+	
+	</div>
+	<div id="headernav">
+		<div class="center">
+		<span class="headernavTitle">
+		 ${group.groupName}
+		 </span>
+		 <span class="headernavMent">
+		현재까지 총 누적   회비 :<fmt:formatNumber value="${totalGm}" groupingUsed="true"/>  원,  
+		
+		지출:  <fmt:formatNumber value="${totalPayment}" groupingUsed="true"/>  원, 
+		
+		 잔액 :  <fmt:formatNumber value="${totalGm - totalPayment}" groupingUsed="true"/>   원
+		</span>
+		</div>
+		
 	</div>

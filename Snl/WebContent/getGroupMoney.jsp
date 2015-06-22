@@ -31,6 +31,7 @@
 	    <link href="css/leftmenu.css" rel="stylesheet">
 	    <link href="css/groupMoney.css" rel="stylesheet">
 	    <link href="css/user.css" rel="stylesheet">
+		<link href="jui/jui.min.css" rel="stylesheet">
 		
 
 		<!--  js -->
@@ -50,11 +51,12 @@
     	
     	<div id="main">
     	
+		<h3 style="color: #8772bf; border-bottom: 1px solid #eee; padding-bottom: 10px;""> 회비내역 상세보기  </h3><br/>
 
-        <div class="panel panel-primary" style="margin-top: 40px;">
+        <div class="panel" style=" backgrmargin-top: 40px; ">
     				
-            <div class="panel-heading">
-                <h3 class="panel-title">${groupMoney.gmName} ( ${groupMoney.gmDate.substring(0,10)} / <fmt:formatNumber value="${groupMoney.gmPrice}" groupingUsed="true"/>원)</h3> 
+            <div class="panel-heading" style="background-color: #686278;">
+                <h3 class="panel-title" style="color: white;">${groupMoney.gmName} ( ${groupMoney.gmDate.substring(0,10)} / <fmt:formatNumber value="${groupMoney.gmPrice}" groupingUsed="true"/>원)</h3> 
             </div>			
 				<div class="panel panel-default" style="margin-bottom: 0px;">
 					

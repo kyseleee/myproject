@@ -18,7 +18,18 @@
  		<link href="css/index.css" rel="stylesheet">
 	    <link href="css/leftmenu.css" rel="stylesheet">
 		<link href="css/user.css" rel="stylesheet">
-		
+		<style type="text/css">
+		.addbtn{
+	    	  background-color: #f6f1ff;
+			  background-image: -moz-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: -webkit-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: -o-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: -ms-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  border: 1px solid #b696ea;
+			  color: #201834;
+	    	}
+		</style>
 		
 
 		<!--  js -->
@@ -42,9 +53,10 @@
     	
     	<div id="main">
     		
-    	<div class="col-sm-12">
-	    <legend style="border-bottom:0px;"><strong>${group.groupName} 초대장 발송 리스트</strong></legend>
-		</div>
+    	<h3 style="color: #8772bf; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0px;"> 회원초대하기  </h3>
+		<br/>
+		<br/>
+		<br/>
 	     
 		<div class="col-sm-12">
 		<div class="panel-default">
@@ -88,7 +100,7 @@
 					<div class="col-xs-4"></div>
 	 				<div class="col-xs-4">		            	    
 	                    <input type="submit"  onclick="fnc(); retrun false;" 
-	                    		class="btn btn-primary btn-block" name="register-submit" id="register-submit" tabindex="4" value="초대장발송">
+	                    		class="btn addbtn btn-block" name="register-submit" id="register-submit" tabindex="4" value="초대장발송">
 	    			</div>
 	        		<div class="col-xs-4"></div>                
     			</div>

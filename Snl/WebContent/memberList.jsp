@@ -118,7 +118,7 @@
     	
 	<div id="main">
 	<div style="width:100%;">
-	<h2 align="left">회원리스트</h2>
+		<h3 style="color: #8772bf; border-bottom: 1px solid #eee; padding-bottom: 10px;""> 회비내역 리스트  </h3><br/>
 	<div style="float:right" class="fab btn-group show-on-hover dropup">
 		<div data-toggle="tooltip" data-placement="left" title="회원초대하기">
  			<a href="addMember.jsp?groupName=${group.groupName}">
@@ -134,10 +134,10 @@
 	</div>
 	</div>
 	
-	<div style="width:100%;" class="fab btn-group show-on-hover dropup">
+	<div style="width:100%;margin-top: 20px;"class="fab btn-group show-on-hover dropup">
 		<div class="table-responsive">
 			
-		<table id="mytable" class="table table-bordred table-striped">
+		<table id="mytable" class="table table-bordred table-striped"   style="border: 1px solid transparent;">
           
 		<thead>
 		    <th style="text-align: center"></th>				
