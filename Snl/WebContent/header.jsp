@@ -6,7 +6,7 @@
 <%@ page import="java.util.*" %>
 
 	<div id="header">
-   	<nav class="navbar navbar-inverse"  style="background-color: #2b3340 !important; min-height: 50px; ">
+    <nav class="navbar navbar-inverse"  style="background-color: #2b3340 !important; min-height: 50px; ">
    	<div class="center">
 		    <div class="navbar-header">
 		    	<c:if test="${! empty user}">
@@ -56,7 +56,7 @@
 							
 						
 						
-			<ul id="user" class="dropdown-menu">
+			<ul id="user" class="dropdown-menu" style="background-color:#2b3340;">
 				<li>
 					<div class="profile-userpic" align="center">
 						<img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" 
@@ -73,16 +73,16 @@
 					</div>
 	
 					<div class="profile-userbuttons">
-						<button type="button" class="btn btn-success btn-sm">reLogin</button>
+						<a href="getUser.do?userNo=${user.userNo}"><button type="button" class="btn btn-success btn-sm" style="width:82px;">Edit</button></a>
 					<a href="logout.do">	<button type="button" class="btn btn-danger btn-sm">Logout</button></a>
 					</div>
 					
 					<div class="profile-usermenu">
-						<ul class="nav">
+						<%-- <ul class="nav">
 							<li>
 								<a href="getUser.do?userNo=${user.userNo}"><i class="glyphicon glyphicon-user "></i>나의정보보기 </a>
 							</li>
-						</ul>
+						</ul> --%>
 					</div>
 				</li>
 			</ul>
@@ -99,7 +99,6 @@
             </ul>
             </div>
 	</nav>
-
 	
 	</div>
 	<div id="headernav">
