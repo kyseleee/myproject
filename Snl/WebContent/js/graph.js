@@ -36,7 +36,7 @@ var groupNoHid=document.getElementById("groupNoHidden").value;
 	        tooltip: {
 	            valueSuffix: '원',
 	            formatter : function(){
-	            		return '<b>Group</b> <br>날짜 : '+this.x+'<br>금액 : '+(this.y).toLocaleString();
+	            		return /*'<b>'+this.series.name+'</b> <br>*/'<b>날짜</b> : '+this.x+'<br><b>금액</b> : '+(this.y).toLocaleString();
 	            },
 	            shared : true
 	        },

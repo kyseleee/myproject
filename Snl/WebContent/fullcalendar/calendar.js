@@ -237,9 +237,6 @@ function deletePayment(event) {
 //										alert(dataObj);
 //										alert(dataObj.jsonTxt);
 //										callback(dataObj.jsonTxt);
-								},
-								error : function(){
-									alert("FAIL");
 								}
 								
 							});

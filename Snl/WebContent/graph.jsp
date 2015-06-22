@@ -47,30 +47,88 @@
 	
 
  		<jsp:include page="header.jsp"/>
-    
   		<div id="content">
 
   	  	<jsp:include page="leftMenu.jsp"/>
     	
-    	<div id="main">
+    	<div id="main" class="jui">
+    	<h3 style="color: #8772bf; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0px;"> 통   계  </h3><br/>
     	<input type="hidden" id="groupNoHidden" name="groupNoHidden" value="${group.groupNo}"/>
-	<span>
-		시작일&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; 종료일<br>
-		<input type="text" id="startDate" name="startDate" style="width:72px">
-	</span>
-	<span>
-					~
-	</span>
-	<span>
-		<input type="text" id="endDate" name="endDate" style="width:72px">
-	</span>
-	<span>
-		<button type="button" id="duration" style="height:26px">조회</button>
-		<button id="column" style="margin-left: 2em">Column</button>
+					<!-- <div class="vgroup" style="float:right;">
+						<div class="group">
+								<label class="label labe-large label-pur" style="width:180px"><i class="icon-calendar icon-large"></i>  시작일</label>
+								<label class="label labe-large label-pur" style="width:180px"><i class="icon-calendar icon-large"></i>  종료일</label>
+						</div>
+				
+						<div class="group" >
+								<input type="date" id="startDate" name="startDate" class="input input-large" >
+								<input type="date" id="endDate" name="endDate" class="input input-large" >
+								<a class="btn btn-large btn-purple-black" id="duration" >
+			          <i class="icon-search icon-large icon-bounce"></i>
+			          조  회</a>
+						</div>
+				</div>			
+						<div class="group">
+								<a class="btn btn-large btn-purple-black" id="area" >
+								<i class="icon-chart-area icon-large icon-bounce"></i>
+						    Area</a>
+						    <a class="btn btn-large btn-purple-black" id="line" >
+						    <i class="icon-chart-line icon-large icon-bounce"></i>
+						    Line</a>
+						    <a class="btn btn-large btn-purple-black" id="column" >
+						    <i class="icon-chart-column icon-large icon-bounce"></i>
+						    Column</a>
+						    
+						</div> -->
+				
+						<div class="col-md-12">
+						
+							<div class="col-md-4"></div>
+							<div class="col-md-1" style="width:85px;"></div>
+							<div class="col-md-6">
+								<div class="group" style="float:right;">
+											<label class="label label-pur" style="width:160px"><i class="icon-calendar icon-large"></i>  시작일</label>
+											<label class="label label-pur" style="width:160px"><i class="icon-calendar icon-large"></i>  종료일</label>
+									</div>
+							</div>
+							
+				
+					<div class="row">		
+						<div class="col-md-5">
+									<div class="group">
+											<a class="btn btn-purple-black" id="area" >
+											<i class="icon-chart-area icon-large icon-bounce"></i>
+									    Area</a>
+									    <a class="btn btn-purple-black" id="line" >
+									    <i class="icon-chart-line icon-large icon-bounce"></i>
+									    Line</a>
+									    <a class="btn btn-purple-black" id="column" >
+									    <i class="icon-chart-column icon-large icon-bounce"></i>
+									    Column</a>
+									</div>	
+						</div>		
+						<div class="col-md-7">		
+									<div class="group" style="float:right;">
+											<input type="date" id="startDate" name="startDate" class="input " >
+											<input type="date" id="endDate" name="endDate" class="input " >
+											<a class="btn btn-purple-black" id="duration" >
+						          <i class="icon-search icon-large icon-bounce"></i>
+						          조  회</a>
+									</div>
+						</div>
+					</div>
+					
+				</div>		
+			<div class="col-md-12" id="errMsg" style="height:40px; text-align:right;"></div>
+		     
+	
+		<!-- <button type="button" id="duration" style="height:26px">조회</button> -->
+		
+		<!-- <button id="column" style="margin-left: 2em">Column</button>
 		<button id="line">Line</button>
-		<button id="area">Area</button>		
-	</span>
-	<div id="errMsg"></div>
+		<button id="area">Area</button> -->		
+
+	
 	<!-- <div class="row">
 			<div class="col-xs-1">
 				<fieldset id="f_start" style="border:0; font-size:12px">시작일<br>
@@ -96,8 +154,9 @@
 	</div> -->
 
 <div id="container"></div>
+<div style="height:30px;"></div>
 <div class="jui">
-		<table id="table_1" class="table table-classic">
+		<table id="table_1" class="table table-classic table-stripe">
 		    <thead>
 		    <tr align=center>
 		        <th></th>

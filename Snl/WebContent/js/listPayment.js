@@ -5,7 +5,7 @@ function popup(url) {
 $(document).ready(function(){
 	$.ajax({
 		url : './listPaymentByDayDuration.do',
-		data : {startDate : "2015-01-01", endDate : "2015-06-01"},
+		data : {startDate : "2015-01-01", endDate : "2015-07-01"},
 		dataType : 'json',
 		method : 'POST',
 		success : function(data){
@@ -50,9 +50,6 @@ $(document).ready(function(){
 	});
 			
 			/* 111 */
-		},
-		error:function() {
-			alert("error");
 		}
 		
 	});
@@ -60,7 +57,6 @@ $(document).ready(function(){
 	$('#duration').click(function () {
 		var result='no';
 		var searchKey=$('#search').val();
-		alert("=="+searchKey+"==");
 		startYear=parseInt($('#startDate').val().substring(0,4));
 		startMonth=parseInt($('#startDate').val().substring(5,7));
 		startDay=parseInt($('#startDate').val().substring(8));
@@ -101,7 +97,6 @@ $(document).ready(function(){
 		}
 		
 		if(searchKey!='') {
-			alert("서치키"+searchKey+"==")
 			result='dateName';
 		}
 		
@@ -113,7 +108,6 @@ $(document).ready(function(){
 				dataType : 'json',
 				method : 'POST',
 				success : function(data){
-					alert(data);
 					var receiptLink;
 					for(var i=0;i<data.length;i++){
 						data[i].amount=parseInt(data[i].amount).toLocaleString();
@@ -156,9 +150,6 @@ $(document).ready(function(){
 			});
 					
 					/* 111 */
-				},
-				error:function() {
-					alert("error");
 				}
 				
 			});
@@ -213,9 +204,6 @@ $(document).ready(function(){
 			});
 					
 					/* 111 */
-				},
-				error:function() {
-					alert("error");
 				}
 				
 			});
@@ -225,5 +213,15 @@ $(document).ready(function(){
 		
 	});
 	
+	jui.ready([ "uix.window" ], function(win) {
+	    win_1 = win("#win_1", {
+	        width: 500,
+	        height: 300,
+	        left: "30%",
+	        top: 200,
+	        resize: true,
+	        move: true
+	    });
+	});
 	
 });

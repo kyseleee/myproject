@@ -42,13 +42,12 @@
     <input type="hidden" id="userNo" value="${user.userNo}"/>
     
  		<jsp:include page="header.jsp"/>
-    
   		<div id="content">
   	  	<jsp:include page="leftMenu.jsp"/>
     
     	
     	<div id="main">
-    	
+    	<h3 style="color: #8772bf; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0px; font-weight:bold"> 지출현황  </h3><br/>
 
     		<div class="panel-body" id='calendar'></div>
     	
@@ -58,45 +57,7 @@
     		
     		<div id="addPayment" title="지출추가">
     			<div id="addPaymentContent"></div>
-	    		<%-- <form id="addPay-form" action="addPayment.do?groupNo=${groupNo}" method="POST" enctype="multipart/form-data"> 
-			            	<div class="form-group">
-		                        <label for="payMethod" class="col-sm-3 control-label">결제수단</label>
-		                        <div class="col-sm-9" style="vertical-align:middle;">
-		                            <select class="form-control" id="method" name="method">
-		                                <option>신용카드</option>
-		                                <option>현    금</option>
-		                            </select>
-		                        </div>
-		                    </div> 
-		                    <div class="form-group">
-		                        <label for="date" class="col-sm-3 control-label">날     짜</label>
-		                        <div class="col-sm-9">
-		                            <input type="date" class="form-control" id="payDate" name="payDate">
-		                            <div id="dateErr"></div>
-		                        </div>
-		                    </div>   
-		                    <div class="form-group">
-		                        <label for="amount" class="col-sm-3 control-label">상  호  명</label>
-		                        <div class="col-sm-9">
-		                            <input type="text" class="form-control" id="payName" name="payName">
-		                            <div id="payNameErr"></div>
-		                        </div>
-		                    </div>
-			                <div class="form-group">
-		                        <label for="description" class="col-sm-3 control-label">금      액</label>
-		                        <div class="col-sm-9">
-		                            <input type="text" class="form-control" id="amount" name="amount">
-		                            <div id="amountErr"></div>
-		                            <!-- <input type="hidden" value="" id="receit" name="receit"/> -->
-		                        </div>
-			                </div>
-							<div class="form-group">
-		                        <label for="concept" class="col-sm-3 control-label">영  수  증</label>
-		                        <div class="col-sm-9">
-		                        		<input type="file" id="file" name="file"/>
-		                        </div>
-		                    </div>
-	                  	</form> --%>
+	    		
 						
     		</div>
     		

@@ -42,7 +42,7 @@
 		<div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li ><a href='calendar.jsp' onclick="return check();">지출현황<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-calendar"></span></a></li>
-				<li ><a href='addPayment.jsp' onclick="return check();">지출추가<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-usd"></span></a></li>
+				<li ><a href='listPayment.jsp' onclick="return check();">지출검색<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-usd"></span></a></li>
 				<li ><a href='graph.jsp' onclick="return check();">통    계<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-stats"></span></a></li>
 				<li ><a href='groupMoneyView.do' onclick="return check();">회비관리<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-list-alt"></span></a></li>
 				<li ><a href="getListGroupArr.do" onclick="return check();">회원리스트<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-user"></span></a></li>

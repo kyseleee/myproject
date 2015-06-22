@@ -31,30 +31,31 @@
 		<input type="hidden" id="groupNoHidden" name="groupNoHidden" value="${group.groupNo}"/>
 
  		<jsp:include page="header.jsp"/>
-    
   		<div id="content">
 
   	  	<jsp:include page="leftMenu.jsp"/>
     	
     	<div id="main" class="jui">
-    	<span>
-		시작일&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; 종료일<br>
-		<input type="text" id="startDate" name="startDate" style="width:72px">
-	</span>
-	<span>
-					~
-	</span>
-	<span>
-		<input type="text" id="endDate" name="endDate" style="width:72px">
-	</span>
-    <div id="errMsg"></div>
-    제목검색<br>
-    <span>
-		    <input type="text" id="search" name="search" style="width:165px">
-		    <button type="button" id="duration" style="height:26px">조회</button>
-    </span>
-    
-    	<table id="table_7" class="table table-classic table-stripeless">
+    	<h3 style="color: #8772bf; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0px;"> 지출검색</h3><br/>
+    	<div class="vgroup" >
+          <div class="group">
+	          <label class="label label-pur" style="width:160px"><i class="icon-calendar icon-large"></i>  시작일</label>
+	          <label class="label label-pur" style="width:160px"><i class="icon-calendar icon-large"></i>  종료일</label>
+	          <label class="label label-pur" style="width:175px"><i class="icon-calendar icon-large"></i>  제목검색</label>
+          </div>
+          <div class="group">
+	          <input type="date" id="startDate" name="startDate" class="input " >
+	          <input type="date" id="endDate" name="endDate" class="input " >
+	          <input type="text" id="search" name="search" class="input " >
+				    <a class="btn btn-purple-black" id="duration">
+				    <i class="icon-search icon-large icon-bounce"></i>
+				    검  색</a>
+	        </div>
+	     </div>
+    <div id="errMsg" style="height:30px"></div>
+  
+    <div style="height:60px"></div>
+    	<table id="table_7" class="table table-classic table-stripe">
     <thead>
     <tr align=center>
         <th>지출날짜</th>
@@ -66,6 +67,25 @@
     </thead>
     <tbody></tbody>
 </table>
+
+<div id="win_1" class="window">
+    <div class="head">
+        <div class="left">HOME</div>
+        <div class="right">
+            <a href="javascript:alert('plus');"><i class="icon-plus icon-white"></i></a>
+            <a href="javascript:alert('search');"><i class="icon-search icon-white"></i></a>
+            <a href="#" class="close"><i class="icon-exit icon-white"></i></a>
+        </div>
+    </div>
+    <div class="body">
+        Contents...<br/>
+    </div>
+</div>
+
+<!-- <button class="btn btn-gray" onclick="win_1.show()">
+    <i class="icon-play"></i> Run
+</button> -->
+
 
 <script data-jui="#table_7" data-tpl="row" type="text/template">
     <tr align=center>
@@ -79,6 +99,8 @@
 				<!-- <div class="container"> -->
 				    
 				<!-- </div> -->
+			
+
 
     	</div>
 	
