@@ -58,15 +58,21 @@
 	
 
  		<jsp:include page="header.jsp"/>
+ 		<div style="background-color:#8772bf !important; margin-top: 50px; height: 100px;" width="100%" height="50px;">
+			<div class="center">
+			group
+			</div>
+ 		</div>
     
   		<div id="content">
-  	  	<jsp:include page="leftMenu.jsp"/>
-    
+<%--   	  	<jsp:include page="leftMenu.jsp"/>
+ --%>    
     	
-    	<div id="main">
-    	
+    	<div id="main" style="
+    padding-top: 50px;
+">
 
-		<h2 align="center">< 회비내역 리스트 ></h2><br/>
+		<h3 style="color: #8772bf; border-bottom: 1px solid #eee; padding-bottom: 10px;""> 회비내역 리스트  </h3><br/>
 		<h4 align="right">${group.groupName}의 총 인원 : ${groupSize} 명 &nbsp&nbsp
 			<c:if test="${group.user.userNo == user.userNo}">			
 				<a href="addGroupMoney.jsp"><button class="btn btn-primary">add</button></a>
