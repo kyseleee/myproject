@@ -50,7 +50,7 @@
     
     	
     	<div id="main">
-    		
+    	
     		<div class="col-sm-12">
 	   <legend><strong>그룹추가</strong></legend>
 	</div>
@@ -113,7 +113,7 @@
 	        		<div class="col-xs-4"></div>                
     			</div>
     			</form>
- 	   		</div>     
+    	 	</div>     
 		</div> <!-- / panel preview -->
  
 		<div class="col-sm-2"></div>
@@ -121,9 +121,8 @@
     		
     		
     	</div>
-
+    	    		
     </div>
-    <!--footer -->
     <jsp:include page="footer.jsp"/>
 	
 	
