@@ -32,7 +32,18 @@
 	    <link href="css/groupMoney.css" rel="stylesheet">
 	    <link href="css/user.css" rel="stylesheet">
 		<link href="jui/jui.min.css" rel="stylesheet">
-		
+		<style type="text/css">
+		.addbtn{
+	    	  background-color: #f6f1ff;
+			  background-image: -moz-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: -webkit-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: -o-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: -ms-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  border: 1px solid #b696ea;
+			  color: #201834;
+	    	}
+		</style>
 
 		<!--  js -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -118,7 +129,7 @@
     
 		    <div class="row">
 		    	<div align="center">
-		    			<a href="groupMoneyView.do"><button class="btn btn-primary btn-pressure btn-sensitive">확인</button></a>
+		    			<a href="groupMoneyView.do"><button class="btn addbtn btn-pressure btn-sensitive">확인</button></a>
 		                <button class="btn btn-default btn-pressure btn-sensitive">취소</button>
 		        </div>
 		    </div>

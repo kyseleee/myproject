@@ -68,6 +68,9 @@
 		
 		}
 
+		body{
+		  background-color: rgba(219, 225, 239, 0.66);
+		}
 
 		</style>
 
@@ -191,11 +194,108 @@
 	
 	<body>
 	
+	<div id="header">
+    <nav class="navbar navbar-inverse"  style="background-color: #2b3340 !important; min-height: 50px; ">
+   	<div class="center">
+		    <div class="navbar-header">
+		    	<c:if test="${! empty user}">
+		     	<a id="home" class="navbar-brand" href="/Snl/calendar.jsp">SNL</a> 
+		     	</c:if>
+		     	<c:if test="${empty user}">
+		     	<a id="home" class="navbar-brand" href="/Snl/calendar.jsp">SNL</a> 
+		     	</c:if>
+			</div>        
 
- 		<jsp:include page="header.jsp"/>
-    
+				
+			
+			<ul class="nav navbar-nav navbar-right navbar-user">
+				
+				<c:if test="${! empty group}">		
+							
+				<li class="dropdown">
+						<a class="dropdown-toggle" data-toggle="dropdown">내 그룹
+						<b class="caret"></b></a>
+						<ul class="dropdown-menu">
+						
+							<c:forEach var="groupArr" items="${groupArrListByUser}">
+								<li>
+									<a id="name" href="setGroupNo.do?groupNo=${groupArr.group.groupNo}&currentPage=${pageContext.request.servletPath}">
+									${groupArr.group.groupName}</a>
+								</li>
+							
+							</c:forEach>
+							
+						</ul>
+						
+						
+						
+					</li>
+				</c:if>		
+				
+				
+				  
+				<c:if test="${! empty user}">		
+					<li ><a href='addGroup.jsp'>Add Group</a></li>
+				</c:if>
+				  
+			  <%if (session.getAttribute("user") != null) {%>
+					<li class="dropdown">						
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+							<span style="font-size:20px;" class="glyphicon glyphicon-user"></span><b class="caret"></b></a>
+							
+						
+						
+			<ul id="user" class="dropdown-menu" style="background-color:#2b3340;">
+				<li>
+					<div class="profile-userpic" align="center">
+						<img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" 
+						style="width:120px;height:90px;" class="img-circle img-responsive" alt="">
+					</div>
+					
+					<div class="profile-usertitle" style="text-align:center;">
+						<div class="profile-usertitle-id">
+							${user.id}
+						</div>
+						<div class="profile-usertitle-name">
+							${user.userName}
+						</div>
+					</div>
+	
+					<div class="profile-userbuttons">
+						<a href="getUser.do?userNo=${user.userNo}"><button type="button" class="btn btn-success btn-sm" style="width:82px;">Edit</button></a>
+					<a href="logout.do">	<button type="button" class="btn btn-danger btn-sm">Logout</button></a>
+					</div>
+					
+					<div class="profile-usermenu">
+						<%-- <ul class="nav">
+							<li>
+								<a href="getUser.do?userNo=${user.userNo}"><i class="glyphicon glyphicon-user "></i>나의정보보기 </a>
+							</li>
+						</ul> --%>
+					</div>
+				</li>
+			</ul>
+				</li>
+					<%}else{%>	
+					
+					<li><p class="navbar-text">Already have an account?</p></li>
+					
+					<li>
+			          <a id="login" class="nabar-brand" href='login.jsp' onclick='login(this); return false;'>
+			          <b>Login</b></a>
+			        </li>
+					<%}%>
+            </ul>
+            </div>
+	</nav>
+	
+	</div>    
   		<div id="content">
-		<div id="main">
+		<div id="main" style="
+    margin-left: 0px;
+    padding-top: 150px;
+    padding-bottom: 0px;
+">
 		<div class="login-container" style="margin-top: 0px;">   		
 
 		<div class="row">

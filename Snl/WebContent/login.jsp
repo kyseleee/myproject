@@ -96,7 +96,6 @@
 		</nav>
 	</div>
     
-  	<div id="content">
     
     	
     	
@@ -128,7 +127,6 @@
 			</fieldset>
 		</form>
 	</div>
-</div>
 </div>
 	
     
