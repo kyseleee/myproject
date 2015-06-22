@@ -1,4 +1,3 @@
-<style type="text/css">
             body,html{
 		height: 100%;
 	}
@@ -90,7 +89,7 @@
 
 		/*colors dropdown box text */
 		.navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
-			color: #777;
+			background-color: #eee;
 		}
 
 		/*gives sidebar width/height*/
@@ -107,6 +106,8 @@
 		/*give sidebar 100% width;*/
 		nav.sidebar li {
 			width: 100%;
+			border-bottom: 1px #eee;
+			border-top: 1px #eee; 
 		}
 
 		/* Move nav to full on mouse over*/
@@ -141,7 +142,7 @@
 
 	nav.sidebar .navbar-nav .open .dropdown-menu>li>a:hover, nav.sidebar .navbar-nav .open .dropdown-menu>li>a:focus {
 		color: #CCC;
-		background-color: transparent;
+		background-color: #eee;
 	}
 
 	nav:hover .forAnimate{
@@ -150,4 +151,3 @@
 	section{
 		padding-left: 15px;
 	}
-    </style>
