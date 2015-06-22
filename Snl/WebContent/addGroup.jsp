@@ -15,7 +15,18 @@
  		<link href="css/index.css" rel="stylesheet">
 	    <link href="css/leftmenu.css" rel="stylesheet">
 		<link href="css/user.css" rel="stylesheet">
-		
+		<style type="text/css">
+		.addbtn{
+	    	  background-color: #f6f1ff;
+			  background-image: -moz-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: -webkit-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: -o-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  background-image: -ms-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+			  border: 1px solid #b696ea;
+			  color: #201834;
+	    	}
+		</style>
 		
 
 		<!--  js -->
@@ -97,7 +108,7 @@
 					<div class="col-xs-4"></div>
 	 				<div class="col-xs-4">		            	    
 	                    <input type="submit"  onclick="fnc(); retrun false;" 
-	                    		class="btn btn-primary btn-block" name="register-submit" id="register-submit" tabindex="4" value="초대장발송">
+	                    		class="btn addbtn btn-block" name="register-submit" id="register-submit" tabindex="4" value="초대장발송">
 	    			</div>
 	        		<div class="col-xs-4"></div>                
     			</div>

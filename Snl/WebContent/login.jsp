@@ -69,7 +69,9 @@
 		
 		}
 
-
+		body{
+		  background-color: rgba(219, 225, 239, 0.66);
+		}
 		</style>
 		
 
@@ -84,11 +86,11 @@
 	<body>
 	
 	<div id="header">
-   	<nav class="navbar navbar-inverse"  style="background-color: #2b3340 !important; min-height: 70px; padding-top: 10px;">
+   	<nav class="navbar navbar-inverse"  style="background-color: #2b3340 !important; min-height: 50px; ">
 		    <div class="center">
 		    <div class="navbar-header">
 		    	
-		     	<a id="home" class="navbar-brand" href="/Snl/login.jsp">SNL</a> 
+		     	<a id="home" class="navbar-brand" href="/Snl/">SNL</a> 
 			</div>    
 			</div>
 		</nav>
