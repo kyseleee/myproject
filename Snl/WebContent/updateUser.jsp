@@ -71,7 +71,16 @@
 		
 		}
 
-
+		.addbtn{
+			    	  background-color: #f6f1ff;
+					  background-image: -moz-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+					  background-image: linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+					  background-image: -webkit-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+					  background-image: -o-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+					  background-image: -ms-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+					  border: 1px solid #b696ea;
+					  color: #201834;
+			    	}
 		</style>
 		
 <script type="text/javascript">
@@ -197,17 +206,17 @@
 
 <div class="login-container" style="margin-top: 0px;">   		
 
-		<div class="row">
+		<div class="row" style="height:450px;">
 <form role="form" action="updateUser.do" method="post">
 
  <input type="hidden" name="id" value="${user.id}"> 
 <input type="hidden" name="email" value="${user.email}"> 
-			<h2>개인정보 수정</h2>
+			<h2 style="text-align: left; font-size:20px;">개인정보 수정</h2>
 			<hr class="colorgraph">
 			
-			<div class="row">
+			<div>
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">패스워드</p>
+				<p style="font-size:17px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">패스워드</p>
 			</div>
   				<div class="col-xs-6 col-sm-6 col-md-6">
 	  				<div class="form-group">
@@ -218,9 +227,9 @@
   			</div>
 
 
-			<div class="row">
+			<div>
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">패스워드 확인</p>
+				<p style="font-size:17px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">패스워드 확인</p>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6">
   					<div class="form-group">
@@ -232,9 +241,9 @@
 			</div>
 			
 			
-			<div class="row">
+			<div>
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">이름</p>
+				<p style="font-size:17px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">이름</p>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6">
   					<div class="form-group">
@@ -244,9 +253,9 @@
   				</div>
 			</div>
 			
-			<div class="row">
+			<div>
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">이메일 주소</p>
+				<p style="font-size:17px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">이메일 주소</p>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6">
   					<div class="form-group">
@@ -256,9 +265,9 @@
   				</div>
 			</div>
 			
-			<div class="row">
+			<div>
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">전화번호</p>
+				<p style="font-size:17px; font-weight: bold; float:left; padding: 8px; padding-left:20px;">전화번호</p>
 			</div>
 			<div class="col-xs-6 col-sm-6 col-md-6">
   					<div class="form-group">
@@ -267,10 +276,9 @@
 					</div>	
   				</div>
 			</div>
-			<hr class="colorgraph">
 			<div class="row">
-				<div class="col-md-6"><input type="submit" value="확인" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-				<div class="col-md-6"><a href="index.jsp"><input type="submit" value="취소" class="btn btn-primary btn-block btn-lg" tabindex="7"></a></div>
+				<div class="col-md-6"><input type="submit" value="확인" class="btn addbtn btn-block " tabindex="7"></div>
+				<div class="col-md-6"><a href="index.jsp"><input type="submit" value="취소" class="btn addbtn btn-block " tabindex="7"></a></div>
 			</div>
 		</form>
 	</div>

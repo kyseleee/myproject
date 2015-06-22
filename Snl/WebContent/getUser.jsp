@@ -38,7 +38,6 @@
 		.login-container{
 		    position: relative;
 		    width: 700px;
-		    height: 500px;
 		    margin: 80px auto;
 		    padding: 20px 40px 40px;
 		    text-align: center;
@@ -69,7 +68,16 @@
 		
 		}
 
-
+		.addbtn{
+		    	  background-color: #f6f1ff;
+				  background-image: -moz-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+				  background-image: linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+				  background-image: -webkit-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+				  background-image: -o-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+				  background-image: -ms-linear-gradient(top,#f6f1ff 0,#e3d5f7 50%,#d4bff1 50%,#f3ebff 100%);
+				  border: 1px solid #b696ea;
+				  color: #201834;
+		    	}
 		</style>
 
 </head>
@@ -85,14 +93,15 @@
     	
     	<div class="login-container" style="margin-top: 0px;">   		
 
-		<div class="row">
+		<div class="row" style="height:400px;">
 		<form role="form" action="" method="post">
-			<h2>회원정보</h2>
-			<hr class="colorgraph">
+			<h2 style="text-align:left; font-size:20px;">회원정보</h2>
 			
-		<div class="row">
+			<hr class="colorgraph">
+		
+		<div>
 			<div class="col-xs-4 col-sm-4 col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding: 8px;">아이디</p>
+				<p style="font-size:17px; font-weight: bold; float:left; padding: 8px;">아이디</p>
 			</div>
 	
 			<div class="col-xs-6 col-sm-6 col-md-6">
@@ -103,9 +112,9 @@
 			</div>
 		</div>	
 		
-		<div class="row">
+		<div>
 			<div class="col-xs-4 col-sm-4  col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding:8px;">이름</p>
+				<p style="font-size:17px; font-weight: bold; float:left; padding:8px;">이름</p>
 			</div>
 	
 			<div class="col-xs-6 col-sm-6 col-md-6">
@@ -116,9 +125,9 @@
 			</div>
 		</div>	
 		
-		<div class="row">
+		<div>
 			<div class="col-xs-4 col-sm-4  col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding:8px;">이메일 주소</p>
+				<p style="font-size:17px; font-weight: bold; float:left; padding:8px;">이메일 주소</p>
 			</div>
 	
 			<div class="col-xs-7 col-sm-6 col-md-6">
@@ -129,24 +138,23 @@
 			</div>
 		</div>	
 		
-		<div class="row">
+		<div>
 			<div class="col-xs-4 col-sm-4  col-md-4">
-				<p style="font-size:20px; font-weight: bold; float:left; padding:8px;">전화번호</p>
-			</div>
-	
+				<p style="font-size:17px; font-weight: bold; float:left; padding:8px;">전화번호</p>
+			</div>	
+		
+			
 			<div class="col-xs-7 col-sm-6 col-md-6">
 			<div class="form-group">
 				<input type="text" name="tel" id="tel" tabindex="1" class="form-control input-lg"  value="${user.tel}" placeholder="전화번호" disabled="disabled">
 				<div id="idInfo"  align="left"></div>
 			</div>
 			</div>
-		</div>	
-
-			<hr class="colorgraph">
-			<div class="row">
-				<a href="index.jsp" class="col-md-4"><input type="button" value="확인" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
-								<a href="updateUserView.do?id=${user.id}" class="col-md-4"><input type="button" value="수정" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
-								<a href="deleteUser.do?userNo=${user.userNo}&groupNo=${group.groupNo}" class="col-md-4"><input type="button" value="탈퇴" class="btn btn-primary btn-block btn-lg" tabindex="7"></a>
+		</div>
+			<div>
+				<a href="index.jsp" class="col-md-4"><input type="button" value="확인" class="btn addbtn btn-block " tabindex="7"></a>
+								<a href="updateUserView.do?id=${user.id}" class="col-md-4"><input type="button" value="수정" class="btn addbtn btn-block " tabindex="7"></a>
+								<a href="deleteUser.do?userNo=${user.userNo}&groupNo=${group.groupNo}" class="col-md-4"><input type="button" value="탈퇴" class="btn addbtn btn-block " tabindex="7"></a>
 			</div>
 		</form>
 	</div>
