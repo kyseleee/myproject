@@ -33,7 +33,7 @@
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation" style="background-color:#2b3340 !important;">
 	<div class="container">
 		 <div class="navbar-header">
-			<a class="navbar-brand logo-nav page-scroll" href="#page-top">S N L</a>
+			<a class="navbar-brand logo-nav page-scroll" href="#page-top" style="font-size:25px;">S N L</a>
 		</div> 
 
 		<div
@@ -66,28 +66,62 @@
 
       <div class="item active">
         <img src="./images/home/bg01.jpg" alt="Chania" width="460" height="345">
-        <div class="carousel-caption">
-        </div>
+        <div class="carousel-caption" style="left:5%; text-align: left; height:650px;">
+				<div class="main_title">
+					<div class="title">
+					<h1>Simple & Easy  <br/><br/> SNL Chart </h1>
+					</div>
+					<div class="context">
+					<p>
+						UI차트는 다양한 브러쉬와 그리드, 위젯을 제공하며 <br/>
+						이를 조합하여 간단하고 쉽게 차트를 사용할 수 있습니다. <br/> 
+						또한 기존의 테이블 컴포넌트와 연동하여 데이터를 표현할 수 있습니다.
+					</p>
+					<a href="#main2" class="btn btn-circle page-scroll"> <i
+						class="animated glyphicon glyphicon-arrow-down"
+						style="top: 7px; right: 4px"></i></a>
+					</div>	
+				</div>
+        </div> 
       </div>
 
-      <!-- <div class="item">
-        <img src="./images/home/bg2.jpg" alt="Chania" width="460" height="345">
-        <div class="carousel-caption">
+      <div class="item">
+        <img src="./images/home/bg02.jpg" alt="Chania" width="460" height="345">
+        <div class="carousel-caption" style="left:20%; text-align: center; height:650px;">
+        	<div class="main_title">
+					<p style="color:#8772bf; font-size:60px; ">Social Network Ledger <br/> S N L </p>
+					<div class="context">
+					<p>
+						UI차트는 다양한 브러쉬와 그리드, 위젯을 제공하며 <br/>
+						이를 조합하여 간단하고 쉽게 차트를 사용할 수 있습니다. <br/> 
+						또한 기존의 테이블 컴포넌트와 연동하여 데이터를 표현할 수 있습니다.
+					</p>
+					</div>	
+					<a href="#main2" class="btn btn-circle page-scroll"> <i
+						class="animated glyphicon glyphicon-arrow-down"
+						style="top: 7px; right: 4px"></i></a>
+				</div>
         </div>
       </div>
     
       <div class="item">
-        <img src="./images/home/bg3.jpg" alt="Flower" width="460" height="345">
-        <div class="carousel-caption">
+        <img src="./images/home/bg03.jpg" alt="Flower" width="460" height="345">
+        <div class="carousel-caption" style="left:20%; text-align: center; height:650px;">
+        	<div class="main_title">
+					<h1 style="color:white; padding-top:80px;">Simple & Easy  SNL Chart </h1> <br/><br/>
+					<div class="context">
+					<p style="color:white;">
+						UI차트는 다양한 브러쉬와 그리드, 위젯을 제공하며 <br/>
+						이를 조합하여 간단하고 쉽게 차트를 사용할 수 있습니다. <br/> 
+						또한 기존의 테이블 컴포넌트와 연동하여 데이터를 표현할 수 있습니다.
+					</p>
+						<a href="#main2" class="btn btn-circle page-scroll"> <i
+							class="animated glyphicon glyphicon-arrow-down"
+							style="top: 7px; right: 4px"></i></a>
+					</div>	
+				</div>
         </div>
       </div>
-
-      <div class="item">
-        <img src="./images/home/bg1.jpg" alt="Flower" width="460" height="345">
-        <div class="carousel-caption">
-        </div>
-      </div> -->
-  
     </div>
 
     <!-- Left and right controls -->
@@ -100,36 +134,19 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-			<div class="main_wrap">
-				
-				<div class="main_title">
-					<h1>SNL  <br/><br/> (Socail Network Ledger)</h1>
-					<p>
-						어디에서도 경험 할 수 없었던  소셜 네트워크 가계부 <br /> 경험해보세요. <br />
-					</p>
-					<a href="#main1" class="btn btn-circle page-scroll"> <i
-						class="animated glyphicon glyphicon-arrow-down"
-						style="top: 7px; right: 4px"></i></a>
-
-
-				</div>
-
-
-
-				
-			</div>
+			
 		</div>
 
 		<!-- 두번째 Main2 화면 -->
 		<div id="main2">
 			<div class="main2_wrap">
-				<div class="container" style="width:1200px;">
+				<div class="container" style="width:1000px;">
 					<div class="row">
 						<div class="col-md-12 text-center">
 						</div>
 					</div>
 					<div class="main2_section">
-					<div class="boxs" style="float: left; margin:30px 30px 60px 30px;">
+					<div class="boxs" style="float:left; margin:30px 30px 60px 30px;">
 					
 						<div class="box-icon">
 							<span style="font-size: 45px; left: 2px;"
@@ -144,7 +161,7 @@
 						</div>
 					</div>
 
-					<div class="boxs" style="float: left; margin:30px 30px 60px 30px;">
+					<div class="boxs" style="float: right; margin:30px 30px 60px 30px;">
 						<div class="box-icon">
 							<span style="font-size: 45px;" class="glyphicon glyphicon-usd"></span>
 						</div>
@@ -170,7 +187,7 @@
 
 
 
-					<div class="boxs" style="float: left; margin:30px 30px 60px 30px">
+					<div class="boxs" style="float: right; margin:30px 30px 60px 30px">
 						<div class="box-icon">
 							<span style="font-size: 45px;"
 								class="glyphicon glyphicon-list-alt"></span>
@@ -183,31 +200,6 @@
 						</div>
 					</div>
 					
-					<div class="boxs" style="float: left; margin:30px 30px 60px 30px">
-						<div class="box-icon">
-							<span style="font-size: 45px;"
-								class="glyphicon glyphicon-list-alt"></span>
-						</div>
-						<div><br/>
-							<h4>회비관리</h4>
-							<!-- <img style="width: 300px; height: 150px" class="img-responsive"
-								src="./images/a.jpg" /> -->
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						</div>
-					</div>
-					
-					<div class="boxs" style="float: left; margin:30px 30px 60px 30px">
-						<div class="box-icon">
-							<span style="font-size: 45px;"
-								class="glyphicon glyphicon-list-alt"></span>
-						</div>
-						<div><br/>
-							<h4>회비관리</h4>
-							<!-- <img style="width: 300px; height: 150px" class="img-responsive"
-								src="./images/a.jpg" /> -->
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
