@@ -95,9 +95,10 @@
 
 		/*gives sidebar width/height*/
 		nav.sidebar{
+			margin-top:50px;
 			width: 200px;
 			height: inherit;
-			margin-left: -160px;
+			/* margin-left: -160px; */
 			float: left;
 			z-index: 8000;
 			margin-bottom: 0px;
