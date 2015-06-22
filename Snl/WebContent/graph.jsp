@@ -14,6 +14,8 @@
  		<link href="css/index.css" rel="stylesheet">
 	  <link href="css/leftmenu.css" rel="stylesheet">
 	  <link href="jui/jui.min.css" rel="stylesheet">
+	  <link href="css/user.css" rel="stylesheet">
+
 
 		
 
