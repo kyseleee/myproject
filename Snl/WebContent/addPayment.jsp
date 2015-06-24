@@ -66,7 +66,7 @@
 	                    </div>   
 	                    
 	                    <div class="form-group">
-	                        <label for="amount" class="col-sm-3 control-label">상  호  명</label>
+	                        <label for="amount" class="col-sm-3 control-label">지  출  명</label>
 	                        <div class="col-sm-9">
 	                            <input type="text" class="form-control" id="payName" name="payName">
 	                            <div id="payNameErr"></div>

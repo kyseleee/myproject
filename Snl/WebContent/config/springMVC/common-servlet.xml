@@ -71,7 +71,7 @@
 	  
 	<bean id="preConfiguredMessage" class="org.springframework.mail.SimpleMailMessage">
 	  <property name="from" value="howtodoinjava@gmail.com"></property>
-	  <property name="subject" value="TEST MESSAGE !!"/>
+	  <property name="subject" value="당신은 SNL 웹사이트의 새로운 모임에 초대되었습니다!!"/>
 	</bean>
 	
 	<bean id="mailService" class="com.snl.service.mail.MailService">

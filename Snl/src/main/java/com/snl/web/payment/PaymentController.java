@@ -146,8 +146,12 @@ public class PaymentController {
 		
 //		String api_key = "NCS5577D2B700722";
 //		String api_secret = "8C761B6D690151CA86E2FE1C1CC8379F";
-		String api_key = "NCS557E35C39AA7B";
-		String api_secret = "4CA56172DC58B73B992266FF5A14A119";
+//		String api_key = "NCS557E35C39AA7B";
+//		String api_secret = "4CA56172DC58B73B992266FF5A14A119";
+		
+		String api_key = "NCS558A64965EC8D";
+		String api_secret = "EAD6A6839AC75A9DD023BF806F18F9EC";
+		
 		Coolsms coolsms = new Coolsms(api_key, api_secret);
 		
 		HashMap<String, String> set = new HashMap<String, String>();

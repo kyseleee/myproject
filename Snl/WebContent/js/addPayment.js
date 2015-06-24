@@ -17,7 +17,7 @@
 			var payErr="";
 			
 			if(payName==""){
-				payErr="<font color='red'> 상호명을 입력해 주세요.</font>";
+				payErr="<font color='red'> 지출명을 입력해 주세요.</font>";
 			}
 			else{
 				payErr="";
@@ -32,7 +32,7 @@
 				amountEr = "";
 			}
 			else{
-				amountEr = "<font color='red'>올바른 수자 포맷을 입력해 주세요.</font>";
+				amountEr = "<font color='red'>올바른 숫자 포맷을 입력해 주세요.</font>";
 			}
 			document.getElementById("amountErr").innerHTML=amountEr;
 		});
@@ -59,11 +59,9 @@
                processData: false,
                contentType: false,
                success: function(result){
-                   alert("업로드 성공!!");
                    $('input[name=receit]').attr('value',result); 
                },
                error : function(){
-            	   alert("실패");
                }
            });
 		document.getElementById("addPay-form").submit();
