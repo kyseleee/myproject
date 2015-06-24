@@ -69,8 +69,8 @@ public class GroupController {
 		GroupArr groupArr = new GroupArr(user, group, new String("L"));
 		groupArrService.addGroupArr(groupArr);
 		
-		List<GroupArr> groupArrList= groupArrService.getGroupArrByUser(user);
-  	  	session.setAttribute("groupArrList", groupArrList);
+		List<GroupArr> groupArrListByUser= groupArrService.getGroupArrByUser(user);
+  	  	session.setAttribute("groupArrListByUser", groupArrListByUser);
 
 		mailService.sendMail(toEmail, group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/login.jsp?sgroupNo="+group.getGroupNo());		
 	    
