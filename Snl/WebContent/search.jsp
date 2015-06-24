@@ -18,6 +18,10 @@
 		<link href="css/login.css" rel="stylesheet">
 		<style type="text/css">
 		
+		body {
+  background-color: rgba(219, 225, 239, 0.66);
+}
+		
 		.login-container{
 		    position: relative;
 		    width: 500px;
@@ -163,11 +167,20 @@
 	
 	<body>
 	
- 		<jsp:include page="header.jsp"/>
-    
-  		<div id="content">
+ 		<div id="header">
+   	<nav class="navbar navbar-inverse"  style="background-color: #2b3340 !important; min-height: 50px; ">
+		    <div class="center">
+		    <div class="navbar-header">
+		    	
+		     	<a id="home" class="navbar-brand" href="/Snl/">SNL</a> 
+			</div>    
+			</div>
+		</nav>
+	</div>
         	
-    	<div id="main">
+    	<div id="main" style="
+    margin-top: 250px;
+">
     	<div class="login-container">
     	<div class="row">
 			<div class="col-lg-12">
@@ -242,7 +255,6 @@
 				</div>	
 				</div>
 			</div>
-		</div>
 		</div>
 		</div>
 		</div>

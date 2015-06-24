@@ -13,7 +13,7 @@
 		     	<a id="home" class="navbar-brand" href="/Snl/calendar.jsp">SNL</a> 
 		     	</c:if>
 		     	<c:if test="${empty user}">
-		     	<a id="home" class="navbar-brand" href="/Snl/calendar.jsp">SNL</a> 
+		     	<a id="home" class="navbar-brand" href="/Snl/main.jsp">SNL</a> 
 		     	</c:if>
 			</div>        
 

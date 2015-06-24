@@ -3,7 +3,12 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
+<c:if test="${! empty param.sgroupNo}">
+<%
+	String sgroupNo = request.getParameter("sgroupNo");
+	session.setAttribute("sgroupNo", sgroupNo);
+%>
+</c:if>
 
 <c:if test=" ${! empty user}">
 	<script type="text/javascript">
@@ -158,7 +163,7 @@
 							<h4>현황리스트</h4>
 							<!-- <img style="width: 200px; height: 150px" class="img-responsive"
 								src="./images/a.jpg" /> -->
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+							<p>그룹의 지출을 한눈에 볼 수 있어요 !</p>
 						</div>
 					</div>
 
@@ -170,7 +175,7 @@
 							<h4>지출추가</h4>
 							<!-- <img style="width: 200px; height: 150px" class="img-responsive"
 								src="./images/a.jpg" /> -->
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+							<p>지출 발생시, 영수증도 함께 기록하시면 그룹원들에게 문자 발송 해드려요 !</p>
 						</div>
 					</div>
 
@@ -182,7 +187,7 @@
 							<h4>통계</h4>
 							<!-- <img style="width: 200px; height: 150px" class="img-responsive"
 								src="./images/a.jpg" /> -->
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+							<p>우리 그룹의 지출 패턴을 한눈에 확인할 수 있어요 !</p>
 						</div>
 					</div>
 
@@ -197,7 +202,7 @@
 							<h4>회비관리</h4>
 							<!-- <img style="width: 300px; height: 150px" class="img-responsive"
 								src="./images/a.jpg" /> -->
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+							<p>우리 그룹의 회비 수납. 이제 SNL을 통해 확인하세요.</p>
 						</div>
 					</div>
 					
