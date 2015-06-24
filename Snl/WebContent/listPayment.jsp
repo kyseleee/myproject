@@ -37,24 +37,45 @@
     	
     	<div id="main" class="jui">
     	<h3 style="color: #8772bf; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0px;"> 지출검색</h3><br/>
-    	<div class="vgroup" >
-          <div class="group">
-	          <label class="label label-pur" style="width:160px"><i class="icon-calendar icon-large"></i>  시작일</label>
-	          <label class="label label-pur" style="width:160px"><i class="icon-calendar icon-large"></i>  종료일</label>
-	          <label class="label label-pur" style="width:175px"><i class="icon-calendar icon-large"></i>  제목검색</label>
-          </div>
-          <div class="group">
-	          <input type="date" id="startDate" name="startDate" class="input " >
-	          <input type="date" id="endDate" name="endDate" class="input " >
-	          <input type="text" id="search" name="search" class="input " >
-				    <a class="btn btn-purple-black" id="duration">
-				    <i class="icon-search icon-large icon-bounce"></i>
-				    검  색</a>
-	        </div>
-	     </div>
+    		<!-- <div class="col-md-3"></div>
+    		<div class="col-md-9" >
+    		
+		    	<div class="vgroup" style="background-color:blue; float:right;">
+		          <div class="group">
+			          <label class="label label-pur" style="width:160px"><i class="icon-calendar icon-large"></i>  시작일</label>
+			          <label class="label label-pur" style="width:160px"><i class="icon-calendar icon-large"></i>  종료일</label>
+			          <label class="label label-pur" style="width:175px"><i class="icon-calendar icon-large"></i>  제목검색</label>
+		          </div>
+		          <div class="group">
+			          <input type="date" id="startDate" name="startDate" class="input " >
+			          <input type="date" id="endDate" name="endDate" class="input " >
+			          <input type="text" id="search" name="search" class="input " >
+						    <a class="btn btn-purple-black" id="duration">
+						    <i class="icon-search icon-large icon-bounce"></i>
+						    검  색</a>
+			        </div>
+			     </div>
+			 </div> -->
+			 
+		<div class="group">
+			<label class="label label-pur" style="width:160px"><i class="icon-calendar icon-large"></i>  시작일</label>
+			<label class="label label-pur" style="width:160px"><i class="icon-calendar icon-large"></i>  종료일</label>
+			<label class="label label-pur" style="width:175px"><i class="icon-calendar icon-large"></i>  제목검색</label>
+		</div>
+		
+		<div class="group">
+			<input type="date" id="startDate" name="startDate" class="input " >
+			<input type="date" id="endDate" name="endDate" class="input " >
+			<input type="text" id="search" name="search" class="input " >
+			<a class="btn btn-purple-black" id="duration">
+			<i class="icon-search icon-large icon-bounce"></i>
+			검  색</a>
+		</div>
+		
+		
     <div id="errMsg" style="height:30px"></div>
   
-    <div style="height:60px"></div>
+  		<div style="height:30px"></div>
     	<table id="table_7" class="table table-classic table-stripe">
     <thead>
     <tr align=center>

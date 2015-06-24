@@ -354,7 +354,7 @@ public class PaymentController {
 		
 		
 		String data="{\"name\": \""+groupService.getGroup(groupNo).getGroupName()+"\",\"Group\": [";
-		
+		String xaxis=", \"xaxis\": [";
 		if(payList.size()==0) {
 			data="{\"name\": \""+groupService.getGroup(groupNo).getGroupName()+"\",\"Group\": \"nodata\"}";
 			return data;
@@ -362,28 +362,52 @@ public class PaymentController {
 		
 		int index=0;
 		int total=0;
+		int currentYear=Integer.parseInt(payList.get(0).getPayDate().substring(0,4));
+		int currentMonth=Integer.parseInt(payList.get(0).getPayDate().substring(5));
 		for(int i=0;i<12;i++) {
+			
 			System.out.println("i=============="+i);
 			System.out.println("===="+payList.get(index).getPayDate().substring(5)+"====");
-			if(Integer.parseInt(payList.get(index).getPayDate().substring(5))==i+1){
+			if(Integer.parseInt(payList.get(index).getPayDate().substring(5))==i+1) {
 				data+=payList.get(index).getAmount();
 				total+=payList.get(index).getAmount();
+				xaxis+="\""+currentYear+"-"+currentMonth+"\"";
+				if(currentMonth==12) {
+					currentMonth=1;
+					currentYear++;
+				}
+				else {
+					currentMonth++;
+				}
 				System.out.println("index================"+index+" amount===="+payList.get(index).getAmount());
 				index++;
 				System.out.println("++++++index================"+index);
-				if(index==payList.size()){
+				if(index==payList.size()) {
 					break;
 				}
 			}
-			else{
-				data+="0";
+			else {
+				if(index!=0) {
+					data+="0";
+					xaxis+="\""+currentYear+"-"+currentMonth+"\"";
+					if(currentMonth==12) {
+						currentMonth=1;
+						currentYear++;
+					}
+					else {
+						currentMonth++;
+					}
+				}
 			}
 			
-			if(i!=11){
+			if(i!=11 && index!=0) {
 				data+=",";
+				xaxis+=",";
 			}
 		}
-		data+="], \"total\":\""+total+"\"}";
+		data+="], \"total\":\""+total+"\"";
+		xaxis+="]}";
+		data+=xaxis;
 		System.out.println("결과========="+data);
 		return data;
 	}

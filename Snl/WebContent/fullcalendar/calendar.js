@@ -58,7 +58,7 @@ function deletePayment(event) {
 							data: {date : $('#calendar').fullCalendar('getDate').format() },
 							method: 'POST',
 							success: function(data){
-								$('.fc-right').html("총 지출액 : "+parseInt(data).toLocaleString()+"원");
+								$('.fc-right').html("이번 달 총 지출액 : "+parseInt(data).toLocaleString()+"원");
 							}
 						});
 						

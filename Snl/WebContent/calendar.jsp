@@ -47,7 +47,7 @@
     
     	
     	<div id="main">
-    	<h3 style="color: #8772bf; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0px; font-weight:bold"> 지출현황  </h3><br/>
+    	<h3 style="color: #8772bf; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0px;"> 지출현황  </h3><br/>
 
     		<div class="panel-body" id='calendar'></div>
     	

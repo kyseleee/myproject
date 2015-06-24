@@ -20,8 +20,7 @@ var groupNoHid=document.getElementById("groupNoHidden").value;
 	            x: -20 //center
 	        },
 	        xAxis: {
-	            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-	                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	            categories: []
 	        },
 	        yAxis: {
 	            title: {
@@ -36,7 +35,7 @@ var groupNoHid=document.getElementById("groupNoHidden").value;
 	        tooltip: {
 	            valueSuffix: '원',
 	            formatter : function(){
-	            		return /*'<b>'+this.series.name+'</b> <br>*/'<b>날짜</b> : '+this.x+'<br><b>금액</b> : '+(this.y).toLocaleString();
+	            		return '<b>날짜</b> : '+this.x+'<br><b>금액</b> : '+(this.y).toLocaleString()+'원';
 	            },
 	            shared : true
 	        },
@@ -52,11 +51,6 @@ var groupNoHid=document.getElementById("groupNoHidden").value;
 	        series: []
 	    });
 			
-//		Highcharts.setOptions({
-//	        lang: {
-//	            noData: "데이터가 없습니다"
-//	        }
-//	    });
 	});
 	
 	function requestData() {
@@ -90,6 +84,7 @@ var groupNoHid=document.getElementById("groupNoHidden").value;
 									name: data.name,
 									data: data.Group
 							});
+							Highcharts.charts[0].xAxis[0].update({categories:data.xaxis}, true);
 						}
 						
 						jui.ready([ "uix.table" ], function(table) {
@@ -189,6 +184,7 @@ var groupNoHid=document.getElementById("groupNoHidden").value;
 								}
 								else {
 									chart.series[0].setData(data.Group);
+									Highcharts.charts[0].xAxis[0].update({categories:data.xaxis}, true);
 								}
 								jui.ready([ "uix.table" ], function(table) {
 								    table_1 = table("#table_1", {

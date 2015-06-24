@@ -96,15 +96,15 @@
 					<div class="row">		
 						<div class="col-md-5">
 									<div class="group">
-											<a class="btn btn-purple-black" id="area" >
-											<i class="icon-chart-area icon-large icon-bounce"></i>
-									    Area</a>
+									    <a class="btn btn-purple-black" id="column" >
+                      <i class="icon-chart-column icon-large icon-bounce"></i>
+                      Column</a>
 									    <a class="btn btn-purple-black" id="line" >
 									    <i class="icon-chart-line icon-large icon-bounce"></i>
 									    Line</a>
-									    <a class="btn btn-purple-black" id="column" >
-									    <i class="icon-chart-column icon-large icon-bounce"></i>
-									    Column</a>
+									    <a class="btn btn-purple-black" id="area" >
+                      <i class="icon-chart-area icon-large icon-bounce"></i>
+                      Area</a>
 									</div>	
 						</div>		
 						<div class="col-md-7">		
