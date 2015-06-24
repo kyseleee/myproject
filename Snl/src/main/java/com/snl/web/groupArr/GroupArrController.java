@@ -62,10 +62,11 @@ public class GroupArrController {
 	}
 	
 	@RequestMapping("/addGroupArr.do")
-	public String addGroupArr(@RequestParam("sgroupNo") String sgroupNo, @RequestParam("id") String id) throws Exception{
+	public String addGroupArr(HttpSession session, @RequestParam("id") String id) throws Exception{
 		
 		System.out.println("/addGroupArr.do");
-		System.out.println(sgroupNo);
+		String sgroupNo = (String) session.getAttribute("sgroupNo");
+		
 		int groupNo = Integer.valueOf((String)sgroupNo);
 		Group group = groupService.getGroup(groupNo);
 		User user = userService.getUserById(id);

@@ -71,9 +71,37 @@ public class GroupController {
 		
 		List<GroupArr> groupArrListByUser= groupArrService.getGroupArrByUser(user);
   	  	session.setAttribute("groupArrListByUser", groupArrListByUser);
-
-		mailService.sendMail(toEmail, group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/login.jsp?sgroupNo="+group.getGroupNo());		
+  	  	session.setAttribute("group", group);
+  	  	
+		mailService.sendMail(toEmail, group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/main.jsp?sgroupNo="+group.getGroupNo());		
 	    
+		  List<GroupArr> groupArrListByGroup = groupArrService.getGroupArrByGroup(group.getGroupNo());
+			  //그 그룹인원
+			  int groupSize = groupArrListByGroup.size();
+
+			  session.setAttribute("groupSize", groupSize);
+			  session.setAttribute("groupArrListByGroup", groupArrListByGroup);
+			  System.out.println(session.getAttribute("group"));
+			  List<GmPaid> paidGmPaid=gmPaidService.getPaidGmPaidByGroup(group);
+			  int totalGm = 0;
+			  
+			  if(paidGmPaid != null){
+  			  for(int i = 0; i<paidGmPaid.size(); i++){
+  				  totalGm += paidGmPaid.get(i).getGroupMoney().getGmPrice();
+  			  }
+			  }
+			  
+			  session.setAttribute("totalGm", totalGm);
+
+			  List<Payment> payment=paymentService.getPaymentByGroup(group);
+			  int totalPayment = 0;
+			  
+			  for(int i = 0; i<payment.size(); i++){
+				  totalPayment += payment.get(i).getAmount();
+			  }
+			  
+			  session.setAttribute("totalPayment", totalPayment);
+			  
 		
 		return "redirect:/calendar.jsp";	
 	}

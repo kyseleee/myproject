@@ -291,18 +291,19 @@ public class UserController {
 	}
 	
 	@RequestMapping("/login.do")
-	public String login(@RequestParam("userId") String id , @RequestParam("userPw") String pw,HttpSession session, @RequestParam("sgroupNo") String sgroupNo) throws Exception{
+	public String login(@RequestParam("userId") String id , @RequestParam("userPw") String pw, HttpSession session) throws Exception{
 	      
 	      System.out.println("/login.do");
 	      
 	      User dbUser=userService.getUserById(id);
     	  session.setAttribute("user", dbUser);
-    	  
-    	  if(groupArrService.getGroupArrByUser(dbUser).size() == 0 && sgroupNo == "" ){
+    	  String sgroupNo = (String) session.getAttribute("sgroupNo");
+    	  System.out.println(sgroupNo);
+    	  if(groupArrService.getGroupArrByUser(dbUser).size() == 0 && sgroupNo == null ){
     		  
     		  return "redirect:addGroup.jsp";     		  
     	
-    	  }else if(groupArrService.getGroupArrByUser(dbUser).size() == 0 && sgroupNo != ""){
+    	  }else if(groupArrService.getGroupArrByUser(dbUser).size() == 0 && sgroupNo != null){
   			
     		  return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+dbUser.getId();	
     	  
@@ -341,7 +342,7 @@ public class UserController {
   			  
   			  session.setAttribute("totalPayment", totalPayment);
   			  
-  			  if(sgroupNo != ""){
+  			  if(sgroupNo != null){
   	    		  return "redirect:/addGroupArr.do?sgroupNo="+ sgroupNo+"&id="+dbUser.getId();	  				  
   			  }
   			  
