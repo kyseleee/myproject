@@ -56,8 +56,8 @@
 	</div>
 	   <!-- panel preview -->
 	     
-	<div class="col-sm-2"></div>
-	<div class="col-sm-8">
+	<div class="col-sm-1"></div>
+	<div class="col-sm-9">
 		<div class="panel-default">
 			<form id="register-form" action="/Snl/addGroup.do" method="post">
 		     <div class="panel-body form-horizontal payment-form">

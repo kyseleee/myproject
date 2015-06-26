@@ -81,7 +81,7 @@ var groupNoHid=document.getElementById("groupNoHidden").value;
 						}
 						else {
 							chart.addSeries({
-									name: data.name,
+									name: decodeURIComponent(data.name),
 									data: data.Group
 							});
 							Highcharts.charts[0].xAxis[0].update({categories:data.xaxis}, true);
@@ -91,7 +91,7 @@ var groupNoHid=document.getElementById("groupNoHidden").value;
 						    table_1 = table("#table_1", {
 						        data: [
 						            { name: "기간내합계", amount: parseInt(data.total).toLocaleString()+"원"},
-						            { name: "월간 평균", amount: (data.total/Object.keys(data.Group).length).toLocaleString()+"원"}
+						            { name: "월간 평균", amount: (Math.round(data.total/Object.keys(data.Group).length)).toLocaleString()+"원"}
 						        ]
 						    });
 						});
@@ -190,7 +190,7 @@ var groupNoHid=document.getElementById("groupNoHidden").value;
 								    table_1 = table("#table_1", {
 								        data: [
 								            { name: "기간내합계", amount: parseInt(data.total).toLocaleString()+"원"},
-								            { name: "월간 평균", amount: (data.total/Object.keys(data.Group).length).toLocaleString()+"원"}
+								            { name: "월간 평균", amount: (Math.round(data.total/Object.keys(data.Group).length)).toLocaleString()+"원"}
 								        ]
 								    });
 								});

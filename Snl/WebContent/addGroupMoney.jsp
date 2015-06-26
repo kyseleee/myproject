@@ -75,10 +75,12 @@
  		<form action="/Snl/addGroupMoney.do" id="payment-form" method="post">
  			 
 		<div class='form-row'>
-			<div class='col-xs-12 form-group required'>
+			<div class='col-xs-3'></div>
+			<div class='col-xs-6 form-group required'>
                 <label class='control-label'>회비명</label>
                 <input class='form-control' size='4' type='text' name='gmName'>
             </div>
+      <div class='col-xs-3'></div>
         </div>
         <div class='form-row'>
               <div class='col-xs-12 form-group card required'>

@@ -144,84 +144,85 @@ public class PaymentController {
 		
 		paymentService.addPayment(payment);
 		
-//		String api_key = "NCS5577D2B700722";
-//		String api_secret = "8C761B6D690151CA86E2FE1C1CC8379F";
-//		String api_key = "NCS557E35C39AA7B";
-//		String api_secret = "4CA56172DC58B73B992266FF5A14A119";
-		
-		String api_key = "NCS558A64965EC8D";
-		String api_secret = "EAD6A6839AC75A9DD023BF806F18F9EC";
-		
-		Coolsms coolsms = new Coolsms(api_key, api_secret);
-		
-		HashMap<String, String> set = new HashMap<String, String>();
-		String toTel="";
-		String method="신용카드";
-		
-		List<GroupArr> groupArrListByGroup=(List<GroupArr>) session.getAttribute("groupArrListByGroup");
-		User user=(User)session.getAttribute("user");
-		
-		String tem[]=user.getTel().split("-");
-		String fromTel="";
-		
-		Group group = (Group) session.getAttribute("group");
-		List<Payment> paymentList =paymentService.getPaymentByGroup(group);
-		int totalPayment = 0;
-		  
-		for(int i = 0; i<paymentList.size(); i++){
-			totalPayment += paymentList.get(i).getAmount();
-		}
-		  
-		session.setAttribute("totalPayment", totalPayment);
-
-		
-		
-		for(String element:tem) {
-			fromTel+=element;
-		}
-		
-		for(GroupArr groupArr:groupArrListByGroup) {
-			tem = userService.getUser(groupArr.getUser().getUserNo()).getTel().split("-");
-			for(String element:tem) {
-				toTel+=element;
+		if(txtMsg.equals("y")) {		
+	//		String api_key = "NCS5577D2B700722";
+	//		String api_secret = "8C761B6D690151CA86E2FE1C1CC8379F";
+	//		String api_key = "NCS557E35C39AA7B";
+	//		String api_secret = "4CA56172DC58B73B992266FF5A14A119";
+			
+			String api_key = "NCS558A64965EC8D";
+			String api_secret = "EAD6A6839AC75A9DD023BF806F18F9EC";
+			
+			Coolsms coolsms = new Coolsms(api_key, api_secret);
+			
+			HashMap<String, String> set = new HashMap<String, String>();
+			String toTel="";
+			String method="신용카드";
+			
+			List<GroupArr> groupArrListByGroup=(List<GroupArr>) session.getAttribute("groupArrListByGroup");
+			User user=(User)session.getAttribute("user");
+			
+			String tem[]=user.getTel().split("-");
+			String fromTel="";
+			
+			Group group = (Group) session.getAttribute("group");
+			List<Payment> paymentList =paymentService.getPaymentByGroup(group);
+			int totalPayment = 0;
+			  
+			for(int i = 0; i<paymentList.size(); i++){
+				totalPayment += paymentList.get(i).getAmount();
 			}
-			toTel+=",";
-		}
-		System.out.println("=============="+toTel);
-		if(payment.getMethod().equals("2")) {
-			method="현금";
-		}
-		String receit="";
-		if(payment.getReceit()==null) {
-			receit="없음";
-		}
+			  
+			session.setAttribute("totalPayment", totalPayment);
 	
-		else {
-			receit="http://192.168.200.122:8080/Snl/"+payment.getReceit();
-		}
-		String txtContent="결제수단 : "+method+"\n날짜 : "+payment.getPayDate()+"\n상호명 : "+payment.getPayName()+"\n금액 : "+payment.getAmount()+"원 \n영수증 : "+receit;
+			
+			
+			for(String element:tem) {
+				fromTel+=element;
+			}
+			
+			for(GroupArr groupArr:groupArrListByGroup) {
+				tem = userService.getUser(groupArr.getUser().getUserNo()).getTel().split("-");
+				for(String element:tem) {
+					toTel+=element;
+				}
+				toTel+=",";
+			}
+			System.out.println("=============="+toTel);
+			if(payment.getMethod().equals("2")) {
+				method="현금";
+			}
+			String receit="";
+			if(payment.getReceit()==null) {
+				receit="없음";
+			}
 		
-		set.put("to", toTel); // 받는사람 번호
-		set.put("from", fromTel); // 보내는사람 번호
-		set.put("text", txtContent); // 문자내용
-		set.put("type", "lms"); // 문자 타입
-		System.out.println("======"+set);
-		
-//		JSONObject result = coolsms.send(set); // 보내기&전송결과받기
-//		if (result.get("code") == null) {
-//			// 메시지 보내기 성공 및 전송결과 출력
-//			System.out.println("성공");			
-//			System.out.println(result.get("group_id")); // 그룹아이디
-//			System.out.println(result.get("result_code")); // 결과코드
-//			System.out.println(result.get("result_message"));  // 결과 메시지
-//			System.out.println(result.get("success_count")); // 메시지아이디
-//			System.out.println(result.get("error_count"));  // 여러개 보낼시 오류난 메시지 수
-//		} else {
-//			// 메시지 보내기 실패
-//			System.out.println("실패");
-//			System.out.println(result.get("code")); // 에러 메시지
-//		}
-		
+			else {
+				receit="http://192.168.200.122:8080/Snl/"+payment.getReceit();
+			}
+			String txtContent="결제수단 : "+method+"\n날짜 : "+payment.getPayDate()+"\n상호명 : "+payment.getPayName()+"\n금액 : "+payment.getAmount()+"원 \n영수증 : "+receit;
+			
+			set.put("to", toTel); // 받는사람 번호
+			set.put("from", fromTel); // 보내는사람 번호
+			set.put("text", txtContent); // 문자내용
+			set.put("type", "lms"); // 문자 타입
+			System.out.println("======"+set);
+			
+			JSONObject result = coolsms.send(set); // 보내기&전송결과받기
+			if (result.get("code") == null) {
+				// 메시지 보내기 성공 및 전송결과 출력
+				System.out.println("성공");			
+				System.out.println(result.get("group_id")); // 그룹아이디
+				System.out.println(result.get("result_code")); // 결과코드
+				System.out.println(result.get("result_message"));  // 결과 메시지
+				System.out.println(result.get("success_count")); // 메시지아이디
+				System.out.println(result.get("error_count"));  // 여러개 보낼시 오류난 메시지 수
+			} else {
+				// 메시지 보내기 실패
+				System.out.println("실패");
+				System.out.println(result.get("code")); // 에러 메시지
+			}
+		}	
 		return "redirect:/calendar.jsp";
 	}
 	
@@ -356,8 +357,7 @@ public class PaymentController {
 		List<Payment> payList = (List<Payment>)map.get("list");
 		System.out.println(map.get("list"));
 		
-		
-		String data="{\"name\": \""+groupService.getGroup(groupNo).getGroupName()+"\",\"Group\": [";
+		String data="{\"name\": \""+URLEncoder.encode(groupService.getGroup(groupNo).getGroupName(), "UTF-8")+"\",\"Group\": [";
 		String xaxis=", \"xaxis\": [";
 		if(payList.size()==0) {
 			data="{\"name\": \""+groupService.getGroup(groupNo).getGroupName()+"\",\"Group\": \"nodata\"}";

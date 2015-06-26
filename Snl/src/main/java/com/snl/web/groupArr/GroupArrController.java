@@ -56,7 +56,7 @@ public class GroupArrController {
 
 		Group group = (Group) session.getAttribute("group");
 
-		mailService.sendMail(toEmail, group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/login.jsp?sgroupNo="+group.getGroupNo());		
+		mailService.sendMail(toEmail, group.getGroupName()+"에 초대 되었습니다. \n\n http://127.0.0.1:8080/Snl/main.jsp?sgroupNo="+group.getGroupNo());		
 	    	
 		return "redirect:/getListGroupArr.do";	
 	}
